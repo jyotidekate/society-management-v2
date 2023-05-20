@@ -1,0 +1,176 @@
+package com.society.application.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+
+public class SavingsDepositWith {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	
+	private int id;
+
+	private String txnDate;
+	
+	private String branchName;
+	
+	private String accountNo;
+	
+	private String memberCode;
+	
+	private String accHolderName;
+	
+	private String mobileNumber;
+	
+	private String jointHolder;
+	
+	private String sbPlanName;
+
+	private String avaBalance;
+	
+	private String transactionFor;
+	
+	private String remarks;
+	
+	private String txnType;
+	
+	private String amount;
+	
+	private String paymentBy;
+	
+	private String flag;
+
+	public String getFlag() {
+		return flag;
+	}
+
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTxnDate() {
+		return txnDate;
+	}
+
+	public void setTxnDate(String txnDate) {
+		this.txnDate = txnDate;
+	}
+
+	public String getBranchName() {
+		return branchName;
+	}
+
+	public void setBranchName(String branchName) {
+		this.branchName = branchName;
+	}
+
+	public String getAccountNo() {
+		return accountNo;
+	}
+
+	public void setAccountNo(String accountNo) {
+		this.accountNo = accountNo;
+	}
+
+	public String getMemberCode() {
+		return memberCode;
+	}
+
+	public void setMemberCode(String memberCode) {
+		this.memberCode = memberCode;
+	}
+
+	public String getAccHolderName() {
+		return accHolderName;
+	}
+
+	public void setAccHolderName(String accHolderName) {
+		this.accHolderName = accHolderName;
+	}
+
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
+	public String getJointHolder() {
+		return jointHolder;
+	}
+
+	public void setJointHolder(String jointHolder) {
+		this.jointHolder = jointHolder;
+	}
+
+	public String getSbPlanName() {
+		return sbPlanName;
+	}
+
+	public void setSbPlanName(String sbPlanName) {
+		this.sbPlanName = sbPlanName;
+	}
+
+	public String getAvaBalance() {
+		return avaBalance;
+	}
+
+	public void setAvaBalance(String avaBalance) {
+		this.avaBalance = avaBalance;
+	}
+
+	public String getTransactionFor() {
+		return transactionFor;
+	}
+
+	public void setTransactionFor(String transactionFor) {
+		this.transactionFor = transactionFor;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+
+	public String getTxnType() {
+		return txnType;
+	}
+
+	public void setTxnType(String txnType) {
+		this.txnType = txnType;
+	}
+
+	public String getAmount() {
+		return amount;
+	}
+
+	public void setAmount(String amount) {
+		this.amount = amount;
+	}
+
+	public String getPaymentBy() {
+		return paymentBy;
+	}
+
+	public void setPaymentBy(String paymentBy) {
+		this.paymentBy = paymentBy;
+	}
+	
+	
+}
