@@ -365,8 +365,6 @@ public class HomeControler {
 		return "advisor/advisorSearch";
 	}
 
-	
-	
 	@GetMapping("/logout")
 	public String logout() {
 		return "index";

@@ -158,18 +158,19 @@ public class ClientController {
 			client.setNomineeAge(nomineeAge);
 			client.setNomineePanNo(nomineePanNo);
 			client.setNomineeKycType(nomineeKycType);
-		        client.setMemberJoiningFess(memberberJoiningFess);
-		        client.setShareAllotedfrm(shareAllotedfrm);
-		        client.setNoOfShared(noOfShared);
-		        client.setEnterShareAmount(enterShareAmount);
-		        client.setPaymode(paymode);
-		        client.setRemarks(remarks);
-		        client.setMemberStatusIsActive(memberberStatusIsActive);
-		        client.setChkmobile(chkmobile);
-		        client.setChknetBanking(chknetBanking);
-		        client.setChkisSms(chkisSms);
-		        client.setChkMinor(chkMinor);
-		      //client.setImage(image);
+		    client.setMemberJoiningFess(memberberJoiningFess);
+		    client.setShareAllotedfrm(shareAllotedfrm);
+		    client.setNoOfShared(noOfShared);
+		    client.setEnterShareAmount(enterShareAmount);
+		    client.setPaymode(paymode);
+		    client.setRemarks(remarks);
+		    client.setMemberStatusIsActive(memberberStatusIsActive);
+		    client.setChkmobile(chkmobile);
+		    client.setChknetBanking(chknetBanking);
+		    client.setChkisSms(chkisSms);
+		    client.setChkMinor(chkMinor);
+		    client.setFlag("1");
+		    client.setImage(image);
 		  
 	       clientMasterRepo.save(client);
 	        return new ResponseEntity<>("Data uploaded successfully", HttpStatus.OK);
@@ -178,8 +179,6 @@ public class ClientController {
 	        return new ResponseEntity<>("Data uploaded Failed !!!!", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
-	
 	
 	@GetMapping("/getAllClient")
 	@ResponseBody
@@ -340,7 +339,7 @@ public class ClientController {
 				});
 			
 	        return new ResponseEntity<>("Data Updated  successfully!!!!", HttpStatus.OK);
-		}catch(Exception ex) {
+		}catch(Exception ex) {;
 			System.out.println(ex);
 	        return new ResponseEntity<>("Data Updated Failed !!!!", HttpStatus.INTERNAL_SERVER_ERROR);
 		}

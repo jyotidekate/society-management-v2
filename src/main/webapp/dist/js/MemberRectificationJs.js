@@ -1,8 +1,8 @@
-/*Member Rectification JS */
+/* Member Rectification JS */
 
-/*Dynamic Dropdown from DB */
+/* Dynamic Dropdown from DB */
 function retrieveCodeInDropdown(){
-	
+	//alert("hi")
 		$.ajax({
 		type: "get",
 		contentType: "application/json",
@@ -12,11 +12,10 @@ function retrieveCodeInDropdown(){
 			//alert("helooo")
 			
 			 var appenddata1 = "";
-                    
                     for (var i = 0; i < data.length; i++) {
-                         appenddata1 += "<option value = '"+data[i].selectByCode +"'>" +data[i].selectByCode +" </option>";
-                    }
-                    $("#selectByCode").append(appenddata1);
+						appenddata1 += "<option value ='"+data[i].id +"'>" +data[i].id +"-"+ data[i].memberName + "</option>";
+					}
+                    $("#id").append(appenddata1);
 		},
 		error: function() {
 			alert("Device control failed");
@@ -24,21 +23,81 @@ function retrieveCodeInDropdown(){
 	});
 }
 
+function ShareAllotedFromInDropdown(){
+	//alert("hi")
+		$.ajax({
+		type: "get",
+		contentType: "application/json",
+		url: 'getshareAllotedfrm',
+		asynch: false,
+		success: function(data) {
+			//alert("helooo")
+			
+			 var appenddata1 = "";
+                    for (var i = 0; i < data.length; i++) {
+						appenddata1 += "<option value ='"+data[i].shareAllotedfrm2 +"'>" +data[i].shareAllotedfrm2 + "</option>";
+					}
+                    $("#shareAllotedfrm").append(appenddata1);
+		},
+		error: function() {
+			alert("Device control failed");
+		}
+	});
+}
 
+function BranchNameInDropdown(){
+	//alert("hi")
+		$.ajax({
+		type: "get",
+		contentType: "application/json",
+		url: 'getAllBranch',
+		asynch: false,
+		success: function(data) {
+			//alert("helooo")
+			
+			 var appenddata1 = "";
+                    for (var i = 0; i < data.length; i++) {
+						appenddata1 += "<option value ='"+data[i].name +"'>" +data[i].name + "</option>";
+					}
+                    $("#branchName").append(appenddata1);
+		},
+		error: function() {
+			alert("Device control failed");
+		}
+	});
+}
 
+function DepositAccNoInDropdown(){
+	//alert("hi")
+		$.ajax({
+		type: "get",
+		contentType: "application/json",
+		url: 'getDepositAccNo',
+		asynch: false,
+		success: function(data) {
+			//alert("helooo")
+			
+			 var appenddata1 = "";
+                    for (var i = 0; i < data.length; i++) {
+						appenddata1 += "<option value ='"+data[i].accountNo +"'>" +data[i].accountNo + "</option>";
+					}
+                    $("#depositAcc").append(appenddata1);
+		},
+		error: function() {
+			alert("Device control failed");
+		}
+	});
+}
 
-
-/*Retrieval Code for Member Rectification */
+/* Retrieval Code for Member Rectification */
 function getDataBySearchCode(){
-	
-	
-	const selectByCode = document.getElementById("selectByCode").value;
+	const id = document.getElementById("id").value;
 	
 	const obj = {
-                     "selectByCode": selectByCode
+                     "id": id
               };
               const myJson = JSON.stringify(obj);
-              //alert(selectByCode)
+              //alert(id)
      $.ajax({
                  type:"post",
                  contentType: "application/json",
@@ -47,15 +106,8 @@ function getDataBySearchCode(){
                  asynch: false,
                  success: function(data) {
 					for(var i=0; i<data.length; i++){
-                 	//var x = Number(data.selectByCode)
-                    //alert("hello")
-                    
-                    
-                     var img = document.getElementById('imgName');
-			       	 img.src =`upload/`+data[i].imgName+``;
-                    
-                    	
-                     document.getElementById("registrationDate").value = data[i].registrationDate;
+					 document.getElementById("id123").value = data[i].id;
+                 	 document.getElementById("registrationDate").value = data[i].registrationDate;
                      document.getElementById("memberNamePrefix").value = data[i].memberNamePrefix;
                      document.getElementById("memberName").value = data[i].memberName;
                      document.getElementById("relativeName").value = data[i].relativeName;
@@ -95,6 +147,11 @@ function getDataBySearchCode(){
                      document.getElementById("chkDate").value = data[i].chkDate;
                      document.getElementById("depositAcc").value = data[i].depositAcc;
                      document.getElementById("remarks").value = data[i].remarks;
+                     
+                     //var img = document.getElementById('imgName');
+			       	 //img.src =`upload/`+data[i].imgName+``;
+			       	 var imgElement = document.getElementById("preview");
+			         imgElement.src ="data:image/png;base64,"+data[i].image;
                    }  
                  } ,
          	    error: function(){
@@ -103,17 +160,15 @@ function getDataBySearchCode(){
              });         	
 }
 
-
-
-//Soft delete integration
+/* Soft delete integration */
 function softDeleteIntegrations(){
-	var selectByCode = document.getElementById("selectByCode").value;
+	var id = document.getElementById("id").value;
 	var input = {
-		"selectByCode" : selectByCode,
+		"id" : id,
 	}
 	var myJson = JSON.stringify(input);
-	alert(selectByCode)
-	if(!selectByCode){
+	//alert(id)
+	if(!id){
 		alert("Please select Code")
 	}
 	else{
@@ -121,11 +176,11 @@ function softDeleteIntegrations(){
 			type:"post",
 			contentType: "application/json",
 			data: JSON.stringify(input),
-			url: 'deleteMemberRectificationByselectByCode',
+			url: 'deleteMemberRectificationBySelectByCode',
 			asynch: false,
 			success: function(data){
 				alert("Soft Delete Successfully...!!!")
-				//window.location.href = "AdvisorRectification";
+				window.location.href = "getMemberRectification";
 			},
 			error: function(){
 				alert("Device control failed");
@@ -155,12 +210,8 @@ function getAllIDAfterSoftDeleteOperation(){
 	});
 }
 
-
-
-
-
 function retrieveCodeAfterSoftDelete(){
-	
+	//alert("ho")
 		$.ajax({
 		type: "get",
 		contentType: "application/json",
@@ -170,11 +221,10 @@ function retrieveCodeAfterSoftDelete(){
 			//alert("helooo")
 			
 			 var appenddata1 = "";
-                    
                     for (var i = 0; i < data.length; i++) {
-                         appenddata1 += "<option value = '"+data[i].selectByCode +"'>" +data[i].selectByCode +" </option>";
-                    }
-                    $("#selectByCode").append(appenddata1);
+						appenddata1 += "<option value ='"+data[i].id +"'>" +data[i].id +"-"+ data[i].memberName + "</option>";
+					}
+                    $("#id").append(appenddata1);
 		},
 		error: function() {
 			alert("Device control failed");

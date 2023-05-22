@@ -40,12 +40,6 @@ public class ClientMaster {
 	private String passportNumber;
 	private String casteName;
 	private String caste;
-	public String getCaste() {
-		return caste;
-	}
-	public void setCaste(String caste) {
-		this.caste = caste;
-	}
 	private String religionName;
 	private String categoryName;
 	private String riskCategory;
@@ -100,6 +94,15 @@ public class ClientMaster {
 	private String introMName;
 	private String previousNoOfShared;
 	private String previousBalance;
+	@Transient
+	private String frontEndPhoto;
+	
+	public String getCaste() {
+		return caste;
+	}
+	public void setCaste(String caste) {
+		this.caste = caste;
+	}
 	public String getPreviousBalance() {
 		return previousBalance;
 	}
@@ -112,12 +115,6 @@ public class ClientMaster {
 	public void setPreviousNoOfShared(String previousNoOfShared) {
 		this.previousNoOfShared = previousNoOfShared;
 	}
-	@Transient
-	private String frontEndPhoto;
-	
-	
-	
-	
 	public String getFrontEndPhoto() {
 		return frontEndPhoto;
 	}
@@ -599,6 +596,7 @@ public class ClientMaster {
 	public void setIntroMName(String introMName) {
 		this.introMName = introMName;
 	}
+	
 	@Override
 	public String toString() {
 		return "ClientMaster [id=" + id + ", clientNo=" + clientNo + ", verifyWithAadhar=" + verifyWithAadhar
@@ -627,7 +625,5 @@ public class ClientMaster {
 				+ ", depositAcc=" + depositAcc + ", image=" + Arrays.toString(image) + ", introMCode=" + introMCode
 				+ ", introMName=" + introMName + "]";
 	}
-	
-	
 
 }

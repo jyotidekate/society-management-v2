@@ -129,8 +129,6 @@ function softDeleteIntegration(){
 
 //dropdown for Share Rectification
  function ShareRectification() {
-
-
 	$.ajax({
 		type: "post",
 		contentType: "application/json",
@@ -140,18 +138,15 @@ function softDeleteIntegration(){
 
 			var appenddata1 = "";
 			for (var i = 0; i < data.length; i++) {
-				appenddata1 += "<option value = '" + data[i].id + "'>" + data[i].id + " </option>";
+				appenddata1 += "<option value ='"+data[i].id +"'>" +data[i].id +"-"+ data[i].memberName + "</option>";
 			}
 			$("#id").append(appenddata1);
-			
-
 		},
 		error: function() {
 			alert("Device control failed");
 		}
 	});
 }
-
 
 //dropdown for share Rectification payment by
 
@@ -212,18 +207,14 @@ function softDeleteSavingsTransaction(){
 }
 }
 
-
-
-//Rectification Section  share rectification Module 
-//3.Get Data from  Search by code
+//Rectification Section  Share Rectification Module 
 function SearchbyCode(){
 	
 	var id = document.getElementById("id");
 	var input = {
 		"id":id.value
 	};
-	
-	//alert("id");
+	//alert(id);
 	$.ajax({
 		type:"POST",
 		contentType: "application/json",
@@ -231,13 +222,10 @@ function SearchbyCode(){
 		url: 'retrievedateinsharefields',
 		async: false,
 		success: function(data){
-    //alert("hello");
+    	//alert("hello");
 	
                     for (var i = 0; i < data.length; i++){
-						
-	              
-	               
-						$('#id').val(data[i].id);
+					 $('#id').val(data[i].id);
                  	 
                  	 document.getElementById("memberName").value=data[i].memberName;
                  	 document.getElementById("doj").value=data[i].doj;
@@ -246,10 +234,11 @@ function SearchbyCode(){
                  	 document.getElementById("faceValue").value=data[i].faceValue;
                  	 document.getElementById("branchName").value=data[i].branchName;
                  	 document.getElementById("transferDate").value=data[i].transferDate;
-                 	 document.getElementById("shareAllotedfrm2").value=data[i].shareAllotedfrm2;
+                 	 document.getElementById("shareAllotedfrm").value=data[i].shareAllotedfrm2;
                  	 document.getElementById("sharebalance").value=data[i].sharebalance;
                  	 document.getElementById("transferAmount").value=data[i].transferAmount;
                  	 document.getElementById("noOfShare").value=data[i].noOfShare;
+                 	 document.getElementById("name").value=data[i].paymode;
                  	 document.getElementById("remarks").value=data[i].remarks;
                  	 
                       }
@@ -267,19 +256,12 @@ function softDeleteIntegration(){
 	
 	var input = {
                      "id": id
-
         }
-        
         var myJSOn = JSON.stringify(input);
-        
-        
-
-        
         if(!id){
-	alert("Plz Select Code!!!!!!!")
-       
-             }else{
-	 $.ajax({
+			alert("Plz Select Code!!!!!!!")
+        }else{
+			 $.ajax({
                  type:"post",
                  contentType: "application/json",
                  data: JSON.stringify(input),

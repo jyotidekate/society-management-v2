@@ -24,4 +24,11 @@ public interface ClientMasterRepo extends JpaRepository<ClientMaster, Integer> {
 			@Param("branchName") String branchName, @Param("transferDate") String transferDate, @Param("shareAllotedfrm") String shareAllotedfrm, @Param("sharebalance") String sharebalance, @Param("transferAmount") String transferAmount,
 			@Param("noOfShared") String noOfShared, @Param("paymode") String paymode, @Param("remarks") String remarks, @Param("id") int id);
 
+	@Modifying
+	@Transactional
+	@Query("UPDATE ClientMaster SET flag =:flag WHERE id =:id")
+	public int updateMemberRectificationThroughid(@Param("flag") String flag, @Param("id") int id);
+
+	public List<ClientMaster> findByflag(String flag);
+
 }

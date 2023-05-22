@@ -1,169 +1,46 @@
+<jsp:include page="../header.jsp" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<body class="skin-blue sidebar-mini"
+	style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);"
+	cz-shortcut-listen="true" onload="retrieveCodeAfterSoftDelete(); ShareAllotedFromInDropdown(); BranchNameInDropdown(); DepositAccNoInDropdown()">
 
+	<div
+		style="height: auto; min-height: 100%; border-radius: 30px; margin: 15px; background: url(dist/img/back.jpg);">
 
-<!DOCTYPE html>
+		<!-- Header Start-->
+		<jsp:include page="../menu.jsp" />
+		<!-- Header End -->
+		<!-- Left side column. contains the logo and sidebar -->
+		<!-- Aside Menu Start-->
+		<jsp:include page="../asideMenu.jsp" />
+		<!-- Aside Menu end -->
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-<head>
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<title>EQFI NIDHI LIMITED</title>
-<!-- Tell the browser to be responsive to screen width -->
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport" />
-<!-- Bootstrap 3.3.7 -->
-<link rel="stylesheet"
-	href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	href="bower_components/font-awesome/css/font-awesome.min.css" />
-<!-- Ionicons -->
-<link rel="stylesheet"
-	href="bower_components/Ionicons/css/ionicons.min.css" />
-<!-- jvectormap -->
-<link rel="stylesheet"
-	href="bower_components/jvectormap/jquery-jvectormap.css" />
-<!-- Theme style -->
-<link rel="stylesheet" href="dist/css/AdminLTE.min.css" />
-
-<!-- daterange picker -->
-<link rel="stylesheet"
-	href="bower_components/bootstrap-daterangepicker/daterangepicker.css" />
-<!-- bootstrap datepicker -->
-<link rel="stylesheet"
-	href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
-<!-- iCheck for checkboxes and radio inputs -->
-<link rel="stylesheet" href="plugins/iCheck/all.css" />
-
-<!-- Select2 -->
-<link rel="stylesheet"
-	href="bower_components/select2/dist/css/select2.min.css" />
-<!-- Theme style -->
-<!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css" />
-<link rel="stylesheet" href="dist/css/dashboard.css" />
-<link rel="shortcut icon" type="image/x-icon"
-	href="../images/favicon.html" />
-<link rel="stylesheet" href="dist/css/lightbox.min.css" />
-<link rel="stylesheet" href="dist/css/qr.css" />
-<!-- Google Font -->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
-<style type="text/css">
-.switch {
-	position: relative;
-	display: inline-block;
-	width: 65px;
-	height: 25px;
-}
-
-.switch input {
-	opacity: 0;
-}
-
-.slider {
-	position: absolute;
-	cursor: pointer;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: #ccc;
-	-webkit-transition: .4s;
-	transition: .4s;
-}
-
-.slider:before {
-	position: absolute;
-	content: "";
-	height: 15px;
-	width: 15px;
-	left: 16px;
-	bottom: 5px;
-	background-color: white;
-	-webkit-transition: .4s;
-	transition: .4s;
-}
-
-input:checked+.slider {
-	background-color: #08c;
-}
-
-input:focus+.slider {
-	box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked+.slider:before {
-	-webkit-transform: translateX(26px);
-	-ms-transform: translateX(26px);
-	transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-	border-radius: 34px;
-}
-
-.slider.round:before {
-	border-radius: 50%;
-}
-</style>
-
-</head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<body class="skin-blue sidebar-mini" style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);"
-	cz-shortcut-listen="true"  onload = "retrieveCodeAfterSoftDelete();">
-	
-
-
-
-		<div
-			style="height: auto; min-height: 100%; border-radius: 30px; margin: 15px; background: url(dist/img/back.jpg);">
-
-			<!-- Header Start-->
-			<jsp:include page="../menu.jsp" />
-			<!-- Header End -->
-			<!-- Left side column. contains the logo and sidebar -->
-			<!-- Aside Menu Start-->
-			<jsp:include page="../asideMenu.jsp" />
-			<!-- Aside Menu end -->
-
-			<script type="text/javascript">
+		<script type="text/javascript">
 //<![CDATA[
 Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [], [], [], 90, 'ctl00');
 //]]>
 </script>
 
-			
-			<div class="content-wrapper" style="min-height: 1105.75px;">
+		<div class="content-wrapper" style="min-height: 1105.75px;">
+			<section class="content-header">
+				<h1 id="ContentPlaceHolder1_IdHeader">Edit Member</h1>
+				<ol class="breadcrumb">
+					<li><a href="Home.html"><i class="fa fa-dashboard"></i>Home</a></li>
+					<li><a href="#">Dashboard</a></li>
+					<li class="active">Member</li>
+				</ol>
+			</section>
 
+			<form id="myForm" name="myForm" enctype="multipart/form-data">
 
-
-				<section class="content-header">
-					<h1 id="ContentPlaceHolder1_IdHeader">Edit Member</h1>
-					<ol class="breadcrumb">
-						<li><a href="Home.html"><i class="fa fa-dashboard"></i>Home</a></li>
-						<li><a href="#">Dashboard</a></li>
-						<li class="active">Member</li>
-					</ol>
-				</section>
-				
-				<form   id="myForm" name="myForm" enctype="multipart/form-data">
-				
-				
 				<section class="content">
-
+					<input type="hidden" id="id123" name="id123">
 					<div id="" class="row">
 						<div class="col-md-12">
 							<div class="box box-warning">
 								<div class="box-header with-border">
 									<h3 class="box-title">Search Details</h3>
-
 								</div>
 								<div class="form-horizontal">
 									<div class="box-body">
@@ -172,11 +49,11 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 												<label class="col-sm-4 control-label">Select by Code<strong
 													style="color: Red">*</strong></label>
 												<div class="col-sm-8">
-													<select name="selectByCode"
-														onchange="getDataBySearchCode()" id="selectByCode"
+													<select name="id"
+														onchange="getDataBySearchCode()" id="id"
 														class="form-control select2" style="width: 100%;">
 														<option value="--Select--" selected="selected">--Select--</option>
-																											</select>
+													</select>
 												</div>
 											</div>
 										</div>
@@ -186,19 +63,15 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 						</div>
 					</div>
 
-
-
 					<div class="row">
 						<div class="col-md-12">
 							<div class="box box-success">
 								<div class="box-header with-border">
 									<h3 class="box-title">Member Details</h3>
-
 								</div>
 								<div class="form-horizontal">
 									<div class="box-body">
 										<div class="col-md-6">
-
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Registration
 													Date <strong style="color: Red">*</strong>
@@ -208,20 +81,16 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 														<div class="input-group-addon">
 															<i class="fa fa-calendar"></i>
 														</div>
-
 														<input name="registrationDate" type="date" value=""
 															id="registrationDate" class="form-control"
 															data-inputmask="&#39;alias&#39;: &#39;dd/mm/yyyy&#39;"
 															data-mask="" />
-
-
 													</div>
 													<span id="registrationDateMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Registration Date</span>
 												</div>
 											</div>
-
 											<div class="form-group row">
 												<label class="col-sm-4 control-label">Member Name <strong
 													style="color: Red">*</strong></label>
@@ -233,9 +102,7 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 														<option value="Mrs.">Mrs.</option>
 														<option value="Smt.">Smt.</option>
 														<option value="Md.">Md.</option>
-
 													</select>
-
 												</div>
 												<div class="col-sm-5">
 													<input name="memberName" type="text" value=""
@@ -258,7 +125,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 												<label for="drpRelativeRelation"
 													class="col-sm-4 control-label">Relative Relation</label>
 												<div class="col-sm-8">
-
 													<select name="relativeRelation" id="relativeRelation"
 														class="form-control" style="width: 100%;">
 														<option value="--Select--" selected="selected">--Select--</option>
@@ -276,19 +142,17 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 														<option value="Grand Daughter">Grand Daughter</option>
 														<option value="Grand Son">Grand Son</option>
 														<option value="Other">Other</option>
-
 													</select>
 												</div>
 											</div>
 											<div class="form-group row">
 												<label for="drpGender" class="col-sm-4 control-label">Gender</label>
 												<div class="col-sm-8">
-
 													<select name="gender" id="gender" class="form-control"
 														style="width: 100%;">
-														<option selected="selected" value="Male">Male</option>
+														<option value="--Select--" selected="selected">--Select--</option>
+														<option value="Male">Male</option>
 														<option value="Female">Female</option>
-
 													</select>
 												</div>
 											</div>
@@ -301,7 +165,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 														<div class="input-group-addon">
 															<i class="fa fa-calendar"></i>
 														</div>
-
 														<input name="dob" type="date" id="dob"
 															class="form-control"
 															data-inputmask="&#39;alias&#39;: &#39;dd/mm/yyyy&#39;"
@@ -326,10 +189,9 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 														<option value="Married">Married</option>
 														<option value="Separated">Separated</option>
 														<option value="Divorced">Divorced</option>
-														<option value="Widowed">Widowed</option>
+														<option value="Widow">Widow</option>
 														<option value="Unmarried">Unmarried</option>
 														<option value="Single">Single</option>
-
 													</select>
 												</div>
 											</div>
@@ -344,7 +206,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Address</span>
 												</div>
-
 											</div>
 											<div class="form-group row">
 												<label for="txtDistrict" class="col-sm-4 control-label">District
@@ -358,13 +219,11 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 														District</span>
 												</div>
 											</div>
-
 											<div class="form-group row">
 												<label for="drpState" class="col-sm-4 control-label">State
 													<strong style="color: Red">*</strong>
 												</label>
 												<div class="col-sm-8">
-
 													<select name="state" id="state"
 														class="form-control select2" style="width: 100%;">
 														<option value="--Select--" selected="selected">--Select--</option>
@@ -398,30 +257,23 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 														<option value="UTTAR PRADESH">UTTAR PRADESH</option>
 														<option value="UTTARAKHAND">UTTARAKHAND</option>
 														<option value="WEST BENGAL">WEST BENGAL</option>
-
 													</select> <span id="stateMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Select
 														State</span>
 												</div>
 											</div>
-
 											<div class="form-group row">
 												<label class="col-sm-4 control-label">Branch Name <strong
 													style="color: Red">*</strong></label>
 												<div class="col-sm-8">
 													<select name="branchName" id="branchName"
 														class="form-control select2" style="width: 100%;">
-														<option selected="selected" value="001">Main
-															Office - 001</option>
-
+														<option value="--Select--" selected="selected">--Select--</option>
 													</select>
 												</div>
 											</div>
 										</div>
 										<div class="col-md-6">
-
-
-
 											<div class="form-group row">
 												<label for="txtPin" class="col-sm-4 control-label">Pin
 													Code <strong style="color: Red">*</strong>
@@ -534,25 +386,21 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 														Placeholder="Enter Intro Member Name" />
 												</div>
 											</div>
-
 											<div class="form-group row">
-												<label for="txtIntroMName" class="col-sm-4 control-label">Photo(with
-													aadhar)</label>
-												<div class="col-sm-8">
-													<img id="imgName" name="imgName" class="profile-user-img"
-														style="height: 110px; width: 110px;" />
-														<input type="file" name="filetag" id="filetag" />
-												</div>
-											</div>
-
-
+                                    			<label for="txtIntroMName" class="col-sm-4 control-label">Photo(with 
+                                    			aadhar)</label>
+                                    			<div class="col-sm-8">
+                                       				<img id="preview" name="preview" class="profile-user-img" 
+                                       				src="data:image/png;base64,${aadharPhoto}" style="height:70px;width:115px;" />
+                                       			<input type="file" name="filetag" id="filetag" />
+                                    			</div>
+                                 		</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-
 					<div class="row">
 						<div class="col-md-12">
 							<div class="box box-danger">
@@ -578,7 +426,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 												<label for="drpNomineeRelation"
 													class="col-sm-4 control-label">Nominee Relation</label>
 												<div class="col-sm-8">
-
 													<select name="nRelation" id="nRelation"
 														class="form-control" style="width: 100%;">
 														<option value="--Select--" selected="selected">--Select--</option>
@@ -596,7 +443,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 														<option value="Grand Daughter">Grand Daughter</option>
 														<option value="Grand Son">Grand Son</option>
 														<option value="Other">Other</option>
-
 													</select>
 												</div>
 											</div>
@@ -648,7 +494,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 												<label for="drpNomineeKycType"
 													class="col-sm-4 control-label">Nominee KYC Type</label>
 												<div class="col-sm-8">
-
 													<select name="nomineeKycType" id="nomineeKycType"
 														class="form-control" style="width: 100%;">
 														<option value="--Select--" selected="selected">--Select--</option>
@@ -656,7 +501,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 														<option value="Voter">Voter</option>
 														<option value="Ration Card">Ration Card</option>
 														<option value="Driving Licence">Driving Licence</option>
-
 													</select>
 												</div>
 											</div>
@@ -675,7 +519,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 								<div class="form-horizontal">
 									<div class="box-body">
 										<div class="col-md-6">
-
 											<div class="form-group row">
 												<label for="txtMemberJoiningFess"
 													class="col-sm-4 control-label">Member Fees (if any)
@@ -690,7 +533,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 														Member Fees (if any)</span>
 												</div>
 											</div>
-
 											<div class="form-group row">
 												<label for="txtShareAllotmentFrom"
 													class="col-sm-4 control-label">Share Alloted From <strong
@@ -699,21 +541,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 													<select name="shareAllotedfrm" id="shareAllotedfrm"
 														class="form-control select2" style="width: 100%;">
 														<option value="--Select--" selected="selected">--Select--</option>
-														<option value="01/NGP/ 000001">ANKUSH GAJANANRAO
-															BHELKAR-01/NGP/ 000001</option>
-														<option value="01/NGP/ 000002">SUDHIR KRISHNARAO
-															BOREKAR-01/NGP/ 000002</option>
-														<option value="01/NGP/ 000003">MANGESH KRUSHNARAO
-															BOREKAR-01/NGP/ 000003</option>
-														<option value="01/NGP/ 000004">RAJESH BABULAL
-															BHAGAT-01/NGP/ 000004</option>
-														<option value="01/NGP/ 000005">ROSHAN
-															SHANKARRAOJI RAUT-01/NGP/ 000005</option>
-														<option value="01/NGP/ 000006">REKHA GAJANAN
-															BHELKAR-01/NGP/ 000006</option>
-														<option value="01/NGP/ 000007">MAYURI ANKUSH
-															BHELKAR-01/NGP/ 000007</option>
-
 													</select> <span id="shareAllotedfrmMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Select
 														Alloted From</span>
@@ -744,13 +571,11 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 														Share Amount</span>
 												</div>
 											</div>
-
 											<div class="form-group row">
 												<label for="drpPaymentBy" class="col-sm-4 control-label">Payment
 													By <strong style="color: Red">*</strong>
 												</label>
 												<div class="col-sm-8">
-
 													<select name="paymode"
 														onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$ddlPaymode\&#39;,\&#39;\&#39;)&#39;, 0)"
 														id="paymode" class="form-control" style="width: 100%;">
@@ -759,13 +584,10 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 														<option value="Cheque">Cheque</option>
 														<option value="Online">Online</option>
 														<option value="NEFT">NEFT</option>
-
 													</select>
-
 												</div>
 											</div>
 											<div id="ContentPlaceHolder1_pnlcheque">
-
 												<div class="form-group row">
 													<label class="col-sm-4 control-label">Cheque No.</label>
 													<div class="col-sm-8">
@@ -787,7 +609,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 														</div>
 													</div>
 												</div>
-
 											</div>
 											<div id="ContentPlaceHolder1_idbankAC" class="form-group row">
 												<label class="col-sm-4 control-label">Deposit A/C</label>
@@ -795,13 +616,9 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 													<select name="depositAcc" onchange="" id="depositAcc"
 														class="form-control" style="width: 100%;">
 														<option value="--Select--" selected="selected">--Select--</option>
-														<option value="107363400000533">107363400000533</option>
-
 													</select>
 												</div>
 											</div>
-
-
 											<div class="form-group row">
 												<label class="col-sm-4 control-label">Remarks</label>
 												<div class="col-sm-8">
@@ -864,58 +681,53 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 													</label>
 												</div>
 											</div>
-
-
-
-
 										</div>
 									</div>
 									<div class="box-footer">
 										<div class="row col-md-12">
-										
-										
-										 <input
-												type="submit" name="ctl00$ContentPlaceHolder1$btnSave"
-												value="Update"
-											
-												id="ContentPlaceHolder1_btnSave"
+											<input type="submit" name="ctl00$ContentPlaceHolder1$btnSave"
+												value="Update" id="ContentPlaceHolder1_btnSave"
 												class="btn btn-success pull-right margin-r-5" />
-												
-												</form>
 										
-											<input type="button"
-												name="btndelete" value="Delete"
-												onclick="softDeleteIntegrations();"
-												id="btndelete"
-												class="btn btn-danger pull-right" /> 
-												
-												<input type="submit"
-												name="btnprint" value="Print"
-												id="btnprint"
-												class="btn btn-info pull-right margin-r-5" />
-												
-												
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-              
-			</div>
-           
+			</form>
 
-
-			<div class="control-sidebar-bg"></div>
-
+			<input type="button" name="btndelete" value="Delete"
+				onclick="softDeleteIntegrations();" id="btndelete"
+				class="btn btn-danger pull-right" /> 
+			<input type="submit"
+				name="btnprint" value="Print" id="btnprint"
+				class="btn btn-info pull-right margin-r-5" onclick="printTable1()" />
+				
 		</div>
-		
-		
-		<!--       Update Operation -->
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</section>
+	</div>
+	<div class="control-sidebar-bg"></div>
+	</div>
+	
+<!-- Print Operation -->
 <script>
-//alert("hi")
-$(document).ready(function() {
+      function printTable1() {
+          const table = document.querySelector('table');
+          const printWindow = window.open('', '', 'height=500,width=800');
+          printWindow.document.write('<html><head><title>Print Table</title>');
+          printWindow.document.write('</head><body>');
+          printWindow.document.write(table.outerHTML);
+          printWindow.document.write('</body></html>');
+          printWindow.document.close();
+          printWindow.focus();
+          printWindow.print();
+        }
+ </script>
+
+<!--       Update Operation -->
+<script>
+	//alert("hi")
+	$(document).ready(function() {
 	$("#myForm").submit(function(e) {
    	e.preventDefault(); // prevent default form submit action
    
@@ -931,7 +743,7 @@ $(document).ready(function() {
        contentType: false,
        success: function(data) {
     	
-    	   alert("DAta Savesdd")
+    	   alert("Data Updated")
     	   window.location.href = "getMemberRectification";
        },
        error: function(error) {
@@ -947,13 +759,11 @@ $(document).ready(function() {
 <script>
 
       var fileTag = document.getElementById("filetag"),
-          preview = document.getElementById("imgName")
-  
-          
+          preview = document.getElementById("preview")
+      
       fileTag.addEventListener("change", function() {
         changeImage(this);
       });
-      
       
       function changeImage(input) {
         var reader;
@@ -968,59 +778,45 @@ $(document).ready(function() {
           reader.readAsDataURL(input.files[0]);
         }
       }
-      
-        
-      
 </script>
-		
-		
 
-		<script src="bower_components/jquery/dist/jquery.min.js"></script>
-		<!-- Bootstrap 3.3.7 -->
-		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap 3.3.7 -->
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-		<!-- InputMask -->
-		<script src="plugins/input-mask/jquery.inputmask.js"></script>
-		<script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-		<script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
-		<!-- date-range-picker -->
-		<script src="bower_components/moment/min/moment.min.js"></script>
-		<script
-			src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-		<!-- bootstrap datepicker -->
-		<script
-			src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-		<!-- bootstrap color picker -->
-		<script
-			src="bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
-		<!-- bootstrap time picker -->
-		<script src="plugins/timepicker/bootstrap-timepicker.min.js"></script>
-		<!-- SlimScroll -->
-		<script
-			src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-		<!-- iCheck 1.0.1 -->
-		<script src="plugins/iCheck/icheck.min.js"></script>
-		<!-- FastClick -->
-		<script src="bower_components/fastclick/lib/fastclick.js"></script>
-		<!-- AdminLTE App -->
-		<script src="dist/js/adminlte.min.js"></script>
-		<!-- AdminLTE for demo purposes -->
-		<script src="dist/js/demo.js"></script>
+	<!-- InputMask -->
+	<script src="plugins/input-mask/jquery.inputmask.js"></script>
+	<script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+	<script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
+	<!-- date-range-picker -->
+	<script src="bower_components/moment/min/moment.min.js"></script>
+	<script
+		src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<!-- bootstrap datepicker -->
+	<script
+		src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+	<!-- bootstrap color picker -->
+	<script
+		src="bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+	<!-- bootstrap time picker -->
+	<script src="plugins/timepicker/bootstrap-timepicker.min.js"></script>
+	<!-- SlimScroll -->
+	<script
+		src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<!-- iCheck 1.0.1 -->
+	<script src="plugins/iCheck/icheck.min.js"></script>
+	<!-- FastClick -->
+	<script src="bower_components/fastclick/lib/fastclick.js"></script>
+	<!-- AdminLTE App -->
+	<script src="dist/js/adminlte.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="dist/js/demo.js"></script>
 
-		<!-- Member Rectification JS -->
-		<script src="dist/js/MemberRectificationJs.js"></script>
+	<!-- Member Rectification JS -->
+	<script src="dist/js/MemberRectificationJs.js"></script>
 
-
-		<!-- Select2 -->
-		<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
-
-
-
-
-
-
-	</form>
+	<!-- Select2 -->
+	<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+</form>
 </body>
-
-
 </html>

@@ -7,7 +7,6 @@ import javax.persistence.Id;
 
 @Entity
 public class Member {
-	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -90,10 +89,6 @@ public class Member {
 	private byte[] member_image;
 	private String introMCode;
 	private String introMName;
-	
-	
-	
-	
 	
 	public String getClientNo() {
 		return clientNo;
@@ -746,7 +741,5 @@ public class Member {
 				+ chkisSms + ", chkMinor=" + chkMinor + ", rationNo=" + rationNo + ", dLNo=" + dLNo + ", bankName="
 				+ bankName + ", bankBranch=" + bankBranch + ", accountNo=" + accountNo + ", iFSC=" + iFSC + "]";
 	}
-
-	
 
 }
