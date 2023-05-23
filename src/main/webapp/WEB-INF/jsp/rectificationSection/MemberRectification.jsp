@@ -747,7 +747,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
     	   window.location.href = "getMemberRectification";
        },
        error: function(error) {
-    	   
     	   alert(error)
            console.log(error);
        }

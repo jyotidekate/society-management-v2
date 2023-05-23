@@ -362,7 +362,9 @@
                                     <select name="misMode"
                                        id="misMode" class="form-control"
                                        style="width: 100%;">
-                                       <option selected="selected" value="N/A">N/A</option>
+                                       <option value="" selected="selected">--Select--</option>
+									   <option value="cash">Cash</option>
+									   <option value="online">Online</option>
                                     </select>
                                  </div>
                               </div>

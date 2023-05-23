@@ -227,7 +227,6 @@ public class HomeControler {
 		return "member/AddMemberEdit";
 	}
 	
-
 	@GetMapping("/addAdvisor")
 	public String addAdvisor(Model model) {
 		List<Member> allMember = memberRepo.findAll();

@@ -334,6 +334,7 @@ public class ClientController {
 					s.setChknetBanking(chknetBanking);
 					s.setChkisSms(chkisSms);
 					s.setChkMinor(chkMinor);
+					s.setFlag("1");
 					
 					 clientMasterRepo.save(s);
 				});

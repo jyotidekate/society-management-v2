@@ -1,6 +1,4 @@
-             
-//Memeber Summary Data Fetch in DropDown                
-                    
+//Memeber Summary Data Fetch in DropDown                                 
 function  summaryDataFetchinDropDown() {
 
 	$.ajax({
@@ -9,8 +7,7 @@ function  summaryDataFetchinDropDown() {
 		url: 'getAllClient',
 		asynch: false,
 		success: function(data) {
-			
-			
+
 			 var appenddata1 = "";
                     //alert(value.length);
                     //var jsonData1 = JSON.parse(data1.d);
@@ -23,7 +20,7 @@ function  summaryDataFetchinDropDown() {
 			alert("Device control failed");
 		}
 	});
-	}
+}
 	
 //Append the data in the Memeber  caste
 function  CasteDataFetchinDropDown() {
@@ -34,8 +31,7 @@ function  CasteDataFetchinDropDown() {
 		url: 'getCasteDetailsfordropdown',
 		asynch: false,
 		success: function(data) {
-			
-			
+		
 			 var appenddata1 = "";
                     //alert(value.length);
                     //var jsonData1 = JSON.parse(data1.d);
@@ -49,7 +45,7 @@ function  CasteDataFetchinDropDown() {
 			alert("Device control failed");
 		}
 	});
-	}
+}
 
 function  CategoryDataFetchinDropDown() {
 
@@ -59,7 +55,6 @@ function  CategoryDataFetchinDropDown() {
 		url: 'getCategoryDetails',
 		asynch: false,
 		success: function(data) {
-			
 			
 			 var appenddata1 = "";
                     //alert(value.length);
@@ -74,7 +69,7 @@ function  CategoryDataFetchinDropDown() {
 			alert("Device control failed");
 		}
 	});
-	}
+}
 
 //Search THe Policy Number
 function SearchTHePolicyNumber(){
@@ -104,7 +99,7 @@ function SearchTHePolicyNumber(){
 				   document.getElementById("id").value = data[i].id;
 				   
 				   var imgElement = document.getElementById("ContentPlaceHolder1_imglogo");
-			      imgElement.src ="data:image/png;base64,"+data[i].frontEndPhoto;
+			       imgElement.src ="data:image/png;base64,"+data[i].frontEndPhoto;
 			      
                    document.getElementById("memberName").value = data[i].memberName;
 				   document.getElementById("registrationDate").value = data[i].registrationDate;
@@ -132,7 +127,6 @@ function SearchTHePolicyNumber(){
 	
 //Memeber Section - Member	Report
 //Data Fetch in DropDown               
-                     
 function  reportDataFetchinDropDown() {
 	
 	//alert("Hello")
@@ -155,13 +149,10 @@ function  reportDataFetchinDropDown() {
 			alert("Device control failed");
 		}
 	});
-	}
+}
 	
 //Search Data By Branch Name & Date	
 function getMemberRepottSearch() {
-	
-	//alert("Helo")
-	
 	
 	var input = {
 		 branchName : document.getElementById("branchName").value,
@@ -209,15 +200,11 @@ function getMemberRepottSearch() {
 			alert("Device control failed");
 		}
 	});
-	
 }
 
-//Data Fetch in DropDown               
-                    
+//Data Fetch in DropDown                     
 function  dropDownBranchCode() {
 	
-	
-
 	$.ajax({
 		type: "get",
 		contentType: "application/json",
@@ -236,24 +223,19 @@ function  dropDownBranchCode() {
 			alert("Device control failed");
 		}
 	});
-	}
-	
-	
-	//Search Through Search Box
-	
-	function searchThroughSearchBox(){
+}
+		
+//Search Through Search Box	
+function searchThroughSearchBox(){
 	var input = {
 		branchName : document.getElementById("branchName").value,
 		fDate : document.getElementById("fDate").value,
 		tDate : document.getElementById("tDate").value,
-		
 		memberName : document.getElementById("memberName").value,
 		introMCode : document.getElementById("memberCode").value,
 		phoneno : document.getElementById("mobile").value,
 		aadharNo : document.getElementById("aadharno").value,
 		pan : document.getElementById("pan").value,
-		
-		
 	};
 	
 	const myJSON = JSON.stringify(input);

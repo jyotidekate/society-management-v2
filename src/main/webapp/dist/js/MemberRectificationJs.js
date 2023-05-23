@@ -225,6 +225,7 @@ function retrieveCodeAfterSoftDelete(){
 						appenddata1 += "<option value ='"+data[i].id +"'>" +data[i].id +"-"+ data[i].memberName + "</option>";
 					}
                     $("#id").append(appenddata1);
+                    
 		},
 		error: function() {
 			alert("Device control failed");

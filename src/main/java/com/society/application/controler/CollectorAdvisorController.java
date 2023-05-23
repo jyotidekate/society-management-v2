@@ -140,6 +140,7 @@ public class CollectorAdvisorController {
 			advisor.setRemarks(remarks);
 			advisor.setAdvisorStatus(advisorStatus);
 			advisor.setSmsSend(smsSend);
+			advisor.setFlag("1");
 			
 			advisorCollectorDetailsRepo.save(advisor);
 			return new ResponseEntity<>("Data saved successfully...!!!", HttpStatus.OK);

@@ -12,6 +12,7 @@ function  ForPolicynoDropdown() {
 			 var appenddata1 = "";
                     for (var i = 0; i < data.length; i++) {
                          appenddata1 += "<option value = '"+data[i].policyno +"'>" +data[i].policyno +" </option>";
+                         //appenddata1 += "<option value='" + data[i].id + "'> ID = " + data[i].id + "  &   Policy No. = " + data[i].policyno + "</option>";
                     }
                     $("#policyno").append(appenddata1);
 		},
@@ -23,7 +24,6 @@ function  ForPolicynoDropdown() {
 
 //retriving data on Feilds by Policy No.
 function retrivigInvestmentAjax(){
-	
 	var policyno = document.getElementById("policyno");
 		var input = {
                      "policyno": policyno.value
@@ -40,9 +40,9 @@ function retrivigInvestmentAjax(){
 	 for (var i = 0; i < data.length; i++) {
 		
 		 $('#policyno').val(data[i].policyno);
-	
-		 document.getElementById("policyDate").value=data[i].policyDate;
-			// document.getElementById("searchMemberCode").value=data[i].searchMemberCode;
+			 document.getElementById("id123").value=data[i].policyno
+		     document.getElementById("policyDate").value=data[i].policyDate;
+			 document.getElementById("id").value=data[i].memberName;
 			 document.getElementById("memberName").value=data[i].memberName;
 			 document.getElementById("dob").value=data[i].dob;
 			 document.getElementById("age").value=data[i].age;
@@ -55,12 +55,10 @@ function retrivigInvestmentAjax(){
 			 document.getElementById("district").value=data[i].district;
 			 document.getElementById("state").value=data[i].state;
 			 document.getElementById("pin").value=data[i].pin;
-			 document.getElementById("cspname").value=data[i].cspname;
+			 document.getElementById("branchName").value=data[i].branchName;
 			 document.getElementById("modeOfOp").value=data[i].modeOfOp;
-			 
 			 document.getElementById("jointName").value=data[i].jointName;
 			 document.getElementById("jointCode").value=data[i].jointCode;
-			 
 			 document.getElementById("mDate").value=data[i].mDate;
 			 document.getElementById("schemeType").value=data[i].schemeType;
 			 document.getElementById("schemeName").value=data[i].schemeName;
@@ -77,13 +75,12 @@ function retrivigInvestmentAjax(){
 			 document.getElementById("advisorName").value=data[i].advisorName;
 			 document.getElementById("chkisSms").value=data[i].chkisSms;
 			            
-//			 let photoValue =data[i].photo;
-          
-            var img = document.getElementById('preview');
-			img.src =`upload/`+data[i].photo+``;
+			 var imgElement = document.getElementById("preview");
+             imgElement.src = "data:image/png;base64," + data[i].frontEndPhoto;
 
-			var img2 = document.getElementById('secondpreview');
-			img2.src =`upload/`+data[i].signature+``;	
+             var imgElement = document.getElementById("secondpreview");
+             imgElement.src = "data:image/png;base64," + data[i].frontEndSignature;
+			
         }
        } ,
          	    error: function(){
@@ -92,24 +89,19 @@ function retrivigInvestmentAjax(){
        });
 }
 
-function softDeleteIntegration(){
+function softDeleteIntegrationForInvestment(){
 	var policyno = document.getElementById("policyno").value;
-	//var renewalDate = document.getElementById("renewalDate");
-	//var searchbyPolicyNo = document.getElementById("searchbyPolicyNo");
 	var input = {
-                     "policyno": policyno,
-//                      "renewalDate": renewalDate.value
+              "policyno": policyno,
      }
         
      var myJSOn = JSON.stringify(input);
-//        alert(searchbyPolicyNo)
-//        alert(!searchbyPolicyNo)
-        
-        if(!policyno){
-	alert("Plz Select Policy Number!!!!!!!")
+     alert(policyno)
+     if(!policyno){
+		alert("Plz Select Policy Number!!!!!!!")
        
-             }else{
-	 $.ajax({
+     }else{
+	      $.ajax({
                  type:"post",
                  contentType: "application/json",
                  data: JSON.stringify(input),
@@ -149,9 +141,7 @@ function softDeleteIntegration(){
 }
 
 //dropdown for share Rectification payment by
-
 function SharePayment() {
-
 
 	$.ajax({
 		type: "post",
@@ -177,18 +167,12 @@ function softDeleteSavingsTransaction(){
 	
 	var input = {
                      "accountNo": accountNo
-
         }
-        
-        var myJSOn = JSON.stringify(input);
-        
-        
-
-        
-        if(!accountNo){
+    var myJSOn = JSON.stringify(input);
+           
+    if(!accountNo){
 	alert("Plz Select Code!!!!!!!")
-       
-             }else{
+    }else{
 	 $.ajax({
                  type:"post",
                  contentType: "application/json",
@@ -302,13 +286,11 @@ function  getAllPolicyNumber1InTheDailyRenewalRectification() {
 }
 
 /*Retrieval Investment Section Daily Renewal Payment Module */
-function getByAddInvesmentCode(){
+function getByAddInvesmentCodeDailyRenewalRectification(){
 	
-	//alert("Hello")
 	var searchbyPolicyNo = document.getElementById("searchbyPolicyNo");
 		var input = {
                      "id": searchbyPolicyNo.value }
-             
         $.ajax({
                  type:"post",
                  contentType: "application/json",
@@ -316,16 +298,13 @@ function getByAddInvesmentCode(){
                  url: 'getByAddInvesmentCode',
                  asynch: false,
                  success: function(data) {
-                 	 
-                 		
-                 		var img = document.getElementById('preview');
-			       		img.src =`upload/`+data.photo+``;
+                 	 	
+                 	 var imgElement = document.getElementById("preview");
+             	     imgElement.src = "data:image/png;base64," + data.photo;
 
-						var img2 = document.getElementById('secondpreview');
-						img2.src =`upload/`+data.signature+``;
-						
-						//alert(data.policy_date)
-                 	 
+             	     var imgElement = document.getElementById("secondpreview");
+             	     imgElement.src = "data:image/png;base64," + data.signature;
+			
                       document.getElementById("policyDate1").value = data.policyDate;
                       document.getElementById("mDate").value = data.mDate;
                       document.getElementById("memberCode").value = data.searchMemberCode;
@@ -358,7 +337,7 @@ function getByAddInvesmentCode(){
 
 /*Investment Section Daily Renewal Payment Module */
 //2.Get Data by Renewal Date
- function getByDateAddInvesmentCode(){
+ function getByDateAddInvesmentCodeRenewalRectification(){
 	var searchbyRenewalDate = document.getElementById("renewalDate").value;
 		
         $.ajax({
@@ -371,14 +350,12 @@ function getByAddInvesmentCode(){
 	
 	            for (let i=0;i<data.length;i++){
 		
-	                     var img = document.getElementById('preview');
-			       		img.src =`upload/`+data[i].photo+``;
+	                 var imgElement = document.getElementById("preview");
+             	     imgElement.src = "data:image/png;base64," + data[i].photo;
 
-						var img2 = document.getElementById('secondpreview');
-						img2.src =`upload/`+data[i].signature+``;
+             	     var imgElement = document.getElementById("secondpreview");
+             	     imgElement.src = "data:image/png;base64," + data[i].signature;
 						
-						//alert(data.policy_date)
-                 	 
                       document.getElementById("policyDate1").value = data[i].policyDate;
                       document.getElementById("mDate").value = data[i].mDate;
                       document.getElementById("memberCode").value = data[i].searchMemberCode;
@@ -403,7 +380,6 @@ function getByAddInvesmentCode(){
                       document.getElementById("remarks").value = data[i].remarks;
 	}
 	
-
                  } ,
          	    error: function(){
          	    	alert("Device control failed");
@@ -414,7 +390,7 @@ function getByAddInvesmentCode(){
 
 /*Investment Section Daily Renewal Payment Module */
 /3.Get Data from Branch Name/
-function getByBranchNameAddInvesmentCode(){
+function getByBranchNameAddInvesmentCodesNow(){
 	var searchbybranchName = document.getElementById("branchName").value;
 		
         $.ajax({
@@ -427,14 +403,12 @@ function getByBranchNameAddInvesmentCode(){
 	
                       for (let i=0;i<data.length;i++){
 	                  
-	                 var img = document.getElementById('preview');
-			       		img.src =`upload/`+data[i].photo+``;
+	                 var imgElement = document.getElementById("preview");
+             	     imgElement.src = "data:image/png;base64," + data[i].photo;
 
-						var img2 = document.getElementById('secondpreview');
-						img2.src =`upload/`+data[i].signature+``;
-						
-						//alert(data.policy_date)
-                 	 
+             	     var imgElement = document.getElementById("secondpreview");
+             	     imgElement.src = "data:image/png;base64," + data[i].signature;
+
                       document.getElementById("policyDate1").value = data[i].policyDate;
                       document.getElementById("mDate").value = data[i].mDate;
                       document.getElementById("memberCode").value = data[i].searchMemberCode;
@@ -467,17 +441,13 @@ function getByBranchNameAddInvesmentCode(){
 
 }
 
-
-
-
 /*Investment Section Daily Flexi Transaction Delete*/
-
-
 function investmentSectionDailyFlexiTransactionDelete(){
 	var searchbyPolicyNo = document.getElementById("searchbyPolicyNo").value;
 	
 	var input = {
-                     "id": searchbyPolicyNo }
+                     "id": searchbyPolicyNo 
+    }
 		
         $.ajax({
                  type:"post",
@@ -550,13 +520,9 @@ function softdeleteintegrationforFlexiTransactionDelete(){
 	}
 }
 
-
-
 //Saving Rectification MOdule 
-
 //dropdown for  savings Transaction Delete
  function SavingsTransactionDelete() {
-
 
 	$.ajax({
 		type: "POST",
@@ -588,14 +554,11 @@ function BranchName1() {
 		asynch: false,
 		success: function(data) {
 
-			
 			var appenddata2 = "";
 			for (var i = 0; i < data.length; i++) {
 				appenddata2 += "<option value = '" + data[i].name + "'>" + data[i].name + " </option>";
 			}
 			$("#branchName").append(appenddata2);
-			
-
 		},
 		error: function() {
 			alert("Device control failed");
@@ -647,15 +610,12 @@ function GetLoanPlanNameInDropdownFromDp(){
         });
 }
 
-
-
 function searchbyaccountno(){
 	
 	var accountNo = document.getElementById("accountNo");
 	var input = {
 		"accountNo":accountNo.value
 	};
-	
 	
 	$.ajax({
 		type:"POST",
@@ -664,8 +624,7 @@ function searchbyaccountno(){
 		url: 'retrieveDataInSavingsTransactionDelete',
 		async: false,
 		success: function(data){
-   
-	
+  
                     for (var i = 0; i < data.length; i++){
 						
 					 $('#accountNo').val(data[i].accountNo);
@@ -695,7 +654,6 @@ function searchbyaccountno(){
 
 function getTheValueInTheDropDown() {
 
-
 	$.ajax({
 		type: "get",
 		contentType: "application/json",
@@ -714,7 +672,6 @@ function getTheValueInTheDropDown() {
 		}
 	});
 	
-	
 	$.ajax({
 		type: "get",
 		contentType: "application/json",
@@ -732,8 +689,6 @@ function getTheValueInTheDropDown() {
 			alert("Device control failed");
 		}
 	});
-	
-	
 	
 	$.ajax({
 		type: "get",
@@ -771,8 +726,6 @@ function getTheValueInTheDropDown() {
 		}
 	});
 	
-	
-	
 	$.ajax({
 		type: "get",
 		contentType: "application/json",
@@ -792,13 +745,13 @@ function getTheValueInTheDropDown() {
 	});
 }
 
-
 //Get the value in the given input Fields fof Saving Acoount
 function getthevalueinthegiveninputFieldsfofSavingAcoount(){
 	var accountNo = document.getElementById("accountNo").value;
 	
 	var input = {
-                     "accountNo": accountNo }
+                     "accountNo": accountNo 
+        }
 		
         $.ajax({
                  type:"post",
@@ -819,8 +772,6 @@ function getthevalueinthegiveninputFieldsfofSavingAcoount(){
 						var img3 = document.getElementById('imgJointPhoto');
 						img3.src =`upload/`+data[i].imgJointPhoto+``;
 						
-						//alert(data.policy_date)
-                 	 
                       document.getElementById("accountNo").value = data[i].accountNo;
                       document.getElementById("searchMemberCode").value = data[i].searchMemberCode;
                       document.getElementById("opDate").value = data[i].opDate;
@@ -836,8 +787,6 @@ function getthevalueinthegiveninputFieldsfofSavingAcoount(){
                       document.getElementById("cSPName").value = data[i].cSPName;
                       document.getElementById("state").value = data[i].state;
                       document.getElementById("pin").value = data[i].pin;
-                      
-                      
                       document.getElementById("modeOfOp").value = data[i].modeOfOp;
                       document.getElementById("jointCode").value = data[i].jointCode;
                       document.getElementById("jointName").value = data[i].jointName;
@@ -861,3 +810,55 @@ function getthevalueinthegiveninputFieldsfofSavingAcoount(){
 
 }
 
+function BranchNameFromAddInvestment(){
+	//alert("hi")
+		$.ajax({
+		type: "get",
+		contentType: "application/json",
+		url: 'branchNameFromAddInvestment',
+		asynch: false,
+		success: function(data) {
+			//alert("helooo")
+			
+			 var appenddata1 = "";
+                    for (var i = 0; i < data.length; i++) {
+						appenddata1 += "<option value ='"+data[i].branchName +"'>" +data[i].branchName +"</option>";
+					}
+                    $("#branchName").append(appenddata1);
+		},
+		error: function() {
+			alert("Device control failed");
+		}
+	});
+}
+
+function softDeleteForThreeThings123() {
+    var searchbyPolicyNo = document.getElementById("searchbyPolicyNo").value;
+    var renewalDate = document.getElementById("renewalDate").value;
+    var branchName = document.getElementById("branchName").value;
+    var input = {
+        "id": searchbyPolicyNo, // Assuming the ID field is named 'id'
+        "renewalDate": renewalDate,
+        "branchName": branchName
+    };
+    var myJson = JSON.stringify(input);
+
+    if (!searchbyPolicyNo && !renewalDate && !branchName) {
+        alert("Please Select Policy No. Or Renewal Date Or Branch Name");
+    } else {
+        $.ajax({
+            type: "post",
+            contentType: "application/json",
+            data: myJson,
+            url: 'deleteByPolicyNo',
+            async: false,
+            success: function (data) {
+                alert("Soft Delete Successfully...!!!");
+                window.location.href = "renewalRectification";
+            },
+            error: function () {
+                alert("Device control failed");
+            }
+        });
+    }
+}

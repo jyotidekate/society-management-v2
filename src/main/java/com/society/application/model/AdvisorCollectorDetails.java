@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class AdvisorCollectorDetails {
@@ -91,6 +92,12 @@ public class AdvisorCollectorDetails {
 	private byte[] photo;
 	
 	private byte[] signiture;
+	
+	@Transient
+	private String frontEndPhoto;
+	
+	@Transient
+	private String frontEndSignature;
 	
 	public byte[] getPhoto() {
 		return photo;
@@ -422,13 +429,28 @@ public class AdvisorCollectorDetails {
 		this.age = age;
 	}
 
-	
 	public String getFlag() {
 		return flag;
 	}
 
 	public void setFlag(String flag) {
 		this.flag = flag;
+	}
+
+	public String getFrontEndPhoto() {
+		return frontEndPhoto;
+	}
+
+	public void setFrontEndPhoto(String frontEndPhoto) {
+		this.frontEndPhoto = frontEndPhoto;
+	}
+
+	public String getFrontEndSignature() {
+		return frontEndSignature;
+	}
+
+	public void setFrontEndSignature(String frontEndSignature) {
+		this.frontEndSignature = frontEndSignature;
 	}
 
 	@Override

@@ -39,7 +39,6 @@ function getfetchbranchinv(){
 	});
 }
 
-
 //Retrieve data in dropdown from db after soft delete operation is done on policy no.
 function getRetrieveDataInPolicyNoAfterSoftDeletee(){
 	$.ajax({
@@ -92,30 +91,6 @@ function getByAddInvesmentCode1(){
              });
 }
 
-//function  getAllPolicyNumber1() {
-//	
-//
-//	$.ajax({
-//		type: "get",
-//		contentType: "application/json",
-//		url: 'getAllPolicyNumber',
-//		asynch: false,
-//		success: function(data) {
-//			
-//			 var appenddata1 = "";
-//                    for (var i = 0; i < data.length; i++) {
-//                         appenddata1 += "<option value = '"+data[i].id +"'>" +data[i].policyno +" </option>";
-//                    }
-//                    $("#id").append(appenddata1);
-//		},
-//		error: function() {
-//			alert("Device control failed");
-//		}
-//	});
-//}
-//
-
-
 function getByAddInvesmentCode1(){
 	var id = document.getElementById("id");
 	var input = {
@@ -142,9 +117,7 @@ function getByAddInvesmentCode1(){
              });
 }
 
-
 //Validate the Plan Master of Daily Deposist
-
 function valdiateDailyDepossit(){
     var status = true;
     
@@ -246,9 +219,7 @@ function valdiateDailyDepossit(){
 	}
 }
 
-
 //Validate the Plan Master of Recurring Depossit
-
 function valdiateRecurringDeposist(){
     var status = true;
     
@@ -332,9 +303,7 @@ function valdiateRecurringDeposist(){
 	}
 }
 
-
 //Validate the Plan Master of Fixed Deposist
-
 function valdiatefixedDepossit(){
     var status = true;
     
@@ -362,7 +331,6 @@ function valdiatefixedDepossit(){
 		status = false;
 	}
 	
-	
 	const fDTerm = document.getElementById("fDTerm");
 	if (fDTerm.value === '') {
 		var span = document.getElementById("fDTermSpan");
@@ -387,9 +355,7 @@ function valdiatefixedDepossit(){
 	}
 }
 
-
 //Validate the Plan Master of MIS Deposist
-
 function valdiatemisDepossit(){
     var status = true;
     
@@ -451,11 +417,8 @@ function valdiatemisDepossit(){
 
 /* INVESTMENT SECTION - FLEXI RENEWAL PAYMENT */
 //Get The Selected Policy Number In The DropDown
-
 function GetTheSelectedPolicyNumberInTheDropDown(){
 	
-	//alert("hi")
-  
   			$.ajax({
             type:"get",
             contentType: "application/json",
@@ -489,11 +452,9 @@ function GetTheSelectedPolicyNumberInTheDropDown(){
     	    	alert("Device control failed");
     	    }
         });
- 
 }
 
 //Data Retrival 
-
  function searchByPolicyNoFunction()
 {	
  let id= document.getElementById("searchbyPolicyNo").value;
@@ -502,18 +463,14 @@ function GetTheSelectedPolicyNumberInTheDropDown(){
 	 };
 	 
 	 const myJson = JSON.stringify(input);
- //alert(searchbyPolicyNo)
- $.ajax({
+ 	//alert(searchbyPolicyNo)
+ 	$.ajax({
                  type:"POST",
                  contentType: "application/json",
                  data: myJson,
                  url: 'searchByPolicyNo',
                  asynch: false,
                  success: function(data) {
-					 
-					 //alert("Hello")
-					 
-					 //alert(data.tDate);
 					 
                  	var x = Number(data.id)
                 
@@ -539,14 +496,13 @@ function GetTheSelectedPolicyNumberInTheDropDown(){
                       document.getElementById("amount").value = data.amount;
                       document.getElementById("paymode").value = data.paymode;
                       document.getElementById("branchName").value = data.branchName;	
-                  
+                
                  },
          	     error: function(){
          	    	alert("Device control failed");
          	    }
              });
  }
- 
  
  function getDataByAddInvestment() {
 
@@ -662,9 +618,7 @@ function getDataByReIssue() {
 			alert("Device control failed");
 		}
 	});
-
 }
-
 
 function getDataByInterestDetails() {
 
@@ -694,7 +648,6 @@ function getDataByInterestDetails() {
 				}).join('');
 				const investmentInterestTable = document.querySelector("#investmentInterestTable");
 				investmentInterestTable.innerHTML = tableData;
-
 			}
 		},
 		error: function() {
@@ -703,7 +656,6 @@ function getDataByInterestDetails() {
 	});
 
 }
-
 
 function getDataByIssue() {
 
@@ -726,14 +678,11 @@ function getDataByIssue() {
             				 <td>${value.schemeName}</td>
             				 <td>${value.address}</td>
             				 <td>${value.pin}</td>
-                     
-           					 
         				</tr>`
 					);
 				}).join('');
 				const investmentInterestTable = document.querySelector("#IssueCertTable");
 				investmentInterestTable.innerHTML = tableData;
-
 			}
 		},
 		error: function() {
@@ -742,7 +691,6 @@ function getDataByIssue() {
 	});
 	
 }
-
 
 function getDataByInvestmentReciept() {
 
@@ -770,7 +718,6 @@ function getDataByInvestmentReciept() {
 				}).join('');
 				const investmentRecieptTable = document.querySelector("#investmentRecieptTable");
 				investmentRecieptTable.innerHTML = tableData;
-
 			}
 		},
 		error: function() {
@@ -780,9 +727,7 @@ function getDataByInvestmentReciept() {
 
 }
 
-
 //Add Investment
-
 function getByDataBySearchMemberCode(){
 	
 	var id= document.getElementById("id").value;
@@ -802,8 +747,6 @@ function getByDataBySearchMemberCode(){
 	
 	            for (let i=0;i<data.length;i++) {
 		
-		
-	
 		 document.getElementById("policyDate").value = data[i].policyDate;
 		 document.getElementById("nomineeName").value = data[i].nomineeName;
 		 document.getElementById("memberName").value = data[i].memberName;
@@ -860,8 +803,6 @@ function  SelectBranchAddInvesrtment() {
 	});
 }
 
-
-
 //Add Inverstment select member code 
 function  SelectClientCodeAddInvesrtment() {
 	$.ajax({
@@ -882,7 +823,6 @@ function  SelectClientCodeAddInvesrtment() {
 		}
 	});
 }
-
 
 function getDataInRecurring() {
 	var ids = document.getElementById("searchbyPolicyNo").value;
@@ -923,8 +863,6 @@ function getDataInRecurring() {
 
 }
 
-
-
 /*Investment Section Daily Renewal Payment Module */
 //3. Get Dynamic Dropdown BranchName from DB
 function getAllBranchNames(){
@@ -948,8 +886,6 @@ $.ajax({
 	}
 });
 }
-
-
 
 //Policy Statement Module Ajax
   function policyStatement()
@@ -1024,39 +960,35 @@ $.ajax({
 }
 
 //Soft delete operation for Policy No., Renewal Date & Branch Name
-function softDeleteForThreeThings(){
-	var searchbyPolicyNo = document.getElementById("searchbyPolicyNo").value;
-	var renewalDate = document.getElementById("renewalDate").value;
-	var branchName = document.getElementById("branchName").value;
-	var input = {
-		"searchbyPolicyNo" : searchbyPolicyNo,
-		"renewalDate" : renewalDate,
-		"branchName" : branchName,
-	}
-	var myJson = JSON.stringify(input);
-	//alert(searchbyPolicyNo)
-	//alert(branchName)
-	//alert(renewalDate)
-	if(!searchbyPolicyNo ^ !renewalDate ^ !branchName){
-		alert("Please Select Policy No. Or Renewal Date Or Branch Name")
-	}
-	else{
-		$.ajax({
-			type:"post",
-			contentType: "application/json",
-			data: JSON.stringify(input),
-			url: 'deleteByPolicyNo',
-			asynch: false,
-			success: function(data){
-			alert("Soft Delete Successfully...!!!");
-				
-				window.location.href = "renewalRectification";
-			},
-			error: function(){
-				alert("Device control failed");
-			}
-		});
-	}
+function softDeleteForThreeThings() {
+    var searchbyPolicyNo = document.getElementById("searchbyPolicyNo").value;
+    var renewalDate = document.getElementById("renewalDate").value;
+    var branchName = document.getElementById("branchName").value;
+    var input = {
+        "id": searchbyPolicyNo, // Assuming the ID field is named 'id'
+        "renewalDate": renewalDate,
+        "branchName": branchName
+    };
+    var myJson = JSON.stringify(input);
+
+    if (!searchbyPolicyNo && !renewalDate && !branchName) {
+        alert("Please Select Policy No. Or Renewal Date Or Branch Name");
+    } else {
+        $.ajax({
+            type: "post",
+            contentType: "application/json",
+            data: myJson,
+            url: 'deleteByPolicyNo',
+            async: false,
+            success: function (data) {
+                alert("Soft Delete Successfully...!!!");
+                window.location.href = "renewalRectification";
+            },
+            error: function () {
+                alert("Device control failed");
+            }
+        });
+    }
 }
 
 /*Retrieval Investment Section Daily Renewal Payment Module */
@@ -1077,14 +1009,12 @@ function getByAddInvesmentCode(){
                  asynch: false,
                  success: function(data) {
                  	 
-                 		var img = document.getElementById('preview');
-			       		img.src =`upload/`+data.photo+``;
+                     var imgElement = document.getElementById("preview");
+             	     imgElement.src = "data:image/png;base64," + data.photo;
 
-						var img2 = document.getElementById('secondpreview');
-						img2.src =`upload/`+data.signature+``;
-						
-						//alert(data.policy_date)
-                 	 
+             	     var imgElement = document.getElementById("secondpreview");
+             	     imgElement.src = "data:image/png;base64," + data.signature;
+			
                       document.getElementById("policyDate1").value = data.policyDate;
                       document.getElementById("mDate").value = data.mDate;
                       document.getElementById("memberCode").value = data.searchMemberCode;
@@ -1130,14 +1060,12 @@ function getByAddInvesmentCode(){
 	
 	            for (let i=0;i<data.length;i++){
 		
-	                     var img = document.getElementById('preview');
-			       		img.src =`upload/`+data[i].photo+``;
+	                 var imgElement = document.getElementById("preview");
+             	     imgElement.src = "data:image/png;base64," + data[i].photo;
 
-						var img2 = document.getElementById('secondpreview');
-						img2.src =`upload/`+data[i].signature+``;
+             	     var imgElement = document.getElementById("secondpreview");
+             	     imgElement.src = "data:image/png;base64," + data[i].signature;
 						
-						//alert(data.policy_date)
-                 	 
                       document.getElementById("policyDate1").value = data[i].policyDate;
                       document.getElementById("mDate").value = data[i].mDate;
                       document.getElementById("memberCode").value = data[i].searchMemberCode;
@@ -1161,18 +1089,12 @@ function getByAddInvesmentCode(){
                       document.getElementById("advisorName").value = data[i].advisorName;
                       document.getElementById("remarks").value = data[i].remarks;
 	}
-	
-
-                 } ,
+	            } ,
          	    error: function(){
          	    	alert("Device control failed");
          	    }
              });
-
 }
-
-
-
 
 /*Investment Section Daily Renewal Payment Module */
 /*3.Get Data from Branch Name*/
@@ -1189,14 +1111,12 @@ function getByBranchNameAddInvesmentCode(){
 	
                       for (let i=0;i<data.length;i++){
 	                  
-	                 var img = document.getElementById('preview');
-			       		img.src =`upload/`+data[i].photo+``;
+	                 var imgElement = document.getElementById("preview");
+             	     imgElement.src = "data:image/png;base64," + data[i].photo;
 
-						var img2 = document.getElementById('secondpreview');
-						img2.src =`upload/`+data[i].signature+``;
-						
-						//alert(data.policy_date)
-                 	 
+             	     var imgElement = document.getElementById("secondpreview");
+             	     imgElement.src = "data:image/png;base64," + data[i].signature;
+					
                       document.getElementById("policyDate1").value = data[i].policyDate;
                       document.getElementById("mDate").value = data[i].mDate;
                       document.getElementById("memberCode").value = data[i].searchMemberCode;

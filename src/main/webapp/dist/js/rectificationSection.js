@@ -68,10 +68,10 @@ function searchById(){
 				document.getElementById("remarks").value = advisor.remarks;
 				
 				var imgElement = document.getElementById("preview");
-                imgElement.src = "data:image/png;base64," + advisor.photo;
+                imgElement.src = "data:image/png;base64," + advisor.frontEndPhoto;
 
                 var img2 = document.getElementById('secondpreview');
-                img2.src = "data:image/png;base64," + advisor.signature;
+                img2.src = "data:image/png;base64," + advisor.frontEndSignature;
 		
 			}else{
 				alert("No data found");

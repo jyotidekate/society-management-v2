@@ -1,7 +1,8 @@
 package com.society.application.controler;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Base64;
+import java.util.List;import javax.net.ssl.HttpsURLConnection;
 
 import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,6 +97,8 @@ public class RectificationSectionController {
 		return "rectificationSection/AdvisorRectification";
 	}
 
+	/* RENEWAL RECTIFICATION */
+	
 	@GetMapping("/renewalRectification")
 	public String getrenewalRectification() {
 		return "rectificationSection/RenewalRectification";
@@ -118,18 +121,14 @@ public class RectificationSectionController {
 	@PostMapping("/deleteByPolicyNo")
 	@ResponseBody
 	public ResponseEntity<String> getdeleteByPolicyNo(@RequestBody AddInvestment model) {
-		String flag = "0";
-		int i = addInvestmentRepo.updateThroughIdRenewalDateBranchName(flag, model.getId(), model.getRenewalDate(),
-				model.getBranchName());
-		// System.out.println(model.getRenewalDate());
-		// System.out.println(model.getBranchName());
-		// System.out.println(model.getId());
-		// return ResponseEntity.ok("Deleted Successfully...!!!");
-		if (i > 0) {
-			return ResponseEntity.ok("Deleted Successfully...!!!");
-		} else {
-			return ResponseEntity.badRequest().body("No record found to delete");
-		}
+	    String flag = "0";
+	    int i = addInvestmentRepo.updateThroughIdRenewalDateBranchName(flag, model.getId(), model.getRenewalDate(), model.getBranchName());
+
+	    if (i > 0) {
+	        return ResponseEntity.ok("Deleted Successfully...!!!");
+	    } else {
+	        return ResponseEntity.badRequest().body("No record found to delete");
+	    }
 	}
 
 	@GetMapping("GroupLoanRectification")
@@ -201,6 +200,15 @@ public class RectificationSectionController {
 	@ResponseBody
 	public List<AdvisorCollectorDetails> getsearchById(@RequestBody AdvisorCollectorDetails model) {
 		List<AdvisorCollectorDetails> advisors = advisorcollectordetailsrepo.findByid(model.getId());
+		advisors.forEach(s->{
+			if(advisors!=null) {
+				String encodedPhoto = Base64.getEncoder().encodeToString(s.getPhoto());
+				String encodedSignature = Base64.getEncoder().encodeToString(s.getSigniture());
+				s.setFrontEndPhoto(encodedPhoto);
+				s.setFrontEndSignature(encodedSignature);
+
+			}
+		});
 		return advisors;
 	}
 
@@ -359,7 +367,7 @@ public class RectificationSectionController {
 		try {
 			List<AdvisorCollectorDetails> advisor = advisorcollectordetailsrepo.findByid(id);
 			advisor.forEach(s -> {
-				if (file1 != null && file2 != null && !file1.isEmpty() && !file2.isEmpty()) {
+				if (file1 != null && file2 != null) {
 					try {
 						byte[] photos = file1.getBytes();
 						byte[] signatures = file2.getBytes();
@@ -425,7 +433,7 @@ public class RectificationSectionController {
 		return data;
 	}
 
-	// dropdown value for investment rectification for Policy no.
+	// Dropdown value for investment rectification for Policy no.
 	@PostMapping("/policynoapi")
 	public ResponseEntity<String> DeleteDailyRenewalPaymentbbb6(@RequestBody AddInvestment addIn) {
 		String flag = "0";
@@ -433,55 +441,117 @@ public class RectificationSectionController {
 		return ResponseEntity.ok("Soft Deleted  SucessFully");
 	}
 
-	// Code for Retriving data on Feilds
+	// Code for retriving data on Feilds
 	@PostMapping("/retriveDataFromPolicyno")
 	@ResponseBody
 	public List<AddInvestment> retrivedatafrompolicyno(@RequestBody AddInvestment adi) {
 		List<AddInvestment> datAddInvestments = addInvestmentRepo.findBypolicyno(adi.getPolicyno());
+		datAddInvestments.forEach(s->{
+			if(datAddInvestments!=null) {
+				String encodedPhoto = Base64.getEncoder().encodeToString(s.getPhoto());
+				String encodedSignature = Base64.getEncoder().encodeToString(s.getSignature());
+				s.setFrontEndPhoto(encodedPhoto);
+				s.setFrontEndSignature(encodedSignature);
+
+			}
+		});
 		return datAddInvestments;
 	}
 
-	// Code for Updateing feilds
+	// Code for updateing feilds
 	@PostMapping("/updateInvestmentRectification")
 	@ResponseBody
 	public ResponseEntity<String> updateInvestmentRectification(
 			@RequestParam(value = "filetag", required = false) MultipartFile file1,
 			@RequestParam(value = "secondfiletag", required = false) MultipartFile file23,
-			@RequestParam("policyno") String policyno, @RequestParam("policyDate") String policyDate,
-			@RequestParam("memberName") String memberName, @RequestParam("dob") String dob,
-			@RequestParam("age") String age, @RequestParam("relativeName") String relativeName,
-			@RequestParam("phoneno") String phoneno, @RequestParam("nomineeName") String nomineeName,
-			@RequestParam("nomineeAge") String nomineeAge, @RequestParam("nomineeRelation") String nomineeRelation,
-			@RequestParam("address") String address, @RequestParam("district") String district,
-			@RequestParam("state") String state, @RequestParam("pin") String pin,
-			@RequestParam("cspname") String cspname, @RequestParam("modeOfOp") String modeOfOp,
-			@RequestParam("jointCode") String jointCode, @RequestParam("jointName") String jointName,
-			@RequestParam("mDate") String mDate, @RequestParam("schemeType") String schemeType,
-			@RequestParam("schemeName") String schemeName, @RequestParam("term") String term,
-			@RequestParam("mode") String mode,
-			//@RequestParam("misMode") String misMode,
-			@RequestParam("policyAmount") String policyAmount, @RequestParam("totalDeposit") String totalDeposit,
-			@RequestParam("maturityAmount") String maturityAmount, @RequestParam("mISInterest") String mISInterest,
-			@RequestParam("paymode") String paymode, @RequestParam("remarks") String remarks,
-			@RequestParam("advisorCode") String advisorCode, @RequestParam("advisorName") String advisorName,
-			@RequestParam("chkisSms") String chkisSms) {
-
-		if (!file1.isEmpty() && !file23.isEmpty()) {
-			String fileName = fileStorageService.storeFile(file1);
-			String fileName2 = fileStorageService.storeFile(file23);
-			int i = addInvestmentRepo.updateThroughThepolicyno(policyDate, memberName, dob, age, relativeName, phoneno,
-					nomineeName, nomineeAge, nomineeRelation, address, pin, cspname, modeOfOp, jointCode, district,
-					state, jointName, mDate, schemeType, schemeName, term, mode, policyAmount, totalDeposit,
-					maturityAmount, mISInterest, paymode, remarks, advisorCode, advisorName, chkisSms, fileName,
-					fileName2, policyno);
-			// System.out.println(fileName +""+fileName2);
-		} else {
-			int i = addInvestmentRepo.updateThroughThepolicyno2(policyDate, memberName, dob, age, relativeName, phoneno,
-					nomineeName, nomineeAge, nomineeRelation, address, pin, cspname, modeOfOp, jointCode, district,
-					state, jointName, mDate, schemeType, schemeName, term, mode, policyAmount, totalDeposit,
-					maturityAmount, mISInterest, paymode, remarks, advisorCode, advisorName, chkisSms, policyno);
+			//@RequestParam(name = "policyno", required = false) String policyno, 
+			@RequestParam(name = "policyDate", required = false) String policyDate,
+			@RequestParam(name = "memberName", required = false) String memberName, 
+			@RequestParam(name = "dob", required = false) String dob,
+			@RequestParam(name = "age", required = false) String age, 
+			@RequestParam(name = "relativeName", required = false) String relativeName,
+			@RequestParam(name = "phoneno", required = false) String phoneno, 
+			@RequestParam(name = "nomineeName", required = false) String nomineeName,
+			@RequestParam(name = "nomineeAge", required = false) String nomineeAge, 
+			@RequestParam(name = "nomineeRelation", required = false) String nomineeRelation,
+			@RequestParam(name = "address", required = false) String address, 
+			@RequestParam(name = "district", required = false) String district,
+			@RequestParam(name = "state", required = false) String state, 
+			@RequestParam(name = "pin", required = false) String pin,
+			@RequestParam(name = "branchName", required = false) String branchName, 
+			@RequestParam(name = "modeOfOp", required = false) String modeOfOp,
+			@RequestParam(name = "jointCode", required = false) String jointCode, 
+			@RequestParam(name = "jointName", required = false) String jointName,
+			@RequestParam(name = "mDate", required = false) String mDate, 
+			@RequestParam(name = "schemeType", required = false) String schemeType,
+			@RequestParam(name = "schemeName", required = false) String schemeName, 
+			@RequestParam(name = "term", required = false) String term,
+			@RequestParam(name = "mode", required = false) String mode,
+			@RequestParam(name = "misMode", required = false) String misMode,
+			@RequestParam(name = "policyAmount", required = false) String policyAmount, 
+			@RequestParam(name = "totalDeposit", required = false) String totalDeposit,
+			@RequestParam(name = "maturityAmount", required = false) String maturityAmount, 
+			@RequestParam(name = "mISInterest", required = false) String mISInterest,
+			@RequestParam(name = "paymode", required = false) String paymode, 
+			@RequestParam(name = "remarks", required = false) String remarks,
+			@RequestParam(name = "advisorCode", required = false) String advisorCode, 
+			@RequestParam(name = "advisorName", required = false) String advisorName,
+			@RequestParam(name = "chkisSms", required = false) String chkisSms,
+			@RequestParam(name = "id123", required = false) String id) {
+		try {
+			List<AddInvestment> add = addInvestmentRepo.findBypolicyno(id);
+			add.forEach(s->{
+				if(!(file1==null) && !(file23==null)) {
+					try {
+						byte[] photo = file1.getBytes();
+						s.setPhoto(photo);
+						byte[] signature = file23.getBytes();
+						s.setSignature(signature);
+					}catch(IOException e) {
+						e.printStackTrace();
+					}
+				}
+				//s.setPolicyno(policyno);
+				s.setPolicyDate(policyDate);
+				s.setMemberName(memberName);
+				s.setDob(dob);
+				s.setAge(age);
+				s.setRelativeName(relativeName);
+				s.setPhoneno(phoneno);
+				s.setNomineeName(nomineeName);
+				s.setNomineeAge(nomineeAge);
+				s.setNomineeRelation(nomineeRelation);
+				s.setAddress(address);
+				s.setDistrict(district);
+				s.setState(state);
+				s.setPin(pin);
+				s.setBranchName(branchName);
+				s.setModeOfOp(modeOfOp);
+				s.setJointCode(jointCode);
+				s.setJointName(jointName);
+				s.setmDate(mDate);
+				s.setSchemeType(schemeType);
+				s.setSchemeName(schemeName);
+				s.setTerm(term);
+				s.setMode(mode);
+				s.setMisMode(misMode);
+				s.setPolicyAmount(policyAmount);
+				s.setTotalDeposit(totalDeposit);
+				s.setMaturityAmount(maturityAmount);
+				s.setmISInterest(mISInterest);
+				s.setPaymode(paymode);
+				s.setRemarks(remarks);
+				s.setAdvisorCode(advisorCode);
+				s.setAdvisorName(advisorName);
+				s.setChkisSms(chkisSms);
+				s.setFlag("1");
+				addInvestmentRepo.save(s);
+			});
+			return new ResponseEntity<>("Data Updated Successfully!!!", HttpStatus.OK);
+		}catch(Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<>("Data Failed To Updated!!!", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return ResponseEntity.ok("Updated SucessFully");
 	}
 
 	/* */
@@ -700,7 +770,14 @@ public class RectificationSectionController {
 	public String DailyRenewalPaymentbbb6() {
 		return "rectificationSection/DailyRenewalPaymentbbb6";
 	}
-
+	
+	@GetMapping("/branchNameFromAddInvestment")
+	@ResponseBody
+	public List<AddInvestment> branchNameFromAddInvestment(){
+		List<AddInvestment> list = addInvestmentRepo.findAll();
+		return list;
+	}
+	
 	@PostMapping("/DeleteDailyRenewalPaymentbbb6")
 	public ResponseEntity<String> DeleteDailyRenewalPaymentbbb61(@RequestBody AddInvestment addIn) {
 

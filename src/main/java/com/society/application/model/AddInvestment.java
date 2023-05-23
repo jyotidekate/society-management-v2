@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class AddInvestment {
@@ -44,8 +45,8 @@ public class AddInvestment {
 	private String advisorCode;
 	private String advisorName;
 	private String chkisSms;
-	private String photo;
-	private String signature;
+	private byte[] photo;
+	private byte[] signature;
 	private String policyno;
 	private String amount;
 	private String transactionType;
@@ -66,6 +67,10 @@ public class AddInvestment {
 	private String noOfInstPaid;	
 	private String collectorCode;
 	private String flag;
+	@Transient
+	private String frontEndPhoto;
+	@Transient
+	private String frontEndSignature;
 	
 	public String getAmtDue() {
 		return amtDue;
@@ -109,16 +114,16 @@ public class AddInvestment {
 	public void setRenewalDate(String renewalDate) {
 		this.renewalDate = renewalDate;
 	}
-	public String getPhoto() {
+	public byte[] getPhoto() {
 		return photo;
 	}
-	public void setPhoto(String photo) {
+	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
-	public String getSignature() {
+	public byte[] getSignature() {
 		return signature;
 	}
-	public void setSignature(String signature) {
+	public void setSignature(byte[] signature) {
 		this.signature = signature;
 	}
 	public int getId() {
@@ -402,6 +407,18 @@ public class AddInvestment {
 	}
 	public void setFlag(String flag) {
 		this.flag = flag;
+	}
+	public String getFrontEndPhoto() {
+		return frontEndPhoto;
+	}
+	public void setFrontEndPhoto(String frontEndPhoto) {
+		this.frontEndPhoto = frontEndPhoto;
+	}
+	public String getFrontEndSignature() {
+		return frontEndSignature;
+	}
+	public void setFrontEndSignature(String frontEndSignature) {
+		this.frontEndSignature = frontEndSignature;
 	}
 	
 }
