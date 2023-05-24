@@ -43,6 +43,12 @@ public class SavingsDepositWith {
 	private String paymentBy;
 	
 	private String flag;
+	
+	private String imageApplicant;
+	
+	private String imageSignature;
+	
+	private String imgJointPhoto;
 
 	public String getFlag() {
 		return flag;
@@ -171,6 +177,29 @@ public class SavingsDepositWith {
 	public void setPaymentBy(String paymentBy) {
 		this.paymentBy = paymentBy;
 	}
-	
+
+	public String getImageApplicant() {
+		return imageApplicant;
+	}
+
+	public void setImageApplicant(String imageApplicant) {
+		this.imageApplicant = imageApplicant;
+	}
+
+	public String getImageSignature() {
+		return imageSignature;
+	}
+
+	public void setImageSignature(String imageSignature) {
+		this.imageSignature = imageSignature;
+	}
+
+	public String getImgJointPhoto() {
+		return imgJointPhoto;
+	}
+
+	public void setImgJointPhoto(String imgJointPhoto) {
+		this.imgJointPhoto = imgJointPhoto;
+	}
 	
 }

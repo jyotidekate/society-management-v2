@@ -44,6 +44,7 @@ public class AddSavingAccount {
 	private String imgJointPhoto;
 	private String accountNo;
 	private String flag;
+	private String age;
 	
 	public String getFlag() {
 		return flag;
@@ -249,10 +250,11 @@ public class AddSavingAccount {
 	public void setImgJointPhoto(String imgJointPhoto) {
 		this.imgJointPhoto = imgJointPhoto;
 	}
+	public String getAge() {
+		return age;
+	}
+	public void setAge(String age) {
+		this.age = age;
+	}
 	
-	
-	
-	
-	
-
 }

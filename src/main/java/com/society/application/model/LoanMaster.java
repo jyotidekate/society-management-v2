@@ -55,7 +55,7 @@ public class LoanMaster {
 	private String loanAmount;
 	private String emiAmount;
 	private String loanPurpose;
-	private String Photo;
+	private byte[] Photo;
 	private String searchMemberCode;
 	private String guarantorName;
 	private String addressGuarantor;
@@ -69,7 +69,7 @@ public class LoanMaster {
 	private String securityDetails;
 	private String advisorCode;
 	private String advisorName;
-	private String signature;
+	private byte[] signature;
 	private String flag = "1";
 	
 	public int getId() {
@@ -432,14 +432,6 @@ public class LoanMaster {
 		this.loanPurpose = loanPurpose;
 	}
 
-	public String getPhoto() {
-		return Photo;
-	}
-
-	public void setPhoto(String photo) {
-		Photo = photo;
-	}
-
 	public String getSearchMemberCode() {
 		return searchMemberCode;
 	}
@@ -544,20 +536,28 @@ public class LoanMaster {
 		this.advisorName = advisorName;
 	}
 
-	public String getSignature() {
-		return signature;
-	}
-
-	public void setSignature(String signature) {
-		this.signature = signature;
-	}
-
 	public String getFlag() {
 		return flag;
 	}
 
 	public void setFlag(String flag) {
 		this.flag = flag;
+	}
+
+	public byte[] getPhoto() {
+		return Photo;
+	}
+
+	public void setPhoto(byte[] photo) {
+		Photo = photo;
+	}
+
+	public byte[] getSignature() {
+		return signature;
+	}
+
+	public void setSignature(byte[] signature) {
+		this.signature = signature;
 	}
 
 	@Override

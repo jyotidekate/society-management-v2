@@ -16,15 +16,7 @@ public interface accountSectionRepo extends JpaRepository<receiveVoucher, Intege
 
 	List<receiveVoucher> findBytxnDateBetween(String getfDate, String gettDate);
 
-	
-
 	@Query(value = "SELECT max(receiptNo) FROM receiveVoucher")
 	int getMaxReceiptNumber();
 
-	
-
-	
-
-	//public List<receiveVoucher> findByType(String type);
- 
 }

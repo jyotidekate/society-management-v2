@@ -91,7 +91,7 @@
 										<label class="col-sm-4 control-label">Select Member <strong
 											style="color: Red">*</strong></label>
 										<div class="col-sm-8">
-											<select name="searchMemberCode" id="id" class="form-control select2"
+											<select name="searchMemberCode" id="id" class="form-control"
 												style="width: 100%;">
 												<option selected="selected" value="">--Select--</option>
 											</select> <span

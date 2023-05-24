@@ -264,7 +264,7 @@ function softDeleteIntegration(){
 }
 
 function  getAllPolicyNumber1InTheDailyRenewalRectification() {
-	
+	//alert("hi")
 	$.ajax({
 		type: "get",
 		contentType: "application/json",
@@ -460,16 +460,16 @@ function investmentSectionDailyFlexiTransactionDelete(){
                       for (let i=0;i<data.length;i++){
 	
 	                  
-	                 var img = document.getElementById('preview');
-			       		img.src =`upload/`+data[i].photo+``;
+	                 var imgElement = document.getElementById("preview");
+             	     imgElement.src = "data:image/png;base64," + data[i].photo;
 
-						var img2 = document.getElementById('secondpreview');
-						img2.src =`upload/`+data[i].signature+``;
+             	     var imgElement = document.getElementById("secondpreview");
+             	     imgElement.src = "data:image/png;base64," + data[i].signature;
 						
 						//alert(data.policy_date)
                  	 
                       document.getElementById("ContentPlaceHolder1_txtTDate").value = data[i].policyDate;
-                      document.getElementById("ContentPlaceHolder1_ddlBranchName").value = data[i].branchName;
+                      document.getElementById("branchName").value = data[i].branchName;
                       document.getElementById("searchbyPolicyNo").value = data[i].id;
                       document.getElementById("ContentPlaceHolder1_txtEmpCode").value = data[i].empCode;
                       document.getElementById("ContentPlaceHolder1_txtMemberCode").value = data[i].searchMemberCode;
@@ -628,6 +628,15 @@ function searchbyaccountno(){
                     for (var i = 0; i < data.length; i++){
 						
 					 $('#accountNo').val(data[i].accountNo);
+					 
+					 var img = document.getElementById('imageApplicant');
+			       	 img.src =`upload/`+data[i].imageApplicant+``;
+
+					 var img2 = document.getElementById('imageSignature');
+					 img2.src =`upload/`+data[i].imageSignature+``;
+						
+					 var img3 = document.getElementById('imgJointPhoto');
+					 img3.src =`upload/`+data[i].imgJointPhoto+``;
                  	 
                  	 document.getElementById("txnDate").value=data[i].txnDate;
                  	 document.getElementById("branchName").value=data[i].branchName;
@@ -638,10 +647,10 @@ function searchbyaccountno(){
                  	 document.getElementById("sbPlanName").value=data[i].sbPlanName;
                  	 document.getElementById("avaBalance").value=data[i].avaBalance;
                  	 document.getElementById("transactionFor").value=data[i].transactionFor;
-                 	 document.getElementById("transactionFor").value=data[i].transactionFor;
+                 	 document.getElementById("txnType").value=data[i].txnType;
                  	 document.getElementById("amount").value=data[i].amount;
                  	 document.getElementById("paymentBy").value=data[i].paymentBy;
-                 	 
+                 	 document.getElementById("remarks").value=data[i].remarks;
                       }
                    
                  } ,
@@ -777,6 +786,7 @@ function getthevalueinthegiveninputFieldsfofSavingAcoount(){
                       document.getElementById("opDate").value = data[i].opDate;
                       document.getElementById("memberName").value = data[i].memberName;
                       document.getElementById("dOB").value = data[i].dOB;
+                      document.getElementById("age").value = data[i].age;
                       document.getElementById("relativeName").value = data[i].relativeName;
                       document.getElementById("phoneno").value = data[i].phoneno;
                       document.getElementById("nomineeName").value = data[i].nomineeName;
@@ -861,4 +871,49 @@ function softDeleteForThreeThings123() {
             }
         });
     }
+}
+
+function PolicyNoInDropdown(){
+	//alert("hi")
+		$.ajax({
+		type: "get",
+		contentType: "application/json",
+		url: 'RetrieveDataOFSoftDeletedApi111',
+		asynch: false,
+		success: function(data) {
+			//alert("helooo")
+			
+			 var appenddata1 = "";
+                    for (var i = 0; i < data.length; i++) {
+						appenddata1 += "<option value ='"+data[i].id +"'>" +data[i].id +"</option>";
+					}
+                    $("#searchbyPolicyNo").append(appenddata1);
+		},
+		error: function() {
+			alert("Device control failed");
+		}
+	});
+}
+
+function retrieveCodeAfterSoftDeleteSearchMemberCode(){
+	//alert("ho")
+		$.ajax({
+		type: "get",
+		contentType: "application/json",
+		url: 'retrieveMemberRectificaionByFlag',
+		asynch: false,
+		success: function(data) {
+			//alert("helooo")
+			
+			 var appenddata1 = "";
+                    for (var i = 0; i < data.length; i++) {
+						appenddata1 += "<option value ='"+data[i].memberName +"'>" +data[i].memberName +"</option>";
+					}
+                    $("#searchMemberCode").append(appenddata1);
+                    
+		},
+		error: function() {
+			alert("Device control failed");
+		}
+	});
 }

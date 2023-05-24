@@ -304,7 +304,7 @@ function GetSearchMemberInDropdownFromDp(){
   			$.ajax({
             type:"get",
             contentType: "application/json",
-            url: 'selectBySearchMemberFromMemberTable',
+            url: 'getAllClientAfterSoftDelete',
             asynch: false,
             success: function(data) {
 
@@ -446,11 +446,12 @@ function DataretrivalfromSearchMember(){
 				document.getElementById("pinCode").value = data[i].pinCode;
 				document.getElementById("branchName").value = data[i].branchName;
 				
-			    var img = document.getElementById('preview');
-				img.src =`upload/`+data[i].photo+``;
-
-				var img2 = document.getElementById('secondpreview');
-				img2.src =`upload/`+data[i].signature+``;
+				var imgElement = document.getElementById("preview");
+			    imgElement.src ="data:image/png;base64,"+data[i].image;
+			    
+			    var imgElement = document.getElementById("secondpreview");
+			    imgElement.src ="data:image/png;base64,"+data[i].signature;
+				
 			}
 		}, 
 		error: function(){
@@ -579,6 +580,31 @@ function SelectMemberAfterSoftDelete(){
                     $("#selectMember").append(appenddata2);
 		},
 		error: function() {
+			alert("Device control failed");
+		}
+	});
+}
+
+function RetrieveLoanMasterId(){
+	let id = document.getElementById("id").value;
+	var input = {
+		"id":id
+	};
+	const myJson = JSON.stringify(input);
+	//alert(id)
+	$.ajax({
+		type:"POST",
+		contentType: "application/json",
+		data: myJson,
+		url: 'retrieveLoanMasterId',
+		async: false,
+		success: function(data){
+			for(var i=0; i<data.length; i++){
+				//alert(data[i].id);
+				document.getElementById("id123").value = data[i].id;
+			}
+		}, 
+		error: function(){
 			alert("Device control failed");
 		}
 	});

@@ -31,4 +31,6 @@ public interface ClientMasterRepo extends JpaRepository<ClientMaster, Integer> {
 
 	public List<ClientMaster> findByflag(String flag);
 
+	public List<ClientMaster> findBymemberName(String memberName);
+
 }
