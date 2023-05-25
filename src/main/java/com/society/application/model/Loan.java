@@ -27,7 +27,7 @@ public class Loan {
 	private String mode;
 	private String loanROI;
 	private String loanAmount;
-	private String ROIType;
+	private String roiType;
 	private String emiAmount;
 	private String loanPurpose;
 	private String goldRateType;
@@ -72,9 +72,11 @@ public class Loan {
 	private String updatedDate;
 	private String updatedBy;
 	private String memberData;
+	private String karat;
+	private String itemWt;
+	private String marketValuation;
+	private String totItemWt;
 	
-	
-
 	public String getMemberData() {
 		return memberData;
 	}
@@ -251,12 +253,12 @@ public class Loan {
 		this.loanAmount = loanAmount;
 	}
 
-	public String getROIType() {
-		return ROIType;
+	public String getRoiType() {
+		return roiType;
 	}
 
-	public void setROIType(String rOIType) {
-		ROIType = rOIType;
+	public void setRoiType(String roiType) {
+		this.roiType = roiType;
 	}
 
 	public String getEmiAmount() {
@@ -579,4 +581,36 @@ public class Loan {
 		this.type = type;
 	}
 
+	public String getKarat() {
+		return karat;
+	}
+
+	public void setKarat(String karat) {
+		this.karat = karat;
+	}
+
+	public String getItemWt() {
+		return itemWt;
+	}
+
+	public void setItemWt(String itemWt) {
+		this.itemWt = itemWt;
+	}
+
+	public String getMarketValuation() {
+		return marketValuation;
+	}
+
+	public void setMarketValuation(String marketValuation) {
+		this.marketValuation = marketValuation;
+	}
+
+	public String getTotItemWt() {
+		return totItemWt;
+	}
+
+	public void setTotItemWt(String totItemWt) {
+		this.totItemWt = totItemWt;
+	}
+	
 }

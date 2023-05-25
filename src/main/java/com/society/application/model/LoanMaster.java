@@ -71,6 +71,25 @@ public class LoanMaster {
 	private String advisorName;
 	private byte[] signature;
 	private String flag = "1";
+	private byte[] goldItem;
+	private String karat;
+	private String itemType;
+	private String todayRate;
+	private String itemName;
+	private String lockerLoc;
+	private String purity;
+	private String itemQty;
+	private String itemWt;
+	private String grossWt;
+	private String stonewt;
+	private String netWt;
+	private String marketValuation;
+	private String eligibleLoan;
+	private String netQty;
+	private String totItemWt;
+	private String totalNetWt;
+	private String totalEligibleAmt;
+	private String vFeesAmt;
 	
 	public int getId() {
 		return id;
@@ -558,6 +577,158 @@ public class LoanMaster {
 
 	public void setSignature(byte[] signature) {
 		this.signature = signature;
+	}
+
+	public byte[] getGoldItem() {
+		return goldItem;
+	}
+
+	public void setGoldItem(byte[] goldItem) {
+		this.goldItem = goldItem;
+	}
+
+	public String getKarat() {
+		return karat;
+	}
+
+	public void setKarat(String karat) {
+		this.karat = karat;
+	}
+
+	public String getItemType() {
+		return itemType;
+	}
+
+	public void setItemType(String itemType) {
+		this.itemType = itemType;
+	}
+
+	public String getTodayRate() {
+		return todayRate;
+	}
+
+	public void setTodayRate(String todayRate) {
+		this.todayRate = todayRate;
+	}
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	public String getLockerLoc() {
+		return lockerLoc;
+	}
+
+	public void setLockerLoc(String lockerLoc) {
+		this.lockerLoc = lockerLoc;
+	}
+
+	public String getPurity() {
+		return purity;
+	}
+
+	public void setPurity(String purity) {
+		this.purity = purity;
+	}
+
+	public String getItemQty() {
+		return itemQty;
+	}
+
+	public void setItemQty(String itemQty) {
+		this.itemQty = itemQty;
+	}
+
+	public String getItemWt() {
+		return itemWt;
+	}
+
+	public void setItemWt(String itemWt) {
+		this.itemWt = itemWt;
+	}
+
+	public String getGrossWt() {
+		return grossWt;
+	}
+
+	public void setGrossWt(String grossWt) {
+		this.grossWt = grossWt;
+	}
+
+	public String getStonewt() {
+		return stonewt;
+	}
+
+	public void setStonewt(String stonewt) {
+		this.stonewt = stonewt;
+	}
+
+	public String getNetWt() {
+		return netWt;
+	}
+
+	public void setNetWt(String netWt) {
+		this.netWt = netWt;
+	}
+
+	public String getMarketValuation() {
+		return marketValuation;
+	}
+
+	public void setMarketValuation(String marketValuation) {
+		this.marketValuation = marketValuation;
+	}
+
+	public String getEligibleLoan() {
+		return eligibleLoan;
+	}
+
+	public void setEligibleLoan(String eligibleLoan) {
+		this.eligibleLoan = eligibleLoan;
+	}
+
+	public String getNetQty() {
+		return netQty;
+	}
+
+	public void setNetQty(String netQty) {
+		this.netQty = netQty;
+	}
+
+	public String getTotItemWt() {
+		return totItemWt;
+	}
+
+	public void setTotItemWt(String totItemWt) {
+		this.totItemWt = totItemWt;
+	}
+
+	public String getTotalNetWt() {
+		return totalNetWt;
+	}
+
+	public void setTotalNetWt(String totalNetWt) {
+		this.totalNetWt = totalNetWt;
+	}
+
+	public String getTotalEligibleAmt() {
+		return totalEligibleAmt;
+	}
+
+	public void setTotalEligibleAmt(String totalEligibleAmt) {
+		this.totalEligibleAmt = totalEligibleAmt;
+	}
+
+	public String getvFeesAmt() {
+		return vFeesAmt;
+	}
+
+	public void setvFeesAmt(String vFeesAmt) {
+		this.vFeesAmt = vFeesAmt;
 	}
 
 	@Override

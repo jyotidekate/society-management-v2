@@ -134,11 +134,6 @@ public class RectificationSectionController {
 		return "rectificationSection/GroupLoanRectification";
 	}
 
-	@GetMapping("/getGoldLoanRectification")
-	public String getGoldLoanRectification() {
-		return "rectificationSection/GoldLoanRectification";
-	}
-
 	/* SAVING TRANSACTION DELETE */
 
 	@GetMapping("/SavingTransactionDelete")
@@ -1035,5 +1030,266 @@ public class RectificationSectionController {
 
 		return ResponseEntity.ok("Deleted Successfully..!!");
 	}
+	
+	/* GOLD LOAN RECTIFICATION */
+	
+	@GetMapping("/getGoldLoanRectification")
+	public String getGoldLoanRectification() {
+		return "rectificationSection/GoldLoanRectification";
+	}
+	
+	//Get Dynamic Id in dropdown
+	@GetMapping("/getAllLoanID")
+	@ResponseBody
+	public List<LoanMaster> getAllLoanID(){
+		List<LoanMaster> list = loanmasterrepo.findAll();
+		return list;
+	}
+	
+	//Get Dynamic  Member Name in dropdown
+	@GetMapping("/getMemberinDropdown")
+	@ResponseBody
+	public List<ClientMaster> getMemberinDropdown(){
+		String flag = "1";
+		List<ClientMaster> list = clientMasterRepo.findByflag(flag);
+		return list;
+	}
+	
+	//Get Dynamic Loan Plan Name in dropdown
+	@GetMapping("/getLoanPlanName")
+	@ResponseBody
+	public List<Loan> getLoanPlanName(){
+		List<Loan> list =loanrepo.findAll();
+		return list;
+	}
+	
+	//Get BranchName in Dropdown
+	@GetMapping("/getBranch")
+	@ResponseBody
+	public List<ClientMaster> getBranch(){
+		List<ClientMaster> list = clientMasterRepo.findAll();
+		return list;
+	}
+	
+	//Get PlanTerm in Dropdown
+	@GetMapping("/getPlanTerm")
+	@ResponseBody
+	public List<Loan> getPlanTerm(){
+		List<Loan> list = loanrepo.findAll();
+		return list;
+	}
+	
+	//Get karat in Dropdown
+	@GetMapping("/getAllKarat")
+	@ResponseBody
+	public List<Loan> getAllKarat(){
+		List<Loan> list = loanrepo.findAll();
+		return list;
+	}
+	
+	//Get ItemName in dropdown
+	@GetMapping("/getItemName")
+	@ResponseBody
+	public List<Loan> getItemName(){
+		List<Loan> list = loanrepo.findAll();
+		return list;
+	}
+	
+	//Get LockerLocation in dropdown
+	@GetMapping("/getLockerLocation")
+	@ResponseBody
+	public List<Loan> getLockerLocation(){
+		List<Loan> list = loanrepo.findAll();
+		return list;
+	}
+	
+	//Get Purity in dropdown
+	@GetMapping("/getPurity")
+	@ResponseBody
+	public List<Loan> getPurity(){
+		List<Loan> list = loanrepo.findAll();
+		return list;
+	}
+	
+	//Retrieval Code using MemberName of GoldLoanRectification
+	@PostMapping("/RetrieveMemberDataInGoldLoan")
+	@ResponseBody
+	public List<ClientMaster> RetrieveMemberDataInGoldLoan(@RequestBody ClientMaster member){
+		List<ClientMaster> list = clientMasterRepo.findBymemberName(member.getMemberName());
+		return list;
+		
+	}	
+	
+	//Retrieval Code using LoanPlanName of GoldLoanRectification
+	@PostMapping("/RetrieveUsingLoanPlanName")
+	@ResponseBody
+	public List<Loan> RetrieveUsingLoanPlanName(@RequestBody Loan loan) {
+		List<Loan> list=loanrepo.findByloanPlanName(loan.getLoanPlanName());
+		return list;
+	}
+	
+	//update code using LoanID of GoldLoanRectification
+	@PostMapping("/updateCodeUsingLoanIds")
+	@ResponseBody
+	public ResponseEntity<String> updateCodeUsingLoanId(
+	 @RequestParam(name = "memberName", required = false) String memberName,
+	 @RequestParam(name = "relativeRelation", required = false) String relativeRelation,
+	 @RequestParam(name = "dob", required = false) String dob,
+	 @RequestParam(name = "age", required = false) String age,
+	 @RequestParam(name = "phoneno", required = false) String phoneno,
+	 @RequestParam(name = "status", required = false) String status,
+	 @RequestParam(name = "address", required = false) String address,
+	 @RequestParam(name = "pinCode", required = false) String pinCode,
+	 @RequestParam(name = "branchName", required = false) String branchName,
+	 @RequestParam(value = "filetag", required = false) MultipartFile file1,
+	 @RequestParam(value = "preview", required = false) MultipartFile file2,
+	 @RequestParam(value = "imgGold", required = false) MultipartFile file3,
+	 @RequestParam(name = "loanDate", required = false) String loanDate,
+	 @RequestParam(name = "loanPlanName", required = false) String loanPlanName,
+	 @RequestParam(name = "loanType", required = false) String loanType,
+	 @RequestParam(name = "planTerm", required = false) String planTerm,
+	 @RequestParam(name = "mode", required = false) String mode,
+	 @RequestParam(name = "loanROI", required = false) String loanROI,
+	 @RequestParam(name = "loanAmount", required = false) String loanAmount,
+	 @RequestParam(name = "roiType", required = false) String roiType,
+	 @RequestParam(name = "emiAmount", required = false) String emiAmount,
+	 @RequestParam(name = "loanPurpose", required = false) String loanPurpose,
+	 @RequestParam(name = "karat", required = false) String karat,
+	 @RequestParam(name = "itemType", required = false) String itemType,
+	 @RequestParam(name = "todayRate", required = false) String todayRate,
+	 @RequestParam(name = "itemName", required = false) String itemName,
+	 @RequestParam(name = "lockerLoc", required = false) String lockerLoc,
+	 @RequestParam(name = "purity", required = false) String purity,
+	 @RequestParam(name = "itemQty", required = false) String itemQty,
+	 @RequestParam(name = "itemWt", required = false) String itemWt,
+	 @RequestParam(name = "grossWt", required = false) String grossWt,
+	 @RequestParam(name = "stonewt", required = false) String stonewt,
+	 @RequestParam(name = "netWt", required = false) String netWt,
+	 @RequestParam(name = "marketValuation", required = false) String marketValuation,
+	 @RequestParam(name = "eligibleLoan", required = false) String eligibleLoan,
+	 @RequestParam(name = "netQty", required = false) String netQty,
+	 @RequestParam(name = "totItemWt", required = false) String totItemWt,
+	 @RequestParam(name = "totalNetWt", required = false) String totalNetWt,
+	 @RequestParam(name = "totalEligibleAmt", required = false) String totalEligibleAmt,
+	 @RequestParam(name = "searchMemberCode", required = false) String searchMemberCode,
+	 @RequestParam(name = "guarantorName", required = false) String guarantorName,
+	 @RequestParam(name = "addressGuarantor", required = false) String addressGuarantor,
+	 @RequestParam(name = "pincodeGuarantor", required = false) String pincodeGuarantor,
+	 @RequestParam(name = "phone", required = false) String phone,
+	 @RequestParam(name = "securityType", required = false) String securityType,
+	 @RequestParam(name = "coApplicantCode", required = false) String coApplicantCode,
+	 @RequestParam(name = "memberRelativesName", required = false) String memberRelativesName,
+	 @RequestParam(name = "addressco", required = false) String addressco,
+	 @RequestParam(name = "pincodeco", required = false) String pincodeco,
+	 @RequestParam(name = "phoneco", required = false) String phoneco,
+	 @RequestParam(name = "securityDetails", required = false) String securityDetails,
+	 @RequestParam(name = "processingFee", required = false) String processingFee,
+	 @RequestParam(name = "legalAmt", required = false) String legalAmt,
+	 @RequestParam(name = "advisorCode", required = false) String advisorCode,
+	 @RequestParam(name = "gst", required = false) String gst,
+	 @RequestParam(name = "insuranceAmt", required = false) String insuranceAmt,
+	 @RequestParam(name = "vFeesAmt", required = false) String vFeesAmt,
+	 @RequestParam(name = "advisorName", required = false) String advisorName,
+	 @RequestParam(name = "id123",required = false) Integer id
+	 ){
+		try {
+			List<LoanMaster> loan = loanmasterrepo.findByid(id);
+			loan.forEach(s->{
+				if(!(file1==null) && !(file2==null) && !(file3==null)) {
+					try {
+						byte[] signature = file2.getBytes();
+						byte[] goldItem = file3.getBytes();
+						byte[] photo = file1.getBytes();
+						s.setPhoto(photo);
+						s.setSignature(signature);
+						s.setGoldItem(goldItem);
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
+					s.setMemberName(memberName);
+					s.setRelativeName(relativeRelation);
+					s.setDob(dob);
+					s.setAge(age);
+					s.setPhoneno(phoneno);
+					s.setStatus(status);
+					s.setAddress(address);
+					s.setPinCode(pinCode);
+					s.setBranchName(branchName);
+					s.setLoanDate(loanDate);
+					s.setLoanPlanName(loanPlanName);
+					s.setLoanType(loanType);
+					s.setPlanTerm(planTerm);
+					s.setMode(mode);
+					s.setLoanROI(loanROI);
+					s.setLoanAmount(loanAmount);
+					s.setRoiType(roiType);
+					s.setEmiAmount(emiAmount);
+					s.setLoanPurpose(loanPurpose);
+					s.setKarat(karat);
+					s.setItemType(itemType);
+					s.setTodayRate(todayRate);
+					s.setItemName(itemName);
+					s.setLockerLoc(lockerLoc);
+					s.setPurity(purity);
+					s.setItemQty(itemQty);
+					s.setItemWt(itemWt);
+					s.setGrossWt(grossWt);
+					s.setStonewt(stonewt);
+					s.setNetWt(netWt);
+					s.setMarketValuation(marketValuation);
+					s.setEligibleLoan(eligibleLoan);
+					s.setNetQty(netQty);
+					s.setTotItemWt(totItemWt);
+					s.setTotalNetWt(totalNetWt);
+					s.setTotalEligibleAmt(totalEligibleAmt);
+					s.setSearchMemberCode(searchMemberCode);
+					s.setGuarantorName(guarantorName);
+					s.setAddressGuarantor(addressGuarantor);
+					s.setPincodeGuarantor(pincodeGuarantor);
+					s.setPhone(phone);
+					s.setSecurityType(securityType);
+					s.setCoApplicantCode(coApplicantCode);
+					s.setMemberRelativesName(memberRelativesName);
+					s.setAddressco(addressco);
+					s.setPincodeco(pincodeco);
+					s.setPhoneco(phoneco);
+					s.setSecurityDetails(securityDetails);
+					s.setProcessingFee(processingFee);
+					s.setLegalAmt(legalAmt);
+					s.setAdvisorCode(advisorCode);
+					s.setGst(gst);
+					s.setInsuranceAmt(insuranceAmt);
+					s.setAdvisorName(advisorName);
+					s.setvFeesAmt(vFeesAmt);
+					s.setFlag("1");
+					loanmasterrepo.save(s);
+				}
+			});
+			return new ResponseEntity<>("DATA UPDATED SUCCESSFULLY", HttpStatus.OK);
+		}catch(Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<>("DATA UPDATED FAILED", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	// Soft Delete Operation of GoldLoanRectification
+	@PostMapping("/softDeleteByLoanId")
+	@ResponseBody
+	public ResponseEntity<String> softDeleteByLoanId(@RequestBody LoanMaster loanMaster){
+		String flag = "0";
+		int i = loanmasterrepo.updateGoldLoanThroughid(flag,loanMaster.getId());
+		return ResponseEntity.ok("Data Deleted Successfully..!!");
+	}
+	
+	// Retrieval Operation after Soft Delete Operation of GoldLoanRectification
+	@GetMapping("/retrievalCodeAfterSoftDeleteByFlag")
+	@ResponseBody
+	public List<LoanMaster> retrievalCodeAfterSoftDeleteByFlag(){
+		String flag= "1";
+		List<LoanMaster> list = loanmasterrepo.findByflag(flag);
+		return list;
+	}
+	
+	/* */
 
 }
