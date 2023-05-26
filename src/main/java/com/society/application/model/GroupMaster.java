@@ -24,6 +24,8 @@ public class GroupMaster {
 	private String createdBy;
 	private String updatedDate;
 	private String updatedBy;
+	private String flag;
+	
 	public int getId() {
 		return id;
 	}
@@ -108,7 +110,11 @@ public class GroupMaster {
 	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
-	
-	
+	public String getFlag() {
+		return flag;
+	}
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
 
 }

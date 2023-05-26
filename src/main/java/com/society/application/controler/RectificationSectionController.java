@@ -24,8 +24,11 @@ import com.society.application.model.AdvisorCollectorDetails;
 import com.society.application.model.BankMaster;
 import com.society.application.model.BranchMaster;
 import com.society.application.model.ClientMaster;
+import com.society.application.model.GroupMaster;
+import com.society.application.model.GroupMasterApplication;
 import com.society.application.model.Loan;
 import com.society.application.model.LoanMaster;
+import com.society.application.model.LoanPlanMaster;
 import com.society.application.model.Member;
 import com.society.application.model.PaymentMaster;
 import com.society.application.model.SavingsDepositWith;
@@ -36,7 +39,10 @@ import com.society.application.repository.AdvisorCollectorDetailsRepo;
 import com.society.application.repository.BankMasterRepo;
 import com.society.application.repository.BranchMasterRepo;
 import com.society.application.repository.ClientMasterRepo;
+import com.society.application.repository.GroupMasterApplicationRepo;
+import com.society.application.repository.GroupMasterRepo;
 import com.society.application.repository.LoanMasterRepo;
+import com.society.application.repository.LoanPlanRepo;
 import com.society.application.repository.LoanRepo;
 import com.society.application.repository.MemberRepo;
 import com.society.application.repository.PaymentMasterRepo;
@@ -91,6 +97,15 @@ public class RectificationSectionController {
 
 	@Autowired
 	BankMasterRepo bankMasterRepo;
+	
+	@Autowired
+	GroupMasterRepo groupmasterrepo;
+	
+	@Autowired
+	LoanPlanRepo loanPlanRepo;
+	
+	@Autowired
+	GroupMasterApplicationRepo groupMasterApplicationRepo;
 
 	/* ADVISOR/COLLECTOR RECTIFICATION */
 
@@ -127,11 +142,6 @@ public class RectificationSectionController {
 		} else {
 			return ResponseEntity.badRequest().body("No record found to delete");
 		}
-	}
-
-	@GetMapping("GroupLoanRectification")
-	public String showGroupLoanRectificationPage() {
-		return "rectificationSection/GroupLoanRectification";
 	}
 
 	/* SAVING TRANSACTION DELETE */
@@ -1288,6 +1298,141 @@ public class RectificationSectionController {
 		String flag= "1";
 		List<LoanMaster> list = loanmasterrepo.findByflag(flag);
 		return list;
+	}
+	
+	/* */
+	
+	/* GROUP LOAN RECTIFICATION MODULE */
+
+	@GetMapping("GroupLoanRectification")
+	public String showGroupLoanRectificationPage() {
+		return "rectificationSection/GroupLoanRectification";
+	}
+		
+	//Retrieving ID On DropDown
+	@GetMapping("/RetrieveDataOFGroupLoandIdSoftDeletedApi")
+	@ResponseBody
+	public List<GroupMaster> DataofGroupMaster(){
+			String flag="1";
+			return groupmasterrepo.findByflag(flag);
+	}
+			
+	//Retrieving Member Data On feilds
+	@PostMapping("/retridataonfeildsviaMembername")
+	@ResponseBody
+	public List<ClientMaster>RetreiveMemberdataonFeilds(@RequestBody ClientMaster mem){
+			return clientMasterRepo.findBymemberName(mem.getMemberName());
+	}
+		
+	//Updating Group Loan Rectification
+	@PostMapping("/updateGroupLoanRectification")
+	@ResponseBody
+	public ResponseEntity<String> updateGroupLoanRectification(
+				@RequestParam(name ="loanDate", required = false)String loanDate,
+				@RequestParam(name ="memberName", required = false)String memberName,
+				@RequestParam(name ="relativeName", required = false)String relativeName,
+				@RequestParam(name ="dob", required = false)String dob,
+				@RequestParam(name ="age", required = false)String age,
+				@RequestParam(name ="phoneno", required = false)String phoneno,
+				@RequestParam(name ="groupID", required = false)String groupID,
+				@RequestParam(name ="address", required = false)String address,
+				@RequestParam(name ="pinCode", required = false)String pinCode,
+				@RequestParam(name ="branchName", required = false)String branchName,
+				@RequestParam(name ="loanPlanName", required = false)String loanPlanName,
+				@RequestParam(name ="loanType", required = false)String loanType,			
+				@RequestParam(name ="planTerm", required = false)String planTerm,
+				@RequestParam(name ="mode", required = false)String mode,
+				@RequestParam(name ="loanROI", required = false)String loanROI,
+				@RequestParam(name ="loanAmount", required = false)String loanAmount,		
+				@RequestParam(name ="roitype", required = false)String roitype,
+				@RequestParam(name ="emiAmount", required = false)String emiAmount,
+				@RequestParam(name ="loanPurpose", required = false)String loanPurpose,
+				@RequestParam(name ="processingFee", required = false)String processingFee,
+				@RequestParam(name ="legalAmt", required = false)String legalAmt,
+				@RequestParam(name ="advisorCode", required = false)String advisorCode,
+				@RequestParam(name ="gst", required = false)String gst,
+				@RequestParam(name ="insuranceAmt", required = false)String insuranceAmt,
+				@RequestParam(name ="advisorName", required = false)String advisorName,
+				@RequestParam(name = "filetag",required = false) MultipartFile file1,
+				@RequestParam(name = "secondfiletag",required = false) MultipartFile file2,
+				@RequestParam(name = "id123",required = false) Integer id)  {
+					try{
+						List<GroupMasterApplication> group = groupMasterApplicationRepo.findByid(id);
+						group.forEach(s->{
+							if(!(file1==null) && !(file2==null)) {
+								try {
+									byte[] photo = file1.getBytes();
+									byte[] signature = file2.getBytes();
+									s.setPhoto(photo);
+									s.setSignature(signature);
+								}catch(Exception e) {
+									e.printStackTrace();
+								}
+							}
+							s.setLoanDate(loanDate);
+							s.setMemberName(memberName);
+							s.setRelativeName(relativeName);
+							s.setDob(dob);
+							s.setAge(age);
+							s.setPhoneno(phoneno);
+							s.setGroupID(groupID);
+							s.setAddress(address);
+							s.setPinCode(pinCode);
+							s.setBranchName(branchName);
+							s.setLoanPlanName(loanPlanName);
+							s.setLoanType(loanType);
+							s.setPlanTerm(planTerm);
+							s.setMode(mode);
+							s.setLoanROI(loanROI);
+							s.setLoanAmount(loanAmount);
+							s.setRoitype(roitype);
+							s.setEmiAmount(emiAmount);
+							s.setLoanPurpose(loanPurpose);
+							s.setProcessingFee(processingFee);
+							s.setLegalAmt(legalAmt);
+							s.setAdvisorCode(advisorCode);
+							s.setGst(gst);
+							s.setInsuranceAmt(insuranceAmt);
+							s.setAdvisorName(advisorName);
+							s.setFlag("1");
+							
+							groupMasterApplicationRepo.save(s);
+						});
+						return new ResponseEntity<>("Data Updated  successfully!!!!", HttpStatus.OK);
+					}catch(Exception ex) {
+						System.out.println(ex);
+				        return new ResponseEntity<>("Data Updated Failed !!!!", HttpStatus.INTERNAL_SERVER_ERROR);
+					}
+	}
+	
+	@PostMapping("/deleteGroupMasterApplicationById")
+	@ResponseBody
+	public ResponseEntity<String> deleteGroupMasterApplicationById(@RequestBody GroupMasterApplication model) {
+			String flag = "0";
+			int i = groupMasterApplicationRepo.updateGroupMasterApplicationThroughid(flag, model.getId());
+			return ResponseEntity.ok("Deleted Successfully..!!");
+	}
+	
+	@PostMapping("/retrieveGroupLoanMasterId")
+	@ResponseBody
+	public List<GroupMasterApplication> retrieveLoanMasterId(){
+		List<GroupMasterApplication> list = groupMasterApplicationRepo.findAll();
+		return list;
+	}
+	
+	@PostMapping("/getGroupLoanIdForUpdate")
+	@ResponseBody
+	public List<GroupMasterApplication> getGroupLoanIdForUpdate(@RequestBody GroupMasterApplication group){
+		List<GroupMasterApplication> list = groupMasterApplicationRepo.findByid(group.getId());
+		return list;
+	}
+	
+	@PostMapping("/RetrieveDataOfSoftDeletedApiGroupLoan")
+	@ResponseBody
+	public List<GroupMasterApplication> RetrieveDataOfSoftDeletedApiGroupLoan() {
+		String flag = "1";
+		List<GroupMasterApplication> data = groupMasterApplicationRepo.findByflag(flag);
+		return data;
 	}
 	
 	/* */

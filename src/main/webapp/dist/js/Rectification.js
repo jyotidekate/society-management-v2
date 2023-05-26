@@ -917,3 +917,107 @@ function retrieveCodeAfterSoftDeleteSearchMemberCode(){
 		}
 	});
 }
+
+//dropdown code for Select Member
+function retrieveCodeAfterSoftDeleteMemberName(){
+	//alert("hi")
+		$.ajax({
+		type: "get",
+		contentType: "application/json",
+		url: 'getAllClientAfterSoftDelete',
+		asynch: false,
+		success: function(data) {
+			//alert("helooo")
+			
+			 var appenddata1 = "";
+                    for (var i = 0; i < data.length; i++) {
+						appenddata1 += "<option value ='"+data[i].memberName +"'>" +data[i].memberName + "</option>";
+					}
+                    $("#memberName").append(appenddata1);
+		},
+		error: function() {
+			alert("Device control failed");
+		}
+	});
+}
+
+//retriving data on Feilds by Member Name
+function retrivigFeildsforMemberAjax(){
+	
+	var memberName = document.getElementById("memberName");
+		var input = {
+                     "memberName": memberName.value
+             }
+             
+        $.ajax({
+                 type:"POST",
+                 contentType: "application/json",
+                 data: JSON.stringify(input),
+                 url: 'retridataonfeildsviaMembername',
+                 asynch: false,
+                 success: function(data) {
+	
+	 for (var i = 0; i < data.length; i++) {
+		
+		 $('#memberName').val(data[i].memberName);		   
+			 document.getElementById("memberName").value=data[i].memberName;
+			 document.getElementById("relativeName").value=data[i].relativeName;
+			 document.getElementById("dob").value=data[i].dob;
+			 document.getElementById("age").value=data[i].age;
+			 document.getElementById("phoneno").value=data[i].phoneno;
+			 document.getElementById("address").value=data[i].address;
+			 document.getElementById("pinCode").value=data[i].pinCode;
+			 document.getElementById("branchName").value=data[i].branchName;
+			 	
+			 var imgElement = document.getElementById("preview");
+			 imgElement.src ="data:image/png;base64,"+data[i].image;
+        }
+       } ,
+         	    error: function(){
+         	    	alert("Device control failed for data retriving on feilds");
+         	    }
+       });
+}
+
+//retriving data on Feilds by Loan Name.
+function retrivigFeildsforLoanNameAjax(){
+	
+	var loanPlanName = document.getElementById("loanPlanName");
+		var input = {
+                     "loanPlanName": loanPlanName.value
+             }
+             
+        $.ajax({
+                 type:"POST",
+                 contentType: "application/json",
+                 data: JSON.stringify(input),
+                 url: 'searchByLoanPlanNameFromLoanTable',
+                 asynch: false,
+                 success: function(data) {
+	
+	 for (var i = 0; i < data.length; i++) {
+	
+		 $('#loanPlanName').val(data[i].loanPlanName);		  
+		     document.getElementById("loanPlanName").value=data[i].loanPlanName; 
+			 document.getElementById("loanType").value=data[i].loanType;
+			 document.getElementById("planTerm").value=data[i].planTerm;
+			 document.getElementById("mode").value=data[i].mode;
+			 document.getElementById("loanROI").value=data[i].loanROI;
+			 document.getElementById("loanAmount").value=data[i].loanAmount;
+			 document.getElementById("roitype").value = data[i].roitype;
+			 document.getElementById("emiAmount").value = data[i].emiAmount;
+			 document.getElementById("loanPurpose").value = data[i].loanPurpose;
+			 document.getElementById("processingFee").value = data[i].processingFee;
+			 document.getElementById("legalAmt").value = data[i].legalAmt;
+			 document.getElementById("advisorCode").value = data[i].advisorCode;
+			 document.getElementById("gst").value = data[i].gst;
+			 document.getElementById("insuranceAmt").value = data[i].insuranceAmt;
+			 document.getElementById("advisorName").value = data[i].advisorName;
+			 document.getElementById("loanDate").value = data[i].loanDate;
+        }
+       } ,
+         	    error: function(){
+         	    	alert("Device control failed for data retriving on feilds");
+         	    }
+       });
+}

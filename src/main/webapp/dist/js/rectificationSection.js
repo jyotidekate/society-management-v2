@@ -609,3 +609,78 @@ function RetrieveLoanMasterId(){
 		}
 	});
 }
+
+function RetrieveGroupLoanMasterId(){
+	//alert("hi")
+	$.ajax({
+            type:"POST",
+            contentType: "application/json",
+            url: 'RetrieveDataOfSoftDeletedApiGroupLoan',
+            asynch: false,
+            success: function(data) {
+
+            var appenddata1 = "";
+                    //var jsonData1 = JSON.parse(data1.d);
+                    for (var i = 0; i < data.length; i++) {
+                         appenddata1 += "<option value ='"+data[i].id+"'>"+data[i].id +"</option>";
+                    }
+                    $("#id").append(appenddata1);  
+            } ,
+    	    error: function(){
+    	    	alert("Device control failed");
+    	    }
+        });
+}
+
+function GetGroupLoanIdForUpdate(){
+	let id = document.getElementById("id").value;
+	var input = {
+		"id":id
+	};
+	const myJson = JSON.stringify(input);
+	//alert(id)
+	$.ajax({
+		type:"POST",
+		contentType: "application/json",
+		data: myJson,
+		url: 'getGroupLoanIdForUpdate',
+		async: false,
+		success: function(data){
+			for(var i=0; i<data.length; i++){
+				//alert(data[i].id);
+				document.getElementById("id123").value = data[i].id;
+			}
+		}, 
+		error: function(){
+			alert("Device control failed");
+		}
+	});
+}
+
+function softDeleteIntegrationsGroupLoan(){
+	var id = document.getElementById("id").value;
+	var input = {
+		"id" : id,
+	}
+	var myJson = JSON.stringify(input);
+	//alert(id)
+	if(!id){
+		alert("Please select Code")
+	}
+	else{
+		$.ajax({
+			type:"post",
+			contentType: "application/json",
+			data: JSON.stringify(input),
+			url: 'deleteGroupMasterApplicationById',
+			asynch: false,
+			success: function(data){
+				alert("Soft Delete Successfully...!!!")
+				window.location.href = "getMemberRectification";
+			},
+			error: function(){
+				alert("Device control failed");
+			}
+		});
+	}
+}
