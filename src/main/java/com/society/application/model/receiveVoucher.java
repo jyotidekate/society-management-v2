@@ -24,10 +24,6 @@ public class receiveVoucher {
 	private String fDate;
 	private String tDate;
 	
-	
-	
-	
-	
 	public String getSelectBranchSearch() {
 		return selectBranchSearch;
 	}
@@ -100,7 +96,5 @@ public class receiveVoucher {
 	public void setNarration(String narration) {
 		this.narration = narration;
 	}
-	
-	
 	
 }

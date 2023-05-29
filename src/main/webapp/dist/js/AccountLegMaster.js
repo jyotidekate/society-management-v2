@@ -26,5 +26,4 @@ function validateFormFields()
     { 
      return false; 
     } 
-
 }

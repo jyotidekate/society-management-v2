@@ -14,6 +14,13 @@ public class ContraEntry {
 	private String selectbranch;
 	private String fromdate; 
 	private String todate;
+	//@GeneratedValue(strategy = GenerationType.AUTO)
+	private String receiptno;
+	private String txndate;
+	private String selectcrledger;
+	private String selectdrledger;
+	private String amount;
+	private String remarks;
 	 
 	public String getFromdate() {
 		return fromdate;
@@ -27,15 +34,6 @@ public class ContraEntry {
 	public void setTodate(String todate) {
 		this.todate = todate;
 	}
-	//@GeneratedValue(strategy = GenerationType.AUTO)
-	private String receiptno;
-	private String txndate;
-	private String selectcrledger;
-	private String selectdrledger;
-	private String amount;
-	private String remarks;
-	
-	
 	public int getId() {
 		return id;
 	}
@@ -48,7 +46,6 @@ public class ContraEntry {
 	public void setSelectbranch(String selectbranch) {
 		this.selectbranch = selectbranch;
 	}
-	
 	public String getReceiptno() {
 		return receiptno;
 	}

@@ -24,7 +24,6 @@ public class JournalEntry
 	private String amount;
 	private String remarks;
 	
-	
 	public int getId() {
 		return id;
 	}
@@ -87,7 +86,5 @@ public class JournalEntry
 	public void setTodate(String todate) {
 		this.todate = todate;
 	}
-	
-	
 	
 }

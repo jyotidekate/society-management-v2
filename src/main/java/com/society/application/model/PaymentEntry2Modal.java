@@ -21,6 +21,7 @@ private String narration;
 private String selectBranchSearch;
 private String fDate;
 private String todate;
+
 public String getTodate() {
 	return todate;
 }
@@ -33,9 +34,6 @@ public String getfDate() {
 public void setfDate(String fDate) {
 	this.fDate = fDate;
 }
-
-
-
 public String getReciept() {
 	return reciept;
 }
@@ -49,15 +47,12 @@ public String getSelectBranchSearch() {
 public void setSelectBranchSearch(String selectBranchSearch) {
 	this.selectBranchSearch = selectBranchSearch;
 }
-
-
 public String getAmount() {
 	return amount;
 }
 public void setAmount(String amount) {
 	this.amount = amount;
 }
-
 public int getId() {
 	return id;
 }
@@ -100,7 +95,5 @@ public String getNarration() {
 public void setNarration(String narration) {
 	this.narration = narration;
 }
-
-
 
 }

@@ -10,11 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.society.application.model.AccountLegMaster;
 import com.society.application.model.BalanceSheetDatewise;
 import com.society.application.model.BalanceSheetFY;
+import com.society.application.model.BankMaster;
 import com.society.application.model.BankStatement;
 import com.society.application.model.BranchMaster;
 import com.society.application.model.CashStatement;
@@ -35,6 +37,7 @@ import com.society.application.model.receiveVoucher;
 import com.society.application.repository.AccountLegMasterRepo;
 import com.society.application.repository.BalanceSheetDatewiseRepo;
 import com.society.application.repository.BalanceSheetFyRepo;
+import com.society.application.repository.BankMasterRepo;
 import com.society.application.repository.BankStatementRepo;
 import com.society.application.repository.BranchMasterRepo;
 import com.society.application.repository.BranchMater2REpo;
@@ -59,66 +62,69 @@ public class AccountSectionController {
 
 	@Autowired
 	AccountLegMasterRepo accountLegMasterRepo;
-	
+
 	@Autowired
 	IncentivePaymentRepo incentivePaymentRepo;
-	
+
 	@Autowired
 	CashStatementrepo csrepo;
-	
+
 	@Autowired
 	TrialBalanceRepo trialbalancerepo;
-	
+
 	@Autowired
 	BranchMasterRepo branchmasterrepo;
-	
+
 	@Autowired
 	PaymentEntryRepo payentryrepo;
-	
+
 	@Autowired
 	ContraEntryRepo contraEntryRepo;
-	
+
 	@Autowired
 	MandateDepositToBankRepo mandateDepositRepo;
-	
+
 	@Autowired
 	JournalReportRepo journalReportRepo;
-	
+
 	@Autowired
 	BalanceSheetDatewiseRepo balanceSheetDatewiseRepo;
-	
+
 	@Autowired
 	BankStatementRepo bankStatementRepo;
-	
+
 	@Autowired
 	LedgerReportRepo ledgerReportRepo;
-	
+
 	@Autowired
 	MisPaymentRepo mispayrepo;
-	
+
 	@Autowired
 	TransferBookRepo transferrepo;
-	
+
 	@Autowired
 	BranchMater2REpo branchMater2REpo;
-	
+
 	@Autowired
 	accountSectionRepo accountrepo;
-	
+
 	@Autowired
 	ChequeClear_Repo chequerepo;
-	
+
 	@Autowired
 	DayBookRepo dayBookRepo;
-	
+
 	@Autowired
 	BalanceSheetFyRepo balanceSheetFyRepo;
-	
-	@Autowired 
+
+	@Autowired
 	PlStatementRepo plrepo;
-	
+
 	@Autowired
 	JournalEntryRepo journalEntryRepo;
+	
+	@Autowired
+	BankMasterRepo bankMasterRepo;
 
 	/* LEDGER MASTER */
 
@@ -127,22 +133,15 @@ public class AccountSectionController {
 		return "accountSection/AccountLegMaster";
 	}
 
-	/*
-	 * @PostMapping("/accountLegMaster1") public String
-	 * getAccountLegMaster( @RequestBody AccountLegMaster model) {
-	 * accountLegMasterRepo.save(model); return "accountSection/AccountLegMaster"; }
-	 */
-
 	@PostMapping("accountLegMaster1")
 	public String getAccountLegMaster(@ModelAttribute("accountlegmodelattribute") AccountLegMaster alm, Model model) {
 		if (alm.getLedgername() != null && alm.getSelectgroup() != null) {
 			accountLegMasterRepo.save(alm);
 			model.addAttribute("msg", "Record Saved");
-			//System.out.println("Saved");
-
+			// System.out.println("Saved");
 		} else {
 			model.addAttribute("msg", "Data not saved");
-			//System.out.println(" Not Saved");
+			// System.out.println(" Not Saved");
 		}
 		return "accountSection/AccountLegMaster";
 	}
@@ -151,13 +150,6 @@ public class AccountSectionController {
 	public String getAccountLegMasterList(Model model) {
 		List<AccountLegMaster> list = accountLegMasterRepo.findAll();
 		model.addAttribute("list", list);
-		// System.out.println(""+list);
-
-		/*
-		 * list.forEach(s->{ System.out.println(s.getLedgername());
-		 * System.out.println(s.getSelectgroup()); });
-		 */
-
 		return "accountSection/AccountLegMaster";
 	}
 
@@ -185,7 +177,7 @@ public class AccountSectionController {
 
 		return "accountSection/IncentivePayment";
 	}
-	
+
 	/* CASH BOOK */
 
 	@GetMapping("/cashbook")
@@ -201,7 +193,7 @@ public class AccountSectionController {
 		model.addAttribute("lists2", lists2);
 		return "accountSection/CashBook";
 	}
-	
+
 	/* TRIAL BALANCE */
 
 	@GetMapping("/trialBalance")
@@ -230,7 +222,7 @@ public class AccountSectionController {
 		}
 		return null;
 	}
-	
+
 	/* BRANCH CASH TRANSFER */
 
 	@GetMapping("/branchCashTransfer")
@@ -238,528 +230,536 @@ public class AccountSectionController {
 		return "accountSection/BranchCashTransfer";
 	}
 
-	 @GetMapping("/branchCashTransferUpdate") 
-	 @ResponseBody
-	 public List<BranchMaster> getbranchCashTransfer1( HttpServletRequest request) {
-	  
-		 String TransferDate = request.getParameter("TransferDate"); 
-		 String FromBranch= request.getParameter("FromBranch"); 
-		 String ToBranch = request.getParameter("ToBranch"); 
-		 String Amount = request.getParameter("Amount");
-		 
-		 branchmasterrepo.findByfromBranchToBranch(Amount,TransferDate,FromBranch,ToBranch);
-		 
-		 List<BranchMaster> list = branchmasterrepo.findAll();
-		 return list ;	
-	  }
-	 
-      /* PAYMENT ENTRY */
-	 
-	  @GetMapping("/paymentEntryView")
-	  public String paymententry(Model model)
-	  {
-	    	return "accountSection/PaymentEntry";
-	  }
-	    
-	  @GetMapping("/searchPaymentEntry")
-	  @ResponseBody
-	  public List<PaymentEntry2Modal> showpayentry(HttpServletRequest hp)
-	  {
-	    	try 
-	    	{
-	    		String fdate=hp.getParameter("fDate");
-	    		String tdate=hp.getParameter("todate");
-	    		String branch=hp.getParameter("selectbranch");
-			
-	    		List<PaymentEntry2Modal> pebranch= payentryrepo.findByselectbranch(branch);
-	    		List<PaymentEntry2Modal> pedate=payentryrepo.findBytxndateBetween(fdate,tdate);
-			
-	    		if(!pebranch.isEmpty())
-	    		{
-	    			return pebranch;
-	    		}
-	    		else 
-	    			return pedate;
-			}
-			catch (Exception e) 
-	    	{
-				System.out.println(e.getMessage());
-			}
-	    	return null;
-	   }
-	    
-	   @PostMapping("/paymentEntry")
-	   public String SavePaymentEntry(@ModelAttribute("PaymentEntry2Modal") PaymentEntry2Modal payentry2, Model model)
-	   {
-	    	String status="exception";
-	    	if(payentry2.getSelectbranch()!=null  && payentry2.getTxndate()!=null && payentry2.getSelectype()!=null && payentry2.getDtransfer()!=null && payentry2.getSelectledger()!=null && payentry2.getAmount()!=null)
-	    	{
-	    		PaymentEntry2Modal payentry=payentryrepo.save(payentry2);
-	    		if(payentry!=null)
-	    		{
-	    			status=" data saved successfully";
-	    		}
-	    		model.addAttribute("status",status);
-	    	}
-	    	else
-			{
-				System.out.println("Data not saved");
-			}
-	    	return "accountSection/PaymentEntry";
-	  }
-	   
-	  /* CONTRA ENTRY*/
-		  
-	  @GetMapping("/contraEntry")
-	  public String getContraEntry()
-	  {
-				return "accountSection/ContraEntry";
-	  }
+	@GetMapping("/branchCashTransferUpdate")
+	@ResponseBody
+	public List<BranchMaster> getbranchCashTransfer1(HttpServletRequest request) {
 
-	  @GetMapping("/getAllRecord")
-	  public String getAllContraEntry(@ModelAttribute("ContramodelAttribute") ContraEntry contraEntry, Model model) 
-	  {
-				List<ContraEntry> list = contraEntryRepo.findByselectbranch(contraEntry.getSelectbranch());
-				List<ContraEntry> list1 = contraEntryRepo.findBytxndateBetween(contraEntry.getFromdate(), contraEntry.getTodate());
-				model.addAttribute("list", list);
-				model.addAttribute("list1", list1);
-				return "accountSection/ContraEntry";
-	  }
+		String TransferDate = request.getParameter("TransferDate");
+		String FromBranch = request.getParameter("FromBranch");
+		String ToBranch = request.getParameter("ToBranch");
+		String Amount = request.getParameter("Amount");
 
-	  @PostMapping("/contraEntry1")
-	  public String getContraEntry(@ModelAttribute("ContramodelAttribute") ContraEntry contraEntry, Model model) 
-	  {
-				contraEntryRepo.save(contraEntry);
-				return "accountSection/ContraEntry";
-	  }
+		branchmasterrepo.findByfromBranchToBranch(Amount, TransferDate, FromBranch, ToBranch);
 
-	  /* MANDATE DEPOSITE TO BANK */
-		 
-	  @GetMapping("/mandateDeposit")
-	  public String getMandateDeposit() 
-	  {
-				return "accountSection/MandateDepositToBank";
-	  }
+		List<BranchMaster> list = branchmasterrepo.findAll();
+		return list;
+	}
 
-	  @PostMapping("/mandateDeposit1")
-	  public String getMandateDeposit(@ModelAttribute("ContramodelAttribute") MandateDepositToBank mandateDepBank, Model model) 
-	  {
-				mandateDepositRepo.save(mandateDepBank);
-				return "accountSection/MandateDepositToBank";
-	  }
+	/* PAYMENT ENTRY */
 
-	  @GetMapping("/getAllRecords")
-	  public String getAllMandateRecord(@ModelAttribute("ContramodelAttribute") MandateDepositToBank mandateDepBank, Model model) 
-	  {
-				List<MandateDepositToBank> list = mandateDepositRepo.findByfddateBetween(mandateDepBank.getFromdate(),
-						mandateDepBank.getTodate());
-				     	model.addAttribute("list", list);
-				if (mandateDepBank.getFddeposit() != null && mandateDepBank.getMisdeposit() != null && mandateDepBank.getRddeposit() != null
-						&& mandateDepBank.getSavingsdeposit() != null && mandateDepBank.getSavingswithdrawal() != null
-						&& mandateDepBank.getFlexideposit() != null && mandateDepBank.getFlexiwithdrawal() != null
-						&& mandateDepBank.getMaturityprincipal() != null && mandateDepBank.getTotaldeposit() != null
-						&& mandateDepBank.getTotalwithdrawal() != null && mandateDepBank.getTotalbalance() != null
-						&& mandateDepBank.getPreviousfddeposited() != null && mandateDepBank.getUnencumbered() != null
-						&& mandateDepBank.getUnencumberedamount() != null && mandateDepBank.getBankname() != null
-						&& mandateDepBank.getBankaddress() != null && mandateDepBank.getFdno() != null && mandateDepBank.getFdamt() != null
-						&& mandateDepBank.getMaturityamt() != null && mandateDepBank.getFddate() != null && mandateDepBank.getMaturityamt() != null
-						&& mandateDepBank.getPaymentby() != null && mandateDepBank.getRemarks() != null) 
-				{
-					model.addAttribute("msg", "Record Saved..!!");
-					//System.out.println("Record Saved Successfully");
-				}
-				else 
-				{
-					model.addAttribute("msg", "Record not saved");
-					//System.out.println("Record Saved failed");
-				}
+	@GetMapping("/paymentEntryView")
+	public String paymententry(Model model) {
+		return "accountSection/PaymentEntry";
+	}
 
-				return "accountSection/MandateDepositToBank";
-	  }
-	  
-	  /* JOURNAL REPORT */
-		 
-	  @GetMapping("/journalReport")
-	  public String getJournalReport()
-	  {
-			 return "accountSection/JournalReport";
-	  }
-		 
-	  @GetMapping("/journalReport1")
-	  @ResponseBody
-	  public List<JournalReport> getjournalReport (@ModelAttribute("JournalReport") JournalReport model, HttpServletRequest request )
-	  {
-			 String selectbranch= request.getParameter("Branch");
-			 
-			 List<JournalReport> list=journalReportRepo.findByselectbranch(selectbranch);
-			 return list;
-	  }
-		 
-	  @GetMapping("/journalReport2")
-	  @ResponseBody
-	  public List<JournalReport> getjournalReport2 (@ModelAttribute("JournalReport") JournalReport model, HttpServletRequest request )
-	  {
-			 String fromdate= request.getParameter("Fromdate");
-			 String todate= request.getParameter("Todate");
-			 
-			 List<JournalReport> list2=journalReportRepo.findBydateBetween(fromdate, todate);
-			 return list2;
-	   }
-	  
-	  /* BALANCE SHEET */
-		 
-	  @GetMapping("/Balancesheet")
-	  public String getBalancesheet()
-	  {
-			 return"accountSection/BalanceSheetDatewise";
-	  }
-		 
-	  @GetMapping("/Balancesheet1")
-	  @ResponseBody
-	  public List<BalanceSheetDatewise> getgetBalancesheet1(@ModelAttribute BalanceSheetDatewise model , HttpServletRequest request)
-	  {
-			 String branch= request.getParameter("Branch");
-			 List<BalanceSheetDatewise> list1= balanceSheetDatewiseRepo.findByselectbranch(branch);
-			 
-			 String fromdate=request.getParameter("Fromdate");
-			 String todate=request.getParameter("Todate");
-			 
-			 List<BalanceSheetDatewise> list2= balanceSheetDatewiseRepo.findBydateBetween(fromdate, todate);
-			 
-			 if(!list1.isEmpty())
-			 {
-				 return list1;
-			 }
-			 else
-				 return list2;
-	  }
-	  
-	  /* BANK STATEMENT */
-		 
-	  @GetMapping("/bankstatement")
-	  public String getBankStatement(Model model1)
-	  {
-				List<BankStatement> list3= bankStatementRepo.findAll();
-				model1.addAttribute("list3", list3);		
-				return "accountSection/BankStatement";
-	  }
-			
-	  @GetMapping("/bankstatement1")
-	  @ResponseBody
-	  public List<BankStatement> getbankstatement (@ModelAttribute ("BankStatement") BankStatement model, HttpServletRequest request)
-	  {
-				String accountno=request.getParameter("Accountno");
-				String fromdate=request.getParameter("Fromdate");
-				String todate=request.getParameter("Todate");
-				
-				List<BankStatement> list1= bankStatementRepo.findByaccountno(accountno);
-				List<BankStatement> list2= bankStatementRepo.findBydateBetween(fromdate , todate);
-				
-				if(!list1.isEmpty())
-				{
-					return list1;
-				}
-				
-				else
-					return list2; 
-	  }
-	  
-	  /* LEDGER REPORT */
-		 
-	  @GetMapping("/ledgerReport")
-	  public String getLedgerReport() 
-	  {
-				return "accountSection/LedgerReport";
-	  }
+	@GetMapping("/searchPaymentEntry")
+	@ResponseBody
+	public List<PaymentEntry2Modal> showpayentry(HttpServletRequest hp) {
+		try {
+			String fdate = hp.getParameter("fDate");
+			String tdate = hp.getParameter("todate");
+			String branch = hp.getParameter("selectbranch");
 
-	  @GetMapping("/getAllLedgerReport")
-	  public String getAllLedgerReport(@ModelAttribute("LedgerModelAttribute") LedgerReport ledReport, Model model) 
-	  {
-				try {
-					List<LedgerReport> list1 = ledgerReportRepo.findByselectledger(ledReport.getSelectledger());
-					List<LedgerReport> list2 = ledgerReportRepo.findBydateBetween(ledReport.getFromdate(), ledReport.getTodate());
-					model.addAttribute("list1", list1);
-					model.addAttribute("list2", list2);
+			List<PaymentEntry2Modal> pebranch = payentryrepo.findByselectbranch(branch);
+			List<PaymentEntry2Modal> pedate = payentryrepo.findBytxndateBetween(fdate, tdate);
 
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				return "accountSection/LedgerReport";
-	  }
-
-	  /* MIS INT. PAYMENT */
-		 
-	  @GetMapping("/misIntPayment")
-	  public String ShowMisintpage(Model model)
-	  {
-		    	return "accountSection/MisIntPayment";
-	  }
-		    
-	  @PostMapping("/addPolicyDetails")
-	  public String SavePolicyDetails(@ModelAttribute("MisPaymentModal") MisPaymentModal mpm, Model model)
-	  {
-		    	mispayrepo.save(mpm);
-		    	return "accountSection/MisIntPayment";
-	  }
-	  
-	  /* TRANSFER BOOK */
-		 
-	  @GetMapping("/transferBook")
-	  public String getTransferBook()
-	  {
-			 return "accountSection/TransferBookPage";
-	  }
-		       
-	  @GetMapping("/fetchAllData")
-	  public String showListofuser(@ModelAttribute("ViewPaymentDetails") TransferBookModel tbm, Model model)
-	  {
-		    	List<TransferBookModel> tbMode= transferrepo.findBybranchname(tbm.getSelectbraanch());    
-		        List <TransferBookModel> tbModeldate=transferrepo.findBytxndateBetween(tbm.getFromdate(), tbm.getTodate());
-		    	
-		        model.addAttribute("tbMode", tbMode);
-		        model.addAttribute("tbModeldate", tbModeldate);
-		    	
-		        System.out.println(tbMode);
-		    	
-		        return "accountSection/TransferBookPage";
-	  }
-	  
-	  /* RECEIVE ENTRY */
-		 
-	  @GetMapping("/addrecievceVoucher")
-	  public String addrecievceVoucher(Model model ) {		
-				int i= accountrepo.getMaxReceiptNumber();
-				model.addAttribute("receiptNO",i+1);
-				//System.out.println(i+1);
-				return "accountSection/ReceiveVoucher";
-	  }
-		 
-	  @GetMapping("/searchRecieveVoucher")
-	  @ResponseBody
-	  public List<receiveVoucher>searchRecieveVoucher(HttpServletRequest hp) {
-				String Branch = hp.getParameter("Branch");
-				String FromDate = hp.getParameter("fDate");
-				String TOdate = hp.getParameter("tDate");
-				
-				List<receiveVoucher> rv = accountrepo.findByselectBranch(Branch);
-				List<receiveVoucher> rvDate = accountrepo.findBytxnDateBetween(FromDate,TOdate);
-				
-				if(!rv.isEmpty()) {
-					return rv;
-				}
-				return rvDate;
-	  }
-		 
-	  @PostMapping("addrecievceVoucherdata")
-	  public String addMember(@ModelAttribute("recievceVoucher") receiveVoucher rv, Model model) {
-				String status = "error";
-				
-				if(rv.getSelectBranch()!=null&&rv.getTxnDate()!=null&&rv.getSelectType()!=null&&rv.getDirectTransfer()!=null
-						&&rv.getSelectLedger()!=null&&rv.getAmount()!=null&&rv.getNarration()!=null) {
-					System.out.println("Data Submited");
-					receiveVoucher rv1 = accountrepo.save(rv);
-//					int i= accountrepo.getMaxReceiptNumber();
-//					System.out.println(i+1);
-//					model.addAttribute("receiptNO",i+1);
-				}else {
-					System.out.println("Data Not Submited");
-				}
-				return "accountSection/ReceiveVoucher";
-	  }
-	  
-	  /* CHEQUE CLEARING */
-		 
-	  @GetMapping("/ChequeClear")
-	  public String addChequeClear() {
-				return "accountSection/ChequeClear";
-	  }
-		 
-	  @GetMapping("/searchChequeClear")
-	  @ResponseBody
-	  public List<ChequeClear> searchChequeClear(HttpServletRequest hp) {
-				String PaymentType = hp.getParameter("PaymentType1");
-				String BranchType = hp.getParameter("BranchType1");
-				String FromDate = hp.getParameter("FromDate1");
-				String Todate = hp.getParameter("Todate1");
-				String ChequeNO = hp.getParameter("ChequeNO1");
-				
-				List<ChequeClear> data1 = chequerepo.findBytype(PaymentType);
-				List<ChequeClear> data2 = chequerepo.findBybranch(BranchType);
-				List<ChequeClear> data3 = chequerepo.findBytxndateBetween(FromDate,Todate);
-				List<ChequeClear> data4 = chequerepo.findBycheque(ChequeNO);
-				
-				if(!data1.isEmpty()) {
-					return data1;
-				}else if(!data2.isEmpty()) {
-					return data2;
-				}else if(!data3.isEmpty()) {
-					return data3;
-				}
-				
-				return data4;
-	  }
-	  
-	  /* DAY BOOK */
-		 
-	  @GetMapping("/DayBook")
-	  public String addDayBook() {
-				return "accountSection/DayBook";
-	  }
-		 
-	  @GetMapping("/searchDayBook")
-	  @ResponseBody
-	  public List<DayBookModel> searchDayBook( HttpServletRequest hp) {
-			
-				String Ledger = hp.getParameter("Ledger");
-				String Branch = hp.getParameter("Branch");
-				String fDate = hp.getParameter("fDate");
-				String tDate = hp.getParameter("tDate");
-				
-				List<DayBookModel> data1 = dayBookRepo.findByselectLedger(Ledger);
-				List<DayBookModel> data2 = dayBookRepo.findByselectBranch(Branch);
-				List<DayBookModel> data3 = dayBookRepo.findBydateBetween(fDate,tDate);
-				
-				if(!data1.isEmpty()) {
-					return data1;
-				}else if(!data2.isEmpty()) {
-					return data2;
-				}
-				return data3;
-	  }
-		 
-	  
-	  /* BALANCE SHEET (FY) */
-		 
-	  @GetMapping("/FinancialBalanceSheet")
-	  public String addFinancialBalanceSheet() {
-				return "accountSection/FinancialBalanceSheet";
-	  }
-		 
-	  @GetMapping("/searchFirstButton")
-	  @ResponseBody
-	  public List<BranchMaster> searchFirstButton( HttpServletRequest hp){
-				String Branch = hp.getParameter("Branch1");
-				String FromDate = hp.getParameter("FromDate1");
-				String ToDate = hp.getParameter("ToDate1");
-				
-				List<BranchMaster> list1 = branchMater2REpo.findByname(Branch);
-				List<BranchMaster> list2 = branchMater2REpo.findByopeningDateBetween(FromDate,ToDate);
-				if(!list1.isEmpty()) {
-					return list1;
-				}
-				return list2;
-	  }
-			
-	  @GetMapping("/searchSecondButton")
-	  @ResponseBody
-	  public List<BalanceSheetFY> searchSecondButton( HttpServletRequest hp){
-					String Branch = hp.getParameter("Branch1");
-					String Fyear = hp.getParameter("Fyear1");
-					String FromDate = hp.getParameter("FromDate1");
-					String ToDate = hp.getParameter("ToDate1");
-					int i = Integer.parseInt(Fyear);					
-					
-					List<BalanceSheetFY> data1 = balanceSheetFyRepo.findAllByyear(i);
-					List<BalanceSheetFY> data2 = balanceSheetFyRepo.findBybranch(Branch);
-					List<BalanceSheetFY> data3 = balanceSheetFyRepo.findBydateBetween(FromDate,ToDate);
-					
-					if(!data1.isEmpty()) {
-						return data1;
-					}else if(!data2.isEmpty()) {
-						return data2;
-					}
-					
-					return data3;
-	  }
-	  
-	  /* P&L STATEMENT(FY) */
-		
-	  @GetMapping("/PLStatementView")
-	  public String showPlstatmentPage(Model model)
-	  {
-	    	return "accountSection/PlstatementPage";
-	  }
-	  
-	  @GetMapping("/searchPlstatement")
-	  @ResponseBody
-	  public List<plstatement> showplData(HttpServletRequest hp)
-	  {
-		   try {
-			   String fdate=hp.getParameter("fromdate");
-			   String tdate=hp.getParameter("todate");
-			   String branch=hp.getParameter("selectbranch");
-				
-				List<plstatement> plbycombo=plrepo.findBybranchname(branch);
-				List<plstatement> plbydates=plrepo.findBypldateBetween(fdate, tdate);
-				
-				if (!plbycombo.isEmpty()) {
-					return plbycombo;
-				}
-				else if (!plbydates.isEmpty()) {
-					return plbydates;} 
-		 } catch (Exception e) {
+			if (!pebranch.isEmpty()) {
+				return pebranch;
+			} else
+				return pedate;
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		 }
-		   return null;
-	   }
-	  
-	  @GetMapping("/searchPlstatementfy")
-	  @ResponseBody
-	  public List<plstatement>  showsomeList(HttpServletRequest hp){
-		    String fdatefy=hp.getParameter("fromdatefy");
-			String tdatefy=hp.getParameter("todatefy");
-			String branchfy=hp.getParameter("selectbranchfyz");
-			String yearyf =hp.getParameter("selectyearfyz");		
-			int i=Integer.parseInt(yearyf);		
-			List<plstatement> plycombofy=plrepo.findBybranchname(branchfy);
-			List<plstatement> plyplbydatesfy=plrepo.findBypldateBetween(fdatefy, tdatefy);
-			List<plstatement> plybyyear=plrepo.findAllBypldate(i);
-			if (!plycombofy.isEmpty()) {
-				return plycombofy;}
-		    else if (!plyplbydatesfy.isEmpty()) {
-				return plyplbydatesfy;}
-			 else if(!plybyyear.isEmpty()){
-				return plybyyear;
-			 }	 
-		  return null;
-	  }
-	  
-	  /* JOURNAL ENTRY */
-	  
-	  @GetMapping("/journalEntry")
-	  public String getJournalEntry(Model model) {
-			 int  rcptno= journalEntryRepo.getreceiptno();
-			 model.addAttribute("rcptno", rcptno+1);
-			return "accountSection/JournalEntry";
-	  }
+		}
+		return null;
+	}
+	
+	@GetMapping("/ledgerMaster")
+	@ResponseBody
+	public List<AccountLegMaster> ledgerMaster(){
+		List<AccountLegMaster> list = accountLegMasterRepo.findAll();
+		return list;
+	}
+	
+	@GetMapping("/accountNumber")
+	@ResponseBody
+	public List<BankMaster> accountNumber(){
+		List<BankMaster> list = bankMasterRepo.findAll();
+		return list;
+	}
 
-	  @PostMapping("/journalEntry1")
-	  public String getJournalEntry1(@ModelAttribute("JournalEntryModelAttribute") JournalEntry model, Model model1) {
-			if (model.getSelectbranch() != null  && model.getTxndate() != null
-					&& model.getSelectcrledger() != null && model.getSelectdrledger() != null
-					&& model.getAmount() != null) {
-				model1.addAttribute("msg", "Record Saved");
-				journalEntryRepo.save(model);
+	@PostMapping("/paymentEntry")
+	public String savePaymentEntry(HttpServletRequest request, Model model) {
+	    String status = "exception";
+	    String selectBranch = request.getParameter("selectbranch");
+	    String txndate = request.getParameter("txndate");
+	    String dtransfer = request.getParameter("dtransfer");
+	    String selectLedger = request.getParameter("selectledger");
+	    String amount = request.getParameter("amount");
+	    String narration = request.getParameter("narration");
+	    String reciept = request.getParameter("reciept");
+
+	    if (selectBranch != null && txndate != null && dtransfer != null
+	            && selectLedger != null && amount != null) {
+	        
+	        PaymentEntry2Modal payentry2 = new PaymentEntry2Modal();
+	        payentry2.setSelectbranch(selectBranch);
+	        payentry2.setTxndate(txndate);
+	        payentry2.setDtransfer(dtransfer);
+	        payentry2.setSelectledger(selectLedger);
+	        payentry2.setAmount(amount);
+	        payentry2.setNarration(narration);
+	        payentry2.setReciept(reciept);
+
+	        PaymentEntry2Modal payentry = payentryrepo.save(payentry2);
+	        if (payentry != null) {
+	            status = "Data saved successfully";
+	        }
+	        model.addAttribute("status", status);
+	    } else {
+	        System.out.println("Data not saved");
+	    }
+	    return "accountSection/PaymentEntry";
+	}
+
+	/* CONTRA ENTRY */
+
+	@GetMapping("/contraEntry")
+	public String getContraEntry() {
+		return "accountSection/ContraEntry";
+	}
+
+	@PostMapping("/getAllRecord")
+	@ResponseBody
+	public List<ContraEntry> getAllContraEntry(@RequestBody ContraEntry contraEntry){
+		List<ContraEntry> list = contraEntryRepo.findByselectbranch(contraEntry.getSelectbranch());
+		List<ContraEntry> list1 = contraEntryRepo.findBytxndateBetween(contraEntry.getFromdate(), contraEntry.getTodate());
+		if(!list.isEmpty()) {
+			return list;
+		}else
+			return list1;
+	}
+
+	@PostMapping("/contraEntry1")
+	public String getContraEntry(@ModelAttribute("ContramodelAttribute") ContraEntry contraEntry, Model model) {
+		contraEntryRepo.save(contraEntry);
+		return "accountSection/ContraEntry";
+	}
+
+	/* MANDATE DEPOSITE TO BANK */
+
+	@GetMapping("/mandateDeposit")
+	public String getMandateDeposit() {
+		return "accountSection/MandateDepositToBank";
+	}
+
+	@PostMapping("/mandateDeposit1")
+	public String getMandateDeposit(@ModelAttribute("ContramodelAttribute") MandateDepositToBank mandateDepBank,
+			Model model) {
+		mandateDepositRepo.save(mandateDepBank);
+		return "accountSection/MandateDepositToBank";
+	}
+
+	@GetMapping("/getAllRecords")
+	public String getAllMandateRecord(@ModelAttribute("ContramodelAttribute") MandateDepositToBank mandateDepBank,
+			Model model) {
+		List<MandateDepositToBank> list = mandateDepositRepo.findByfddateBetween(mandateDepBank.getFromdate(),
+				mandateDepBank.getTodate());
+		model.addAttribute("list", list);
+		if (mandateDepBank.getFddeposit() != null && mandateDepBank.getMisdeposit() != null
+				&& mandateDepBank.getRddeposit() != null && mandateDepBank.getSavingsdeposit() != null
+				&& mandateDepBank.getSavingswithdrawal() != null && mandateDepBank.getFlexideposit() != null
+				&& mandateDepBank.getFlexiwithdrawal() != null && mandateDepBank.getMaturityprincipal() != null
+				&& mandateDepBank.getTotaldeposit() != null && mandateDepBank.getTotalwithdrawal() != null
+				&& mandateDepBank.getTotalbalance() != null && mandateDepBank.getPreviousfddeposited() != null
+				&& mandateDepBank.getUnencumbered() != null && mandateDepBank.getUnencumberedamount() != null
+				&& mandateDepBank.getBankname() != null && mandateDepBank.getBankaddress() != null
+				&& mandateDepBank.getFdno() != null && mandateDepBank.getFdamt() != null
+				&& mandateDepBank.getMaturityamt() != null && mandateDepBank.getFddate() != null
+				&& mandateDepBank.getMaturityamt() != null && mandateDepBank.getPaymentby() != null
+				&& mandateDepBank.getRemarks() != null) {
+			model.addAttribute("msg", "Record Saved..!!");
+			// System.out.println("Record Saved Successfully");
+		} else {
+			model.addAttribute("msg", "Record not saved");
+			// System.out.println("Record Saved failed");
+		}
+
+		return "accountSection/MandateDepositToBank";
+	}
+
+	/* JOURNAL REPORT */
+
+	@GetMapping("/journalReport")
+	public String getJournalReport() {
+		return "accountSection/JournalReport";
+	}
+
+	@GetMapping("/journalReport1")
+	@ResponseBody
+	public List<JournalReport> getjournalReport(@ModelAttribute("JournalReport") JournalReport model,
+			HttpServletRequest request) {
+		String selectbranch = request.getParameter("Branch");
+
+		List<JournalReport> list = journalReportRepo.findByselectbranch(selectbranch);
+		return list;
+	}
+
+	@GetMapping("/journalReport2")
+	@ResponseBody
+	public List<JournalReport> getjournalReport2(@ModelAttribute("JournalReport") JournalReport model,
+			HttpServletRequest request) {
+		String fromdate = request.getParameter("Fromdate");
+		String todate = request.getParameter("Todate");
+
+		List<JournalReport> list2 = journalReportRepo.findBydateBetween(fromdate, todate);
+		return list2;
+	}
+
+	/* BALANCE SHEET */
+
+	@GetMapping("/Balancesheet")
+	public String getBalancesheet() {
+		return "accountSection/BalanceSheetDatewise";
+	}
+
+	@GetMapping("/Balancesheet1")
+	@ResponseBody
+	public List<BalanceSheetDatewise> getgetBalancesheet1(@ModelAttribute BalanceSheetDatewise model,
+			HttpServletRequest request) {
+		String branch = request.getParameter("Branch");
+		List<BalanceSheetDatewise> list1 = balanceSheetDatewiseRepo.findByselectbranch(branch);
+
+		String fromdate = request.getParameter("Fromdate");
+		String todate = request.getParameter("Todate");
+
+		List<BalanceSheetDatewise> list2 = balanceSheetDatewiseRepo.findBydateBetween(fromdate, todate);
+
+		if (!list1.isEmpty()) {
+			return list1;
+		} else
+			return list2;
+	}
+
+	/* BANK STATEMENT */
+
+	@GetMapping("/bankstatement")
+	public String getBankStatement(Model model1) {
+		List<BankStatement> list3 = bankStatementRepo.findAll();
+		model1.addAttribute("list3", list3);
+		return "accountSection/BankStatement";
+	}
+
+	@GetMapping("/bankstatement1")
+	@ResponseBody
+	public List<BankStatement> getbankstatement(@ModelAttribute("BankStatement") BankStatement model,
+			HttpServletRequest request) {
+		String accountno = request.getParameter("Accountno");
+		String fromdate = request.getParameter("Fromdate");
+		String todate = request.getParameter("Todate");
+
+		List<BankStatement> list1 = bankStatementRepo.findByaccountno(accountno);
+		List<BankStatement> list2 = bankStatementRepo.findBydateBetween(fromdate, todate);
+
+		if (!list1.isEmpty()) {
+			return list1;
+		}
+
+		else
+			return list2;
+	}
+
+	/* LEDGER REPORT */
+
+	@GetMapping("/ledgerReport")
+	public String getLedgerReport() {
+		return "accountSection/LedgerReport";
+	}
+
+	@GetMapping("/getAllLedgerReport")
+	public String getAllLedgerReport(@ModelAttribute("LedgerModelAttribute") LedgerReport ledReport, Model model) {
+		try {
+			List<LedgerReport> list1 = ledgerReportRepo.findByselectledger(ledReport.getSelectledger());
+			List<LedgerReport> list2 = ledgerReportRepo.findBydateBetween(ledReport.getFromdate(),
+					ledReport.getTodate());
+			model.addAttribute("list1", list1);
+			model.addAttribute("list2", list2);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "accountSection/LedgerReport";
+	}
+
+	/* MIS INT. PAYMENT */
+
+	@GetMapping("/misIntPayment")
+	public String ShowMisintpage(Model model) {
+		return "accountSection/MisIntPayment";
+	}
+
+	@PostMapping("/addPolicyDetails")
+	public String SavePolicyDetails(@ModelAttribute("MisPaymentModal") MisPaymentModal mpm, Model model) {
+		mispayrepo.save(mpm);
+		return "accountSection/MisIntPayment";
+	}
+
+	/* TRANSFER BOOK */
+
+	@GetMapping("/transferBook")
+	public String getTransferBook() {
+		return "accountSection/TransferBookPage";
+	}
+
+	@GetMapping("/fetchAllData")
+	public String showListofuser(@ModelAttribute("ViewPaymentDetails") TransferBookModel tbm, Model model) {
+		List<TransferBookModel> tbMode = transferrepo.findBybranchname(tbm.getSelectbraanch());
+		List<TransferBookModel> tbModeldate = transferrepo.findBytxndateBetween(tbm.getFromdate(), tbm.getTodate());
+
+		model.addAttribute("tbMode", tbMode);
+		model.addAttribute("tbModeldate", tbModeldate);
+
+		System.out.println(tbMode);
+
+		return "accountSection/TransferBookPage";
+	}
+
+	/* RECEIVE ENTRY */
+
+	@GetMapping("/addrecievceVoucher")
+	public String addrecievceVoucher(Model model) {
+		int i = accountrepo.getMaxReceiptNumber();
+		model.addAttribute("receiptNO", i + 1);
+		// System.out.println(i+1);
+		return "accountSection/ReceiveVoucher";
+	}
+
+	@GetMapping("/searchRecieveVoucher")
+	@ResponseBody
+	public List<receiveVoucher> searchRecieveVoucher(HttpServletRequest hp) {
+		String Branch = hp.getParameter("selectbranch");
+		String FromDate = hp.getParameter("fDate");
+		String TOdate = hp.getParameter("tDate");
+
+		List<receiveVoucher> rv = accountrepo.findByselectBranch(Branch);
+		List<receiveVoucher> rvDate = accountrepo.findBytxnDateBetween(FromDate, TOdate);
+
+		if (!rv.isEmpty()) {
+			return rv;
+		}
+		return rvDate;
+	}
+	
+	@PostMapping("/addrecievceVoucherdata")
+	public String addMember(HttpServletRequest request, Model model) {
+	    String status = "error";
+	    String selectBranch = request.getParameter("selectBranch");
+	    String txnDate = request.getParameter("txnDate");
+	    String directTransfer = request.getParameter("directTransfer");
+	    String selectLedger = request.getParameter("selectLedger");
+	    String amount = request.getParameter("amount");
+	    String narration = request.getParameter("narration");
+	    String receiptNo = request.getParameter("receiptNo");
+
+	    if (selectBranch != null && txnDate != null && directTransfer != null
+	            && selectLedger != null && amount != null) {
+	    	
+	    	receiveVoucher receive = new receiveVoucher();
+	    	receive.setSelectBranch(selectBranch);
+	    	receive.setTxnDate(txnDate);
+	    	receive.setDirectTransfer(directTransfer);
+	    	receive.setSelectLedger(selectLedger);
+	    	receive.setAmount(amount);
+	    	receive.setNarration(narration);
+	    	
+	        receiveVoucher obj = accountrepo.save(receive);
+	        if (obj != null) {
+	            status = "Data saved successfully";
+	        }
+	        model.addAttribute("status", status);
+	    	} else {
+	    		System.out.println("Data not saved");
+	    	}
+	    	return "accountSection/PaymentEntry";
+	}
+
+	/* CHEQUE CLEARING */
+
+	@GetMapping("/ChequeClear")
+	public String addChequeClear() {
+		return "accountSection/ChequeClear";
+	}
+
+	@GetMapping("/searchChequeClear")
+	@ResponseBody
+	public List<ChequeClear> searchChequeClear(HttpServletRequest hp) {
+		String PaymentType = hp.getParameter("PaymentType1");
+		String BranchType = hp.getParameter("BranchType1");
+		String FromDate = hp.getParameter("FromDate1");
+		String Todate = hp.getParameter("Todate1");
+		String ChequeNO = hp.getParameter("ChequeNO1");
+
+		List<ChequeClear> data1 = chequerepo.findBytype(PaymentType);
+		List<ChequeClear> data2 = chequerepo.findBybranch(BranchType);
+		List<ChequeClear> data3 = chequerepo.findBytxndateBetween(FromDate, Todate);
+		List<ChequeClear> data4 = chequerepo.findBycheque(ChequeNO);
+
+		if (!data1.isEmpty()) {
+			return data1;
+		} else if (!data2.isEmpty()) {
+			return data2;
+		} else if (!data3.isEmpty()) {
+			return data3;
+		}
+
+		return data4;
+	}
+
+	/* DAY BOOK */
+
+	@GetMapping("/DayBook")
+	public String addDayBook() {
+		return "accountSection/DayBook";
+	}
+
+	@GetMapping("/searchDayBook")
+	@ResponseBody
+	public List<DayBookModel> searchDayBook(HttpServletRequest hp) {
+
+		String Ledger = hp.getParameter("Ledger");
+		String Branch = hp.getParameter("Branch");
+		String fDate = hp.getParameter("fDate");
+		String tDate = hp.getParameter("tDate");
+
+		List<DayBookModel> data1 = dayBookRepo.findByselectLedger(Ledger);
+		List<DayBookModel> data2 = dayBookRepo.findByselectBranch(Branch);
+		List<DayBookModel> data3 = dayBookRepo.findBydateBetween(fDate, tDate);
+
+		if (!data1.isEmpty()) {
+			return data1;
+		} else if (!data2.isEmpty()) {
+			return data2;
+		}
+		return data3;
+	}
+
+	/* BALANCE SHEET (FY) */
+
+	@GetMapping("/FinancialBalanceSheet")
+	public String addFinancialBalanceSheet() {
+		return "accountSection/FinancialBalanceSheet";
+	}
+
+	@GetMapping("/searchFirstButton")
+	@ResponseBody
+	public List<BranchMaster> searchFirstButton(HttpServletRequest hp) {
+		String Branch = hp.getParameter("Branch1");
+		String FromDate = hp.getParameter("FromDate1");
+		String ToDate = hp.getParameter("ToDate1");
+
+		List<BranchMaster> list1 = branchMater2REpo.findByname(Branch);
+		List<BranchMaster> list2 = branchMater2REpo.findByopeningDateBetween(FromDate, ToDate);
+		if (!list1.isEmpty()) {
+			return list1;
+		}
+		return list2;
+	}
+
+	@GetMapping("/searchSecondButton")
+	@ResponseBody
+	public List<BalanceSheetFY> searchSecondButton(HttpServletRequest hp) {
+		String Branch = hp.getParameter("Branch1");
+		String Fyear = hp.getParameter("Fyear1");
+		String FromDate = hp.getParameter("FromDate1");
+		String ToDate = hp.getParameter("ToDate1");
+		int i = Integer.parseInt(Fyear);
+
+		List<BalanceSheetFY> data1 = balanceSheetFyRepo.findAllByyear(i);
+		List<BalanceSheetFY> data2 = balanceSheetFyRepo.findBybranch(Branch);
+		List<BalanceSheetFY> data3 = balanceSheetFyRepo.findBydateBetween(FromDate, ToDate);
+
+		if (!data1.isEmpty()) {
+			return data1;
+		} else if (!data2.isEmpty()) {
+			return data2;
+		}
+
+		return data3;
+	}
+
+	/* P&L STATEMENT(FY) */
+
+	@GetMapping("/PLStatementView")
+	public String showPlstatmentPage(Model model) {
+		return "accountSection/PlstatementPage";
+	}
+
+	@GetMapping("/searchPlstatement")
+	@ResponseBody
+	public List<plstatement> showplData(HttpServletRequest hp) {
+		try {
+			String fdate = hp.getParameter("fromdate");
+			String tdate = hp.getParameter("todate");
+			String branch = hp.getParameter("selectbranch");
+
+			List<plstatement> plbycombo = plrepo.findBybranchname(branch);
+			List<plstatement> plbydates = plrepo.findBypldateBetween(fdate, tdate);
+
+			if (!plbycombo.isEmpty()) {
+				return plbycombo;
+			} else if (!plbydates.isEmpty()) {
+				return plbydates;
 			}
-
-			else
-				model1.addAttribute("msg", "Invalid Entry");
-
-			return "accountSection/JournalEntry";
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
+		return null;
+	}
 
-		
-		@GetMapping("/getAllRecord123")
-		public String getAllRecord123(@ModelAttribute("JournalEntryModelAttribute") JournalEntry model, Model model1) {
-			  List<JournalEntry> list = journalEntryRepo.findByselectbranch(model.getSelectbranch());
-			  List<JournalEntry> list2 = journalEntryRepo.findBytxndateBetween(model.getFromdate(),model.getTodate());
-			
-			  model1.addAttribute("list", list);
-			  model1.addAttribute("list2", list2);
-			 
-			 return "accountSection/JournalEntry";
+	@GetMapping("/searchPlstatementfy")
+	@ResponseBody
+	public List<plstatement> showsomeList(HttpServletRequest hp) {
+		String fdatefy = hp.getParameter("fromdatefy");
+		String tdatefy = hp.getParameter("todatefy");
+		String branchfy = hp.getParameter("selectbranchfyz");
+		String yearyf = hp.getParameter("selectyearfyz");
+		int i = Integer.parseInt(yearyf);
+		List<plstatement> plycombofy = plrepo.findBybranchname(branchfy);
+		List<plstatement> plyplbydatesfy = plrepo.findBypldateBetween(fdatefy, tdatefy);
+		List<plstatement> plybyyear = plrepo.findAllBypldate(i);
+		if (!plycombofy.isEmpty()) {
+			return plycombofy;
+		} else if (!plyplbydatesfy.isEmpty()) {
+			return plyplbydatesfy;
+		} else if (!plybyyear.isEmpty()) {
+			return plybyyear;
 		}
-	  
+		return null;
+	}
+
+	/* JOURNAL ENTRY */
+
+	@GetMapping("/journalEntry")
+	public String getJournalEntry(Model model) {
+		int rcptno = journalEntryRepo.getreceiptno();
+		model.addAttribute("rcptno", rcptno + 1);
+		return "accountSection/JournalEntry";
+	}
+	
+	@PostMapping("/journalEntry1")
+	public String getJournalEntry1(@ModelAttribute("JournalEntryModelAttribute") JournalEntry journal, Model model) {
+		journalEntryRepo.save(journal);
+		return "accountSection/JournalEntry";
+	}
+
+	@PostMapping("/getAllRecord123")
+	@ResponseBody
+	public List<JournalEntry> getAllRecord123(@RequestBody JournalEntry model){
+		List<JournalEntry> list = journalEntryRepo.findByselectbranch(model.getSelectbranch());
+		List<JournalEntry> list2 = journalEntryRepo.findBytxndateBetween(model.getFromdate(), model.getTodate());
+		if(!list.isEmpty()) {
+			return list;
+		}else
+			return list2;
+	}
+	
 }
-
-
