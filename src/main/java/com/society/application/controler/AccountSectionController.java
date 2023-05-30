@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.society.application.model.AccountLegMaster;
+import com.society.application.model.AddInvestment;
 import com.society.application.model.BalanceSheetDatewise;
 import com.society.application.model.BalanceSheetFY;
 import com.society.application.model.BankMaster;
@@ -35,6 +36,7 @@ import com.society.application.model.TrialBalance;
 import com.society.application.model.plstatement;
 import com.society.application.model.receiveVoucher;
 import com.society.application.repository.AccountLegMasterRepo;
+import com.society.application.repository.AddInvestmentRepo;
 import com.society.application.repository.BalanceSheetDatewiseRepo;
 import com.society.application.repository.BalanceSheetFyRepo;
 import com.society.application.repository.BankMasterRepo;
@@ -125,6 +127,9 @@ public class AccountSectionController {
 	
 	@Autowired
 	BankMasterRepo bankMasterRepo;
+	
+	@Autowired
+	AddInvestmentRepo addInvestmentRepo;
 
 	/* LEDGER MASTER */
 
@@ -160,22 +165,15 @@ public class AccountSectionController {
 		return "accountSection/IncentivePayment";
 	}
 
-	@GetMapping("/incentivepayments")
-	public String getIncentivePaymentSearch(@ModelAttribute("incentivepaymentmodel") IncentivePayment model1,
-			Model model) {
-
-		List<IncentivePayment> list1 = incentivePaymentRepo.findBymonthname(model1.getMonthname());
-		List<IncentivePayment> list2 = incentivePaymentRepo.findBycode(model1.getCode());
-		model.addAttribute("list1", list1);
-		model.addAttribute("list2", list2);
-
-		/*
-		 * List<IncentivePayment> list =
-		 * incentivePaymentRepo.findBymonthnameAcode(model1.getMonthname(),
-		 * model1.getCode()); model.addAttribute("list", list);
-		 */
-
-		return "accountSection/IncentivePayment";
+	@PostMapping("/incentivepayments")
+	@ResponseBody
+	public List<IncentivePayment> getIncentivePaymentSearch(@RequestBody IncentivePayment model){
+		List<IncentivePayment> list1 = incentivePaymentRepo.findBymonthname(model.getMonthname());
+		List<IncentivePayment> list2 = incentivePaymentRepo.findBycode(model.getCode());
+		if(!list1.isEmpty()) {
+			return list1;
+		}else
+			return list2;
 	}
 
 	/* CASH BOOK */
@@ -185,13 +183,15 @@ public class AccountSectionController {
 		return "accountSection/CashBook";
 	}
 
-	@GetMapping("/cashbook1")
-	public String getCashBookSearch(@ModelAttribute("cashbookmodel") CashStatement model1, Model model) {
+	@PostMapping("/cashbook1")
+	@ResponseBody
+	public List<CashStatement> getCashBookSearch(@RequestBody CashStatement model1){
 		List<CashStatement> list1 = csrepo.findByselectBranch(model1.getSelectBranch());
-		List<CashStatement> lists2 = csrepo.findBytxnDateBetween(model1.getFromDate(), model1.getToDate());
-		model.addAttribute("list1", list1);
-		model.addAttribute("lists2", lists2);
-		return "accountSection/CashBook";
+		List<CashStatement> list2 = csrepo.findBytxnDateBetween(model1.getFromDate(), model1.getToDate());
+		if(!list1.isEmpty()) {
+			return list1;
+		}else
+			return list2;
 	}
 
 	/* TRIAL BALANCE */
@@ -353,40 +353,19 @@ public class AccountSectionController {
 	}
 
 	@PostMapping("/mandateDeposit1")
-	public String getMandateDeposit(@ModelAttribute("ContramodelAttribute") MandateDepositToBank mandateDepBank,
+	public String getMandateDeposit(@ModelAttribute("MandateDepositToBank") MandateDepositToBank mandateDepBank,
 			Model model) {
 		mandateDepositRepo.save(mandateDepBank);
 		return "accountSection/MandateDepositToBank";
 	}
-
-	@GetMapping("/getAllRecords")
-	public String getAllMandateRecord(@ModelAttribute("ContramodelAttribute") MandateDepositToBank mandateDepBank,
-			Model model) {
-		List<MandateDepositToBank> list = mandateDepositRepo.findByfddateBetween(mandateDepBank.getFromdate(),
-				mandateDepBank.getTodate());
-		model.addAttribute("list", list);
-		if (mandateDepBank.getFddeposit() != null && mandateDepBank.getMisdeposit() != null
-				&& mandateDepBank.getRddeposit() != null && mandateDepBank.getSavingsdeposit() != null
-				&& mandateDepBank.getSavingswithdrawal() != null && mandateDepBank.getFlexideposit() != null
-				&& mandateDepBank.getFlexiwithdrawal() != null && mandateDepBank.getMaturityprincipal() != null
-				&& mandateDepBank.getTotaldeposit() != null && mandateDepBank.getTotalwithdrawal() != null
-				&& mandateDepBank.getTotalbalance() != null && mandateDepBank.getPreviousfddeposited() != null
-				&& mandateDepBank.getUnencumbered() != null && mandateDepBank.getUnencumberedamount() != null
-				&& mandateDepBank.getBankname() != null && mandateDepBank.getBankaddress() != null
-				&& mandateDepBank.getFdno() != null && mandateDepBank.getFdamt() != null
-				&& mandateDepBank.getMaturityamt() != null && mandateDepBank.getFddate() != null
-				&& mandateDepBank.getMaturityamt() != null && mandateDepBank.getPaymentby() != null
-				&& mandateDepBank.getRemarks() != null) {
-			model.addAttribute("msg", "Record Saved..!!");
-			// System.out.println("Record Saved Successfully");
-		} else {
-			model.addAttribute("msg", "Record not saved");
-			// System.out.println("Record Saved failed");
-		}
-
-		return "accountSection/MandateDepositToBank";
+	
+	@PostMapping("/getAllRecords")
+	@ResponseBody
+	public List<MandateDepositToBank> getAllMandateRecord(@RequestBody MandateDepositToBank model) {
+		List<MandateDepositToBank> data1 = mandateDepositRepo.findByfddateBetween(model.getFromdate(), model.getTodate());
+		return data1;
 	}
-
+	
 	/* JOURNAL REPORT */
 
 	@GetMapping("/journalReport")
@@ -463,7 +442,6 @@ public class AccountSectionController {
 		if (!list1.isEmpty()) {
 			return list1;
 		}
-
 		else
 			return list2;
 	}
@@ -497,12 +475,19 @@ public class AccountSectionController {
 		return "accountSection/MisIntPayment";
 	}
 
-	@PostMapping("/addPolicyDetails")
-	public String SavePolicyDetails(@ModelAttribute("MisPaymentModal") MisPaymentModal mpm, Model model) {
-		mispayrepo.save(mpm);
-		return "accountSection/MisIntPayment";
-	}
+	/*
+	 * @PostMapping("/addPolicyDetails") public String
+	 * SavePolicyDetails(@ModelAttribute("MisPaymentModal") MisPaymentModal mpm,
+	 * Model model) { mispayrepo.save(mpm); return "accountSection/MisIntPayment"; }
+	 */
 
+	@PostMapping("/enterPolicyNumber")
+	@ResponseBody
+	public List<AddInvestment> enterPolicyNumber(@RequestBody AddInvestment model){
+		List<AddInvestment> list = addInvestmentRepo.findBypolicyno(model.getPolicyno());
+		return list;
+	}
+	
 	/* TRANSFER BOOK */
 
 	@GetMapping("/transferBook")
@@ -589,19 +574,13 @@ public class AccountSectionController {
 		return "accountSection/ChequeClear";
 	}
 
-	@GetMapping("/searchChequeClear")
+	@PostMapping("/searchChequeClears")
 	@ResponseBody
-	public List<ChequeClear> searchChequeClear(HttpServletRequest hp) {
-		String PaymentType = hp.getParameter("PaymentType1");
-		String BranchType = hp.getParameter("BranchType1");
-		String FromDate = hp.getParameter("FromDate1");
-		String Todate = hp.getParameter("Todate1");
-		String ChequeNO = hp.getParameter("ChequeNO1");
-
-		List<ChequeClear> data1 = chequerepo.findBytype(PaymentType);
-		List<ChequeClear> data2 = chequerepo.findBybranch(BranchType);
-		List<ChequeClear> data3 = chequerepo.findBytxndateBetween(FromDate, Todate);
-		List<ChequeClear> data4 = chequerepo.findBycheque(ChequeNO);
+	public List<ChequeClear> searchChequeClear(@RequestBody ChequeClear model) {
+		List<ChequeClear> data1 = chequerepo.findBytype(model.getType());
+		List<ChequeClear> data2 = chequerepo.findBybranch(model.getBranch());
+		List<ChequeClear> data3 = chequerepo.findBytxndateBetween(model.getFdate(), model.getTdate());
+		List<ChequeClear> data4 = chequerepo.findBycheque(model.getCheque());
 
 		if (!data1.isEmpty()) {
 			return data1;
@@ -610,7 +589,6 @@ public class AccountSectionController {
 		} else if (!data3.isEmpty()) {
 			return data3;
 		}
-
 		return data4;
 	}
 

@@ -24,9 +24,6 @@
 	 const paymentby= document.getElementById("paymentby");
 	 const remarks= document.getElementById("remarks");
 	
-	 
-	 
-	 
 	if (fddeposit.value === '') 
    { 
     var span = document.getElementById("fddepositMsg"); 
@@ -212,7 +209,6 @@
     status = false; 
    } 
   
-	
    if (status === true)
    { 
      	document.form1.submit(); 
@@ -222,8 +218,5 @@
     { 
     	 return false; 
     } 	
-	
-	
-	
-	
+
  }

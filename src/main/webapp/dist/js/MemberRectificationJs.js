@@ -82,6 +82,7 @@ function DepositAccNoInDropdown(){
 						appenddata1 += "<option value ='"+data[i].accountNo +"'>" +data[i].accountNo + "</option>";
 					}
                     $("#depositAcc").append(appenddata1);
+                    $("#accountno").append(appenddata1);
 		},
 		error: function() {
 			alert("Device control failed");

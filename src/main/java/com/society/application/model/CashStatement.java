@@ -25,6 +25,7 @@ public class CashStatement
 	private String accountNo;
 	private String memberCode;
 	private String section;
+	
 	public int getId() {
 		return id;
 	}

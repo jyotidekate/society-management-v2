@@ -1,5 +1,4 @@
 function fetchMemberData(){
- 
  $.ajax({
      type:"get",
      contentType: "application/json",
@@ -15,7 +14,6 @@ function fetchMemberData(){
                          <td>${value.selectBranch}</td>
                          <td>${value.selectLedger}</td>
                          <td>${value.date}</td>
-                         
                      </tr>`
                  );
              }).join('');
@@ -27,10 +25,9 @@ function fetchMemberData(){
 	    	alert("Device control failed");
 	    }
  });
- }
+}
  
- 
- function getSelectedDayBook(){
+function getSelectedDayBook(){
 	
 	//var selectBranch = document.getElementById("selectBranch").value;
 	var selectLedger = document.getElementById("selectLedger").value;
@@ -46,10 +43,7 @@ function fetchMemberData(){
       					data: {Ledger : selectLedger,Branch : selectBranch,fDate : fDate ,tDate : tDate },
                         asynch: false,
     
-                   success: function(data) {
-	
-					//alert(data.length);
-	                   
+                   success: function(data) {    
                    	for (var i = 0; i < data.length; i++) {
 						const tableData = data.map(function(value){
                         return (
@@ -76,12 +70,8 @@ function fetchMemberData(){
 	
 }
 
-
-
 // Balance Sheet (Fy)
-
 //Button 1
-
 function getBalanceSheetFy(){
 	
 	var Branch = document.getElementById("branch").value;
@@ -97,11 +87,7 @@ function getBalanceSheetFy(){
                         asynch: false,
     
                     success: function(data) {
-	
-					//alert(data.length);
-	                   
-                   	for (var i = 0; i < data.length; i++) {
-						
+					for (var i = 0; i < data.length; i++) {
 							const tableData = data.map(function(value){
                            return (
                 		 
@@ -109,27 +95,21 @@ function getBalanceSheetFy(){
                          <td>${value.id}</td>
                          <td>${value.name}</td>
                          <td>${value.opening_date}</td>
-                         
                      </tr>`
                  );
              }).join('');
              const tabelBody = document.querySelector("#tableBody");
              tableBody.innerHTML = tableData;
-                    
                    	}
-                   } ,
+                } ,
            	    error: function(){
            	    	alert("Device control failed");
            	    }
-		
-		
 	});
 	
 }
 
-
 //Button 2
-
 function getBalanceSheetFy1(){
 	
 	var Branch = document.getElementById("branch1").value;
@@ -139,25 +119,16 @@ function getBalanceSheetFy1(){
 
                 
 	 $.ajax({
-		
-		
 		                type:"get",
                         contentType: "application/json",
                         url: 'searchSecondButton',
       					data: {Branch1:Branch,FromDate1:FromDate,ToDate1:ToDate,Fyear1:Fyear},
                         asynch: false,
     
-                   success: function(data) {
-	
-					//alert(data.length);
-	                   
+                   success: function(data) {    
                    	for (var i = 0; i < data.length; i++) {
-						
-						
 							const tableData = data.map(function(value){
                  return (
-                		 
-                		 
                      `<tr>
                          <td>${value.id}</td>
                          <td>${value.branch}</td>
@@ -173,15 +144,10 @@ function getBalanceSheetFy1(){
            	    error: function(){
            	    	alert("Device control failed");
            	    }
-		
-		
 	});
-	
 }
 
-
 //Report Section
-
 //Advisor Collection or Employee Collection
 function getBusinessType(){
 	
@@ -199,13 +165,9 @@ function getBusinessType(){
                         asynch: false,
     
                    success: function(data) {
-	   
                    	for (var i = 0; i < data.length; i++) {
-				
 							const tableData = data.map(function(value){
                  return (
-                		 
-                		 
                      `<tr>
                          <td>${value.id}</td>
                          <td>${value.businessType}</td>
@@ -217,15 +179,12 @@ function getBusinessType(){
              }).join('');
          const tabelBody = document.querySelector("#tableBody");
              tableBody.innerHTML = tableData;
-                    
                    	}
                    } ,
            	    error: function(){
            	    	alert("Device control failed");
            	    }
-		
 	});
-	
 }
 
 //Loan Not Approve Report 
@@ -236,8 +195,6 @@ function getLoanNotApprove(){
 	var tDate = document.getElementById("tdate").value;
 	         
 	 $.ajax({
-		
-		
 		                type:"get",
                         contentType: "application/json",
                         url: 'searchLoanNotApproveReport',
@@ -245,31 +202,24 @@ function getLoanNotApprove(){
                         asynch: false,
     
                    success: function(data) {
-
                    	for (var i = 0; i < data.length; i++) {
-						
 							const tableData = data.map(function(value){
-                    return (
-                		 	 
+                    return (	 
                      `<tr>
                          <td>${value.id}</td>
                          <td>${value.branch}</td>
                          <td>${value.date}</td>
-                         
                      </tr>`
                  );
              }).join('');
          const tabelBody = document.querySelector("#tableBody");
              tableBody.innerHTML = tableData;
-                    
                    	}
                    } ,
            	    error: function(){
            	    	alert("Device control failed");
            	    }
-		
 	});
-	
 }
 
 //LoanEMIOutstandingReport
@@ -281,45 +231,33 @@ function getLoanEMIOutstandingReport(){
 	var Datee = document.getElementById("datee").value;
 	           
 	 $.ajax({
-		
-		
 		                type:"get",
                         contentType: "application/json",
                         url: 'searchLoanEMIOutstandingReport',
       					data: {Branch1:Branch,Plan:Plan ,AdvisorCode:AdvisorCode,Datee:Datee},
                         asynch: false,
     
-                   success: function(data) {
-	
-					//alert(data.length);
-	                   
+                   success: function(data) {    
                    	for (var i = 0; i < data.length; i++) {
-						
 							const tableData = data.map(function(value){
                  return (
-                		 
-                		 
                      `<tr>
                          <td>${value.id}</td>
                          <td>${value.branch}</td>
                          <td>${value.plan}</td>
                          <td>${value.advisorCode}</td>
                          <td>${value.datee}</td>
-                         
                      </tr>`
                  );
              }).join('');
          const tabelBody = document.querySelector("#tableBody");
              tableBody.innerHTML = tableData;
-                    
                    	}
                    } ,
            	    error: function(){
            	    	alert("Device control failed");
            	    }
-		
 	});
-	
 }
 
 //Projection Report
@@ -331,7 +269,6 @@ function getProjectionREport(){
 	var Tdate = document.getElementById("tdate").value;
                 
 	 $.ajax({
-		
 		                type:"get",
                         contentType: "application/json",
                         url: 'searchProjectionReport',
@@ -343,8 +280,7 @@ function getProjectionREport(){
                    	for (var i = 0; i < data.length; i++) {
 					
 							const tableData = data.map(function(value){
-                    return (
-                		 		 
+                    return (	 
                      `<tr>
                          <td>${value.id}</td>
                          <td>${value.branch}</td>
@@ -354,17 +290,14 @@ function getProjectionREport(){
                      </tr>`
                  );
              }).join('');
-         const tabelBody = document.querySelector("#tableBody");
-             tableBody.innerHTML = tableData;
-                    
+         	const tabelBody = document.querySelector("#tableBody");
+            tableBody.innerHTML = tableData;
                    	}
                    } ,
            	    error: function(){
            	    	alert("Device control failed");
            	    }
-	
 	});
-	
 }
 
 function getSelectedReceiptVoucger(){
@@ -375,11 +308,11 @@ function getSelectedReceiptVoucger(){
 	
 	 $.ajax({
 		          type:"get",
-                        contentType: "application/json",
-                        url: 'searchRecieveVoucher',
-      					data: {fDate: fdate, tDate: tdate, selectbranch: branch },
-                        asynch: false,
-                   success: function(data) {
+                  contentType: "application/json",
+                  url: 'searchRecieveVoucher',
+      			  data: {fDate: fdate, tDate: tdate, selectbranch: branch },
+                  asynch: false,
+                  success: function(data) {
                    	for (var i = 0; i < data.length; i++) {
 							const tableData = data.map(function(value){
                  			return (
@@ -404,9 +337,95 @@ function getSelectedReceiptVoucger(){
 			});
 }
 
+function getSelectedChequeClears() {
+    var input = {
+        type: document.getElementById("paymentType").value,
+        branch: document.getElementById("selectbranch").value,
+        fdate: document.getElementById("fdate").value,
+        tdate: document.getElementById("tdate").value,
+        cheque: document.getElementById("chequeNo").value
+    };
 
+    const myJson = JSON.stringify(input);
+    
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        data: myJson,
+        url: '/searchChequeClears', // Update the URL to match the correct endpoint
+        async: false, // Correct the spelling of 'async'
+        success: function (data) {
+            var tableData = '';
+            for (let i = 0; i < data.length; i++) {
+                const value = data[i];
+                const row = `<tr>
+                                <td>${i + 1}</td>
+                                <td>${value.type}</td>
+                                <td>${value.branch}</td>
+                                <td>${value.txndate}</td>
+                                <td>${value.cheque}</td>
+                            </tr>`;
+                tableData += row;
+            }
+            const tableBody = document.querySelector("#tableBody");
+            tableBody.innerHTML = tableData;
+        },
+        error: function () {
+            alert("Failed to retrieve data");
+        }
+    });
+}
 
+function getMandateDeposite() {
+    var input = {
+        fromdate: document.getElementById("fromdate").value,
+        todate: document.getElementById("todate").value
+    };
 
-
-
-
+    const myJson = JSON.stringify(input);
+    alert(fromdate)
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        data: myJson,
+        url: '/getAllRecords', 
+        async: false, 
+        success: function (data) {
+            var tableData = '';
+            for (let i = 0; i < data.length; i++) {
+                const value = data[i];
+                const row = `<tr>
+                                <td>${value.fddeposit}</td>
+                                <td>${value.misdeposit}</td>
+                                <td>${value.rddeposit}</td>
+                                <td>${value.savingsdeposit}</td>
+                                <td>${value.savingswithdrawal}</td>
+                                <td>${value.flexideposit}</td>
+                                <td>${value.flexiwithdrawal}</td>
+                                <td>${value.maturityprincipal}</td>
+                                <td>${value.totaldeposit}</td>
+                                <td>${value.totalwithdrawal}</td>
+                                <td>${value.totalbalance}</td>
+                                <td>${value.previousfddeposited}</td>
+                                <td>${value.unencumbered}</td>
+                                <td>${value.unencumberedamount}</td>
+                                <td>${value.bankname}</td>
+                                <td>${value.bankaddress}</td>
+                                <td>${value.fdno}</td>
+                                <td>${value.fdamt}</td>
+                                <td>${value.maturityamt}</td>
+                                <td>${value.fddate}</td>
+                                <td>${value.maturitydate}</td>
+                                <td>${value.paymentby}</td>
+                                <td>${value.remarks}</td>
+                            </tr>`;
+                tableData += row;
+            }
+            const tableBody = document.querySelector("#tableBody");
+            tableBody.innerHTML = tableData;
+        },
+        error: function () {
+            alert("Failed to retrieve data");
+        }
+    });
+}

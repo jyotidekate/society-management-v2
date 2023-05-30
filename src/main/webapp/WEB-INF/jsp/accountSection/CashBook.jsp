@@ -1,10 +1,8 @@
-
 <jsp:include page="../header.jsp" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<body class="skin-blue sidebar-mini" style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);" cz-shortcut-listen="true">
-    <form method="get" action="cashbook1" modelAttribute="cashbookmodel" id="form1">
-
-
+<body class="skin-blue sidebar-mini" onload="GetBranchNameInTheDropDown();"
+	style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);" cz-shortcut-listen="true">
+    <!-- <form method="get" action="cashbook1" modelAttribute="cashbookmodel" id="form1"> -->
 
         <div style="height: auto; min-height: 100%; border-radius: 30px; margin: 15px; background: url(dist/img/back.jpg);">
 		<!-- Header Start-->
@@ -14,17 +12,10 @@
          <!-- Aside Menu Start-->
          <jsp:include page="../asideMenu.jsp" />
          <!-- Aside Menu end -->
-                        <script type="text/javascript">
-//<![CDATA[
-Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [], [], [], 90, 'ctl00');
-//]]>
-</script>
-
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper" style="min-height: 1105.75px;">
+                     
+         <!-- Content Wrapper. Contains page content -->
+         <div class="content-wrapper" style="min-height: 1105.75px;">
                 
-
-                 
     <section class="content-header">
         <h1 id="ContentPlaceHolder1_IdHeader">Cash Statement</h1>
         <ol class="breadcrumb">
@@ -44,12 +35,8 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Select Branch</label>
-                                <select name="selectBranch" id="selectBranch" class="form-control" style="width: 100%;">
-								<option value="All">All Branch</option>
-								<option value="Main Office-001">Main Office-001</option>
-								<option value="Main Office-002">Main Office-002</option>
-								<option value="Main Office-003">Main Office-003</option>
-
+                                <select name="selectBranch" id="selectbranch" class="form-control" style="width: 100%;">
+								<option value="" selected="selected">--Select Branch--</option>
 								</select>
                             </div>
                         </div>
@@ -78,11 +65,8 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label></label>
-                                  <input type="submit" name="btnSearch" value="View" id="button1" class="btn btn-success margin-20" />
-                                  <input type="submit" name="btnDetails" value="Show Details" id="button2" class="btn btn-warning margin-20" />
-                                 <!--<button id="button1" type="submit" name="btnSearch" value="View" class="btn btn-success margin-20">View</button>
-                                 <button id="button2" type="submit" name="btnDetails" value="Show Details" class="btn btn-warning margin-20">Show Details</button> -->
-                                 
+                                  <input type="submit" name="button1" value="View" id="button1" onclick="getCashStatement();" class="btn btn-success margin-20" />
+                                  <input type="submit" name="button2" value="Show Details" id="button2" onclick="getCashStatement123();" class="btn btn-warning margin-20" />
                             </div>
                         </div>
                     </div>
@@ -91,120 +75,66 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
                     <div class="box-header with-border">
                         <h3 class="box-title">Search Result</h3>
                         <div class="box-tools pull-right">
-                              
                         </div>
                         
-                 
                  		<section id="table1">
-                        <!-- <div id="table1"> -->
-                        	
-                        	<table cellspacing="0" rules="all" class="display nowrap table table-hover table-striped table-bordered" border="1" style="width:100%;border-collapse:collapse; "  >
-							<caption>
-								
-							</caption>
-							
-							<tr style="color:White;background-color:#008385;">
-								<td>Received</td>
-								<td>Payment</td>
-							</tr>
-		
-							<!-- Select 	Branch -->
-							<c:forEach items = "${list1}" var="row">
-							<tr>
-								<td><c:out value="${row.received}"></c:out> </td>
-								<td><c:out value="${row.payment}"></c:out> </td>
-							</tr>
-							</c:forEach>
-		
-							</table>
-							
-						<!-- </div> -->
+                 			<table cellspacing="0" cellpadding="3" rules="all" 
+                              class="display nowrap table table-hover table-striped table-bordered" 
+                              border="1" id="ContentPlaceHolder1_gdvData" style="width:100%;border-collapse:collapse;"
+                              id="shareCertificate">
+                                 <caption>
+                                 Share Data List
+                                 </caption>
+                                 <tr style="color:White;background-color:#008385;">
+                                    <th scope="col">Received</th>
+                                    <th scope="col">Payment</th>
+                                 </tr>
+                                 <tbody id="tableBody">
+                                    
+      							 </tbody>
+                              </table>
 						</section>
 						
 						<section id="table2">
-						<!-- <div id="table2"> -->
-							
-							<table cellspacing="0" rules="all" class="display nowrap table table-hover table-striped table-bordered" border="1" style="width:100%;border-collapse:collapse; "  >
-							<caption>
-								
-							</caption>
-							
-							<tr style="color:White;background-color:#008385;">
-								<td>Slno</td>
-								<td>Branch Name</td>
-								<td>Txn Date</td>
-								<td>Ledger Name</td>
-								<td>Credit</td>
-								<td>Debit</td>
-								<td>A/C No</td>
-								<td>MemberCode</td>
-								<td>Section</td>
-							</tr>
-		
-							<!-- From & To Date -->
-							<c:forEach items = "${lists2}" var="row1">
-							<tr >
-								<td><c:out value="${row1.slno}"></c:out> </td>
-								<td><c:out value="${row1.branchName}"></c:out> </td>
-								<td><c:out value="${row1.txnDate}"></c:out> </td>
-								<td><c:out value="${row1.ledgerName}"></c:out> </td>
-								<td><c:out value="${row1.credit}"></c:out> </td>
-								<td><c:out value="${row1.debit}"></c:out> </td>
-								<td><c:out value="${row1.accountNo}"></c:out> </td>
-								<td><c:out value="${row1.memberCode}"></c:out> </td>
-								<td><c:out value="${row1.section}"></c:out> </td>
-							</tr> 
-							</c:forEach> 
-		
-							</table>
-                        
-                        <!-- </div> -->
+							<table cellspacing="0" cellpadding="3" rules="all" 
+                              class="display nowrap table table-hover table-striped table-bordered" 
+                              border="1" id="ContentPlaceHolder1_gdvData" style="width:100%;border-collapse:collapse;"
+                              id="shareCertificate">
+                                 <caption>
+                                 Share Data List
+                                 </caption>
+                                 <tr style="color:White;background-color:#008385;">
+                                    <th scope="col">Slno</th>
+                                    <th scope="col">Branch Name</th>
+                                    <th scope="col">Txn Date</th>
+                                    <th scope="col">Ledger Name</th>
+                                    <th scope="col">Credit</th>
+                                    <th scope="col">Debit</th>
+                                    <th scope="col">A/C No</th>
+                                    <th scope="col">MemberCode</th>
+                                    <th scope="col">Section</th>
+                                 </tr>
+                                 <tbody id="tableBody1">
+                                    
+      							 </tbody>
+                              </table>
                         </section>
-                        
                         
                     </div>
                     <div class="box-body">
                         <div class="clearfix margin-bottom-10"></div>
-
-                        
-                          
-
                     </div>
-
                 </div>
-
-
             </div>
         </div>
-     
     </section>
-
-
-
-
             </div>
-            <!-- /.content-wrapper -->
-
-            <footer class="main-footer">
-                <div class="pull-right hidden-xs">
-                    <b>Version</b> 1.0.1
-   
-                </div>
-                <strong>Copyright © 2020-2021 <a>
-                    <span id="lblCompanyName1">EQFI NIDHI LIMITED</span></a>.</strong> All rights
-    reserved.
- 
-            </footer>
-
-
             <div class="control-sidebar-bg"></div>
-
         </div>
 
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <!-- Bootstrap 3.3.7 -->
         <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
         <!-- InputMask -->
         <script src="plugins/input-mask/jquery.inputmask.js"></script>
         <script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
@@ -228,79 +158,10 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
         <script src="dist/js/adminlte.min.js"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="dist/js/demo.js"></script>
+        <script src="dist/js/GetAllBranch.js"></script>
         <!-- Select2 -->
         <script src="bower_components/select2/dist/js/select2.full.min.js"></script>
-        <script>
-            $(function () {
-                //Initialize Select2 Elements
-                $('.select2').select2();
-                //Datemask dd/mm/yyyy
-                $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-                //Datemask2 mm/dd/yyyy
-                $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-                //Date range picker
-                $('#reservation').daterangepicker()
-                //Date range picker with time picker
-                $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, locale: { format: 'MM/DD/YYYY hh:mm A' } })
-                $('#daterange-btn').daterangepicker(
-                 {
-                     ranges: {
-                         'Today': [moment(), moment()],
-                         'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                         'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                         'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                         'This Month': [moment().startOf('month'), moment().endOf('month')],
-                         'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                     },
-                     startDate: moment().subtract(29, 'days'),
-                     endDate: moment()
-                 },
-                 function (start, end) {
-                     $('#daterange-btn span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'))
-                 }
-               )
-                //Date picker
-                $('#datepicker').datepicker({
-                    autoclose: true
-                })
-                //Money Euro
-                $('[data-mask]').inputmask()
-
-                //iCheck for checkbox and radio inputs
-                $('span[type="checkbox"].minimal').iCheck({
-                    checkboxClass: 'icheckbox_minimal-blue',
-                    radioClass: 'iradio_minimal-blue'
-                })
-
-
-
-
-
-            })
-        </script>
-        
-        <!-- <script>
-    		// Get the buttons and tables
-    		var button1 = document.getElementById("button1");
-    		var button2 = document.getElementById("button2");
-    		var table1 = document.getElementById("table1");
-    		var table2 = document.getElementById("table2");
-
-    		// Bind a click event to button1
-    		button1.addEventListener("click", function() {
-        	// Hide table2 and show table1
-        	table1.style.display = "block";
-        	table2.style.display = "none";
-    		});
-
-    		// Bind a click event to button2
-    		button2.addEventListener("click", function() {
-        	// Hide table1 and show table2
-        	table1.style.display = "none";
-        	table2.style.display = "block";
-    		});
-	</script> -->
-	
+       
 	<script>
 	$(document).ready(function(){
 		$("#table1").hide();
@@ -315,11 +176,9 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 			$("#table2").show();
 			$("#table1").hide();
 		});
-	}
+	});
 	</script>
         
-    </form>
+    <!-- </form> -->
 </body>
-
-
 </html>

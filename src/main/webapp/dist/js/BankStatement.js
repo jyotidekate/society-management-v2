@@ -1,11 +1,10 @@
 
 function BankStatementAjax(){
  
-var accountno= document.getElementById("accountno").value; 
- var fromdate= document.getElementById("fromdate").value;
- var todate= document.getElementById("todate").value;
- 
- 
+  var accountno= document.getElementById("accountno").value; 
+  var fromdate= document.getElementById("fromdate").value;
+  var todate= document.getElementById("todate").value;
+
  $.ajax({
      type:"get",
      contentType: "application/json",
@@ -15,12 +14,9 @@ var accountno= document.getElementById("accountno").value;
      success: function(data) {  
 	      for (let i = 0; i < data.length; i++)
 	       {
-		
-			//alert(data[i].id)
-			 const tableData = data.map(function(value){
+				const tableData = data.map(function(value){
                  return (
-                		 
-                		 
+               		 
                      `<tr>
                          <td>${value.bank}</td> 
 						 <td>${value.accountno}</td>     
@@ -29,7 +25,6 @@ var accountno= document.getElementById("accountno").value;
 					     <td>${value.credit}</td>  
 					     <td>${value.debit}</td>  
 					     <td>${value.balance}</td>    
-                         
                      </tr>`
                  );
              })

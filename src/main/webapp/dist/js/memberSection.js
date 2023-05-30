@@ -264,7 +264,7 @@ function searchThroughSearchBox(){
                                 <td scope="col">${value.pan}</td>
                                 <td scope="col">${value.phoneno}</td>
                                 <td scope="col">${value.nomineeName}</td>
-                                 <td scope="col">${value.status}</td>
+                                <td scope="col">${value.status}</td>
                                 
                             </tr>`
 					);

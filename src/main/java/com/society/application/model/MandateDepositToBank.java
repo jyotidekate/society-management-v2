@@ -11,9 +11,7 @@ public class MandateDepositToBank {
  @Id	
  @GeneratedValue(strategy = GenerationType.IDENTITY)	
  private int id;
- 
  private String fromdate;
- 
  private String todate;
  private String fddeposit;
  private String misdeposit;
@@ -38,7 +36,6 @@ public class MandateDepositToBank {
  private String maturitydate;
  private String paymentby;
  private String remarks;
- 
  
  public int getId() {
 	return id;
@@ -196,7 +193,5 @@ public String getRemarks() {
 public void setRemarks(String remarks) {
 	this.remarks = remarks;
 }
-
- 
 
 }
