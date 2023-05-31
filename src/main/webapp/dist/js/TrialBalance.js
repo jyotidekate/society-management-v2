@@ -1,6 +1,4 @@
-
 //Ajax Code Starts Here
-
  function TrialBalance()
 {	
  var branchName= document.getElementById("branchName").value;
@@ -24,8 +22,7 @@
 			 const tableData = data.map(function(value){
                  return (
                 		 
-                		 `
-                		 	 
+                		 ` 
                      	<tr>
                         	 <td>${value.ledgerName}</td> 
 							 <td>${value.opening}</td>     

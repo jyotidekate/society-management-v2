@@ -11,10 +11,7 @@ public class BalanceSheetFY {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String branch;
-	
 	private String date;
-	
-	
 	
 	public int getId() {
 		return id;
@@ -26,15 +23,13 @@ public class BalanceSheetFY {
 		return branch;
 	}
 	public void setBranch(String branch) {
-		branch = branch;
+		this.branch = branch;
 	}
-	
 	public String getDate() {
 		return date;
 	}
 	public void setDate(String date) {
 		this.date = date;
 	}
-	
-	
+
 }

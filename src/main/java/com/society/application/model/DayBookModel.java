@@ -17,8 +17,6 @@ public class DayBookModel {
 	private String fDate;
 	private String tDate;
 	
-	
-	
 	public int getId() {
 		return id;
 	}
@@ -55,9 +53,5 @@ public class DayBookModel {
 	public void settDate(String tDate) {
 		this.tDate = tDate;
 	}
-	
-	
-	
-	
 
 }

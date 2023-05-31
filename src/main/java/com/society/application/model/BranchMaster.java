@@ -19,7 +19,8 @@ public class BranchMaster {
     private String state;
     private String contactPerson;
     private String contactNo;
-    
+    private String fdate;
+    private String tdate;
     
 	public String getOpening_date() {
 		return openingDate;
@@ -99,6 +100,22 @@ public class BranchMaster {
 
 	public void setContactNo(String contactNo) {
 		this.contactNo = contactNo;
+	}
+
+	public String getFdate() {
+		return fdate;
+	}
+
+	public void setFdate(String fdate) {
+		this.fdate = fdate;
+	}
+
+	public String getTdate() {
+		return tdate;
+	}
+
+	public void setTdate(String tdate) {
+		this.tdate = tdate;
 	}
    
 }

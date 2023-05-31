@@ -8,10 +8,12 @@ import com.society.application.model.DayBookModel;
 
 public interface DayBookRepo extends JpaRepository<DayBookModel, Integer> {
 
-	List<DayBookModel> findByselectBranch(String string);
+	List<DayBookModel> findBySelectBranch(String selectBranch);
 
-	List<DayBookModel> findByselectLedger(String string);
+	List<DayBookModel> findBySelectLedger(String selectLedger);
 
-	List<DayBookModel> findBydateBetween(String fDate, String tDate);
+	List<DayBookModel> findByDateBetween(String getfDate, String gettDate);
+
+	
 
 }

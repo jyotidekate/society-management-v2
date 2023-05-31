@@ -11,39 +11,27 @@ public class TransferBookModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	
-
-	
-	//SHOW DETAILS VARIABLES
 	private int srno;
 	private String branchname;
 	private String txndate;
 	private String ledgername;
-	
 	private String credit;
 	private String debit;
 	private String acno;
 	private String membercode;
-	
-	//Variable for View
-	
 	private String received;
 	private String payment;
-	
-	//Variable for searching
-	
-		private String selectbraanch;
-		private String fromdate;
-		private String todate;
-	
+	private String selectbraanch;
+	private String fromdate;
+	private String todate;
+	private String section;
 		
-		public String getLedgername() {
-			return ledgername;
-		}
-		public void setLedgername(String ledgername) {
-			this.ledgername = ledgername;
-		}
-		
+	public String getLedgername() {
+		return ledgername;
+	}
+	public void setLedgername(String ledgername) {
+		this.ledgername = ledgername;
+	}
 	public int getSrno() {
 		return srno;
 	}
@@ -92,9 +80,6 @@ public class TransferBookModel {
 	public void setSection(String section) {
 		this.section = section;
 	}
-	private String section;
-	
-	
 	public String getSelectbraanch() {
 		return selectbraanch;
 	}
@@ -113,8 +98,6 @@ public class TransferBookModel {
 	public void setTodate(String todate) {
 		this.todate = todate;
 	}
-	
-
 	public String getReceived() {
 		return received;
 	}
@@ -127,7 +110,5 @@ public class TransferBookModel {
 	public void setPayment(String payment) {
 		this.payment = payment;
 	}
-	
-	
-	
+		
 }

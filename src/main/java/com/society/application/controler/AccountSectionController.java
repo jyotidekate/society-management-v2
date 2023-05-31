@@ -1,5 +1,6 @@
 package com.society.application.controler;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -372,26 +373,16 @@ public class AccountSectionController {
 	public String getJournalReport() {
 		return "accountSection/JournalReport";
 	}
-
-	@GetMapping("/journalReport1")
+	
+	@PostMapping("/journalReport1")
 	@ResponseBody
-	public List<JournalReport> getjournalReport(@ModelAttribute("JournalReport") JournalReport model,
-			HttpServletRequest request) {
-		String selectbranch = request.getParameter("Branch");
-
-		List<JournalReport> list = journalReportRepo.findByselectbranch(selectbranch);
-		return list;
-	}
-
-	@GetMapping("/journalReport2")
-	@ResponseBody
-	public List<JournalReport> getjournalReport2(@ModelAttribute("JournalReport") JournalReport model,
-			HttpServletRequest request) {
-		String fromdate = request.getParameter("Fromdate");
-		String todate = request.getParameter("Todate");
-
-		List<JournalReport> list2 = journalReportRepo.findBydateBetween(fromdate, todate);
-		return list2;
+	public List<JournalReport> getjournalReport(@RequestBody JournalReport model){
+		List<JournalReport> list = journalReportRepo.findByselectbranch(model.getSelectbranch());
+		List<JournalReport> list1 = journalReportRepo.findBydateBetween(model.getFromdate(), model.getTodate());
+		if(!list.isEmpty()) {
+			return list;
+		}else 
+			return list1;
 	}
 
 	/* BALANCE SHEET */
@@ -452,20 +443,16 @@ public class AccountSectionController {
 	public String getLedgerReport() {
 		return "accountSection/LedgerReport";
 	}
-
-	@GetMapping("/getAllLedgerReport")
-	public String getAllLedgerReport(@ModelAttribute("LedgerModelAttribute") LedgerReport ledReport, Model model) {
-		try {
-			List<LedgerReport> list1 = ledgerReportRepo.findByselectledger(ledReport.getSelectledger());
-			List<LedgerReport> list2 = ledgerReportRepo.findBydateBetween(ledReport.getFromdate(),
-					ledReport.getTodate());
-			model.addAttribute("list1", list1);
-			model.addAttribute("list2", list2);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "accountSection/LedgerReport";
+	
+	@PostMapping("/getAllLedgerReport")
+	@ResponseBody
+	public List<LedgerReport> getAllLedgerReport(@RequestBody LedgerReport ledReport){
+		List<LedgerReport> list1 = ledgerReportRepo.findByselectledger(ledReport.getSelectledger());
+		List<LedgerReport> list2 = ledgerReportRepo.findBydateBetween(ledReport.getFromdate(), ledReport.getTodate());
+		if(!list1.isEmpty()) {
+			return list1;
+		}else
+			return list2;
 	}
 
 	/* MIS INT. PAYMENT */
@@ -494,18 +481,17 @@ public class AccountSectionController {
 	public String getTransferBook() {
 		return "accountSection/TransferBookPage";
 	}
-
-	@GetMapping("/fetchAllData")
-	public String showListofuser(@ModelAttribute("ViewPaymentDetails") TransferBookModel tbm, Model model) {
-		List<TransferBookModel> tbMode = transferrepo.findBybranchname(tbm.getSelectbraanch());
-		List<TransferBookModel> tbModeldate = transferrepo.findBytxndateBetween(tbm.getFromdate(), tbm.getTodate());
-
-		model.addAttribute("tbMode", tbMode);
-		model.addAttribute("tbModeldate", tbModeldate);
-
-		System.out.println(tbMode);
-
-		return "accountSection/TransferBookPage";
+	
+	@PostMapping("/fetchAllData")
+	@ResponseBody
+	public List<TransferBookModel> showListofuser(@RequestBody TransferBookModel tbm) {
+	    List<TransferBookModel> tbMode = transferrepo.findBybranchname(tbm.getSelectbraanch());
+	    List<TransferBookModel> tbModeldate = transferrepo.findBytxndateBetween(tbm.getFromdate(), tbm.getTodate());
+	    if (!tbMode.isEmpty()) {
+	        return tbMode;
+	    } else {
+	        return tbModeldate;
+	    }
 	}
 
 	/* RECEIVE ENTRY */
@@ -599,25 +585,27 @@ public class AccountSectionController {
 		return "accountSection/DayBook";
 	}
 
-	@GetMapping("/searchDayBook")
+	@PostMapping("/searchDayBook")
 	@ResponseBody
-	public List<DayBookModel> searchDayBook(HttpServletRequest hp) {
+	public List<DayBookModel> searchDayBook(@RequestBody DayBookModel model) {
+	    List<DayBookModel> result = new ArrayList<>();
 
-		String Ledger = hp.getParameter("Ledger");
-		String Branch = hp.getParameter("Branch");
-		String fDate = hp.getParameter("fDate");
-		String tDate = hp.getParameter("tDate");
+	    if (model.getSelectBranch() != null && !model.getSelectBranch().isEmpty()) {
+	        List<DayBookModel> list1 = dayBookRepo.findBySelectBranch(model.getSelectBranch());
+	        result.addAll(list1);
+	    }
+	    
+	    if (model.getSelectLedger() != null && !model.getSelectLedger().isEmpty()) {
+	        List<DayBookModel> list2 = dayBookRepo.findBySelectLedger(model.getSelectLedger());
+	        result.addAll(list2);
+	    }
+	    
+	    if (model.getfDate() != null && model.gettDate() != null) {
+	        List<DayBookModel> list3 = dayBookRepo.findByDateBetween(model.getfDate(), model.gettDate());
+	        result.addAll(list3);
+	    }
 
-		List<DayBookModel> data1 = dayBookRepo.findByselectLedger(Ledger);
-		List<DayBookModel> data2 = dayBookRepo.findByselectBranch(Branch);
-		List<DayBookModel> data3 = dayBookRepo.findBydateBetween(fDate, tDate);
-
-		if (!data1.isEmpty()) {
-			return data1;
-		} else if (!data2.isEmpty()) {
-			return data2;
-		}
-		return data3;
+	    return result;
 	}
 
 	/* BALANCE SHEET (FY) */
@@ -626,22 +614,18 @@ public class AccountSectionController {
 	public String addFinancialBalanceSheet() {
 		return "accountSection/FinancialBalanceSheet";
 	}
-
-	@GetMapping("/searchFirstButton")
+	
+	@PostMapping("/searchFirstButton")
 	@ResponseBody
-	public List<BranchMaster> searchFirstButton(HttpServletRequest hp) {
-		String Branch = hp.getParameter("Branch1");
-		String FromDate = hp.getParameter("FromDate1");
-		String ToDate = hp.getParameter("ToDate1");
-
-		List<BranchMaster> list1 = branchMater2REpo.findByname(Branch);
-		List<BranchMaster> list2 = branchMater2REpo.findByopeningDateBetween(FromDate, ToDate);
-		if (!list1.isEmpty()) {
+	public List<BranchMaster> searchFirstButton(@RequestBody BranchMaster model){
+		List<BranchMaster> list1 = branchMater2REpo.findByname(model.getName());
+		List<BranchMaster> list2 = branchMater2REpo.findByopeningDateBetween(model.getFdate(), model.getTdate());
+		if(!list1.isEmpty()) {
 			return list1;
-		}
-		return list2;
+		}else
+			return list2;
 	}
-
+	
 	@GetMapping("/searchSecondButton")
 	@ResponseBody
 	public List<BalanceSheetFY> searchSecondButton(HttpServletRequest hp) {

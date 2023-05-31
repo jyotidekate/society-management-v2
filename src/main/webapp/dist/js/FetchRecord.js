@@ -26,125 +26,116 @@ function fetchMemberData(){
 	    }
  });
 }
- 
-function getSelectedDayBook(){
-	
-	//var selectBranch = document.getElementById("selectBranch").value;
-	var selectLedger = document.getElementById("selectLedger").value;
-	var selectBranch = document.getElementById("selectBranch").value;
-	var fDate = document.getElementById("fDate").value;
-	var tDate = document.getElementById("tDate").value;
-             
-	 $.ajax({
-		
-		                type:"get",
-                        contentType: "application/json",
-                        url: 'searchDayBook',
-      					data: {Ledger : selectLedger,Branch : selectBranch,fDate : fDate ,tDate : tDate },
-                        asynch: false,
-    
-                   success: function(data) {    
-                   	for (var i = 0; i < data.length; i++) {
-						const tableData = data.map(function(value){
-                        return (
-                		 	 
-                     `<tr>
-                     	<td>${value.id}</td>
-                         <td>${value.selectBranch}</td>
-                         <td>${value.selectLedger}</td>
-                         <td>${value.date}</td>
-                         
-                     </tr>`
-                 );
-             }).join('');
-             const tabelBody = document.querySelector("#tableBody");
-             tableBody.innerHTML = tableData;
-                    
-                   	}
-                   } ,
-           	    error: function(){
-           	    	alert("Device control failed");
-           	    }
 
-	});
-	
+function getSelectedDayBook() {
+    var selectbranch = document.getElementById("selectbranch").value;
+    var selectledger = document.getElementById("selectledger").value;
+    var fDate = document.getElementById("fDate").value;
+    var tDate = document.getElementById("tDate").value;
+    var input = {
+        selectBranch: selectbranch,
+        selectLedger: selectledger,
+        fDate: fDate,
+        tDate: tDate
+    };
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: 'searchDayBook',
+        data: JSON.stringify(input),
+        success: function(data) {
+            var tableData = "";
+            for (var i = 0; i < data.length; i++) {
+                var value = data[i];
+                tableData += `
+                    <tr>
+                        <td>${value.id}</td>
+                        <td>${value.selectBranch}</td>
+                        <td>${value.selectLedger}</td>
+                        <td>${value.date}</td>
+                    </tr>`;
+            }
+            $('#tableBody').html(tableData);
+        },
+        error: function() {
+            alert("Failed to fetch data");
+        }
+    });
 }
 
 // Balance Sheet (Fy)
 //Button 1
-function getBalanceSheetFy(){
-	
-	var Branch = document.getElementById("branch").value;
-	var FromDate = document.getElementById("fromDate").value;
-	var ToDate = document.getElementById("toDate").value;
-    
-	 $.ajax({
-		
-		                type:"get",
-                        contentType: "application/json",
-                        url: 'searchFirstButton',
-      					data: {Branch1:Branch,FromDate1:FromDate,ToDate1:ToDate},
-                        asynch: false,
-    
-                    success: function(data) {
-					for (var i = 0; i < data.length; i++) {
-							const tableData = data.map(function(value){
-                           return (
-                		 
-                     `<tr>
-                         <td>${value.id}</td>
-                         <td>${value.name}</td>
-                         <td>${value.opening_date}</td>
-                     </tr>`
-                 );
-             }).join('');
-             const tabelBody = document.querySelector("#tableBody");
-             tableBody.innerHTML = tableData;
-                   	}
-                } ,
-           	    error: function(){
-           	    	alert("Device control failed");
-           	    }
-	});
-	
+function getBalanceSheetFy() {
+    var branchName = document.getElementById("branchName").value;
+    var fromDate = document.getElementById("fromDate").value;
+    var toDate = document.getElementById("toDate").value;
+    var input = {
+        name: branchName,
+        fdate: fromDate,
+        tdate: toDate
+    };
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: 'searchFirstButton',
+        data: JSON.stringify(input),
+        success: function(data) {
+            var tableData = "";
+            for (var i = 0; i < data.length; i++) {
+                var value = data[i];
+                tableData += `
+                    <tr>
+                        <td>${value.id}</td>
+                        <td>${value.name}</td>
+                        <td>${value.opening_date}</td>
+                    </tr>`;
+            }
+            $('#tableBody').html(tableData);
+        },
+        error: function() {
+            alert("Failed to fetch data");
+        }
+    });
 }
 
 //Button 2
-function getBalanceSheetFy1(){
-	
-	var Branch = document.getElementById("branch1").value;
-	var Fyear = document.getElementById("fyear").value;
-	var FromDate = document.getElementById("fromDate1").value;
-	var ToDate = document.getElementById("toDate1").value;
+function getBalanceSheetFy1() {
+    var Branch = document.getElementById("selectbranchfyz").value;
+    var Fyear = document.getElementById("fyear").value;
+    var FromDate = document.getElementById("fromDate1").value;
+    var ToDate = document.getElementById("toDate1").value;
 
-                
-	 $.ajax({
-		                type:"get",
-                        contentType: "application/json",
-                        url: 'searchSecondButton',
-      					data: {Branch1:Branch,FromDate1:FromDate,ToDate1:ToDate,Fyear1:Fyear},
-                        asynch: false,
-    
-                   success: function(data) {    
-                   	for (var i = 0; i < data.length; i++) {
-							const tableData = data.map(function(value){
-                 return (
-                     `<tr>
-                         <td>${value.id}</td>
-                         <td>${value.branch}</td>
-                         <td>${value.date}</td>
-                      </tr>`
-                 );
-             }).join('');
-         const tabelBody = document.querySelector("#tableBody01");
-             tableBody01.innerHTML = tableData;
-                    
-                   	}
-                   } ,
-           	    error: function(){
-           	    	alert("Device control failed");
-           	    }
-	});
+    $.ajax({
+        type: "GET",
+        url: 'searchSecondButton',
+        data: {
+            Branch1: Branch,
+            FromDate1: FromDate,
+            ToDate1: ToDate,
+            Fyear1: Fyear
+        },
+        success: function(data) {
+            if (data.length > 0) {
+                var tableData = "";
+                for (var i = 0; i < data.length; i++) {
+                    tableData += `
+                        <tr>
+                            <td>${data[i].id}</td>
+                            <td>${data[i].branch}</td>
+                            <td>${data[i].date}</td>
+                        </tr>`;
+                }
+                $("#tableBody01").html(tableData);
+            } else {
+                $("#tableBody01").html("<tr><td colspan='3'>No data found</td></tr>");
+            }
+        },
+        error: function() {
+            alert("Failed to retrieve data");
+        }
+    });
 }
 
 //Report Section
@@ -426,6 +417,73 @@ function getMandateDeposite() {
         },
         error: function () {
             alert("Failed to retrieve data");
+        }
+    });
+}
+
+function getTransferStatement() {
+    var selectBranch = document.getElementById("selectbranch").value;
+    var input = {
+        selectbraanch: selectBranch
+    };
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: 'fetchAllData',
+        data: JSON.stringify(input),
+        success: function(data) {
+            var tableData = "";
+            for (var i = 0; i < data.length; i++) {
+                var value = data[i];
+                tableData += `
+                    <tr>
+                        <td>${i + 1}</td>
+                        <td>${value.received}</td>
+                        <td>${value.payment}</td>
+                    </tr>`;
+            }
+            $('#tableBody').html(tableData);
+        },
+        error: function() {
+            alert("Failed to fetch data");
+        }
+    });
+}
+
+function getTransferStatement123() {
+    var fromdate = document.getElementById("fromdate").value;
+    var todate = document.getElementById("todate").value;
+    var input = {
+        fromdate: fromdate,
+        todate: todate
+    };
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: 'fetchAllData',
+        data: JSON.stringify(input),
+        success: function(data) {
+            var tableData = "";
+            for (var i = 0; i < data.length; i++) {
+                var value = data[i];
+                tableData += `
+                    <tr>
+                    			<td>${i + 1}</td>
+                        		<td>${value.branchname}</td> 
+                                <td>${value.txndate}</td> 
+                                <td>${value.debit}</td> 
+                                <td>${value.credit}</td> 
+                                <td>${value.acno}</td> 
+                                <td>${value.membercode}</td> 
+                                <td>${value.section}</td>   
+                    </tr>`;
+            }
+            $('#tableBody1').html(tableData);
+        },
+        error: function() {
+            alert("Failed to fetch data");
         }
     });
 }

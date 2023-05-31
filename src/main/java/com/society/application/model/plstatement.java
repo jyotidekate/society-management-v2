@@ -13,10 +13,8 @@ private int id;
 private String fromdate;
 private String selectbranch;
 private String todate;
-
 private String pldate;
 private String branchname;
-
 //private String selectyearfy;
 private String fromdatefy;
 private String todatefy;
@@ -82,4 +80,5 @@ public String getBranchname() {
 public void setBranchname(String branchname) {
 	this.branchname = branchname;
 }
+
 }

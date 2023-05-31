@@ -11,17 +11,16 @@ public class LedgerReport {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	
 	private String selectledger;
 	private String fromdate;
 	private String todate;
-	
 	private String date;
 	private String receiptno;
 	private String narration;
 	private String code;
 	private String debit;
 	private String credit;
+	
 	public int getId() {
 		return id;
 	}
@@ -83,8 +82,4 @@ public class LedgerReport {
 		this.credit = credit;
 	}
 	
-	
-	
-	
-
 }
