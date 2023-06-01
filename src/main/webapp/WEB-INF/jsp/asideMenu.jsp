@@ -781,7 +781,7 @@
 							class="fa fa-circle-o"></i>Balance Sheet (FY)</a></li>
 					<%} %>
 					<%if(serviceList!=null &&  serviceList.contains("P&L Statement")){ %>
-					<li><a href="ProfitLossDateWise.html"><i
+					<li><a href="pandlstatement"><i
 							class="fa fa-circle-o"></i>P&L Statement</a></li>
 					<%} %>
 					<%if(serviceList!=null &&  serviceList.contains("Balance Sheet")){ %>

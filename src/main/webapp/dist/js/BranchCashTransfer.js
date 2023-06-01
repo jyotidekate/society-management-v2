@@ -37,52 +37,58 @@ function BranchCashTransfer()
 
 }
 
-
 //Ajax Code Starts Here
+function BranchCashTransferAjax() {
+    var transferDate = document.getElementById("transferDate").value;
+    var fromBranch = document.getElementById("fromBranch").value;
+    var toBranch = document.getElementById("toBranch").value;
+    var amount = document.getElementById("amount").value;
 
- function BranchCashTransferAjax()
-{	
- var transferDate= document.getElementById("transferDate").value;
- var fromBranch= document.getElementById("fromBranch").value;
- var toBranch= document.getElementById("toBranch").value;
- var amount= document.getElementById("amount").value;
- 
- 
- 
- $.ajax({
-	 type:"get",
-     contentType: "application/json",
-     url: 'branchCashTransferUpdate',
-     data:{TransferDate:transferDate, FromBranch:fromBranch, ToBranch: toBranch, Amount:amount},
-     asynch: false,
-     success: function(data) {  
-	
-	     //alert("Updated THe Data");
-	     
-	     for (let i = 0; i < data.length; i++)
-	       {
-			 const tableData = data.map(function(value){
-                 return (
-                		 
-                		 `<tr>
-							<td>${value.opening_date}</td>     
-					     	<td>${value.name}</td>  
-					     	<td>${value.amount}</td>  
-                     	</tr>`
-                 );
-             })
-             
-             .join('');
-        	 const tabelBody = document.querySelector("#table");
-             table.innerHTML = tableData;
-		} 
-     } ,
-	    error: function(){
-	    	alert("Device control failed");
-	    }
- });
- }
- 
+    $.ajax({
+        type: "GET",
+        url: 'branchCashTransferUpdate',
+        data: {
+            TransferDate: transferDate,
+            FromBranch: fromBranch,
+            ToBranch: toBranch,
+            Amount: amount
+        },
+        success: function(response) {
+            alert(response);
+        },
+        error: function() {
+            alert("Device control failed");
+        }
+    });
+}
+
+function getBranchCashTransferTableData() {
+	$.ajax({
+		type: "get",
+		contentType: "application/json",
+		url: 'findAllBranchCashTransfer',
+		asynch: false,
+		success: function (data) {
+			for (let i = 0; i < data.length; i++) {
+				var j = 1;
+				const tableData = data.map(function (value) {
+					return (
+						      `<tr>
+									<td scope="col">${value.openingDate}</td>
+	                                <td scope="col">${value.name}</td>
+	                                <td scope="col">${value.amount}</td>
+	                            </tr>`
+					);
+				}).join('');
+				const tabelBodyShare = document.querySelector("#table");
+				tabelBodyShare.innerHTML = tableData;
+			}
+		},
+		error: function () {
+			alert("Device control failed");
+		}
+	});
+}
  
  
  

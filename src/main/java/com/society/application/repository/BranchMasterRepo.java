@@ -23,8 +23,8 @@ public interface BranchMasterRepo extends JpaRepository<BranchMaster, Integer>{
 	
 	@Modifying
 	@Transactional
-	@Query(value = "UPDATE BranchMaster SET amount =:string,opening_date =:string2 WHERE name BETWEEN :string3 AND :string4 ")
-	void findByfromBranchToBranch(@Param("string") String string,@Param("string2") String string2,@Param("string3") String string3,@Param("string4") String string4);
+	@Query(value = "UPDATE BranchMaster SET amount = :amount, opening_date = :transferDate WHERE name BETWEEN :fromBranch AND :toBranch")
+	void updateByFromBranchAndToBranch(@Param("amount") String amount, @Param("transferDate") String transferDate, @Param("fromBranch") String fromBranch, @Param("toBranch") String toBranch);
 	
 	public List<BranchMaster> findByid(int i);
 }

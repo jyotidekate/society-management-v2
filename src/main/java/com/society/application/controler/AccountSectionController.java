@@ -231,19 +231,24 @@ public class AccountSectionController {
 		return "accountSection/BranchCashTransfer";
 	}
 
-	@GetMapping("/branchCashTransferUpdate")
+	@GetMapping("/findAllBranchCashTransfer")
 	@ResponseBody
-	public List<BranchMaster> getbranchCashTransfer1(HttpServletRequest request) {
-
-		String TransferDate = request.getParameter("TransferDate");
-		String FromBranch = request.getParameter("FromBranch");
-		String ToBranch = request.getParameter("ToBranch");
-		String Amount = request.getParameter("Amount");
-
-		branchmasterrepo.findByfromBranchToBranch(Amount, TransferDate, FromBranch, ToBranch);
-
+	public List<BranchMaster> findAllBranchCashTransfer(){
 		List<BranchMaster> list = branchmasterrepo.findAll();
 		return list;
+	}
+	
+	@GetMapping("/branchCashTransferUpdate")
+	@ResponseBody
+	public String updateBranchCashTransfer(HttpServletRequest request) {
+	    String transferDate = request.getParameter("TransferDate");
+	    String fromBranch = request.getParameter("FromBranch");
+	    String toBranch = request.getParameter("ToBranch");
+	    String amount = request.getParameter("Amount");
+
+	    branchmasterrepo.updateByFromBranchAndToBranch(amount, transferDate, fromBranch, toBranch);
+
+	    return "Data updated successfully";
 	}
 
 	/* PAYMENT ENTRY */
@@ -394,20 +399,20 @@ public class AccountSectionController {
 
 	@GetMapping("/Balancesheet1")
 	@ResponseBody
-	public List<BalanceSheetDatewise> getgetBalancesheet1(@ModelAttribute BalanceSheetDatewise model,
-			HttpServletRequest request) {
-		String branch = request.getParameter("Branch");
-		List<BalanceSheetDatewise> list1 = balanceSheetDatewiseRepo.findByselectbranch(branch);
+	public List<BalanceSheetDatewise> getgetBalancesheet1(HttpServletRequest request) {
+	    String branch = request.getParameter("Branch");
+	    List<BalanceSheetDatewise> list1 = balanceSheetDatewiseRepo.findByselectbranch(branch);
 
-		String fromdate = request.getParameter("Fromdate");
-		String todate = request.getParameter("Todate");
+	    String fromdate = request.getParameter("Fromdate");
+	    String todate = request.getParameter("Todate");
 
-		List<BalanceSheetDatewise> list2 = balanceSheetDatewiseRepo.findBydateBetween(fromdate, todate);
+	    List<BalanceSheetDatewise> list2 = balanceSheetDatewiseRepo.findBydateBetween(fromdate, todate);
 
-		if (!list1.isEmpty()) {
-			return list1;
-		} else
-			return list2;
+	    if (!list1.isEmpty()) {
+	        return list1;
+	    } else {
+	        return list2;
+	    }
 	}
 
 	/* BANK STATEMENT */
@@ -724,4 +729,11 @@ public class AccountSectionController {
 			return list2;
 	}
 	
+	/* P&L STATEMENT */
+	
+	@GetMapping("/pandlstatement")
+	public String getPAndLStatement() {
+		return "accountSection/PandLStatement";
+	}
+
 }

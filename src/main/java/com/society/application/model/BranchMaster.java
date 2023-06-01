@@ -21,6 +21,7 @@ public class BranchMaster {
     private String contactNo;
     private String fdate;
     private String tdate;
+    private String amount;
     
 	public String getOpening_date() {
 		return openingDate;
@@ -116,6 +117,14 @@ public class BranchMaster {
 
 	public void setTdate(String tdate) {
 		this.tdate = tdate;
+	}
+
+	public String getAmount() {
+		return amount;
+	}
+
+	public void setAmount(String amount) {
+		this.amount = amount;
 	}
    
 }
