@@ -33,4 +33,16 @@ public interface ClientMasterRepo extends JpaRepository<ClientMaster, Integer> {
 
 	public List<ClientMaster> findBymemberName(String memberName);
 
+	List<ClientMaster> findBybranchName(String branchName);
+
+	List<ClientMaster> findByregistrationDateBetween(String getfDate, String gettDate);
+
+	List<ClientMaster> findByintroMCode(String introMCode);
+
+	List<ClientMaster> findByphoneno(String phoneno);
+
+	List<ClientMaster> findBypan(String pan);
+
+	List<ClientMaster> findByaadharNo(String aadharNo);
+
 }

@@ -559,18 +559,17 @@ public class HomeControler {
 		return allMember;
 	}
 
-	@PostMapping("/memberReportSearch1233")
-	@ResponseBody
-	public List<Member> getmemberReportSearch(@RequestBody Member mem) {
-		List<Member> branchName = memberRepo.findBybranchName(mem.getBranchName());
-		List<Member> date = memberRepo.findByregistrationDateBetween(mem.getfDate(), mem.gettDate());
-		// List<Member> date = memberRepo.findByregistrationDateBetween("2016-01-01",
-		// "2023-01-10");
-		if (!branchName.isEmpty()) {
-			return branchName;
-		} else
-			return date;
-	}
+	/*
+	 * @PostMapping("/memberReportSearch1233")
+	 * 
+	 * @ResponseBody public List<Member> getmemberReportSearch(@RequestBody Member
+	 * mem) { List<Member> branchName =
+	 * memberRepo.findBybranchName(mem.getBranchName()); List<Member> date =
+	 * memberRepo.findByregistrationDateBetween(mem.getfDate(), mem.gettDate()); //
+	 * List<Member> date = memberRepo.findByregistrationDateBetween("2016-01-01", //
+	 * "2023-01-10"); if (!branchName.isEmpty()) { return branchName; } else return
+	 * date; }
+	 */
 
 	@GetMapping("/memberDetailRpt")
 	public String memberDetailRpt(Model model) {
@@ -1234,35 +1233,29 @@ public class HomeControler {
 		return allMember;
 	}
 
-	@PostMapping("/searchInTheMemeberSection")
-	@ResponseBody
-	public List<Member> searchInTheMemeberSection(@RequestBody Member mem) {
-
-		List<Member> data1 = memberRepo.findBybranchName(mem.getBranchName());
-		List<Member> data2 = memberRepo.findByregistrationDateBetween(mem.getfDate(), mem.gettDate());
-
-		List<Member> data3 = memberRepo.findBymemberName(mem.getMemberName());
-		List<Member> data4 = memberRepo.findByintroMCode(mem.getIntroMCode());
-		List<Member> data5 = memberRepo.findByphoneno(mem.getPhoneno());
-		List<Member> data6 = memberRepo.findByaadharNo(mem.getAadharNo());
-		List<Member> data7 = memberRepo.findBypan(mem.getPan());
-
-		if (!data1.isEmpty()) {
-			return data1;
-		} else if (!data2.isEmpty()) {
-			return data2;
-		} else if (!data3.isEmpty()) {
-			return data3;
-		} else if (!data4.isEmpty()) {
-			return data4;
-		} else if (!data5.isEmpty()) {
-			return data5;
-		} else if (!data6.isEmpty()) {
-			return data6;
-		}
-		return data7;
-
-	}
+	/*
+	 * @PostMapping("/searchInTheMemeberSection")
+	 * 
+	 * @ResponseBody public List<Member> searchInTheMemeberSection(@RequestBody
+	 * Member mem) {
+	 * 
+	 * List<Member> data1 = memberRepo.findBybranchName(mem.getBranchName());
+	 * List<Member> data2 = memberRepo.findByregistrationDateBetween(mem.getfDate(),
+	 * mem.gettDate());
+	 * 
+	 * List<Member> data3 = memberRepo.findBymemberName(mem.getMemberName());
+	 * List<Member> data4 = memberRepo.findByintroMCode(mem.getIntroMCode());
+	 * List<Member> data5 = memberRepo.findByphoneno(mem.getPhoneno()); List<Member>
+	 * data6 = memberRepo.findByaadharNo(mem.getAadharNo()); List<Member> data7 =
+	 * memberRepo.findBypan(mem.getPan());
+	 * 
+	 * if (!data1.isEmpty()) { return data1; } else if (!data2.isEmpty()) { return
+	 * data2; } else if (!data3.isEmpty()) { return data3; } else if
+	 * (!data4.isEmpty()) { return data4; } else if (!data5.isEmpty()) { return
+	 * data5; } else if (!data6.isEmpty()) { return data6; } return data7;
+	 * 
+	 * }
+	 */
 	
 	@RequestMapping(value = "/ViewAddMember", method = RequestMethod.GET)
 	public String redirect(Model model,HttpSession session) {

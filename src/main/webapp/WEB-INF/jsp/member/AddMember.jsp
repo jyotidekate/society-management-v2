@@ -14,13 +14,9 @@
 <script>
 function check()
 {
-
     var mobile = document.getElementById('introMCode');
-   
-    
     var message = document.getElementById('message');
-
-   var goodColor = "#0C6";
+   	var goodColor = "#0C6";
     var badColor = "#FF9B37";
   
     if(mobile.value.length!=10){
@@ -30,14 +26,14 @@ function check()
         message.innerHTML = "required 10 digits, match requested format!"
     }}
 </script>
-
 <%
    } 
    %>
 <body class="skin-blue sidebar-mini"
 	style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);"
 	cz-shortcut-listen="true"
-	onload="AddMemberAjax(); RelativeRelationDropdown(); NomineeRelationDropdown();shareAllFromList();branchNameList(); CasteDataFetchinDropDown();CategoryDataFetchinDropDown();">
+	onload="AddMemberAjax(); RelativeRelationDropdown(); NomineeRelationDropdown(); shareAllFromList(); branchNameList(); CasteDataFetchinDropDown(); CategoryDataFetchinDropDown(); getDropDownSharealloateFrom(); GetBranchNameInTheDropDown();">
+	
 	<script type="text/javascript">
       function calculateAge() {
        const dob = new Date(document.getElementById("dob").value); // get DOB from the date input field
@@ -77,7 +73,6 @@ function check()
 								<div class="form-horizontal">
 									<div class="box-body">
 										<div class="col-md-6">
-
 											<div id="ContentPlaceHolder1_idverify" class="form-group row">
 												<label class="col-sm-4 control-label" style="color: green;">Client
 													NO<strong style="color: Red">*</strong>
@@ -86,10 +81,8 @@ function check()
 													<input name="clientNo" value="${count }" type="text"
 														maxlength="6" id="clientNo" class="form-control"
 														readonly="readonly" />
-
 												</div>
 											</div>
-
 											<div id="ContentPlaceHolder1_idverify" class="form-group row">
 												<label class="col-sm-4 control-label" style="color: green;">CLient
 													ID<strong style="color: Red">*</strong>
@@ -97,10 +90,8 @@ function check()
 												<div class="col-sm-8">
 													<input name="clientIDNo" type="text" maxlength="6"
 														id="clientIDNo" class="form-control" readonly="readonly" />
-
 												</div>
 											</div>
-
 											<div class="form-group">
 												<label class="col-sm-4 control-label">Registration
 													Date <strong style="color: Red">*</strong>
@@ -194,7 +185,7 @@ function check()
 												</div>
 											</div>
 											<div class="form-group row">
-												<label class="col-sm-4 control-label">Martial Status</label>
+												<label class="col-sm-4 control-label">Marital Status</label>
 												<div class="col-sm-8">
 													<select name="maritalStatus" id="maritalStatus"
 														class="form-control" style="width: 100%;">
@@ -280,16 +271,13 @@ function check()
 												<label class="col-sm-4 control-label">Branch Name <strong
 													style="color: Red">*</strong></label>
 												<div class="col-sm-8">
-													<select name="branchName" id="branchName1"
+													<select name="branchName" id="branchName"
 														class="form-control" style="width: 100%;">
 														<option value="">Select Branch Name</option>
-
 													</select>
 												</div>
 											</div>
-
 											<h3 style="font-weight: bold;">Internet Banking</h3>
-
 											<div class="form-group row">
 												<label for="txtPin" class="col-sm-4 control-label">Login
 													ID <strong style="color: Red">*</strong>
@@ -300,7 +288,6 @@ function check()
 														Placeholder="Enter Login ID" />
 												</div>
 											</div>
-
 											<div class="form-group row">
 												<label for="txtPin" class="col-sm-4 control-label">Password
 													<strong style="color: Red">*</strong>
@@ -310,7 +297,6 @@ function check()
 														class="form-control" Placeholder="Enter Password" />
 												</div>
 											</div>
-
 											<div class="form-group row">
 												<label for="txtPin" class="col-sm-4 control-label">Member
 													Income <strong style="color: Red">*</strong>
@@ -321,7 +307,6 @@ function check()
 												</div>
 											</div>
 										</div>
-
 										<div class="col-md-6">
 											<div class="form-group row">
 												<label for="txtPin" class="col-sm-4 control-label">Pin
@@ -329,7 +314,7 @@ function check()
 												</label>
 												<div class="col-sm-8">
 													<input name="pinCode" type="text" maxlength="6"
-														id="ContentPlaceHolder1_txtPin" class="form-control"
+														id="pinCode" class="form-control"
 														Placeholder="Enter Pincode" /> <span
 														id="ContentPlaceHolder1_RequiredFieldValidator4"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
@@ -342,7 +327,7 @@ function check()
 												</label>
 												<div class="col-sm-8">
 													<input name="aadharNo" type="text" maxlength="12"
-														id="ContentPlaceHolder1_txtAadharNo" class="form-control"
+														id="aadharNo" class="form-control"
 														Placeholder="Enter Aadhar No."
 														onkeypress="return isNumberOnlyKey(this, event);"
 														autocomplete="off" /> <span
@@ -355,9 +340,9 @@ function check()
 												<label for="txtPin" class="col-sm-4 control-label">PAN
 													No.</label>
 												<div class="col-sm-6">
-													<input name="pan" type="text" maxlength="10"
-														id="ContentPlaceHolder1_txtPAN" class="form-control"
-														Placeholder="Enter PAN No." autocomplete="off" /> <span
+													<input name="pan" type="text" maxlength="10" id="pan"
+														class="form-control" Placeholder="Enter PAN No."
+														autocomplete="off" /> <span
 														id="ContentPlaceHolder1_RequiredFieldValidator15"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														PAN No</span>
@@ -378,7 +363,7 @@ function check()
 													No.</label>
 												<div class="col-sm-6">
 													<input name="voterNo" type="text" maxlength="10"
-														id="ContentPlaceHolder1_txtVoterNo" class="form-control"
+														id="voterNo" class="form-control"
 														Placeholder="Enter Voter No." autocomplete="off" /> <span
 														id="ContentPlaceHolder1_RequiredFieldValidator16"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
@@ -401,7 +386,7 @@ function check()
 												</label>
 												<div class="col-sm-8">
 													<input name="phoneno" type="text" maxlength="10"
-														id="ContentPlaceHolder1_txtPhoneno" class="form-control"
+														id="phoneno" class="form-control"
 														Placeholder="Enter Mobile No" autocomplete="off"
 														onkeypress="return isNumberOnlyKey(this, event);" /> <span
 														id="ContentPlaceHolder1_RequiredFieldValidator8"
@@ -413,9 +398,8 @@ function check()
 												<label for="txtEmailid" class="col-sm-4 control-label">Email
 													ID </label>
 												<div class="col-sm-8">
-													<input name="emailid" type="text"
-														id="ContentPlaceHolder1_txtEmailid" class="form-control"
-														Placeholder="Enter Email ID" /> <span
+													<input name="emailid" type="text" id="emailid"
+														class="form-control" Placeholder="Enter Email ID" /> <span
 														id="ContentPlaceHolder1_Reg1"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Invalid
 														Email ID</span>
@@ -424,17 +408,15 @@ function check()
 											<div class="form-group row">
 												<label for="txtOccupation" class="col-sm-4 control-label">Occupation</label>
 												<div class="col-sm-8">
-													<input name="occupation" type="text"
-														id="ContentPlaceHolder1_txtOccupation"
+													<input name="occupation" type="text" id="occupation"
 														class="form-control" Placeholder="Enter Occupation" />
 												</div>
 											</div>
 											<div class="form-group row">
 												<label for="txtEducation" class="col-sm-4 control-label">Education</label>
 												<div class="col-sm-8">
-													<input name="education" type="text"
-														id="ContentPlaceHolder1_txtEducation" class="form-control"
-														Placeholder="Enter Education" />
+													<input name="education" type="text" id="education"
+														class="form-control" Placeholder="Enter Education" />
 												</div>
 											</div>
 											<div class="form-group row">
@@ -447,7 +429,6 @@ function check()
 													<span id="message"></span>
 												</div>
 											</div>
-
 											<div class="form-group row">
 												<label for="txtIntroMCode" class="col-sm-4 control-label">Passport
 													Number<strong style="color: Red">*</strong>
@@ -458,7 +439,6 @@ function check()
 														Placeholder="Enter Passport Number" /> <span id="message"></span>
 												</div>
 											</div>
-
 											<div class="form-group row">
 												<label class="col-sm-4 control-label">Caste Name <strong
 													style="color: Red">*</strong></label>
@@ -466,12 +446,9 @@ function check()
 													<select name="caste" id="caste" class="form-control"
 														style="width: 100%;">
 														<option value="">Select Caste Name</option>
-														<!--                                            <option value ="A" >A </option> -->
-
 													</select>
 												</div>
 											</div>
-
 											<div class="form-group row">
 												<label class="col-sm-4 control-label">Religion Name
 													<strong style="color: Red">*</strong>
@@ -480,12 +457,9 @@ function check()
 													<select name="religionName" id="religionName"
 														class="form-control" style="width: 100%;">
 														<option value="">Select Religion Name</option>
-
-
 													</select>
 												</div>
 											</div>
-
 											<div class="form-group row">
 												<label class="col-sm-4 control-label">Category Name
 													<strong style="color: Red">*</strong>
@@ -498,7 +472,6 @@ function check()
 													</select>
 												</div>
 											</div>
-
 											<div class="form-group row">
 												<label class="col-sm-4 control-label">Risk Category
 													<strong style="color: Red">*</strong>
@@ -511,7 +484,6 @@ function check()
 													</select>
 												</div>
 											</div>
-
 											<div class="form-group row">
 												<label class="col-sm-4 control-label">Nationality <strong
 													style="color: Red">*</strong></label>
@@ -523,7 +495,6 @@ function check()
 													</select>
 												</div>
 											</div>
-
 											<div class="form-group row">
 												<label for="txtIntroMName" class="col-sm-4 control-label">Photo(with
 													aadhar)</label>
@@ -671,7 +642,7 @@ function check()
 												style="color: Red">*</strong></label>
 											<div class="col-sm-8">
 												<select name="shareAllotedfrm" id="shareAllotedfrm"
-													class="form-control select2" style="width: 100%;">
+													class="form-control" style="width: 100%;">
 													<option value="">Select Share Alloted From</option>
 
 												</select> <span id="ContentPlaceHolder1_RequiredFieldValidator13"
@@ -790,7 +761,6 @@ function check()
 									</div>
 								</div>
 								</form>
-
 							</div>
 						</div>
 					</div>
@@ -839,11 +809,11 @@ function check()
 	<script src="dist/js/AddMember.js"></script>
 	<script src="dist/js/memberSection.js"></script>
 	<script src="dist/js/RelativeRelation.js"></script>
+	<script src="dist/js/GetAllBranch.js"></script>
 
 	<script>
       var fileTag = document.getElementById("filetag"),
           preview = document.getElementById("preview");
-          
           
       fileTag.addEventListener("change", function() {
         changeImage(this);
@@ -863,9 +833,7 @@ function check()
         }
       }
    </script>
-
-
-
+   
 	<script>
       function printTable() {
           const table = document.querySelector('table');
@@ -905,6 +873,7 @@ function check()
             xhr.send(formData);
         }
     </script>
+    
 	<script>
     function shareAllFromList(){
     const shareAllotedfrm = document.getElementById("shareAllotedfrm1");
@@ -928,6 +897,7 @@ function check()
 		}
 	});
 	}
+    
     function branchNameList(){
     	const selectBranchName = document.getElementById("branchName1");
     	$.ajax({
@@ -943,15 +913,12 @@ function check()
     				option.innerHTML = value.name
     				selectBranchName.appendChild(option)
     			})
-
     		},
     		error: function() {
     			alert("Device control failed");
     		}
     	});
     }
-    
-    
     </script>
 
 	<script>
@@ -1055,8 +1022,6 @@ function check()
 		             return;
 		         }
 				
-				
-				
 				var form = $('#fileUploadForm')[0];
 				var data = new FormData(form);
 				$.ajax({
@@ -1080,8 +1045,6 @@ function check()
 		});
 	</script>
 
-
-
 	<script>
 		$(document).ready(function() {
 			$('#ContentPlaceHolder1_btnUpdate').click(function() {
@@ -1095,7 +1058,6 @@ function check()
 		             alert("Select THe Photo !!!");
 		             return;
 		         }
-				
 				
 				var form = $('#fileUploadForm')[0];
 				var data = new FormData(form);

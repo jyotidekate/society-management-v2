@@ -152,13 +152,13 @@
                                  </caption>
                                  <tr style="color:White;background-color:#008385;">
                                    <th scope="col">SL NO</th>
-                                    <th scope="col">MEMBER CODE</th>
-                                    <th scope="col">MEMBER NAME</th>
-                                    <th scope="col">CSP CODE</th>
-                                    <th scope="col">DOJ</th>
+                                    <th scope="col">MEMBER NAME </th>
+                                    <th scope="col">MEMBER INCOME</th>
+                                    <th scope="col">BANK CODE</th>
+                                    <th scope="col">DOB</th>
                                     <th scope="col">RELATIVE</th>
                                     <th scope="col">ADDRESS</th>
-                                    <th scope="col">MOBILE</th>
+                                    <th scope="col">MOBILE NO</th>
                                     <th scope="col">AADHAR NO</th>
                                     <th scope="col">PAN</th>
                                    </tr>

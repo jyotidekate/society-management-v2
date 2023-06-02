@@ -79,7 +79,6 @@ function SearchTHePolicyNumber(){
 		"id":id
 	}
 	const myJson = JSON.stringify(input);
-	
 	//alert(id);
 	
 	 $.ajax({
@@ -89,9 +88,7 @@ function SearchTHePolicyNumber(){
                         url: 'appenddatainfields',
       					data: myJson,
                         asynch: false,
-    
                         success: function(data) {
-   
                    	    for (var i = 0; i < data.length; i++) {
 						   
 				    // alert(data[i].memberName);
@@ -126,11 +123,9 @@ function SearchTHePolicyNumber(){
 }
 	
 //Memeber Section - Member	Report
-//Data Fetch in DropDown               
+//Data Fetch in Branch DropDown of CLIENT REPORT MODULE              
 function  reportDataFetchinDropDown() {
-	
 	//alert("Hello")
-
 	$.ajax({
 		type: "get",
 		contentType: "application/json",
@@ -151,7 +146,7 @@ function  reportDataFetchinDropDown() {
 	});
 }
 	
-//Search Data By Branch Name & Date	
+//Search Data By Branch Name & Date	of CLIENT REPORT MODULE 
 function getMemberRepottSearch() {
 	
 	var input = {
@@ -161,7 +156,6 @@ function getMemberRepottSearch() {
 	}
 	
 	let myJson =JSON.stringify(input);
-	
 	//alert(myJson)
 	
 	$.ajax({
@@ -172,6 +166,9 @@ function getMemberRepottSearch() {
 		asynch: false,
 		success: function(data) {
 			//alert(data.branchName)
+			//alert(data.fDate);
+			//alert(data.tDate);
+			
 			for (let i = 0; i < 1; i++) {
 				//alert(data[i].branchName)
 				var j=1;
@@ -179,10 +176,10 @@ function getMemberRepottSearch() {
 					return (
 						`<tr>
                          <td>${value.id}</td> 
-						 <td>${value.mumberCode}</td>     
-					     <td>${value.memberName}</td>  
-					     <td>${value.cspCode}</td>  
-					     <td>${value.doj}</td>  
+						 <td>${value.memberName}</td> 
+					     <td>${value.memberIncome}</td>   
+					     <td>${value.bankCode}</td>  
+					     <td>${value.dob}</td>  
 					     <td>${value.relativeName}</td>  
 					     <td>${value.address}</td>    
                          <td>${value.phoneno}</td>
@@ -194,7 +191,6 @@ function getMemberRepottSearch() {
 				const tableBody1 = document.querySelector("#tableBody");
 				tableBody1.innerHTML = tableData1;
 			}
-
 		},
 		error: function() {
 			alert("Device control failed");
@@ -226,6 +222,7 @@ function  dropDownBranchCode() {
 }
 		
 //Search Through Search Box	
+//Client Search of Client Module
 function searchThroughSearchBox(){
 	var input = {
 		branchName : document.getElementById("branchName").value,
@@ -239,7 +236,6 @@ function searchThroughSearchBox(){
 	};
 	
 	const myJSON = JSON.stringify(input);
-	
 	//alert(myJSON);
 		
 	$.ajax({
@@ -252,7 +248,6 @@ function searchThroughSearchBox(){
 			for (let i = 0; i < data.length; i++) {
 				var j =1;
 				const tableData = data.map(function(value) {
-					
 					return (
 						` 
                             <tr>
@@ -264,7 +259,7 @@ function searchThroughSearchBox(){
                                 <td scope="col">${value.pan}</td>
                                 <td scope="col">${value.phoneno}</td>
                                 <td scope="col">${value.nomineeName}</td>
-                                <td scope="col">${value.status}</td>
+                                 <td scope="col">${value.status}</td>
                                 
                             </tr>`
 					);
@@ -272,6 +267,29 @@ function searchThroughSearchBox(){
 				const tabelBodyShare = document.querySelector("#table1");
 				tabelBodyShare.innerHTML = tableData;
 			}
+		},
+		error: function() {
+			alert("Device control failed");
+		}
+	});
+}
+
+//Data Fetch in Branch DropDown of Client Search
+function  dropDownBranchNameData() {
+	
+	$.ajax({
+		type: "get",
+		contentType: "application/json",
+		url: 'getAllBranchDataInDropDown',
+		asynch: false,
+		success: function(data) {
+			
+			 var appenddata1 = "";
+                    //var jsonData1 = JSON.parse(data1.d);
+                    for (var i = 0; i < data.length; i++) {
+                         appenddata1 += "<option value='"+data[i].branchName+"'>"+data[i].branchName +"</option>";
+                    }
+                    $("#branchName").append(appenddata1);
 		},
 		error: function() {
 			alert("Device control failed");

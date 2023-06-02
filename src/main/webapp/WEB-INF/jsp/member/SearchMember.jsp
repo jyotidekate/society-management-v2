@@ -1,7 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.society.application.model.Member" %>
 <jsp:include page="../header.jsp" />
-<body onload=" dropDownBranchCode();" class="skin-blue sidebar-mini" style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);" cz-shortcut-listen="true">
+<body onload="dropDownBranchNameData();" class="skin-blue sidebar-mini" style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);" cz-shortcut-listen="true">
       <div class="aspNetHidden">
          <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
          <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />

@@ -48,10 +48,9 @@
                      document.getElementById("ContentPlaceHolder1_txtMemberName").value = data.memberName;
                      document.getElementById("idMemberCode").value = x;
                      document.getElementById("ContentPlaceHolder1_txtMobile").value = data.phoneno;
-                     document.getElementById("ContentPlaceHolder1_txtDOJ").value = data.dob;
+                     document.getElementById("registrationDate").value = data.registrationDate;
                      document.getElementById("ContentPlaceHolder1_txtAadharNo").value = data.aadharNo;
                      document.getElementById("ContentPlaceHolder1_txtPAN").value = data.pan;   
-                     
                      document.getElementById("ContentPlaceHolder1_txtVoterNo").value = data.voterNo;
                      document.getElementById("ContentPlaceHolder1_txtRationNo").value = data.rationNo;
                      document.getElementById("ContentPlaceHolder1_txtDLNo").value = data.dLNo;
@@ -199,7 +198,7 @@
 									<div class="col-md-3">
 										<div class="form-group">
 											<label>Mobile No. :</label> <input name="phoneno" type="text"
-												value="7498850190" readonly="readonly"
+												value="" readonly="readonly"
 												id="ContentPlaceHolder1_txtMobile" class="form-control"
 												Placeholder="Enter Mobile No." autocomplete="off" />
 										</div>
@@ -211,8 +210,8 @@
 												<div class="input-group-addon">
 													<i class="fa fa-calendar"></i>
 												</div>
-												<input name="dob" type="text" value="27/06/2022"
-													readonly="readonly" id="ContentPlaceHolder1_txtDOJ"
+												<input name="registrationDate" type="text" value=""
+													readonly="readonly" id="registrationDate"
 													class="form-control"
 													data-inputmask="&#39;alias&#39;: &#39;dd/mm/yyyy&#39;"
 													data-mask="" />
@@ -223,7 +222,7 @@
 									<div class="col-md-3">
 										<div class="form-group">
 											<label>Aadhar No. :</label> <input name="aadharNo"
-												type="text" value="226175533958" readonly="readonly"
+												type="text" value="" readonly="readonly"
 												id="ContentPlaceHolder1_txtAadharNo" class="form-control"
 												Placeholder="Enter Aadhar No." autocomplete="off" />
 										</div>
@@ -231,7 +230,7 @@
 									<div class="col-md-3">
 										<div class="form-group">
 											<label>PAN No. :</label> <input name="pan" type="text"
-												value="BAHPB1218B" readonly="readonly"
+												value="" readonly="readonly"
 												id="ContentPlaceHolder1_txtPAN" class="form-control"
 												Placeholder="Enter PAN No." autocomplete="off" />
 										</div>
@@ -342,15 +341,7 @@
 					</div>
 				</section>
 			</div>
-			<!-- /.content-wrapper -->
-			<footer class="main-footer">
-				<div class="pull-right hidden-xs">
-					<b>Version</b> 1.0.1
-				</div>
-				<strong>Copyright © 2020-2021 <a> <span
-						id="lblCompanyName1">EQFI NIDHI LIMITED</span></a>.
-				</strong> All rights reserved.
-			</footer>
+			
 			<div class="control-sidebar-bg"></div>
 		</div>
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
