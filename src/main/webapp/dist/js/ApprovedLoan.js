@@ -1,26 +1,21 @@
 //Ajax Code Starts Here
-
 function ApprovedLoan()
 {
-	
  var branch= document.getElementById("branch").value;
  var fromdate= document.getElementById("fromdate").value;
  var todate= document.getElementById("todate").value;
 
  $.ajax({
-	
 	 type:"get",
      contentType: "application/json",
      url: 'getapprovedLoan',
      data:{Branch: branch, Fromdate :fromdate, Todate :todate},
      asynch: false,
      success: function(data) {  
-	
 	      for (let i = 0; i < data.length; i++)
 	       {
 			 const tableData = data.map(function(value){
-                 return (
-                		 
+                 return ( 
                     ` <tr>
                          <td>${value.slno}</td> 
 						 <td>${value.loanid}</td>     
@@ -40,7 +35,6 @@ function ApprovedLoan()
                      </tr>`
                  );
              })
-             
              .join('');
         	 const tabelBody = document.querySelector("#tabelapproved");
              tabelapproved.innerHTML = tableData;
@@ -50,5 +44,4 @@ function ApprovedLoan()
 	    	alert("Device control failed");
 	    }
  });
-
  }

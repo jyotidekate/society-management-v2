@@ -1,5 +1,4 @@
 //Ajax Code Starts Here
-
 function InvestmentReportAjax1()
 {	
  var branch= document.getElementById("branch").value;

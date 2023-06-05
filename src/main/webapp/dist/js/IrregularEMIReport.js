@@ -1,12 +1,10 @@
 //javaScript code Starts Here
  function IrregularEMIReport()
  { 
- 	
-  const selectbranch= document.getElementById("selectbranch"); 
+   const selectbranch= document.getElementById("selectbranch"); 
   	
    if (selectbranch.value === '') 
    { 
- 	
     var span = document.getElementById("selectbranchMsg"); 
     span.textContent = "Select Branch."; 
     span.style.display = "block"; 
@@ -25,12 +23,9 @@
  
  } 
 
-
 //1Ajax Code Starts Here
-
 function IrregularEMIReportAjax()
 {
-	
  var branch= document.getElementById("selectbranch").value;
  var fromdate= document.getElementById("fromdate").value;
  var todate= document.getElementById("todate").value;
@@ -46,13 +41,10 @@ function IrregularEMIReportAjax()
      data:{Branch:branch, Fromdate: fromdate, Todate:todate},
      asynch: false,
      success: function(data) {  
-	
 	      for (let i = 0; i < data.length; i++)
-	       {
-			
+	      {
 			 const tableData = data.map(function(value){
                  return (
-                		 
                 	` <tr>
 						 <td>${value.slno}</td>     
 					     <td>${value.loanid}</td>  
@@ -67,11 +59,9 @@ function IrregularEMIReportAjax()
 					     <td>${value.chequeno}</td>
 					     <td>${value.sbaccount}</td> 
 					     <td>${value.collectorcode}</td> 
-					      
                      </tr>`
                  );
              })
-             
              .join('');
         	 const tabelBody = document.querySelector("#table");
              table.innerHTML = tableData;

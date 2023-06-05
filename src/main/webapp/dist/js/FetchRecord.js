@@ -154,9 +154,8 @@ function getBusinessType(){
                         url: 'searchBusinessType',
       					data: {BusinessType:BusinessType,AdvisorCode:AdvisorCode, FDate : fDate ,TDate : tDate},
                         asynch: false,
-    
-                   success: function(data) {
-                   	for (var i = 0; i < data.length; i++) {
+                   		success: function(data) {
+                   		for (var i = 0; i < data.length; i++) {
 							const tableData = data.map(function(value){
                  return (
                      `<tr>
@@ -265,12 +264,9 @@ function getProjectionREport(){
                         url: 'searchProjectionReport',
       					data: {Branch1:Branch,PlanName1:PlanName,Fdate1:Fdate,Tdate1:Tdate},
                         asynch: false,
-    
-                   success: function(data) {
-	  
-                   	for (var i = 0; i < data.length; i++) {
-					
-							const tableData = data.map(function(value){
+                   		success: function(data) {
+                   		for (var i = 0; i < data.length; i++) {
+						const tableData = data.map(function(value){
                     return (	 
                      `<tr>
                          <td>${value.id}</td>

@@ -1,7 +1,6 @@
 //Relative Relation Dropdown
 function  RelativeRelationDropdown() {
 	
-
 	$.ajax({
 		type: "get",
 		contentType: "application/json",

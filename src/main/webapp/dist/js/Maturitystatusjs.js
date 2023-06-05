@@ -1,5 +1,4 @@
 //by combobox and dates
- 
  function getmaturityStatus(){
 	
 	var fdate = document.getElementById("fromdate").value;
@@ -8,20 +7,16 @@
 	
 	 $.ajax({
 		
-		          type:"get",
+		                type:"get",
                         contentType: "application/json",
                         url: 'Maturityapi',
       					data: {fromdate: fdate ,todate: tdate, selectbranch: branch },
                         asynch: false,
-    
                         success: function(data) {
-	 
                    	    for (var i = 0; i < data.length; i++) 
                    	    {
-						
 							const tableData = data.map(function(value){
                             return (
-                		 
                      `<tr>
                          <td>${value.policybranch}</td>
                          <td>${value.policyno}</td>
@@ -41,13 +36,10 @@
              }).join('');
                 const tabelBody = document.querySelector("#tableBody");
                 tableBody.innerHTML = tableData;
-                    
                    }
                    } ,
            	        error: function(){
            	    	alert("Device control failed");
            	    }
-		
 		});
-		
 }

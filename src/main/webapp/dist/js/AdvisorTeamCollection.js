@@ -10,7 +10,6 @@
   document.getElementById("ToDate").innerHTML = todate;
   document.getElementById("Advisorcode").innerHTML = advisorcode;
   
-  
  $.ajax({
 	
 	 type:"get",
@@ -22,7 +21,6 @@
 	
 	      for (let i = 0; i < data.length; i++)
 	       {
-			
 			 const tableData = data.map(function(value){
                  return (
                 		 
@@ -39,12 +37,9 @@
 					     <td>${value.unclearedamount}</td>  
 					     <td>${value.paymode}</td>  
 					     <td>${value.chqno}</td>   
-					        
-                         
                      </tr>`
                  );
              })
-             
              .join('');
         	 const tabelBody = document.querySelector("#tabelBody");
              tabelBody.innerHTML = tableData;
@@ -54,7 +49,6 @@
 	    	alert("Device control failed");
 	    }
  });
-
  }
  
  function appendSelectMember() {
@@ -218,6 +212,7 @@ function fetchBySelectedCode(){
 		}
 	});
 }
+
 function selectPosition() {
 	$.ajax({
 		type: "get",

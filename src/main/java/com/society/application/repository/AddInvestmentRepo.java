@@ -135,4 +135,6 @@ public interface AddInvestmentRepo extends JpaRepository<AddInvestment, Integer>
 	@Query("UPDATE AddInvestment SET flag = :flag WHERE id = :searchbyPolicyNo OR renewalDate = :renewalDate OR branchName = :branchName")
 	public int updateThroughIdRenewalDateBranchName(@Param("flag") String flag, @Param("searchbyPolicyNo") int id, @Param("renewalDate") String renewalDate, @Param("branchName") String branchName);
 
+	//public List<AddInvestment> findByPolicyno(String policyNo);
+
 }

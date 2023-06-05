@@ -1,7 +1,6 @@
 //javaScript code Starts Here
- function ChequeClear()
+function ChequeClear()
  { 
- 	
    const selectbranch= document.getElementById("selectbranch"); 
   	
    if (selectbranch.value === '') 
@@ -22,12 +21,10 @@
     { 
     	 return false; 
     } 
- 
  } 
 
 //1Ajax Code Starts Here
-
- function ChequeClearAjax1()
+function ChequeClearAjax1()
 {
 	
  var type= document.getElementById("type").value;
@@ -47,7 +44,6 @@
 	
 	      for (let i = 0; i < data.length; i++)
 	       {
-			
 			 const tableData = data.map(function(value){
                  return (
                 		 
@@ -59,7 +55,6 @@
                      </tr>`
                  );
              })
-             
              .join('');
         	 const tabelBody = document.querySelector("#table");
              table.innerHTML = tableData;

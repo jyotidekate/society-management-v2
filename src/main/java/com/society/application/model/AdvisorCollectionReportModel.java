@@ -9,7 +9,6 @@ import javax.persistence.Id;
 public class AdvisorCollectionReportModel 
 {
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -18,8 +17,7 @@ public class AdvisorCollectionReportModel
 	private String date;
 	private String fDate;
 	private String tDate;
-	
-	
+	private String month;
 	
 	public String getfDate() {
 		return fDate;
@@ -57,7 +55,11 @@ public class AdvisorCollectionReportModel
 	public void setDate(String date) {
 		this.date = date;
 	}
-	
-	
-	
+	public String getMonth() {
+		return month;
+	}
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
 }

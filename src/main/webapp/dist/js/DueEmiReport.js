@@ -1,6 +1,5 @@
 //Ajax Code Starts Here
-
- function DueEmiReport()
+function DueEmiReport()
 {	
  var branch= document.getElementById("branch").value;
  var plan= document.getElementById("plan").value;
@@ -14,12 +13,10 @@
      data:{Branch: branch, Plan: plan, AdvisorCode: advisorCode, TillDate: tillDate},
      asynch: false,
      success: function(data) {  
-	
 	      for (let i = 0; i < data.length; i++)
 	       {
 			 const tableData = data.map(function(value){
                  return (
-                		 
                 		 ` 
                      	<tr>
                         	 <td>${value.slno}</td> 
@@ -41,7 +38,6 @@
 					   `
                  );
              })
-             
              .join('');
         	 const tabelBody = document.querySelector("#table");
              table.innerHTML = tableData;

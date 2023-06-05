@@ -5,20 +5,16 @@ function  RegularEmiReport()
     var todate= document.getElementById("todate").value;
     
     $.ajax({
-	
 	 type:"get",
      contentType: "application/json",
      url: 'getregularEmiReport',
      data:{Branch: branch, Fromdate :fromdate, Todate :todate},
      asynch: false,
      success: function(data) {  
-	
 	      for (let i = 0; i < data.length; i++)
 	       {
-			
 			 const tableData = data.map(function(value){
-                 return (
-                		 
+                 return ( 
                     ` <tr>
                          <td>${value.sino}</td> 
 						 <td>${value.loanid}</td>     
@@ -33,11 +29,9 @@ function  RegularEmiReport()
 					     <td>${value.chequeno}</td>  
 					     <td>${value.sbaccount}</td> 
 					     <td>${value.collectorcode}</td>   
-                         
                      </tr>`
                  );
              })
-             
              .join('');
         	 const tabelBody = document.querySelector("#tabelemi");
              tabelemi.innerHTML = tableData;
@@ -47,5 +41,4 @@ function  RegularEmiReport()
 	    	alert("Device control failed");
 	    }
  });
-
 }

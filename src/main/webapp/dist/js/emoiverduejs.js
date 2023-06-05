@@ -6,21 +6,15 @@ function getemioverdue(){
     var codeadv= document.getElementById("typeadvisorcode").value;    
     var tdate=  document.getElementById("tilldate").value;  
 	 $.ajax({
-		
-		
 		                type:"get",
                         contentType: "application/json",
                         url: 'emiOverDue',
       					data: {selectbranch: branch ,selectplan:plan ,typeadvisorcode:codeadv , tilldate: tdate},
                         asynch: false,
-    
                         success: function(data) {
-
                    	    for (var i = 0; i < data.length; i++) {
-					
 							const tableData = data.map(function(value){
                             return (
-                		
                      `<tr>
                          <td>${value.slno}</td>
                          <td>${value.loanid}</td>
@@ -41,13 +35,10 @@ function getemioverdue(){
              }).join('');
          const tabelBody = document.querySelector("#tableBody");
          tableBody.innerHTML = tableData;
-                    
          }
          } ,
            	    error: function(){
            	    alert("Device control failed");
          }
-	
 	});
-	
 }

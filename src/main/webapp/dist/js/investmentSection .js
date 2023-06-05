@@ -887,78 +887,6 @@ $.ajax({
 });
 }
 
-//Policy Statement Module Ajax
-  function policyStatement()
-  {
-	var policyno= document.getElementById("policyno").value;
-	
-	$.ajax({
-	
-	 type:"get",
-     contentType: "application/json",
-     url: 'getpolicystatement',
-     data:{Policyno: policyno},
-     asynch: false,
-     success: function(data) {  
-	
-	      for (let i = 0; i < data.length; i++)
-	       {
-			 
-			 const tableData = data.map(function(value){
-                 return (
-                		 
-                    ` <tr>
-                         <td>${value.cspname}</td>
-						 <td>${value.address}</td>
-						 <td>${value.advisorCode}</td>
-						 <td>${value.advisorName}</td>
-						 <td>${value.age}</td>
-						 <td>${value.chkisSms}</td>
-						 <td>${value.district}</td>
-						 <td>${value.dob}</td>
-			             <td>${value.jointCode}</td>
-						 <td>${value.jointName}</td>
-			             <td>${value.mDate}</td>
-			             <td>${value.mISInterest}</td>
-			             <td>${value.maturityAmount}</td>
-		                 <td>${value.memberName}</td>
-			             <td>${value.misMode}</td>
-			             <td>${value.mode}</td>
-						 <td>${value.modeOfOp}</td>
-				         <td>${value.nomineeAge}</td>
-						 <td>${value.nomineeName}</td>
-					     <td>${value.nomineeRelation}</td>
-						 <td>${value.paymode}</td>
-				         <td>${value.phoneno}</td>
-						 <td>${value.pin}</td>
-				         <td>${value.policyAmount}</td>
-			             <td>${value.policyDate}</td>
-						 <td>${value.relativeName}</td>
-						 <td>${value.remarks}</td>
-						 <td>${value.schemeName}</td>
-						 <td>${value.schemeType}</td>
-			             <td>${value.searchMemberCode}</td>
-						 <td>${value.state}</td>
-						 <td>${value.term}</td>
-			             <td>${value.totalDeposit}</td>
-			             <td>${value.policyno}</td>
-						     
-                     </tr>`
-                 );
-             })
-             
-             .join('');
-        	 const tabelBody = document.querySelector("#tablepolicy");
-             tablepolicy.innerHTML = tableData;
-		} 
-     } ,
-	    error: function(){
-	    	alert("Device control failed");
-	    }
- });
-	        
-}
-
 //Soft delete operation for Policy No., Renewal Date & Branch Name
 function softDeleteForThreeThings() {
     var searchbyPolicyNo = document.getElementById("searchbyPolicyNo").value;
@@ -1183,4 +1111,5 @@ function getDataByPolNofordailyRD() {
 		}
 	});
 }
+
 

@@ -1,12 +1,10 @@
 //Ajax Code Starts Here
-
 function IncentivePaymentReport()
 {	
  var branch= document.getElementById("branch").value;
  var fromdate= document.getElementById("fromdate").value;
  var todate= document.getElementById("todate").value;
  //alert(branch);
- 
  $.ajax({
 	 type:"get",
      contentType: "application/json",
@@ -14,12 +12,10 @@ function IncentivePaymentReport()
      data:{Branch: branch, Fromdate: fromdate, Todate: todate},
      asynch: false,
      success: function(data) {  
-	
 	      for (let i = 0; i < data.length; i++)
 	       {
 			 const tableData = data.map(function(value){
                  return (
-                		 
                 		 `<tr>
                         	 <td>${value.branch}</td> 
 							 <td>${value.paydate}</td>     
@@ -33,7 +29,6 @@ function IncentivePaymentReport()
 					   </tr>`
                  );
              })
-             
              .join('');
         	 const tabelBody = document.querySelector("#table");
              table.innerHTML = tableData;

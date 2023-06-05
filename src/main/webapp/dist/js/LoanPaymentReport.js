@@ -1,13 +1,10 @@
 //javaScript code Starts Here
-
 function LoanPaymentReportJS()
 { 
- 	
-  const selectbranch= document.getElementById("selectbranch"); 
+   const selectbranch= document.getElementById("selectbranch"); 
   	
    if (selectbranch.value === '') 
    { 
- 	
     var span = document.getElementById("selectbranchMsg"); 
     span.textContent = "Select Branch."; 
     span.style.display = "block"; 
@@ -28,31 +25,23 @@ function LoanPaymentReportJS()
 
 
 //1Ajax Code Starts Here
-
 function LoanPaymentReportAjax()
 {
-	
  var branch= document.getElementById("selectbranch").value;
  var fromdate= document.getElementById("fromdate").value;
  var todate= document.getElementById("todate").value;
  
- //for date display
-
  $.ajax({
-	
 	 type:"get",
      contentType: "application/json",
      url: 'LoanPaymentReport1',
      data:{Branch:branch, Fromdate: fromdate, Todate:todate},
      asynch: false,
      success: function(data) {  
-	
 	      for (let i = 0; i < data.length; i++)
 	       {
-			
 			 const tableData = data.map(function(value){
                  return (
-                		 
                 	` <tr>
 						 <td>${value.slno}</td>     
 					     <td>${value.loanid}</td>  
@@ -72,7 +61,6 @@ function LoanPaymentReportAjax()
                      </tr>`
                  );
              })
-             
              .join('');
         	 const tabelBody = document.querySelector("#table");
              table.innerHTML = tableData;
