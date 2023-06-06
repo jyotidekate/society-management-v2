@@ -67,6 +67,9 @@ public class AddInvestment {
 	private String noOfInstPaid;	
 	private String collectorCode;
 	private String flag;
+	private String applicationDate;
+	private String paymentDate;
+
 	@Transient
 	private String frontEndPhoto;
 	@Transient
@@ -419,6 +422,18 @@ public class AddInvestment {
 	}
 	public void setFrontEndSignature(String frontEndSignature) {
 		this.frontEndSignature = frontEndSignature;
+	}
+	public String getApplicationDate() {
+		return applicationDate;
+	}
+	public void setApplicationDate(String applicationDate) {
+		this.applicationDate = applicationDate;
+	}
+	public String getPaymentDate() {
+		return paymentDate;
+	}
+	public void setPaymentDate(String paymentDate) {
+		this.paymentDate = paymentDate;
 	}
 	
 }

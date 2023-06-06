@@ -1,19 +1,12 @@
-
 //1Ajax Code Starts Here
-
- function MatApplicationStatusAjax()
+function MatApplicationStatusAjax()
 {
 	
-
  var branch= document.getElementById("selectbranch").value;
  var fromdate= document.getElementById("fromdate").value;
  var todate= document.getElementById("todate").value;
- 
 
-
- 
  $.ajax({
-	
 	 type:"get",
      contentType: "application/json",
      url: 'MatApplicationStatus1',
@@ -23,7 +16,6 @@
 	
 	      for (let i = 0; i < data.length; i++)
 	       {
-			
 			 const tableData = data.map(function(value){
                  return (
                 		 
@@ -41,7 +33,6 @@
                      </tr>`
                  );
              })
-             
              .join('');
         	 const tabelBody = document.querySelector("#table");
              table.innerHTML = tableData;
@@ -52,3 +43,24 @@
 	    }
  });
  }
+ 
+ function  getBranchName1() {
+	
+	$.ajax({
+		type: "get",
+		contentType: "application/json",
+		url: 'getBranchNameForMaturity',
+		asynch: false,
+		success: function(data) {
+			
+			 var appenddata1 = "";
+                    for (var i = 0; i < data.length; i++) {
+                         appenddata1 += "<option value = '"+data[i].name +"'>" +data[i].name +" </option>";
+                    }
+                    $("#selectbranch").append(appenddata1);
+		},
+		error: function() {
+			alert("Device control failed");
+		}
+	});
+}

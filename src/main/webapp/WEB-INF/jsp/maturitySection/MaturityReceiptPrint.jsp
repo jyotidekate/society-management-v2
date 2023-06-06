@@ -1,4 +1,3 @@
-
 <jsp:include page="../header.jsp" />
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <style>
@@ -14,9 +13,8 @@ th, td {
   padding: 8px;
 }
 </style>
-<body class="skin-blue sidebar-mini" style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);" cz-shortcut-listen="true">
+<body class="skin-blue sidebar-mini" style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);" cz-shortcut-listen="true" onload="PolNoDropdown(); ">
    <!--  <form method="post" action="http://admin:eqfi%23123@eqfinidhi.eadmin.in/Admin/MaturityReceiptRePrint.aspx" id="form1">
-
  -->
         <div style="height: auto; min-height: 100%; border-radius: 30px; margin: 15px; background: url(dist/img/back.jpg);">
            <!-- Header Start-->
@@ -26,15 +24,8 @@ th, td {
          <!-- Aside Menu Start-->
          <jsp:include page="../asideMenu.jsp" />
          <!-- Aside Menu end -->    
-          
-            <script type="text/javascript">
-//<![CDATA[
-Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [], [], [], 90, 'ctl00');
-//]]>
-</script>
-
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper" style="min-height: 1105.75px;">
+         <!-- Content Wrapper. Contains page content -->
+         <div class="content-wrapper" style="min-height: 1105.75px;">
                 
     <section class="content-header">
         <h1 id="ContentPlaceHolder1_IdHeader">Maturity Receipt Issue</h1>
@@ -45,7 +36,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
         </ol>
     </section>
     <section class="content">
-
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-warning">
@@ -57,34 +47,25 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Select by Policy No.<strong style="color: Red">*</strong></label>
-                                    <select name="policyno" id="policyno" class="form-control select2" style="width: 100%;">
+                                    <select name="id" id="id" class="form-control select2" style="width: 100%;">
                                     <option >All</option>
-                                    <option value="001">001</option>
-                                    <option value="002">002</option>
-                                    <option value="003">003</option>
                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-9">
                                 <div class="form-group">
                                     <label></label>
-                                    
-                                    <button type="submit" name="btnsearch" onclick="MaturityReceiptPrintAjax();" value="Search" id="btnsearch"  class="btn btn-success pull-right margin-r-5 margin-20" >Search</button>
-
+                                    <button type="submit" name="btnsearch" onclick="policyStatement1();" value="Search" id="btnsearch"  class="btn btn-success pull-right margin-r-5 margin-20" >Search</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
                 <div class="box box-success" style="box-shadow: none; overflow: auto !important;">
-
                     <div class="box-body">
                         <div class="clearfix margin-bottom-10"></div>
                          <table cellspacing="0" cellpadding="3" rules="all" class="display nowrap table table-hover table-striped table-bordered" 
                               border="1"  style="width:100%;border-collapse:collapse;">
-                                  
                                   <tr style="color:White;background-color:#008385;">                            
                                   <td>CSP Name</td>
                                   <td>Address</td>
@@ -121,44 +102,23 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
                                   <td>Total Deposit</td>
                                   <td>Policy No</td>
                                   </tr>     
-                                   <tbody id="tableMaturityReceipt">
+                                  <tbody id="tableMaturityReceipt">
                                     
       							  </tbody>    
-                                 
                                  <caption style="font-weight:bold; text-align:center;">
                                     Maturity Receipt Print Report
-                                    
                                  </caption>       
                             </table> 
-                       
                         <div>
-
                       </div>
-                      
                     </div>
-
                 </div>
             </div>
         </div>
     </section>
-
             </div>
             <!-- /.content-wrapper -->
-
-            <footer class="main-footer">
-                <div class="pull-right hidden-xs">
-                    <b>Version</b> 1.0.1
-   
-                </div>
-                <strong>Copyright © 2020-2021 <a>
-                    <span id="lblCompanyName1">EQFI NIDHI LIMITED</span></a>.</strong> All rights
-    reserved.
- 
-            </footer>
-
-
             <div class="control-sidebar-bg"></div>
-
         </div>
 
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -192,10 +152,9 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
         <script src="bower_components/select2/dist/js/select2.full.min.js"></script>
         <!-- Maturity Receipt Print -->
         <script src="dist/js/investmentSection.js"></script>
+        <script src="dist/js/MaturitySectionSearch.js"></script>
         
-      
   <!--   </form> -->
 </body>
-
 
 </html>

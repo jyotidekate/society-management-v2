@@ -24,15 +24,10 @@ public class MISDeposit {
 	private String mISComN;
 	private String mISStatus;
 	private String misplancode;
+	private String mISmonthfrom;
+	private String mISmonthto;
+	private String mISdeduction;
 	
-	
-	
-	public String getMisplancode() {
-		return misplancode;
-	}
-	public void setMisplancode(String misplancode) {
-		this.misplancode = misplancode;
-	}
 	public int getId() {
 		return id;
 	}
@@ -111,6 +106,28 @@ public class MISDeposit {
 	public void setmISStatus(String mISStatus) {
 		this.mISStatus = mISStatus;
 	}
-	
+	public String getmISmonthfrom() {
+		return mISmonthfrom;
+	}
+	public void setmISmonthfrom(String mISmonthfrom) {
+		this.mISmonthfrom = mISmonthfrom;
+	}
+	public String getmISmonthto() {
+		return mISmonthto;
+	}
+	public void setmISmonthto(String mISmonthto) {
+		this.mISmonthto = mISmonthto;
+	}
+	public String getmISdeduction() {
+		return mISdeduction;
+	}
+	public void setmISdeduction(String mISdeduction) {
+		this.mISdeduction = mISdeduction;
+	}public String getMisplancode() {
+	    return misplancode;
+	}
+	public void setMisplancode(String misplancode) {
+	    this.misplancode = misplancode;
+	}
 
 }

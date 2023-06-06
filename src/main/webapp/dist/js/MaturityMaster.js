@@ -1,19 +1,14 @@
 /* Daily Deposit */
- function MaturityMasterAjax1()
+function MaturityMasterAjax1()
 {	
- 
  $.ajax({
 	 type:"get",
      contentType: "application/json",
      url: 'maturityMaster11',
-     
      asynch: false,
      success: function(data) {  
-	      
-	      for (let i = 0; i < data.length; i++)
-	      
-	      
-	       {
+	 for (let i = 0; i < data.length; i++)
+	 {
 			 const tableData = data.map(function(value){
                  return (
                 		 
@@ -26,37 +21,30 @@
                      	</tr>`
                  );
              })
-             
              .join('');
         	 const tabelBody = document.querySelector("#tableBody");
              tableBody.innerHTML = tableData;
-		} 
-     } ,
+		  } 
+        },
 	    error: function(){
 	    	alert("Device control failed");
 	    }
  });
  }
  
- /* Recurring Deposit */
- function MaturityMasterAjax2()
+/* Recurring Deposit */
+function MaturityMasterAjax2()
 {	
- 
  $.ajax({
 	 type:"get",
      contentType: "application/json",
      url: 'maturityMaster22',
-     
      asynch: false,
      success: function(data) {  
-	      
-	      for (let i = 0; i < data.length; i++)
-	      
-	      
-	       {
+	 for (let i = 0; i < data.length; i++)
+	 {
 			 const tableData = data.map(function(value){
                  return (
-                		 
                      	`<tr>
                         	<td>${value.rplancode}</td> 
 							<td>${value.rinstfrom}</td>     
@@ -66,37 +54,30 @@
                      	</tr>`
                  );
              })
-             
              .join('');
         	 const tabelBody = document.querySelector("#tableBody");
              tableBody.innerHTML = tableData;
-		} 
-     } ,
+		 } 
+        },
 	    error: function(){
 	    	alert("Device control failed");
 	    }
  });
  }
  
- /* Fixed Deposit */
- function MaturityMasterAjax3()
+/* Fixed Deposit */
+function MaturityMasterAjax3()
 {	
- 
  $.ajax({
 	 type:"get",
      contentType: "application/json",
      url: 'maturityMaster33',
-     
      asynch: false,
      success: function(data) {  
-	      
-	      for (let i = 0; i < data.length; i++)
-	      
-	      
-	       {
+	 for (let i = 0; i < data.length; i++)
+	 {
 			 const tableData = data.map(function(value){
                  return (
-                		 
                      	`<tr>
                         	<td>${value.fplancode}</td> 
 							<td>${value.fmonthfrom}</td>     
@@ -106,37 +87,30 @@
                      	</tr>`
                  );
              })
-             
              .join('');
         	 const tabelBody = document.querySelector("#tableBody");
              tableBody.innerHTML = tableData;
-		} 
-     } ,
+		 } 
+        },
 	    error: function(){
 	    	alert("Device control failed");
 	    }
  });
  }
  
- /* MIS DEPOSITE */
- function MaturityMasterAjax4()
+/* MIS DEPOSITE */
+function MaturityMasterAjax4()
 {	
- 
  $.ajax({
 	 type:"get",
      contentType: "application/json",
      url: 'maturityMaster44',
-     
      asynch: false,
      success: function(data) {  
-	      
-	      for (let i = 0; i < data.length; i++)
-	      
-	      
-	       {
+	 for (let i = 0; i < data.length; i++)
+	 {
 			 const tableData = data.map(function(value){
                  return (
-                		 
                      	`<tr>
                         	<td>${value.mISplancode}</td> 
 							<td>${value.mISmonthfrom}</td>     
@@ -146,12 +120,11 @@
                      	</tr>`
                  );
              })
-             
              .join('');
         	 const tabelBody = document.querySelector("#tableBody");
              tableBody.innerHTML = tableData;
-		} 
-     } ,
+		 } 
+        },
 	    error: function(){
 	    	alert("Device control failed");
 	    }

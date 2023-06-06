@@ -22,10 +22,12 @@ private String intrest;
 private String paymode;
 private String sbaccount;
 private String payremark;
-
 private String selectbranch;
 private String fromdate;
 private String todate;
+private String appUser;
+private String netPay;
+
 public String getSelectbranch() {
 	return selectbranch;
 }
@@ -122,6 +124,17 @@ public String getSbaccount() {
 public void setSbaccount(String sbaccount) {
 	this.sbaccount = sbaccount;
 }
-
+public String getAppUser() {
+	return appUser;
+}
+public void setAppUser(String appUser) {
+	this.appUser = appUser;
+}
+public String getNetPay() {
+	return netPay;
+}
+public void setNetPay(String netPay) {
+	this.netPay = netPay;
+}
 
 }

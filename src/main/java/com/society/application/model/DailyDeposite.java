@@ -25,8 +25,11 @@ public class DailyDeposite {
 	private String ddgrace;
 	private String ddlatefine;
 	private String ddactiveInactive;
-
-	
+	private String dplancode;
+	private String dinstfrom;
+	private String dinstto;
+	private String droi;
+	private String ddeduction;
 
 	public int getId() {
 		return id;
@@ -124,6 +127,36 @@ public class DailyDeposite {
 	public void setDdactiveInactive(String ddactiveInactive) {
 		this.ddactiveInactive = ddactiveInactive;
 	}
+	public String getDplancode() {
+		return dplancode;
+	}
+	public void setDplancode(String dplancode) {
+		this.dplancode = dplancode;
+	}
+	public String getDinstfrom() {
+		return dinstfrom;
+	}
+	public void setDinstfrom(String dinstfrom) {
+		this.dinstfrom = dinstfrom;
+	}
+	public String getDinstto() {
+		return dinstto;
+	}
+	public void setDinstto(String dinstto) {
+		this.dinstto = dinstto;
+	}
+	public String getDroi() {
+		return droi;
+	}
+	public void setDroi(String droi) {
+		this.droi = droi;
+	}
+	public String getDdeduction() {
+		return ddeduction;
+	}
+	public void setDdeduction(String ddeduction) {
+		this.ddeduction = ddeduction;
+	}
 	@Override
 	public String toString() {
 		return "DailyDeposite [id=" + id + ", dddailyDeposit=" + dddailyDeposit + ", ddplanName=" + ddplanName
@@ -134,6 +167,5 @@ public class DailyDeposite {
 				+ ", ddgrace=" + ddgrace + ", ddlatefine=" + ddlatefine + ", ddactiveInactive=" + ddactiveInactive
 				+ "]";
 	}
-	
 	
 }

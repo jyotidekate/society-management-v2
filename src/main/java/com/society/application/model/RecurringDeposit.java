@@ -27,7 +27,9 @@ public class RecurringDeposit {
 	private String rDStatus;
 	private String rplancode;
 	private String rroi;
-	
+	private String rinstfrom;
+	private String rinstto;
+	private String rdeduction;
 	
 	public String getRroi() {
 		return rroi;
@@ -131,7 +133,23 @@ public class RecurringDeposit {
 	public void setrDStatus(String rDStatus) {
 		this.rDStatus = rDStatus;
 	}
+	public String getRinstfrom() {
+		return rinstfrom;
+	}
+	public void setRinstfrom(String rinstfrom) {
+		this.rinstfrom = rinstfrom;
+	}
+	public String getRinstto() {
+		return rinstto;
+	}
+	public void setRinstto(String rinstto) {
+		this.rinstto = rinstto;
+	}
+	public String getRdeduction() {
+		return rdeduction;
+	}
+	public void setRdeduction(String rdeduction) {
+		this.rdeduction = rdeduction;
+	}
 	
-	
-
 }

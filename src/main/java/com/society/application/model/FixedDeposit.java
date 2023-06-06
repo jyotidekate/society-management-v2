@@ -24,8 +24,10 @@ public class FixedDeposit {
 	private String fDComN;
 	private String fDStatus;
 	private String fplancode;
-	
-	
+	private String fmonthfrom;
+	private String fmonthto;
+	private String froi;
+	private String fdeduction;
 	
 	public String getFplancode() {
 		return fplancode;
@@ -111,9 +113,29 @@ public class FixedDeposit {
 	public void setfDStatus(String fDStatus) {
 		this.fDStatus = fDStatus;
 	}
-	
-	
-	
-	
+	public String getFmonthfrom() {
+		return fmonthfrom;
+	}
+	public void setFmonthfrom(String fmonthfrom) {
+		this.fmonthfrom = fmonthfrom;
+	}
+	public String getFmonthto() {
+		return fmonthto;
+	}
+	public void setFmonthto(String fmonthto) {
+		this.fmonthto = fmonthto;
+	}
+	public String getFroi() {
+		return froi;
+	}
+	public void setFroi(String froi) {
+		this.froi = froi;
+	}
+	public String getFdeduction() {
+		return fdeduction;
+	}
+	public void setFdeduction(String fdeduction) {
+		this.fdeduction = fdeduction;
+	}
 
 }

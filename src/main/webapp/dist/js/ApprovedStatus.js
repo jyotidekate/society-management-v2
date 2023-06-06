@@ -1,7 +1,5 @@
-
 //Ajax Code Starts Here
-
- function ApprovedStatus()
+function ApprovedStatus()
 {	
  var paybranch = document.getElementById("paybranch").value;
  var fromdate = document.getElementById("fromdate").value;
@@ -33,7 +31,6 @@
                      	</tr>`
                  );
              })
-             
              .join('');
         	 const tabelBody = document.querySelector("#table");
              table.innerHTML = tableData;
@@ -45,6 +42,25 @@
  });
  }
  
- 
+ function  getBranchName2() {
+	
+	$.ajax({
+		type: "get",
+		contentType: "application/json",
+		url: 'getBranchNameForMaturity',
+		asynch: false,
+		success: function(data) {
+			
+			 var appenddata1 = "";
+                    for (var i = 0; i < data.length; i++) {
+                         appenddata1 += "<option value = '"+data[i].name +"'>" +data[i].name +" </option>";
+                    }
+                    $("#paybranch").append(appenddata1);
+		},
+		error: function() {
+			alert("Device control failed");
+		}
+	});
+}
  
  
