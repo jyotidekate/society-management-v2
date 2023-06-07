@@ -1,7 +1,6 @@
 //Ajax Code Starts Here
- function AdvisorTeamCollection()
+function AdvisorTeamCollection()
 {
-	
  var advisorcode= document.getElementById("advisorcode").value;
  var fromdate= document.getElementById("fromdate").value;
  var todate= document.getElementById("todate").value;
@@ -23,7 +22,6 @@
 	       {
 			 const tableData = data.map(function(value){
                  return (
-                		 
                     ` <tr>
                          <td>${value.teamselfsummary}</td> 
 						 <td>${value.date}</td>     
@@ -44,15 +42,15 @@
         	 const tabelBody = document.querySelector("#tabelBody");
              tabelBody.innerHTML = tableData;
 		} 
-     } ,
+      },
 	    error: function(){
 	    	alert("Device control failed");
 	    }
  });
  }
  
- function appendSelectMember() {
-	$.ajax({
+function appendSelectMember() {
+	    $.ajax({
 		type: "get",
 		contentType: "application/json",
 		url: 'appendSelectMember',
@@ -137,15 +135,29 @@ function selectCodeOfAdvisor() {
 			for (var i = 0; i < data.length; i++) {
 				appenddata1 += "<option value ='" + data[i].id + "'>" + data[i].id + "-" + data[i].memberName + "</option>";
 			}
-			$("#collector").append(appenddata1);
-			
+			$("#id").append(appenddata1);		
+		},
+		error: function () {
+			alert("Device control failed");
+		}
+	});
+}
+
+function selectCodeOfAdvisoridPosition() {
+
+	$.ajax({
+		type: "get",
+		contentType: "application/json",
+		url: 'selectCodeOfAdvisor',
+		asynch: false,
+		success: function (data) {
+
 			var appenddata2 = "";
 			//var jsonData1 = JSON.parse(data1.d);
 			for (var i = 0; i < data.length; i++) {
 				appenddata2 += "<option value ='" + data[i].selectPosition + "'>" + data[i].selectPosition + "</option>";
 			}
-			$("#selectPosition").append(appenddata2);
-			
+			$("#selectPosition").append(appenddata2);	
 		},
 		error: function () {
 			alert("Device control failed");
@@ -168,6 +180,7 @@ function getBranchName() {
 				appenddata1 += "<option value ='" + data[i].name + "'>" + data[i].name + "</option>";
 			}
 			$("#memberDataBranch2").append(appenddata1);
+			$("#branchName").append(appenddata1);
 		},
 		error: function () {
 			alert("Device control failed");
@@ -176,7 +189,7 @@ function getBranchName() {
 }
 
 function fetchBySelectedCode(){
-	let id = document.getElementById("collector").value;
+	let id = document.getElementById("id").value;
 	var input = {
 		"id":id
 	};
@@ -193,14 +206,14 @@ function fetchBySelectedCode(){
 				//alert(data[i].id);
 				//document.getElementById("id133").value = data[i].id;
 				document.getElementById("position").value = data[i].position;
-				document.getElementById("branchName").value = data[i].branchName;
+				document.getElementById("branch").value = data[i].branchName;
 				document.getElementById("seniorCode").value = data[i].seniorCode;
 				document.getElementById("position1").value = data[i].seniorPosition;
 				document.getElementById("immidiateSr").value = data[i].immidiateSr;
 				document.getElementById("srPosition").value = data[i].srPosition;
 				document.getElementById("immidiateJr").value = data[i].immidiateJr;
 				document.getElementById("jrPosition").value = data[i].jrPosition;
-				document.getElementById("memberDataBranch2").value = data[i].branchName;
+				document.getElementById("branchName").value = data[i].branchName;
 				document.getElementById("selectPosition").value = data[i].selectPosition;
 				document.getElementById("newSenior").value = data[i].newSenior;
 				document.getElementById("seniorName").value = data[i].seniorName;
