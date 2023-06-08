@@ -1,467 +1,587 @@
-
 <jsp:include page="../header.jsp" />
-
-<body class="skin-blue sidebar-mini" onload="getAllLoans();getAllLoanId();getAllLoanPlanName();getAllItemMasterName();getAllILockerName();getAllPurityMasterName();fetchAllMember()" style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);" cz-shortcut-listen="true">
-    <form method="post" action="updateLoanRegularEMIRepayment?Type=Gold" id="form1" modelAttribute="updateLoan">
-	<%
+<body class="skin-blue sidebar-mini"
+	onload="getAllLoans();getAllLoanId();getAllLoanPlanName();getAllItemMasterName();getAllILockerName();getAllPurityMasterName();fetchAllMember()"
+	style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);"
+	cz-shortcut-listen="true">
+	<form method="post" action="updateLoanRegularEMIRepayment?Type=Gold"
+		id="form1" modelAttribute="updateLoan">
+		<%
          String status = (String)request.getAttribute("status");
          if(status!=null && "success".equals(status)){
           %>
-			<script>
+		<script>
          alert("Saved Successfully");
       </script>
-			<%
+		<%
          }else{
           
          }
          %>
-        <div style="height: auto; min-height: 100%; border-radius: 30px; margin: 15px; background: url(dist/img/back.jpg);">
+		<div
+			style="height: auto; min-height: 100%; border-radius: 30px; margin: 15px; background: url(dist/img/back.jpg);">
 
-             <!-- Header Start-->
-      <jsp:include page="../menu.jsp" />
-      <!-- Header End -->
-      <!-- Left side column. contains the logo and sidebar -->
-      <!-- Aside Menu Start-->
-      <jsp:include page="../asideMenu.jsp" />
-      <!-- Aside Menu end -->
-            <script type="text/javascript">
+			<!-- Header Start-->
+			<jsp:include page="../menu.jsp" />
+			<!-- Header End -->
+			<!-- Left side column. contains the logo and sidebar -->
+			<!-- Aside Menu Start-->
+			<jsp:include page="../asideMenu.jsp" />
+			<!-- Aside Menu end -->
+			<script type="text/javascript">
 //<![CDATA[
 Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['tctl00$ContentPlaceHolder1$uppaymode','ContentPlaceHolder1_uppaymode','tctl00$ContentPlaceHolder1$upbank','ContentPlaceHolder1_upbank','tctl00$ContentPlaceHolder1$upchq','ContentPlaceHolder1_upchq','tctl00$ContentPlaceHolder1$uppnkad','ContentPlaceHolder1_uppnkad'], [], [], 90, 'ctl00');
 //]]>
 </script>
-
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper" style="min-height: 1105.75px;">
-                
-
-                 
-    <section class="content-header">
-        <h1 id="ContentPlaceHolder1_IdHeader">Regular EMI Repayment</h1>
-        <ol class="breadcrumb">
-            <li><a href="Home.html"><i class="fa fa-dashboard"></i>Home</a></li>
-            <li><a href="#">Dashboard</a></li>
-            <li class="active">Regular Repayment</li>
-        </ol>
-    </section>
-    <section class="content">
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box box-warning">
-                    <div class="form-horizontal">
-
-                        <div class="box-body">
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label class="col-sm-4 control-label">Select Loan ID & Name <strong style="color: Red">*</strong></label>
-                                    <div class="col-sm-8">
-                                        <select name="searchLoanIDLoan"  
-                                        onchange="javascript:displayLoanDetailsSelectedId()"
-                                        id="searchLoanIDLoan" class="form-control select2" style="width: 100%;">
-	<option selected="selected" value=""></option>
-
-</select>
-                                         <span id="ContentPlaceHolder1_RequiredFieldValidator1" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Select Loan ID</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-		<input type="hidden" id="id" name="id" >
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box box-success">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Loan Details</h3>
-                    </div>
-                    <div class="box-body">
-                        <div class="col-md-4">
-                            <div class="form-group row">
-                                <label for="txtLoanDate" class="col-sm-5 control-label">Loan Date <strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input name="loanDate" type="text" readonly="readonly" id="loanDate" class="form-control" data-inputmask="&#39;alias&#39;: &#39;dd/mm/yyyy&#39;" data-mask="" />
-                                    </div>
-                                    <span id="ContentPlaceHolder1_RequiredFieldValidatorLoneDate" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Loan Date</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="txtCodeName" class="col-sm-5 control-label">Code & Name <strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <input name="searchMemberCode" type="text" readonly="readonly" id="searchMemberCode" class="form-control" PlaceHolder="Enter Code &amp; Name" />
-                                    <span id="ContentPlaceHolder1_RequiredFieldValidatorCodeName" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Code & Name</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="txtNameRelation" class="col-sm-5 control-label">Relative Details </label>
-                                <div class="col-sm-7">
-                                    <input name="relativeDetails" type="text" readonly="readonly" id="relativeDetails" class="form-control" PlaceHolder="Enter Relative Details" />
-
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="txtMobileNo" class="col-sm-5 control-label">Mobile No <strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <input name="phoneno" type="text" readonly="readonly" id="phoneno" class="form-control" PlaceHolder="Enter Mobile No" />
-                                    <span id="ContentPlaceHolder1_RequiredFieldValidatorMobileNo" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Mobile No</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="txtBranchName" class="col-sm-5 control-label">Branch Name<strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <input name="cspName" type="text" readonly="readonly" id="cspName" class="form-control" PlaceHolder="Enter Branch Name" />
-                                    <span id="ContentPlaceHolder1_RequiredFieldValidatortxtBranchName" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Branch Name</span>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-4">
-
-                            <div class="form-group row">
-                                <label for="txtLoanPlanName" class="col-sm-5 control-label">Plan Name <strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <input name=loanPlanName type="text" readonly="readonly" id="loanPlanName" class="form-control" PlaceHolder="Enter Plan Name" />
-                                    <span id="ContentPlaceHolder1_RequiredFieldValidatorLoanPlanName" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Loan Plan Name</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="txtPlanTerm" class="col-sm-5 control-label">Term <strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <input name="planTerm" type="text" readonly="readonly" id="planTerm" class="form-control" PlaceHolder="Enter Plan Term" />
-                                    <span id="ContentPlaceHolder1_RequiredFieldValidatorPlanTerm" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Plan Term</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="txtLoanMode" class="col-sm-5 control-label">Loan Mode <strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <input name="mode" type="text" readonly="readonly" id="mode" class="form-control" PlaceHolder="Enter Loan Mode" />
-                                    <span id="ContentPlaceHolder1_RequiredFieldValidatorLoanMode" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Loan Mode</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="txtLoanAmount" class="col-sm-5 control-label">Loan Amount <strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <input name="loanAmount" type="text" readonly="readonly" id="loanAmount" class="form-control" PlaceHolder="Enter Loan Amount" />
-                                    <span id="ContentPlaceHolder1_RequiredFieldValidator2" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Loan Amount</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="txtLoanROI" class="col-sm-5 control-label">Loan ROI <strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <input name="loanROI" type="text" readonly="readonly" id="loanROI" class="form-control" PlaceHolder="Enter Loan ROI" />
-                                    <span id="ContentPlaceHolder1_RequiredFieldValidatorLoanROI" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Loan ROI</span>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group row">
-                                <label for="txtROIType" class="col-sm-5 control-label">ROI Type <strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <input name="ROIType" type="text" readonly="readonly" id="ROIType" class="form-control" PlaceHolder="Enter ROI Type" />
-
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="txtEmiAmount" class="col-sm-5 control-label">EMI Amount <strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <input name="emiAmount" type="text" readonly="readonly" id="emiAmount" class="form-control" PlaceHolder="Enter Emi Amount" />
-                                    <span id="ContentPlaceHolder1_RequiredFieldValidatorEmiAmount" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Emi Amount</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="txtTotalInterest" class="col-sm-5 control-label">Total Interest <strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <input name="ctl00$ContentPlaceHolder1$txtTotalInterest" type="text" readonly="readonly" id="ContentPlaceHolder1_txtTotalInterest" class="form-control" PlaceHolder="Enter Total Interest" />
-
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="txtTotalPrinciple" class="col-sm-5 control-label">Total Principal <strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <input name="ctl00$ContentPlaceHolder1$txtTotalPrinciple" type="text" readonly="readonly" id="ContentPlaceHolder1_txtTotalPrinciple" class="form-control" PlaceHolder="Enter Total Principal" />
-
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="txtTotalPayble" class="col-sm-5 control-label">Total Payable <strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <input name="ctl00$ContentPlaceHolder1$txtTotalPayble" type="text" readonly="readonly" id="ContentPlaceHolder1_txtTotalPayble" class="form-control" PlaceHolder="Enter Total Payble" />
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box box-danger">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Payment Details</h3>
-                    </div>
-
-                    <div class="box-body">
-                        <div class="col-md-4">
-                            <div class="form-group row">
-                                <label for="txtTotalInterestDue" class="col-sm-5 control-label">Interest Due <strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <input name="ctl00$ContentPlaceHolder1$txtTotalInterestDue" type="text" readonly="readonly" id="ContentPlaceHolder1_txtTotalInterestDue" class="form-control" PlaceHolder="Enter Total Interest Due" />
-                                    <span id="ContentPlaceHolder1_RequiredFieldValidatorTotalInterestDue" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Total Interest Due</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="txtTotalPrincipleDue" class="col-sm-5 control-label">Principal Due <strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <input name="ctl00$ContentPlaceHolder1$txtTotalPrincipleDue" type="text" readonly="readonly" id="ContentPlaceHolder1_txtTotalPrincipleDue" class="form-control" PlaceHolder="Enter Total Principal Due" />
-                                    <span id="ContentPlaceHolder1_RequiredFieldValidatorTotalPrincipleDue" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Total Principle Due</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="txtTotalDueAmt" class="col-sm-5 control-label">Total Due Amt. <strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <input name="ctl00$ContentPlaceHolder1$txtTotalDueAmt" type="text" readonly="readonly" id="ContentPlaceHolder1_txtTotalDueAmt" class="form-control" PlaceHolder="Enter Total Due Amt." />
-                                    <span id="ContentPlaceHolder1_RequiredFieldValidatorTotalDueAmt" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Total Due Amt.</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="txtDueDate" class="col-sm-5 control-label">Due Date <strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input name="ctl00$ContentPlaceHolder1$txtDueDate" type="text" readonly="readonly" id="ContentPlaceHolder1_txtDueDate" class="form-control" data-inputmask="&#39;alias&#39;: &#39;dd/mm/yyyy&#39;" data-mask="" />
-                                    </div>
-                                    <span id="ContentPlaceHolder1_RequiredFieldValidatorDueDate" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Due Date</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="txtPaymentBranch" class="col-sm-5 control-label">Pay Branch<strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <select name="ctl00$ContentPlaceHolder1$ddlCSPName" id="ContentPlaceHolder1_ddlCSPName" class="form-control" style="width: 100%;">
-	<option value="001">Main Office - 001</option>
-
-</select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="txtAdvancePaid" class="col-sm-5 control-label">Advance Paid <strong style="color: Red">*</strong></label>
-                                <div class="col-sm-7">
-                                    <input name="ctl00$ContentPlaceHolder1$txtAdvancePaid" type="text" readonly="readonly" id="ContentPlaceHolder1_txtAdvancePaid" class="form-control" PlaceHolder="Enter Advance Paid" />
-
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <div class="col-md-4">
-                             <div class="form-group row">
-                                <label for="txtPaymentdate" class="col-sm-4 control-label">Pay Date <strong style="color: Red">*</strong></label>
-                                <div class="col-sm-8">
-                                    <div class="input-group date">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <input name="ctl00$ContentPlaceHolder1$txtPaymentDate" type="text" value="01/08/2022" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$txtPaymentDate\&#39;,\&#39;\&#39;)&#39;, 0)" onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;" id="ContentPlaceHolder1_txtPaymentDate" class="form-control" data-inputmask="&#39;alias&#39;: &#39;dd/mm/yyyy&#39;" data-mask="" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="ddlDeductLateFine" class="col-sm-4 control-label">Deduct Fine<strong style="color: Red">*</strong></label>
-                                <div class="col-sm-4">
-                                    <select name="ctl00$ContentPlaceHolder1$ddlDeductLateFine" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$ddlDeductLateFine\&#39;,\&#39;\&#39;)&#39;, 0)" id="ContentPlaceHolder1_ddlDeductLateFine" class="form-control" style="width: 100%;">
-	<option selected="selected" value="NO">NO</option>
-	<option value="YES">YES</option>
-
-</select>
-
-                                </div>
-                                <div class="col-sm-4">
-                                    <input name="ctl00$ContentPlaceHolder1$txtLateFine" type="text" value="0" readonly="readonly" id="ContentPlaceHolder1_txtLateFine" class="form-control" />
-
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="txtPayableAmount" class="col-sm-4 control-label">Pay Amount<strong style="color: Red">*</strong></label>
-                                <div class="col-sm-8">
-                                    <input name="ctl00$ContentPlaceHolder1$txtPayableAmount" type="text" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$txtPayableAmount\&#39;,\&#39;\&#39;)&#39;, 0)" onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;return isNumberKey(this, event);" id="ContentPlaceHolder1_txtPayableAmount" class="form-control" PlaceHolder="Enter Payable Amount" onpaste="return false" autocomplete="off" />
-                                    <span id="ContentPlaceHolder1_RequiredFieldValidatorPayableAmount" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Payable Amount</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="txtTotalPayableAmt" class="col-sm-4 control-label">Net Amt.<strong style="color: Red">*</strong></label>
-                                <div class="col-sm-8">
-                                    <input name="ctl00$ContentPlaceHolder1$txtTotalPayableAmt" type="text" readonly="readonly" id="ContentPlaceHolder1_txtTotalPayableAmt" class="form-control" PlaceHolder="Enter Total Payable Amt." />
-                                    <span id="ContentPlaceHolder1_RequiredFieldValidatorTotalPayableAmt" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Total Payable Amt.</span>
-                                </div>
-                            </div>
-                           
-
-                            <div id="ContentPlaceHolder1_uppaymode">
-	
-                                    <div class="form-group row">
-                                        <label for="drpPaymentBy" class="col-sm-4 control-label">Pay By<strong style="color: Red">*</strong></label>
-                                        <div class="col-sm-8">
-                                            <select name="ctl00$ContentPlaceHolder1$ddlPaymode" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$ddlPaymode\&#39;,\&#39;\&#39;)&#39;, 0)" id="ContentPlaceHolder1_ddlPaymode" class="form-control" style="width: 100%;">
-		<option selected="selected" value="Cash">Cash</option>
-		<option value="Cheque">Cheque</option>
-		<option value="Online">Online</option>
-		<option value="NEFT">NEFT</option>
-		<option value="SBAccount">SBAccount</option>
-		<option value="Flexi">Flexi</option>
-
-	</select>
-                                        </div>
-                                    </div>
-                                
-</div>
-
-                            <div id="ContentPlaceHolder1_upbank">
-	
-                                    
-                                    
-                                    
-                                    
-                                
-</div>
-
-                        </div>
-                        <div class="col-md-4">
-
-                            <div id="ContentPlaceHolder1_upchq">
-	
-                                    
-                                    
-
-                                
-</div>
-                            <div id="ContentPlaceHolder1_uppnkad">
-	
-                                    <div class="form-group row">
-                                        <label class="col-sm-5 control-label">Advisor Code<strong style="color: Red">*</strong></label>
-                                        <div class="col-sm-7">
-                                            <input name="ctl00$ContentPlaceHolder1$txtAdvisorCode" type="text" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$txtAdvisorCode\&#39;,\&#39;\&#39;)&#39;, 0)" onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;" id="ContentPlaceHolder1_txtAdvisorCode" class="form-control" placeholder="Enter Advisor/Collector Code" />
-                                            <span id="ContentPlaceHolder1_RequiredFieldValidator6" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Advisor/Collector Code</span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-5 control-label">Advisor Name<strong style="color: Red">*</strong></label>
-                                        <div class="col-sm-7">
-                                            <input name="ctl00$ContentPlaceHolder1$txtAdvisorName" type="text" readonly="readonly" id="ContentPlaceHolder1_txtAdvisorName" class="form-control" placeholder="Enter Advisor/Collector Name" />
-                                            <span id="ContentPlaceHolder1_RequiredFieldValidator7" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Advisor/Collector Name</span>
-                                        </div>
-                                    </div>
-                                
-</div>
-                            <div class="form-group row">
-                                <label class="col-sm-5 control-label">Remarks</label>
-                                <div class="col-sm-7">
-                                    <textarea name="ctl00$ContentPlaceHolder1$txtRemarks" rows="2" cols="20" id="ContentPlaceHolder1_txtRemarks" class="form-control" Placeholder="Enter Remarks if any">
+			<!-- Content Wrapper. Contains page content -->
+			<div class="content-wrapper" style="min-height: 1105.75px;">
+				<section class="content-header">
+					<h1 id="ContentPlaceHolder1_IdHeader">Regular EMI Repayment</h1>
+					<ol class="breadcrumb">
+						<li><a href="Home.html"><i class="fa fa-dashboard"></i>Home</a></li>
+						<li><a href="#">Dashboard</a></li>
+						<li class="active">Regular Repayment</li>
+					</ol>
+				</section>
+				<section class="content">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="box box-warning">
+								<div class="form-horizontal">
+									<div class="box-body">
+										<div class="col-md-6">
+											<div class="form-group row">
+												<label class="col-sm-4 control-label">Select Loan ID
+													& Name <strong style="color: Red">*</strong>
+												</label>
+												<div class="col-sm-8">
+													<select name="searchLoanIDLoan"
+														onchange="javascript:displayLoanDetailsSelectedId()"
+														id="searchLoanIDLoan" class="form-control select2"
+														style="width: 100%;">
+														<option selected="selected" value=""></option>
+													</select> <span id="ContentPlaceHolder1_RequiredFieldValidator1"
+														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Select
+														Loan ID</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<input type="hidden" id="id" name="id">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="box box-success">
+								<div class="box-header with-border">
+									<h3 class="box-title">Loan Details</h3>
+								</div>
+								<div class="box-body">
+									<div class="col-md-4">
+										<div class="form-group row">
+											<label for="txtLoanDate" class="col-sm-5 control-label">Loan
+												Date <strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-7">
+												<div class="input-group date">
+													<div class="input-group-addon">
+														<i class="fa fa-calendar"></i>
+													</div>
+													<input name="loanDate" type="text" readonly="readonly"
+														id="loanDate" class="form-control"
+														data-inputmask="&#39;alias&#39;: &#39;dd/mm/yyyy&#39;"
+														data-mask="" />
+												</div>
+												<span
+													id="ContentPlaceHolder1_RequiredFieldValidatorLoneDate"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Loan Date</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtCodeName" class="col-sm-5 control-label">Code
+												& Name <strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-7">
+												<input name="searchMemberCode" type="text"
+													readonly="readonly" id="searchMemberCode"
+													class="form-control" PlaceHolder="Enter Code &amp; Name" />
+												<span
+													id="ContentPlaceHolder1_RequiredFieldValidatorCodeName"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Code & Name</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtNameRelation" class="col-sm-5 control-label">Relative
+												Details </label>
+											<div class="col-sm-7">
+												<input name="relativeDetails" type="text"
+													readonly="readonly" id="relativeDetails"
+													class="form-control" PlaceHolder="Enter Relative Details" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtMobileNo" class="col-sm-5 control-label">Mobile
+												No <strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-7">
+												<input name="phoneno" type="text" readonly="readonly"
+													id="phoneno" class="form-control"
+													PlaceHolder="Enter Mobile No" /> <span
+													id="ContentPlaceHolder1_RequiredFieldValidatorMobileNo"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Mobile No</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtBranchName" class="col-sm-5 control-label">Branch
+												Name<strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-7">
+												<input name="cspName" type="text" readonly="readonly"
+													id="cspName" class="form-control"
+													PlaceHolder="Enter Branch Name" /> <span
+													id="ContentPlaceHolder1_RequiredFieldValidatortxtBranchName"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Branch Name</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group row">
+											<label for="txtLoanPlanName" class="col-sm-5 control-label">Plan
+												Name <strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-7">
+												<input name=loanPlanName type="text" readonly="readonly"
+													id="loanPlanName" class="form-control"
+													PlaceHolder="Enter Plan Name" /> <span
+													id="ContentPlaceHolder1_RequiredFieldValidatorLoanPlanName"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Loan Plan Name</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtPlanTerm" class="col-sm-5 control-label">Term
+												<strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-7">
+												<input name="planTerm" type="text" readonly="readonly"
+													id="planTerm" class="form-control"
+													PlaceHolder="Enter Plan Term" /> <span
+													id="ContentPlaceHolder1_RequiredFieldValidatorPlanTerm"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Plan Term</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtLoanMode" class="col-sm-5 control-label">Loan
+												Mode <strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-7">
+												<input name="mode" type="text" readonly="readonly" id="mode"
+													class="form-control" PlaceHolder="Enter Loan Mode" /> <span
+													id="ContentPlaceHolder1_RequiredFieldValidatorLoanMode"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Loan Mode</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtLoanAmount" class="col-sm-5 control-label">Loan
+												Amount <strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-7">
+												<input name="loanAmount" type="text" readonly="readonly"
+													id="loanAmount" class="form-control"
+													PlaceHolder="Enter Loan Amount" /> <span
+													id="ContentPlaceHolder1_RequiredFieldValidator2"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Loan Amount</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtLoanROI" class="col-sm-5 control-label">Loan
+												ROI <strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-7">
+												<input name="loanROI" type="text" readonly="readonly"
+													id="loanROI" class="form-control"
+													PlaceHolder="Enter Loan ROI" /> <span
+													id="ContentPlaceHolder1_RequiredFieldValidatorLoanROI"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Loan ROI</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group row">
+											<label for="txtROIType" class="col-sm-5 control-label">ROI
+												Type <strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-7">
+												<input name="ROIType" type="text" readonly="readonly"
+													id="ROIType" class="form-control"
+													PlaceHolder="Enter ROI Type" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtEmiAmount" class="col-sm-5 control-label">EMI
+												Amount <strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-7">
+												<input name="emiAmount" type="text" readonly="readonly"
+													id="emiAmount" class="form-control"
+													PlaceHolder="Enter Emi Amount" /> <span
+													id="ContentPlaceHolder1_RequiredFieldValidatorEmiAmount"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Emi Amount</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtTotalInterest" class="col-sm-5 control-label">Total
+												Interest <strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-7">
+												<input name="ctl00$ContentPlaceHolder1$txtTotalInterest"
+													type="text" readonly="readonly"
+													id="ContentPlaceHolder1_txtTotalInterest"
+													class="form-control" PlaceHolder="Enter Total Interest" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtTotalPrinciple" class="col-sm-5 control-label">Total
+												Principal <strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-7">
+												<input name="ctl00$ContentPlaceHolder1$txtTotalPrinciple"
+													type="text" readonly="readonly"
+													id="ContentPlaceHolder1_txtTotalPrinciple"
+													class="form-control" PlaceHolder="Enter Total Principal" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtTotalPayble" class="col-sm-5 control-label">Total
+												Payable <strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-7">
+												<input name="ctl00$ContentPlaceHolder1$txtTotalPayble"
+													type="text" readonly="readonly"
+													id="ContentPlaceHolder1_txtTotalPayble"
+													class="form-control" PlaceHolder="Enter Total Payble" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="box box-danger">
+								<div class="box-header with-border">
+									<h3 class="box-title">Payment Details</h3>
+								</div>
+								<div class="box-body">
+									<div class="col-md-4">
+										<div class="form-group row">
+											<label for="txtTotalInterestDue"
+												class="col-sm-5 control-label">Interest Due <strong
+												style="color: Red">*</strong></label>
+											<div class="col-sm-7">
+												<input name="ctl00$ContentPlaceHolder1$txtTotalInterestDue"
+													type="text" readonly="readonly"
+													id="ContentPlaceHolder1_txtTotalInterestDue"
+													class="form-control" PlaceHolder="Enter Total Interest Due" />
+												<span
+													id="ContentPlaceHolder1_RequiredFieldValidatorTotalInterestDue"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Total Interest Due</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtTotalPrincipleDue"
+												class="col-sm-5 control-label">Principal Due <strong
+												style="color: Red">*</strong></label>
+											<div class="col-sm-7">
+												<input name="ctl00$ContentPlaceHolder1$txtTotalPrincipleDue"
+													type="text" readonly="readonly"
+													id="ContentPlaceHolder1_txtTotalPrincipleDue"
+													class="form-control"
+													PlaceHolder="Enter Total Principal Due" /> <span
+													id="ContentPlaceHolder1_RequiredFieldValidatorTotalPrincipleDue"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Total Principle Due</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtTotalDueAmt" class="col-sm-5 control-label">Total
+												Due Amt. <strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-7">
+												<input name="ctl00$ContentPlaceHolder1$txtTotalDueAmt"
+													type="text" readonly="readonly"
+													id="ContentPlaceHolder1_txtTotalDueAmt"
+													class="form-control" PlaceHolder="Enter Total Due Amt." />
+												<span
+													id="ContentPlaceHolder1_RequiredFieldValidatorTotalDueAmt"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Total Due Amt.</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtDueDate" class="col-sm-5 control-label">Due
+												Date <strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-7">
+												<div class="input-group date">
+													<div class="input-group-addon">
+														<i class="fa fa-calendar"></i>
+													</div>
+													<input name="ctl00$ContentPlaceHolder1$txtDueDate"
+														type="text" readonly="readonly"
+														id="ContentPlaceHolder1_txtDueDate" class="form-control"
+														data-inputmask="&#39;alias&#39;: &#39;dd/mm/yyyy&#39;"
+														data-mask="" />
+												</div>
+												<span id="ContentPlaceHolder1_RequiredFieldValidatorDueDate"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Due Date</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtPaymentBranch" class="col-sm-5 control-label">Pay
+												Branch<strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-7">
+												<select name="ctl00$ContentPlaceHolder1$ddlCSPName"
+													id="ContentPlaceHolder1_ddlCSPName" class="form-control"
+													style="width: 100%;">
+													<option value="001">Main Office - 001</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtAdvancePaid" class="col-sm-5 control-label">Advance
+												Paid <strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-7">
+												<input name="ctl00$ContentPlaceHolder1$txtAdvancePaid"
+													type="text" readonly="readonly"
+													id="ContentPlaceHolder1_txtAdvancePaid"
+													class="form-control" PlaceHolder="Enter Advance Paid" />
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group row">
+											<label for="txtPaymentdate" class="col-sm-4 control-label">Pay
+												Date <strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-8">
+												<div class="input-group date">
+													<div class="input-group-addon">
+														<i class="fa fa-calendar"></i>
+													</div>
+													<input name="ctl00$ContentPlaceHolder1$txtPaymentDate"
+														type="text" value="01/08/2022"
+														onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$txtPaymentDate\&#39;,\&#39;\&#39;)&#39;, 0)"
+														onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;"
+														id="ContentPlaceHolder1_txtPaymentDate"
+														class="form-control"
+														data-inputmask="&#39;alias&#39;: &#39;dd/mm/yyyy&#39;"
+														data-mask="" />
+												</div>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="ddlDeductLateFine" class="col-sm-4 control-label">Deduct
+												Fine<strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-4">
+												<select name="ctl00$ContentPlaceHolder1$ddlDeductLateFine"
+													onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$ddlDeductLateFine\&#39;,\&#39;\&#39;)&#39;, 0)"
+													id="ContentPlaceHolder1_ddlDeductLateFine"
+													class="form-control" style="width: 100%;">
+													<option selected="selected" value="NO">NO</option>
+													<option value="YES">YES</option>
+												</select>
+											</div>
+											<div class="col-sm-4">
+												<input name="ctl00$ContentPlaceHolder1$txtLateFine"
+													type="text" value="0" readonly="readonly"
+													id="ContentPlaceHolder1_txtLateFine" class="form-control" />
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtPayableAmount" class="col-sm-4 control-label">Pay
+												Amount<strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-8">
+												<input name="ctl00$ContentPlaceHolder1$txtPayableAmount"
+													type="text"
+													onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$txtPayableAmount\&#39;,\&#39;\&#39;)&#39;, 0)"
+													onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;return isNumberKey(this, event);"
+													id="ContentPlaceHolder1_txtPayableAmount"
+													class="form-control" PlaceHolder="Enter Payable Amount"
+													onpaste="return false" autocomplete="off" /> <span
+													id="ContentPlaceHolder1_RequiredFieldValidatorPayableAmount"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Payable Amount</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtTotalPayableAmt"
+												class="col-sm-4 control-label">Net Amt.<strong
+												style="color: Red">*</strong></label>
+											<div class="col-sm-8">
+												<input name="ctl00$ContentPlaceHolder1$txtTotalPayableAmt"
+													type="text" readonly="readonly"
+													id="ContentPlaceHolder1_txtTotalPayableAmt"
+													class="form-control" PlaceHolder="Enter Total Payable Amt." />
+												<span
+													id="ContentPlaceHolder1_RequiredFieldValidatorTotalPayableAmt"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Total Payable Amt.</span>
+											</div>
+										</div>
+										<div id="ContentPlaceHolder1_uppaymode">
+											<div class="form-group row">
+												<label for="drpPaymentBy" class="col-sm-4 control-label">Pay
+													By<strong style="color: Red">*</strong>
+												</label>
+												<div class="col-sm-8">
+													<select name="ctl00$ContentPlaceHolder1$ddlPaymode"
+														onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$ddlPaymode\&#39;,\&#39;\&#39;)&#39;, 0)"
+														id="ContentPlaceHolder1_ddlPaymode" class="form-control"
+														style="width: 100%;">
+														<option selected="selected" value="Cash">Cash</option>
+														<option value="Cheque">Cheque</option>
+														<option value="Online">Online</option>
+														<option value="NEFT">NEFT</option>
+														<option value="SBAccount">SBAccount</option>
+														<option value="Flexi">Flexi</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div id="ContentPlaceHolder1_upbank"></div>
+									</div>
+									<div class="col-md-4">
+										<div id="ContentPlaceHolder1_upchq"></div>
+										<div id="ContentPlaceHolder1_uppnkad">
+											<div class="form-group row">
+												<label class="col-sm-5 control-label">Advisor Code<strong
+													style="color: Red">*</strong></label>
+												<div class="col-sm-7">
+													<input name="ctl00$ContentPlaceHolder1$txtAdvisorCode"
+														type="text"
+														onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$txtAdvisorCode\&#39;,\&#39;\&#39;)&#39;, 0)"
+														onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;"
+														id="ContentPlaceHolder1_txtAdvisorCode"
+														class="form-control"
+														placeholder="Enter Advisor/Collector Code" /> <span
+														id="ContentPlaceHolder1_RequiredFieldValidator6"
+														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+														Advisor/Collector Code</span>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-sm-5 control-label">Advisor Name<strong
+													style="color: Red">*</strong></label>
+												<div class="col-sm-7">
+													<input name="ctl00$ContentPlaceHolder1$txtAdvisorName"
+														type="text" readonly="readonly"
+														id="ContentPlaceHolder1_txtAdvisorName"
+														class="form-control"
+														placeholder="Enter Advisor/Collector Name" /> <span
+														id="ContentPlaceHolder1_RequiredFieldValidator7"
+														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+														Advisor/Collector Name</span>
+												</div>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-5 control-label">Remarks</label>
+											<div class="col-sm-7">
+												<textarea name="ctl00$ContentPlaceHolder1$txtRemarks"
+													rows="2" cols="20" id="ContentPlaceHolder1_txtRemarks"
+													class="form-control" Placeholder="Enter Remarks if any">
 </textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box-footer">
-                        <div class="row col-md-12">
-                            <button type="button"  onclick="popUp()" name="ctl00$ContentPlaceHolder1$btnLoanStatement" value="Loan Statement" id="ContentPlaceHolder1_btnLoanStatement" class="btn btn-warning pull-left">Loan Statement </button>
-                            <button type="button" name="delete" value="Delete Last EMI"  id="delete" class="btn btn-danger pull-right">Delete </button>
-                            
-                            <input type="submit" name="save" value="Save Data" id="save" class="btn btn-success pull-right margin-r-5" />
-                        </div>
-                    </div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="box-footer">
+									<div class="row col-md-12">
+										<button type="button" onclick="popUp()"
+											name="ctl00$ContentPlaceHolder1$btnLoanStatement"
+											value="Loan Statement"
+											id="ContentPlaceHolder1_btnLoanStatement"
+											class="btn btn-warning pull-left">Loan Statement</button>
+										<button type="button" name="delete" value="Delete Last EMI"
+											id="delete" class="btn btn-danger pull-right">Delete
+										</button>
 
-                </div>
-            </div>
-        </div>
+										<input type="submit" name="save" value="Save Data" id="save"
+											class="btn btn-success pull-right margin-r-5" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="box box-success"
+								style="box-shadow: none; height: 400px; overflow: auto !important;">
+								<div class="box-body">
+									<div class="clearfix margin-bottom-10"></div>
+									<div></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- /.content-wrapper -->
+			<div class="control-sidebar-bg"></div>
+		</div>
 
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap 3.3.7 -->
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box box-success" style="box-shadow: none; height:400px; overflow: auto !important;">
-                    <div class="box-body">
-                        <div class="clearfix margin-bottom-10"></div>
-
-                        <div>
-
-</div>
-
-
-
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-
-            </div>
-            <!-- /.content-wrapper -->
-
-            <footer class="main-footer">
-                <div class="pull-right hidden-xs">
-                    <b>Version</b> 1.0.1
-   
-                </div>
-                <strong>Copyright © 2020-2021 <a>
-                    <span id="lblCompanyName1">EQFI NIDHI LIMITED</span></a>.</strong> All rights
-    reserved.
- 
-            </footer>
-
-
-            <div class="control-sidebar-bg"></div>
-
-        </div>
-
-        <script src="bower_components/jquery/dist/jquery.min.js"></script>
-        <!-- Bootstrap 3.3.7 -->
-        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-        <!-- InputMask -->
-        <script src="plugins/input-mask/jquery.inputmask.js"></script>
-        <script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-        <script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
-        <!-- date-range-picker -->
-        <script src="bower_components/moment/min/moment.min.js"></script>
-        <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-        <!-- bootstrap datepicker -->
-        <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-        <!-- bootstrap color picker -->
-        <script src="bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
-        <!-- bootstrap time picker -->
-        <script src="plugins/timepicker/bootstrap-timepicker.min.js"></script>
-        <!-- SlimScroll -->
-        <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-        <!-- iCheck 1.0.1 -->
-        <script src="plugins/iCheck/icheck.min.js"></script>
-        <!-- FastClick -->
-        <script src="bower_components/fastclick/lib/fastclick.js"></script>
-        <!-- AdminLTE App -->
-        <script src="dist/js/adminlte.min.js"></script>
-        <!-- AdminLTE for demo purposes -->
-        <script src="dist/js/demo.js"></script>
-        <!-- Select2 -->
-        <script src="bower_components/select2/dist/js/select2.full.min.js"></script>
-        <script>
+		<!-- InputMask -->
+		<script src="plugins/input-mask/jquery.inputmask.js"></script>
+		<script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+		<script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
+		<!-- date-range-picker -->
+		<script src="bower_components/moment/min/moment.min.js"></script>
+		<script
+			src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+		<!-- bootstrap datepicker -->
+		<script
+			src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+		<!-- bootstrap color picker -->
+		<script
+			src="bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+		<!-- bootstrap time picker -->
+		<script src="plugins/timepicker/bootstrap-timepicker.min.js"></script>
+		<!-- SlimScroll -->
+		<script
+			src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+		<!-- iCheck 1.0.1 -->
+		<script src="plugins/iCheck/icheck.min.js"></script>
+		<!-- FastClick -->
+		<script src="bower_components/fastclick/lib/fastclick.js"></script>
+		<!-- AdminLTE App -->
+		<script src="dist/js/adminlte.min.js"></script>
+		<!-- AdminLTE for demo purposes -->
+		<script src="dist/js/demo.js"></script>
+		<!-- Select2 -->
+		<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+		<script>
             $(function () {
                 //Initialize Select2 Elements
                 $('.select2').select2();
@@ -502,21 +622,16 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
                     checkboxClass: 'icheckbox_minimal-blue',
                     radioClass: 'iradio_minimal-blue'
                 })
-
-
-
-
-
             })
         </script>
-    
-<script type="text/javascript">
+
+		<script type="text/javascript">
 //<![CDATA[
 var Page_Validators =  new Array(document.getElementById("ContentPlaceHolder1_RequiredFieldValidator1"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorLoneDate"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorCodeName"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorMobileNo"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatortxtBranchName"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorLoanPlanName"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorPlanTerm"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorLoanMode"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidator2"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorLoanROI"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorEmiAmount"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorTotalInterestDue"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorTotalPrincipleDue"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorTotalDueAmt"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorDueDate"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorPayableAmount"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorTotalPayableAmt"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidator6"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidator7"));
 //]]>
 </script>
 
-<script type="text/javascript">
+		<script type="text/javascript">
 //<![CDATA[
 var ContentPlaceHolder1_RequiredFieldValidator1 = document.all ? document.all["ContentPlaceHolder1_RequiredFieldValidator1"] : document.getElementById("ContentPlaceHolder1_RequiredFieldValidator1");
 ContentPlaceHolder1_RequiredFieldValidator1.controltovalidate = "ContentPlaceHolder1_ddlSearchLoanID";
@@ -674,7 +789,7 @@ ContentPlaceHolder1_RequiredFieldValidator7.initialvalue = "";
 </script>
 
 
-<script type="text/javascript">
+		<script type="text/javascript">
 //<![CDATA[
 
 var Page_ValidationActive = false;
@@ -768,7 +883,7 @@ document.getElementById('ContentPlaceHolder1_RequiredFieldValidator7').dispose =
 }
 //]]>
 </script>
-</form>
+	</form>
 </body>
 
 <!-- Dk/Admin/LoanRepayment.aspx?Type=Gold EDB D 09:27:11 GMT -->

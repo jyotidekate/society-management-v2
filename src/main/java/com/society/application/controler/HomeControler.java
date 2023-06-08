@@ -113,7 +113,7 @@ import ch.qos.logback.core.rolling.helper.IntegerTokenConverter;
 
 @Controller
 public class HomeControler {
-	
+
 	@Autowired
 	FileUploadDirectoryRepo fileUploadDirectoryRepo;
 
@@ -197,36 +197,36 @@ public class HomeControler {
 
 	@Autowired
 	CompanyMasterRepo companyMasterRepo;
+
+	@Autowired
+	ClientMasterRepo clientMasterRepo;
 	
-	@Autowired ClientMasterRepo clientMasterRepo;
 	@Autowired
 	private FileStorageService fileStorageService;
-	
-	
+
 	@Autowired
 	DirectorMasterRepo directorMasterRepo;
-	
+
 	@GetMapping("/fetchinsharecertificate")
 	@ResponseBody
-	List<ClientMaster> fetchinsharecertificate(){
+	List<ClientMaster> fetchinsharecertificate() {
 		return clientMasterRepo.findAll();
 	}
-	
+
 	@GetMapping("/fetchsharecerificatebyID")
 	@ResponseBody
-	List<ClientMaster> fetchingClientshare(HttpServletRequest request){
-	
-		String id=request.getParameter("id");
-		int i=Integer.parseInt(id);
-		List<ClientMaster> certi=clientMasterRepo.findByid(i);
+	List<ClientMaster> fetchingClientshare(HttpServletRequest request) {
+		String id = request.getParameter("id");
+		int i = Integer.parseInt(id);
+		List<ClientMaster> certi = clientMasterRepo.findByid(i);
 		return certi;
 	}
-	
+
 	@GetMapping("/addClientEditPage")
 	public String addClientEditPage() {
 		return "member/AddMemberEdit";
 	}
-	
+
 	@GetMapping("/addAdvisor")
 	public String addAdvisor(Model model) {
 		List<Member> allMember = memberRepo.findAll();
@@ -236,10 +236,10 @@ public class HomeControler {
 
 	@GetMapping("/FetcHPositiondataforemployee")
 	@ResponseBody
-	public List<Employee> FetchDetailsforTable(HttpServletRequest hp){
-		   String ids = hp.getParameter("id");
-		   int i =Integer.parseInt(ids);		   
-		   List<Employee> data2 = employeeRepo.findByid(i);
+	public List<Employee> FetchDetailsforTable(HttpServletRequest hp) {
+		String ids = hp.getParameter("id");
+		int i = Integer.parseInt(ids);
+		List<Employee> data2 = employeeRepo.findByid(i);
 		return data2;
 	}
 
@@ -251,25 +251,22 @@ public class HomeControler {
 	@GetMapping("/LoanCalculator")
 	public String LoanCalculator() {
 		return "Loan_Section/LoanCalculator";
-
 	}
-	
+
 	/* MEMBER SECTION - ADD MEMBER */
 
 	@GetMapping("/addMember")
-	public String addMember(Model model,HttpSession session) {
-		String userId = (String)session.getAttribute("loggedInUserName");
+	public String addMember(Model model, HttpSession session) {
+		String userId = (String) session.getAttribute("loggedInUserName");
 		String module = "addMember";
 		String type = "aadharPhoto";
 		FileUploadDirectory aadharPhoto = fileUploadDirectoryRepo.getIamges(module, type, userId);
-		if(aadharPhoto!=null) {
+		if (aadharPhoto != null) {
 			String encodedLogo = Base64.getEncoder().encodeToString(aadharPhoto.getContent());
 			model.addAttribute("aadharPhoto", encodedLogo);
 		}
-		
-		 int  count= memberRepo.countOfClient();
-    	 model.addAttribute("count", count+1);
-
+		int count = memberRepo.countOfClient();
+		model.addAttribute("count", count + 1);
 		return "member/AddMember";
 	}
 
@@ -286,7 +283,7 @@ public class HomeControler {
 	}
 
 	@GetMapping("/addMemberEdit")
-	public List<Member> addMemberEdit(@RequestParam Member member, Model model,HttpSession session) {
+	public List<Member> addMemberEdit(@RequestParam Member member, Model model, HttpSession session) {
 //		String userId = (String)session.getAttribute("loggedInUserName");
 //		String module = "addMember";
 //		String type = "aadharPhoto";
@@ -297,14 +294,13 @@ public class HomeControler {
 //		}
 		List<Member> list = memberRepo.findByid(member.getId());
 		model.addAttribute("list", list);
-		//return "member/AddMemberEdit";
+		// return "member/AddMemberEdit";
 		return list;
 	}
 
 	@PostMapping("/updateAddMember")
 	@ResponseBody
 	public String getupdateMember(@RequestBody Member mem) {
-
 		int i = memberRepo.updateThroughid(mem.getVerifyWithAadhar(), mem.getRegistrationDate(),
 				mem.getMemberNamePrefix(), mem.getMemberName(), mem.getRelativeName(), mem.getRelativeRelation(),
 				mem.getGender(), mem.getDob(), mem.getAge(), mem.getMaritalStatus(), mem.getAddress(),
@@ -324,19 +320,13 @@ public class HomeControler {
 
 		return null;
 	}
-	
+
 	@GetMapping("/RelativeRelation")
 	@ResponseBody
-	public List<RelativeRelationMaster> RelativeRelation()
-	{
+	public List<RelativeRelationMaster> RelativeRelation() {
 		List<RelativeRelationMaster> List = relativeRelationMasterRepo.findAll();
 		return List;
 	}
-
-	/*
-	 * -----------------------------------------------------------------------------
-	 * -----------------
-	 */
 
 	@GetMapping("/")
 	public String login(Model model) {
@@ -440,7 +430,6 @@ public class HomeControler {
 				session.setAttribute("userCompanyName", loginData.getCompanyName());
 				session.setAttribute("userShortName", loginData.getShortName());
 				session.setAttribute("ID", loginData.getId());
-				
 				return "dashboard/home";
 			} else {
 				model.addAttribute("msg", "Invalid username or password");
@@ -520,12 +509,12 @@ public class HomeControler {
 	}
 
 	@GetMapping("/memberAllDetails")
-	public String memberAllDetails(Model model,HttpSession session) {
-		String userId = (String)session.getAttribute("loggedInUserName");
+	public String memberAllDetails(Model model, HttpSession session) {
+		String userId = (String) session.getAttribute("loggedInUserName");
 		String module = "addMember";
 		String type = "aadharPhoto";
 		FileUploadDirectory aadharPhoto = fileUploadDirectoryRepo.getIamges(module, type, userId);
-		if(aadharPhoto!=null) {
+		if (aadharPhoto != null) {
 			String encodedLogo = Base64.getEncoder().encodeToString(aadharPhoto.getContent());
 			model.addAttribute("aadharPhoto", encodedLogo);
 		}
@@ -538,12 +527,8 @@ public class HomeControler {
 	@ResponseBody
 	public List<Member> fetchDropdownMemerSummary() {
 		List<Member> allMember = memberRepo.findAll();
-
 		return allMember;
 	}
-
-	// append data in fields
-
 
 	/* MEMBER SECTION - MEMBER REPORT */
 
@@ -558,18 +543,6 @@ public class HomeControler {
 		List<Member> allMember = memberRepo.findAll();
 		return allMember;
 	}
-
-	/*
-	 * @PostMapping("/memberReportSearch1233")
-	 * 
-	 * @ResponseBody public List<Member> getmemberReportSearch(@RequestBody Member
-	 * mem) { List<Member> branchName =
-	 * memberRepo.findBybranchName(mem.getBranchName()); List<Member> date =
-	 * memberRepo.findByregistrationDateBetween(mem.getfDate(), mem.gettDate()); //
-	 * List<Member> date = memberRepo.findByregistrationDateBetween("2016-01-01", //
-	 * "2023-01-10"); if (!branchName.isEmpty()) { return branchName; } else return
-	 * date; }
-	 */
 
 	@GetMapping("/memberDetailRpt")
 	public String memberDetailRpt(Model model) {
@@ -613,17 +586,16 @@ public class HomeControler {
 		List<Member> allMember = memberRepo.findAll();
 		return allMember;
 	}
-	
+
 	@PostMapping("/memberShareSearch")
 	@ResponseBody
 	public List<Member> getMemberShareSearch(@RequestBody Member mem) {
-		  List<Member> list1 = memberRepo.findBybranchName(mem.getBranchName());
-		  List<Member> list2 = memberRepo.findBytransferDateBetween(mem.getfDate(), mem.gettDate());
-		  
-		  if (!list1.isEmpty()) { 
-			  return list1; 
-		  }else 
-			  return list2;
+		List<Member> list1 = memberRepo.findBybranchName(mem.getBranchName());
+		List<Member> list2 = memberRepo.findBytransferDateBetween(mem.getfDate(), mem.gettDate());
+		if (!list1.isEmpty()) {
+			return list1;
+		} else
+			return list2;
 	}
 
 	@GetMapping("/DNOGenerate")
@@ -649,8 +621,9 @@ public class HomeControler {
 				&& !member.getPhoneno().equals("") && !member.getOccupation().equals("")
 				&& !member.getEducation().equals("")) {
 			member.setStatus("Active");
-			//BranchMaster branchMaster = branchMasterRepo.findByname(member.getBranchName());
-			//member.setBranchName(String.valueOf(branchMaster.getId()));
+			// BranchMaster branchMaster =
+			// branchMasterRepo.findByname(member.getBranchName());
+			// member.setBranchName(String.valueOf(branchMaster.getId()));
 			StateMaster stateData = stateMasterRepo.findByname(member.getState());
 			member.setState(String.valueOf(stateData.getId()));
 			Member savedmember = memberRepo.save(member);
@@ -671,21 +644,8 @@ public class HomeControler {
 //		Optional<StateMaster> stateData = stateMasterRepo.findById(Integer.parseInt(member.get().getState()));
 //		member.get().setState(stateData.get().getName());
 //		return member.get();
-		
 		return member;
 	}
-
-	/*
-	 * @PostMapping("getShareCertificate")
-	 * 
-	 * @ResponseBody public List<Member> getShareCertificate(@RequestBody
-	 * GenericGetById id) { List<Member> listMember = new ArrayList<Member>();
-	 * Optional<Member> member = memberRepo.findById(Integer.parseInt(id.getId()));
-	 * Optional<BranchMaster> branchMaster =
-	 * branchMasterRepo.findById(Integer.parseInt(member.get().getBranchName()));
-	 * member.get().setBranchName(branchMaster.get().getName()); ;
-	 * listMember.add(member.get()); return listMember; }
-	 */
 
 	@PostMapping("getShareMemberData")
 	@ResponseBody
@@ -719,7 +679,6 @@ public class HomeControler {
 		for (Member member : allMember) {
 			Optional<BranchMaster> branchMaster2 = branchMasterRepo.findById(Integer.parseInt(member.getBranchName()));
 			member.setBranchName(branchMaster2.get().getName());
-			;
 		}
 		return allMember;
 	}
@@ -762,10 +721,8 @@ public class HomeControler {
 		for (Member member : allMember) {
 			Optional<BranchMaster> branchMaster2 = branchMasterRepo.findById(Integer.parseInt(member.getBranchName()));
 			member.setBranchName(branchMaster2.get().getName());
-			;
 		}
 		return allMember;
-
 	}
 
 	@GetMapping("updateMember")
@@ -780,10 +737,8 @@ public class HomeControler {
 		memberObj.get().setiFSC(member.getiFSC());
 		memberRepo.save(memberObj.get());
 		model.addAttribute("status", "success");
-
 		List<Member> allMember = memberRepo.findAll();
 		model.addAttribute("allMember", allMember);
-
 		return "member/AddMemberKYC";
 	}
 
@@ -799,50 +754,24 @@ public class HomeControler {
 		return "advisor/collectorPromotion";
 	}
 
-//	
-
 	@GetMapping("/getAllShareTransferData")
 	@ResponseBody
-	public List<ClientMaster> getAllShareTransferData(){
+	public List<ClientMaster> getAllShareTransferData() {
 		List<ClientMaster> list = clientMasterRepo.findAll();
 		return list;
 	}
 
-	
-	
-	//Branch Master         
-		
-	
-	/**
-	 * @GetMapping("downloadCerificate")
-	 * 
-	 * @ResponseBody public ResponseEntity downloadCerificate(@RequestParam String
-	 *               id, Model model) { Optional<ShareTransferDto> dtoObj =
-	 *               shareTransferDtoRepo.findById(Integer.parseInt(id)); String
-	 *               fileName = "SH 4 NEW ANKUSH.pdf"; Resource resource = new
-	 *               ClassPathResource(fileName); HttpHeaders headers = new
-	 *               HttpHeaders(); headers.add(HttpHeaders.CONTENT_DISPOSITION,
-	 *               "attachment; filename=\"SH1.pdf\""); return new
-	 *               ResponseEntity<>(resource, headers, HttpStatus.OK); }
-	 **/
-
-	//Conversion HTml TO PDF
-	
-		@GetMapping("downloadCerificate")
-		public String  downloadCerificate(@RequestParam String id, Model model,HttpSession session) {
-			List<ShareTransferDto> sharedtoObj = shareTransferDtoRepo.findByid(Integer.parseInt(id));
-			
-			String companyName =session.getAttribute("userShortName").toString();
-			
-			//System.out.println(companyName);
-			
-			List<CompanyMaster>   comMaster =  companyMasterRepo.findByshortName(companyName);
-			
-			model.addAttribute("comMaster", comMaster);
-			model.addAttribute("sharedtoObj", sharedtoObj);
-			
-			return "sh1"; 
-		}
+	// Conversion HTml TO PDF
+	@GetMapping("downloadCerificate")
+	public String downloadCerificate(@RequestParam String id, Model model, HttpSession session) {
+		List<ShareTransferDto> sharedtoObj = shareTransferDtoRepo.findByid(Integer.parseInt(id));
+		String companyName = session.getAttribute("userShortName").toString();
+		// System.out.println(companyName);
+		List<CompanyMaster> comMaster = companyMasterRepo.findByshortName(companyName);
+		model.addAttribute("comMaster", comMaster);
+		model.addAttribute("sharedtoObj", sharedtoObj);
+		return "sh1";
+	}
 
 	@PostMapping("getShareCertificate")
 	@ResponseBody
@@ -865,13 +794,13 @@ public class HomeControler {
 	}
 
 	/* INVESTMENT SECTION - NEW INVESTMENT */
-	
-	@PostMapping("/saveInvestment") 
-	public String saveInvestment(@ModelAttribute("user") AddInvestment addInvestment, Model model) { 
-		 addInvestmentRepo.save(addInvestment); 
-	     return "investmentSection/AddInvestment"; 
+
+	@PostMapping("/saveInvestment")
+	public String saveInvestment(@ModelAttribute("user") AddInvestment addInvestment, Model model) {
+		addInvestmentRepo.save(addInvestment);
+		return "investmentSection/AddInvestment";
 	}
-	 
+
 	@PostMapping("/updateInvestment")
 	public String updateInvestment(@ModelAttribute("user") AddInvestment addInvestment, Model model) {
 		Optional<AddInvestment> allInvestment = addInvestmentRepo.findById(addInvestment.getId());
@@ -893,15 +822,6 @@ public class HomeControler {
 		return allInvestment;
 	}
 
-	
-
-//	@PostMapping("/getByAddInvesmentCode")
-//	@ResponseBody
-//	public AddInvestment getByAddInvesmentCode(@RequestBody GenericGetById id) {
-//		Optional<AddInvestment> allInvestment = addInvestmentRepo.findById(Integer.parseInt(id.getId()));
-//		return allInvestment.get();
-//	}
-	
 	/* EMPLOYEE SECTION - ADD EMPLOYEE */
 
 	@GetMapping("/addEmployee")
@@ -914,7 +834,7 @@ public class HomeControler {
 		employeeRepo.save(employee);
 		return "employee/AddEmployee";
 	}
-	
+
 	@PostMapping("/saveEmployee")
 	public String addEmployeee(@ModelAttribute("emp") Employee employee, Model model) {
 		employeeRepo.save(employee);
@@ -922,91 +842,91 @@ public class HomeControler {
 	}
 
 	/* */
-	
+
 	/* EMPLOYEE SECTION - ADD Designation */
-	
+
 	@GetMapping("/DesignationMaster")
 	public String DesignationMaster() {
 		return "employee/DesignationMaster";
 	}
 
 	@PostMapping("DesignationMasterSave")
-	public String DesignationMaster(@ModelAttribute("designationMaster") DesignationMaster designationMaster, Model model) {
-		designationMasterRepo.save( designationMaster);
+	public String DesignationMaster(@ModelAttribute("designationMaster") DesignationMaster designationMaster,
+			Model model) {
+		designationMasterRepo.save(designationMaster);
 		return "employee/DesignationMaster";
 	}
-	
+
 	@GetMapping("/getAllDesignation123456")
 	@ResponseBody
 	public List<DesignationMaster> getAllDesignation(Model model) {
 		List<DesignationMaster> getAllDesignation = designationMasterRepo.findAll();
 		return getAllDesignation;
 	}
-	
+
 	/* */
-	
-    /* EMPLOYEE SECTION - ADD DEPARTMENT */
-	
+
+	/* EMPLOYEE SECTION - ADD DEPARTMENT */
+
 	@GetMapping("/DepartmentMaster")
 	public String DepartmentMaster() {
 		return "employee/DepartmentMaster";
 	}
-	
+
 	@PostMapping("DepartmentMaster")
 	public String DepartmentMaster(@ModelAttribute("designation") DepartmentMaster departmentMaster, Model model) {
 		departmentMasterRepo.save(departmentMaster);
 		return "employee/DepartmentMaster";
 	}
-	
+
 	@GetMapping("/FindDepartment")
 	@ResponseBody
-	public List<DepartmentMaster> FindDepartment() 
-	{
+	public List<DepartmentMaster> FindDepartment() {
 		List<DepartmentMaster> alldepartment = departmentMasterRepo.findAll();
 		return alldepartment;
 	}
-	
+
 	@PostMapping("DepartmentMaster123")
-	public String DepartmentMaster123(@ModelAttribute("departmentMaster") DepartmentMaster departmentMaster, Model model) {
+	public String DepartmentMaster123(@ModelAttribute("departmentMaster") DepartmentMaster departmentMaster,
+			Model model) {
 		departmentMasterRepo.save(departmentMaster);
 		return "employee/DepartmentMaster";
 	}
-	
+
 	/* */
-	
+
 	/* EMPLOYEE SECTION - EMPLOYEE I-CARD */
-	
-	@GetMapping("/EmployeeIDCardPrinting") 
-	public String EmployeeIDCardPrinting(){ 
-		return "employee/EmployeeIDCardPrinting"; 
+
+	@GetMapping("/EmployeeIDCardPrinting")
+	public String EmployeeIDCardPrinting() {
+		return "employee/EmployeeIDCardPrinting";
 	}
-	  
+
 	@PostMapping("/employeeCode")
 	@ResponseBody
 	public List<Employee> employeeCode(HttpServletRequest request) {
-	  String id=request.getParameter("id");
-	  int EID=Integer.parseInt(id);
+		String id = request.getParameter("id");
+		int EID = Integer.parseInt(id);
 		List<Employee> list = employeeRepo.findByid(EID);
-	    return list;
+		return list;
 	}
-	 
+
 	/* */
-	
+
 	/* EMPLOYEE SECTION - SEARCH EMPLOYEE */
 
 	@GetMapping("/SearchEmployee")
 	public String SearchEmployee() {
 		return "employee/SearchEmployee";
 	}
-	
+
 	@GetMapping("/getEmployeeBranchName")
 	@ResponseBody
-	public List<Employee> getEmployeeBranchName()
-	{
+	public List<Employee> getEmployeeBranchName() {
 		List<Employee> allemployee = employeeRepo.findAll();
 		return allemployee;
 	}
-	
+
 	@PostMapping("/searchInTheEmployeeSection")
 	@ResponseBody
 	public List<Employee> searchInTheEmployeeSection(@RequestBody Employee emp) {
@@ -1018,33 +938,32 @@ public class HomeControler {
 		List<Employee> data5 = employeeRepo.findBydesignation(emp.getDesignation());
 		List<Employee> data6 = employeeRepo.findBydepartment(emp.getDepartment());
 		List<Employee> data7 = employeeRepo.findBybranch(emp.getBranch());
-		
-		if(!data1.isEmpty()) {
+
+		if (!data1.isEmpty()) {
 			return data1;
-		}else if(!data2.isEmpty()){
+		} else if (!data2.isEmpty()) {
 			return data2;
-		}else if(!data3.isEmpty()){
+		} else if (!data3.isEmpty()) {
 			return data3;
-		}else if(!data4.isEmpty()){
+		} else if (!data4.isEmpty()) {
 			return data4;
-		}else if(!data5.isEmpty()){
+		} else if (!data5.isEmpty()) {
 			return data5;
-		}else if(!data6.isEmpty()){
+		} else if (!data6.isEmpty()) {
 			return data6;
-		}else {
+		} else {
 			return data7;
 		}
-		
 	}
 
 	/* */
-	
+
 	@GetMapping("/getaddEmployeeBranchName")
 	@ResponseBody
-	public List<BranchMaster> findBranch(){
+	public List<BranchMaster> findBranch() {
 		return branchMasterRepo.findAll();
 	}
-	
+
 	private Date dateFormat(String dateToFormat) {
 		DateFormat sourceFormat = new SimpleDateFormat("dd/MM/yyyy");
 		String dateAsString = dateToFormat;
@@ -1229,112 +1148,91 @@ public class HomeControler {
 	@ResponseBody
 	public List<Member> getDropDownBranch() {
 		List<Member> allMember = memberRepo.findAll();
-
 		return allMember;
 	}
 
-	/*
-	 * @PostMapping("/searchInTheMemeberSection")
-	 * 
-	 * @ResponseBody public List<Member> searchInTheMemeberSection(@RequestBody
-	 * Member mem) {
-	 * 
-	 * List<Member> data1 = memberRepo.findBybranchName(mem.getBranchName());
-	 * List<Member> data2 = memberRepo.findByregistrationDateBetween(mem.getfDate(),
-	 * mem.gettDate());
-	 * 
-	 * List<Member> data3 = memberRepo.findBymemberName(mem.getMemberName());
-	 * List<Member> data4 = memberRepo.findByintroMCode(mem.getIntroMCode());
-	 * List<Member> data5 = memberRepo.findByphoneno(mem.getPhoneno()); List<Member>
-	 * data6 = memberRepo.findByaadharNo(mem.getAadharNo()); List<Member> data7 =
-	 * memberRepo.findBypan(mem.getPan());
-	 * 
-	 * if (!data1.isEmpty()) { return data1; } else if (!data2.isEmpty()) { return
-	 * data2; } else if (!data3.isEmpty()) { return data3; } else if
-	 * (!data4.isEmpty()) { return data4; } else if (!data5.isEmpty()) { return
-	 * data5; } else if (!data6.isEmpty()) { return data6; } return data7;
-	 * 
-	 * }
-	 */
-	
 	@RequestMapping(value = "/ViewAddMember", method = RequestMethod.GET)
-	public String redirect(Model model,HttpSession session) {
-		String userId = (String)session.getAttribute("loggedInUserName");
+	public String redirect(Model model, HttpSession session) {
+		String userId = (String) session.getAttribute("loggedInUserName");
 		String module = "addMember";
 		String type = "aadharPhoto";
 		FileUploadDirectory aadharPhoto = fileUploadDirectoryRepo.getIamges(module, type, userId);
-		if(aadharPhoto!=null) {
+		if (aadharPhoto != null) {
 			String encodedLogo = Base64.getEncoder().encodeToString(aadharPhoto.getContent());
 			model.addAttribute("aadharPhoto", encodedLogo);
 		}
-	      return "member/AddMember";
+		return "member/AddMember";
 	}
-	
+
 	@GetMapping("/getHomePage")
-	public String getHomePage(){
-	return "dashboard/home";
+	public String getHomePage() {
+		return "dashboard/home";
 	}
-	
-	//nomineeRelation
+
+	// nomineeRelation
 	@GetMapping("/nomineeRelation")
 	@ResponseBody
-	public List<RelativeRelationMaster> nomineeRelation()
-	{
-			List<RelativeRelationMaster> List = relativeRelationMasterRepo.findAll();
-			return List;
+	public List<RelativeRelationMaster> nomineeRelation() {
+		List<RelativeRelationMaster> List = relativeRelationMasterRepo.findAll();
+		return List;
 	}
-	
+
 	/* MEMBER SHARE - SHARE TRANSFER */
-	
+
 	@PostMapping("getShareTransferDataByID")
 	@ResponseBody
 	public List<ClientMaster> getShareTransferDataByID(@RequestBody ClientMaster clientmaster) {
 		List<ClientMaster> data = clientMasterRepo.findByid(clientmaster.getId());
 		return data;
 	}
-	
+
 	@PostMapping("updateShareTransfer")
 	@ResponseBody
-	public ResponseEntity<String > updateShareTransfer(@RequestBody ShareTransferDto shareTransferDto , Model model) {
-		
+	public ResponseEntity<String> updateShareTransfer(@RequestBody ShareTransferDto shareTransferDto, Model model) {
+
 		Random rnd = new Random();
 		int number = rnd.nextInt(999999);
-		
-		//System.out.println(String.format("%06d", number));
-		
-		int i = shareTransferDtoRepo.updateThroughID(shareTransferDto.getMemberName(),shareTransferDto.getDoj(),shareTransferDto.getPreviousShare(),shareTransferDto.getPreviousShareNo(),shareTransferDto.getFaceValue(),shareTransferDto.getBranchName(),shareTransferDto.getTransferDate(),shareTransferDto.getShareAllotedfrm2(),shareTransferDto.getSharebalance(),shareTransferDto.getTransferAmount(),shareTransferDto.getNoOfShare(),shareTransferDto.getPaymode(),shareTransferDto.getRemarks(),shareTransferDto.getId());
-		
+
+		// System.out.println(String.format("%06d", number));
+
+		int i = shareTransferDtoRepo.updateThroughID(shareTransferDto.getMemberName(), shareTransferDto.getDoj(),
+				shareTransferDto.getPreviousShare(), shareTransferDto.getPreviousShareNo(),
+				shareTransferDto.getFaceValue(), shareTransferDto.getBranchName(), shareTransferDto.getTransferDate(),
+				shareTransferDto.getShareAllotedfrm2(), shareTransferDto.getSharebalance(),
+				shareTransferDto.getTransferAmount(), shareTransferDto.getNoOfShare(), shareTransferDto.getPaymode(),
+				shareTransferDto.getRemarks(), shareTransferDto.getId());
+
 		return ResponseEntity.ok("Updated SucessFully");
 	}
-	
+
 	/* MEMBER SHARE - DNO RE-GENERATE */
-	
+
 	@GetMapping("/FetchTheDataOfDirectorMaster")
 	@ResponseBody
 	public List<DirectorMaster> FetchTheDataOfDirectorMaster() {
-		List<DirectorMaster> data =directorMasterRepo.findAll();
+		List<DirectorMaster> data = directorMasterRepo.findAll();
 		return data;
-		}
-	
+	}
+
 	@PostMapping("/FetchTheDataOfDirectorMasterINTheTable")
 	@ResponseBody
-	public List<DirectorMaster> FetchTheDataOfDirectorMasterINTheTable(@RequestBody DirectorMaster dm,HttpServletRequest request) {
+	public List<DirectorMaster> FetchTheDataOfDirectorMasterINTheTable(@RequestBody DirectorMaster dm,
+			HttpServletRequest request) {
 //		String directorName = request.getParameter("MemberData");
-		List<DirectorMaster> data =directorMasterRepo.findBydirectorName(dm.getDirectorName());
+		List<DirectorMaster> data = directorMasterRepo.findBydirectorName(dm.getDirectorName());
 		return data;
-       }
-	
+	}
+
 	@PostMapping("/updateShareTranfer")
 	@ResponseBody
-	public ResponseEntity<String> updateShareTranfer (@RequestBody ClientMaster member,Model model) {
-		
-		int  i = clientMasterRepo.updateThroughID1(member.getMemberName(),member.getRegistrationDate(),member.getSharebalance(),member.getPreviousNoOfShared(),
-				member.getBranchName(),member.getTransferDate(),member.getShareAllotedfrm(),member.getSharebalance(),member.getTransferAmount(),
-				member.getNoOfShared(),member.getPaymode(),member.getRemarks(),member.getId());
+	public ResponseEntity<String> updateShareTranfer(@RequestBody ClientMaster member, Model model) {
+
+		int i = clientMasterRepo.updateThroughID1(member.getMemberName(), member.getRegistrationDate(),
+				member.getSharebalance(), member.getPreviousNoOfShared(), member.getBranchName(),
+				member.getTransferDate(), member.getShareAllotedfrm(), member.getSharebalance(),
+				member.getTransferAmount(), member.getNoOfShared(), member.getPaymode(), member.getRemarks(),
+				member.getId());
 		return ResponseEntity.ok("Updated SucessFully");
 	}
-	
-	//Conversion HTml TO PDF
-	
-	// end
+
 }

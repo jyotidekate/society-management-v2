@@ -1,9 +1,5 @@
-
-
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <!-- Dk/Admin/IrregularEMIPaymentEntry.aspx?Type=Normal EDB D 09:27:09 GMT -->
 <!-----DKB------>
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
@@ -32,7 +28,6 @@
 <!-- Theme style -->
 <link rel="stylesheet" href="dist/css/AdminLTE.min.css" />
 <script src="dist/js/loanModule.js"></script>
-
 <!-- daterange picker -->
 <link rel="stylesheet"
 	href="bower_components/bootstrap-daterangepicker/daterangepicker.css" />
@@ -41,7 +36,6 @@
 	href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
 <!-- iCheck for checkboxes and radio inputs -->
 <link rel="stylesheet" href="plugins/iCheck/all.css" />
-
 <!-- Select2 -->
 <link rel="stylesheet"
 	href="bower_components/select2/dist/css/select2.min.css" />
@@ -91,8 +85,8 @@
 	style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);"
 	cz-shortcut-listen="true">
 	<form method="post" action="saveirregularEMIPaymentEntryf159"
-		onsubmit="javascript:return WebForm_OnSubmit();" id="form1" modelAttribute="user">
-
+		onsubmit="javascript:return WebForm_OnSubmit();" id="form1"
+		modelAttribute="user">
 
 		<div
 			style="height: auto; min-height: 100%; border-radius: 30px; margin: 15px; background: url(dist/img/back.jpg);">
@@ -112,21 +106,19 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 
 			<!-- Content Wrapper. Contains page content -->
 			<div class="content-wrapper" style="min-height: 1105.75px;">
-  <%
-         String status = (String)request.getAttribute("status");
-         if(status!=null && "success".equals(status)){
-        	 %>
-        	 <script>
+				<%
+				String status = (String) request.getAttribute("status");
+				if (status != null && "success".equals(status)) {
+				%>
+				<script>
         	   alert("Data Saved Successfully");
         	</script>
-         <%
-         }else{
-        	 
-         }
-         %>
+				<%
+				} else {
 
-
-
+				}
+				%>
+				
 				<section class="content-header">
 					<h1 id="ContentPlaceHolder1_IdHeader">Irregular EMI Repayment</h1>
 					<ol class="breadcrumb">
@@ -149,21 +141,19 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 													& Name <strong style="color: Red">*</strong>
 												</label>
 												<div class="col-sm-8">
-													<select name="id"
-														onchange="javascript:getByLoanId()" id="searchLoanId"
-														class="form-control select2" style="width: 100%;">
+													<select name="id" onchange="javascript:getByLoanId()"
+														id="searchLoanId" class="form-control select2"
+														style="width: 100%;">
 														<option selected="selected" value=""></option>
 													</select>
 												</div>
 											</div>
 										</div>
 									</div>
-
 								</div>
 							</div>
 						</div>
 					</div>
-
 					<div class="row">
 						<div class="col-md-12">
 							<div class="box box-success">
@@ -212,7 +202,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 												<input name="memberRelativesName" type="text"
 													readonly="readonly" id="memberRelativesName"
 													class="form-control" PlaceHolder="Enter Relative Details" />
-
 											</div>
 										</div>
 										<div class="form-group row">
@@ -241,10 +230,8 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 													Branch Name</span>
 											</div>
 										</div>
-
 									</div>
 									<div class="col-md-4">
-
 										<div class="form-group row">
 											<label for="txtLoanPlanName" class="col-sm-5 control-label">Plan
 												Name <strong style="color: Red">*</strong>
@@ -309,7 +296,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 													Loan ROI</span>
 											</div>
 										</div>
-
 									</div>
 									<div class="col-md-4">
 										<div class="form-group row">
@@ -320,7 +306,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 												<input name="roiType" type="text" readonly="readonly"
 													id="roiType" class="form-control"
 													PlaceHolder="Enter ROI Type" />
-
 											</div>
 										</div>
 										<div class="form-group row">
@@ -343,7 +328,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 											<div class="col-sm-7">
 												<input name="interestPaid" type="text" readonly="readonly"
 													id="interestPaid" class="form-control" />
-
 											</div>
 										</div>
 										<div class="form-group row">
@@ -353,7 +337,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 											<div class="col-sm-7">
 												<input name="principalPaid" type="text" readonly="readonly"
 													id="principalPaid" class="form-control" />
-
 											</div>
 										</div>
 										<div class="form-group row">
@@ -365,22 +348,17 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 													id="totalPaid" class="form-control" />
 											</div>
 										</div>
-
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-
-
-
 					<div class="row">
 						<div class="col-md-12">
 							<div class="box box-danger">
 								<div class="box-header with-border">
 									<h3 class="box-title">Payment Details</h3>
 								</div>
-
 								<div class="box-body">
 									<div class="col-md-4">
 										<div class="form-group row">
@@ -418,7 +396,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 											<div class="col-sm-7">
 												<input name="curentInterest" type="text" readonly="readonly"
 													id="curentInterest" class="form-control" />
-
 											</div>
 										</div>
 										<div class="form-group row">
@@ -428,7 +405,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 											<div class="col-sm-7">
 												<input name="totalInterest" type="text" readonly="readonly"
 													id="totalInterest" class="form-control" />
-
 											</div>
 										</div>
 										<div class="form-group row">
@@ -438,7 +414,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 											<div class="col-sm-7">
 												<input name="totalDueAmt" type="text" readonly="readonly"
 													id="totalDueAmt" class="form-control" />
-
 											</div>
 										</div>
 										<div class="form-group row">
@@ -468,13 +443,9 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 												<select name="cspName" id="cspName" class="form-control"
 													style="width: 100%;">
 													<option value="001">Main Office - 001</option>
-
 												</select>
 											</div>
 										</div>
-
-
-
 									</div>
 									<div class="col-md-4">
 										<div class="form-group row">
@@ -486,18 +457,14 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 													class="form-control" style="width: 100%;">
 													<option selected="selected" value="NO">NO</option>
 													<option value="YES">YES</option>
-
 												</select>
-
 											</div>
 											<div class="col-sm-3">
 												<input name="lateFine" type="text" readonly="readonly"
 													id="lateFine" class="form-control" PlaceHolder="Fine" />
-
 											</div>
 										</div>
 										<div id="ContentPlaceHolder1_uppnlcal">
-
 											<div class="form-group row">
 												<label for="txtPayableAmount" class="col-sm-5 control-label">Pay
 													Amount <strong style="color: Red">*</strong>
@@ -511,9 +478,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 														Payable Amount</span>
 												</div>
 											</div>
-
-
-
 											<div class="form-group row">
 												<label for="txtTotalPayableAmt"
 													class="col-sm-5 control-label">Payable Interest</label>
@@ -538,7 +502,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 														Payable Principal</span>
 												</div>
 											</div>
-
 										</div>
 										<div class="form-group row">
 											<label for="txtPaymentdate" class="col-sm-5 control-label">Payment
@@ -557,9 +520,7 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 												</div>
 											</div>
 										</div>
-
 										<div id="ContentPlaceHolder1_uppaymode">
-
 											<div class="form-group row">
 												<label for="drpPaymentBy" class="col-sm-5 control-label">Payment
 													By <strong style="color: Red">*</strong>
@@ -573,21 +534,15 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 														<option value="NEFT">NEFT</option>
 														<option value="SBAccount">SBAccount</option>
 														<option value="Flexi">Flexi</option>
-
 													</select>
 												</div>
 											</div>
-
 										</div>
-
 										<div id="ContentPlaceHolder1_upbank"></div>
-
 									</div>
 									<div class="col-md-4">
-
 										<div id="ContentPlaceHolder1_upchq"></div>
 										<div id="ContentPlaceHolder1_uppnkad">
-
 											<div class="form-group row">
 												<label class="col-sm-5 control-label">Advisor Code <strong
 													style="color: Red">*</strong></label>
@@ -612,7 +567,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 														Advisor/Collector Name</span>
 												</div>
 											</div>
-
 										</div>
 										<div class="form-group row">
 											<label class="col-sm-5 control-label">Remarks</label>
@@ -627,15 +581,16 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 								<div class="box-footer">
 									<div class="row col-md-12">
 										<input type="submit" name="loanStatement"
-											value="Loan Statement" id="loanStatement" onclick="this.disabled = true"
+											value="Loan Statement" id="loanStatement"
+											onclick="this.disabled = true"
 											class="btn btn-warning pull-left" /> <input type="submit"
-											name="delete" value="Delete Last Payment" onclick="this.disabled = true"id="delete"
+											name="delete" value="Delete Last Payment"
+											onclick="this.disabled = true" id="delete"
 											class="btn btn-danger pull-right" /> <input type="submit"
 											name="save" value="Save Data" id="save"
 											class="btn btn-success pull-right margin-r-5" />
 									</div>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -645,39 +600,15 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
 								style="box-shadow: none; height: 400px; overflow: auto !important;">
 								<div class="box-body">
 									<div class="clearfix margin-bottom-10"></div>
-
 									<div></div>
-
-
-
-
 								</div>
-
 							</div>
 						</div>
 					</div>
 				</section>
-
-
-
-
 			</div>
 			<!-- /.content-wrapper -->
-
-			<footer class="main-footer">
-				<div class="pull-right hidden-xs">
-					<b>Version</b> 1.0.1
-
-				</div>
-				<strong>Copyright © 2020-2021 <a> <span
-						id="lblCompanyName1">EQFI NIDHI LIMITED</span></a>.
-				</strong> All rights reserved.
-
-			</footer>
-
-
 			<div class="control-sidebar-bg"></div>
-
 		</div>
 
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -754,11 +685,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['t
                     checkboxClass: 'icheckbox_minimal-blue',
                     radioClass: 'iradio_minimal-blue'
                 })
-
-
-
-
-
             })
         </script>
 
@@ -924,7 +850,6 @@ ContentPlaceHolder1_RequiredFieldValidator7.evaluationfunction = "RequiredFieldV
 ContentPlaceHolder1_RequiredFieldValidator7.initialvalue = "";
 //]]>
 </script>
-
 
 		<script type="text/javascript">
 //<![CDATA[

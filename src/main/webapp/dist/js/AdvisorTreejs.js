@@ -1,6 +1,5 @@
 //FetchOnComponent
- 
- function FetchDetail(){
+function FetchDetail(){
 	
 	var ids = document.getElementById("advisorSearchbyCode").value;
 	
@@ -10,9 +9,7 @@
                         url: 'Fetchadvdetail',
       					data: {id:ids },
                         asynch: false,
-    
                         success: function(data) {
-	
                    	    for (var i = 0; i < data.length; i++) {
 	
 						document.getElementById("advisorName").value = data[i].memberName;
@@ -23,31 +20,25 @@
            	    error: function(){
            	    	alert("Device control failed");
            	    }
-		
-		
 	});
-	
 }
 
 //Show  data in Tables
- function ShowDetails(){
+function ShowDetails(){
 	
-         var ids = document.getElementById("advisorSearchbyCode").value;
+     var ids = document.getElementById("advisorSearchbyCode").value;
 	
 	 $.ajax({
 		
-		          type:"get",
+		                type:"get",
                         contentType: "application/json",
                         url: 'FetcHPositiondata',
       					data: {id:ids },
                         asynch: false,
-    
-              success: function(data) {
-	     
-              for (var i = 0; i < data.length; i++) 
-              {
-	var j=1;
-						
+                        success: function(data) {
+                        for (var i = 0; i < data.length; i++) 
+              			{
+				 var j=1;	
 				 const tableData = data.map(function(value){
                  return ( 
                   `<tr>
@@ -60,37 +51,34 @@
              }).join('');
              const tabelBody = document.querySelector("#tableBodyAdvisor");
              tableBodyAdvisor.innerHTML = tableData;
-                    
                   }
-               } ,
+               },
            	   error: function(){
            	    	alert("Device control failed");
            	    }
-	
 		});	
 }
 
 function ShowDetailsIdCardAdvisor(){
 	
-         var ids = document.getElementById("advisorSearchbyCode").value;
+     var ids = document.getElementById("advisorSearchbyCode").value;
 	
 	 $.ajax({
 		
-		          type:"get",
+		                type:"get",
                         contentType: "application/json",
                         url: 'FetcHPositiondata',
       					data: {id:ids },
                         asynch: false,
-    
               success: function(data) {
 	     
               for (var i = 0; i < data.length; i++) 
               {
-						var j=1;
+				 var j=1;
 				 const tableData = data.map(function(value){
                  return ( 
                   `<tr>
-                  <td>${j++}</td>
+                    <td>${j++}</td>
             		<td>${value.id}</td>           
            			<td>${value.memberName}</td>
             		<td>${value.position}</td>                 
@@ -99,7 +87,6 @@ function ShowDetailsIdCardAdvisor(){
              }).join('');
              const tableBody = document.querySelector("#IdCardAdvisor");
              tableBody.innerHTML = tableData;
-                    
                   }
                } ,
            	   error: function(){

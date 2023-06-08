@@ -24,7 +24,7 @@ import com.society.application.repository.DesignationMasterRepo;
 public class CollectorAdvisorController {
 	@Autowired
 	AdvisorCollectorDetailsRepo advisorCollectorDetailsRepo;
-	
+
 	@Autowired
 	ClientMasterRepo clientMasterRepo;
 
@@ -42,7 +42,7 @@ public class CollectorAdvisorController {
 	@ResponseBody
 	public List<AdvisorCollectorDetails> FetchDetails(HttpServletRequest hp) {
 		String ids = hp.getParameter("id");
-		//System.out.println(ids);
+		// System.out.println(ids);
 		int i = Integer.parseInt(ids);
 		List<AdvisorCollectorDetails> data1 = advisorCollectorDetailsRepo.findByid(i);
 		return data1;
@@ -186,7 +186,6 @@ public class CollectorAdvisorController {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-
 		return new ResponseEntity<>("Data Updated  successfully!!!!", HttpStatus.OK);
 	}
 

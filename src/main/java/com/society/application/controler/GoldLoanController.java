@@ -149,7 +149,6 @@ public class GoldLoanController {
 	}
 
 	// lockerMasterRepo
-
 	@PostMapping("/saveLockerMaster")
 	public String saveLockerMaster(@ModelAttribute("savelockerMaster") LockerMaster lockerMaster, Model model) {
 		LockerMaster getAllRates = lockerMasterRepo.save(lockerMaster);
@@ -164,7 +163,6 @@ public class GoldLoanController {
 	}
 
 	// PurityMasterRepo
-
 	@PostMapping("/savePurityMasterRepo")
 	public String savePurityMasterRepo(@ModelAttribute("savePurityMaster") PurityMaster purityMaster, Model model) {
 		PurityMaster getAllRates = purityMasterRepo.save(purityMaster);
@@ -244,14 +242,12 @@ public class GoldLoanController {
 	}
 
 	// IrregularEMIPaymentEntry9d5e
-
 	@GetMapping("/irregularEMIPaymentEntry9d5e")
 	public String irregularEMIPaymentEntry9d5e(Model model) {
 		return "Gold_Loan/IrregularEMIPaymentEntry9d5e";
 	}
 
 	// RegularLoanStatement9d5e
-
 	@GetMapping("/regularLoanStatement9d5e")
 	public String regularLoanStatement9d5e(Model model) {
 		return "Gold_Loan/RegularLoanStatement9d5e";
@@ -336,7 +332,6 @@ public class GoldLoanController {
 	}
 
 	private Loan updateWrapper(Loan loanFromUser, Loan dbLoan) {
-
 		return dbLoan;
 	}
 }

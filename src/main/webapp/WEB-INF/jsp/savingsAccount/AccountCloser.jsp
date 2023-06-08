@@ -1,291 +1,325 @@
-
 <jsp:include page="../header.jsp" />
-<body class="skin-blue sidebar-mini" style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);" cz-shortcut-listen="true">
-    <form method="post" action="http://admin:eqfi%23123@eqfinidhi.eadmin.in/Admin/AccountCloser.aspx" onsubmit="javascript:return WebForm_OnSubmit();" id="form1">
+<body class="skin-blue sidebar-mini"
+	style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);"
+	cz-shortcut-listen="true">
+	<form method="post"
+		action="http://admin:eqfi%23123@eqfinidhi.eadmin.in/Admin/AccountCloser.aspx"
+		onsubmit="javascript:return WebForm_OnSubmit();" id="form1">
 
+		<div
+			style="height: auto; min-height: 100%; border-radius: 30px; margin: 15px; background: url(dist/img/back.jpg);">
+			<!-- Header Start-->
+			<jsp:include page="../menu.jsp" />
+			<!-- Header End -->
+			<!-- Left side column. contains the logo and sidebar -->
+			<!-- Aside Menu Start-->
+			<jsp:include page="../asideMenu.jsp" />
+			<!-- Aside Menu end -->
+			<!-- Content Wrapper. Contains page content -->
+			<div class="content-wrapper" style="min-height: 1105.75px;">
+				<section class="content-header">
+					<h1 id="ContentPlaceHolder1_IdHeader">Savings A/C Close</h1>
+					<ol class="breadcrumb">
+						<li><a href="Home.html"><i class="fa fa-dashboard"></i>Home</a></li>
+						<li><a href="#">Dashboard</a></li>
+						<li class="active">A/C Close</li>
+					</ol>
+				</section>
+				<section class="content">
+					<div class="row">
+						<div class="col-md-10">
+							<div class="box box-success">
+								<div class="box-header with-border">
+									<h3 class="box-title">Savings Details</h3>
+								</div>
+								<div class="box-body">
+									<div class="col-md-6">
+										<div class="form-group row">
+											<label for="ddlDebitSelectAccountNo"
+												class="col-sm-4 control-label">Select Acc.No.<strong
+												style="color: Red">*</strong></label>
+											<div class="col-sm-8">
+												<select name="ctl00$ContentPlaceHolder1$ddlSelectAccount"
+													onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$ddlSelectAccount\&#39;,\&#39;\&#39;)&#39;, 0)"
+													id="ContentPlaceHolder1_ddlSelectAccount"
+													class="form-control select2" style="width: 100%;">
+													<option selected="selected" value=""></option>
+												</select> <span
+													id="ContentPlaceHolder1_RequiredFieldValidatorDebitSelectAccountNo"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Select
+													Account No</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-4 control-label">Member Code<strong
+												style="color: Red">*</strong></label>
+											<div class="col-sm-8">
+												<input name="ctl00$ContentPlaceHolder1$txtDebitMemberNo"
+													type="text" readonly="readonly"
+													id="ContentPlaceHolder1_txtDebitMemberNo"
+													class="form-control" Placeholder="Enter Member Code" /> <span
+													id="ContentPlaceHolder1_RequiredFieldValidatorDebitMemberNo"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Member No</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-4 control-label">Mobile Numder<strong
+												style="color: Red">*</strong></label>
+											<div class="col-sm-8">
+												<input name="ctl00$ContentPlaceHolder1$txtMobileNumber"
+													type="text" readonly="readonly"
+													id="ContentPlaceHolder1_txtMobileNumber"
+													class="form-control" Placeholder="Enter Mobile No" /> <span
+													id="ContentPlaceHolder1_RequiredFieldValidatortxtMobileNumber"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Account Branch</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-4 control-label">Opening Branch<strong
+												style="color: Red">*</strong></label>
+											<div class="col-sm-8">
+												<input name="ctl00$ContentPlaceHolder1$txtOpeningBranch"
+													type="text" readonly="readonly"
+													id="ContentPlaceHolder1_txtOpeningBranch"
+													class="form-control" Placeholder="Enter Opening Branch" />
+												<span
+													id="ContentPlaceHolder1_RequiredFieldValidatortxtOpeningBranch"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Opening Branch</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-4 control-label">Opening Date<strong
+												style="color: Red">*</strong></label>
+											<div class="col-sm-8">
+												<input name="ctl00$ContentPlaceHolder1$txtOpeningDate"
+													type="text" readonly="readonly"
+													id="ContentPlaceHolder1_txtOpeningDate"
+													class="form-control" Placeholder="Enter Opening Date" /> <span
+													id="ContentPlaceHolder1_RequiredFieldValidatortxtOpeningDate"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Opening Date</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group row">
+											<label for="txtCurrentBalance" class="col-sm-4 control-label">Current
+												Balance<strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-8">
+												<input name="ctl00$ContentPlaceHolder1$txtCurrentBalance"
+													type="text" readonly="readonly"
+													id="ContentPlaceHolder1_txtCurrentBalance"
+													class="form-control" Placeholder="Enter Current Balance" />
+												<span
+													id="ContentPlaceHolder1_RequiredFieldValidatorCurrentBalance"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Current Balance</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtTotalInterestPaid"
+												class="col-sm-4 control-label">Paid Interest<strong
+												style="color: Red">*</strong></label>
+											<div class="col-sm-8">
+												<input name="ctl00$ContentPlaceHolder1$txtTotalInterestPaid"
+													type="text" readonly="readonly"
+													id="ContentPlaceHolder1_txtTotalInterestPaid"
+													class="form-control"
+													Placeholder="Enter Total Interest Paid" /> <span
+													id="ContentPlaceHolder1_RequiredFieldValidatorTotalInterestPaid"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Total Interest Paid</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtInterestDue" class="col-sm-4 control-label">Interest
+												Due<strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-8">
+												<input name="ctl00$ContentPlaceHolder1$txtInterestDue"
+													type="text" readonly="readonly"
+													id="ContentPlaceHolder1_txtInterestDue"
+													class="form-control" Placeholder="Enter Interest Due" /> <span
+													id="ContentPlaceHolder1_RequiredFieldValidatorInterestDue"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Interest Due</span>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="txtNetAmount" class="col-sm-4 control-label">Net
+												Amount<strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-8">
+												<input name="ctl00$ContentPlaceHolder1$txtNetAmount"
+													type="text" readonly="readonly"
+													id="ContentPlaceHolder1_txtNetAmount" class="form-control"
+													Placeholder="Enter Net Amount" /> <span
+													id="ContentPlaceHolder1_RequiredFieldValidatorNetAmount"
+													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
+													Net Amount</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="box box-info">
+								<div class="box-header with-border">
+									<h3 class="box-title">Payment Details</h3>
+								</div>
+								<div class="box-body">
+									<div class="col-md-6">
+										<div class="form-group row">
+											<label for="ddlClosingBranchName"
+												class="col-sm-4 control-label">Closing Branch<strong
+												style="color: Red">*</strong></label>
+											<div class="col-sm-8">
+												<select
+													name="ctl00$ContentPlaceHolder1$ddlClosingBranchName"
+													id="ContentPlaceHolder1_ddlClosingBranchName"
+													class="form-control select2" style="width: 100%;">
+													<option value="001">Main Office - 001</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-4 control-label">Closing Date<strong
+												style="color: Red">*</strong></label>
+											<div class="col-sm-8">
+												<div class="input-group date">
+													<div class="input-group-addon">
+														<i class="fa fa-calendar"></i>
+													</div>
+													<input name="ctl00$ContentPlaceHolder1$txtTDate"
+														type="text" value="01/08/2022"
+														onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$txtTDate\&#39;,\&#39;\&#39;)&#39;, 0)"
+														onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;"
+														id="ContentPlaceHolder1_txtTDate" class="form-control"
+														data-inputmask="&#39;alias&#39;: &#39;dd/mm/yyyy&#39;"
+														data-mask="" />
+												</div>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="drpPaymentBy" class="col-sm-4 control-label">Payment
+												By <strong style="color: Red">*</strong>
+											</label>
+											<div class="col-sm-8">
+												<select name="ctl00$ContentPlaceHolder1$ddlPaymode"
+													onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$ddlPaymode\&#39;,\&#39;\&#39;)&#39;, 0)"
+													id="ContentPlaceHolder1_ddlPaymode" class="form-control"
+													style="width: 100%;">
+													<option selected="selected" value="Cash">Cash</option>
+													<option value="Cheque">Cheque</option>
+													<option value="Online">Online</option>
+													<option value="NEFT">NEFT</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group row">
+											<label for="txtRemarks" class="col-sm-4 control-label">Remarks</label>
+											<div class="col-sm-8">
+												<input name="ctl00$ContentPlaceHolder1$txtRemarks"
+													type="text" id="ContentPlaceHolder1_txtRemarks"
+													class="form-control" placeholder="Enter Remarks" />
+											</div>
+										</div>
+									</div>
+									<div class="box-footer">
+										<div class="row col-md-12">
+											<input type="submit" name="ctl00$ContentPlaceHolder1$btnNew"
+												value="New" id="ContentPlaceHolder1_btnNew"
+												class="btn btn-info pull-right margin-r-5" /> <input
+												type="submit" name="ctl00$ContentPlaceHolder1$btnSave"
+												value="Close Account"
+												onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$ContentPlaceHolder1$btnSave&quot;, &quot;&quot;, true, &quot;A&quot;, &quot;&quot;, false, false))"
+												id="ContentPlaceHolder1_btnSave"
+												class="btn btn-success pull-right margin-r-5" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="box box-success">
+								<div class="box-header with-border">
+									<h3 class="box-title">Photo</h3>
+								</div>
+								<div class="box-body">
+									<div class="col-md-3">
+										<div class="form-group">
+											<div class="text-center">
+												<img id="ContentPlaceHolder1_ImageApplicant"
+													class="profile-user-img" src="dist/img/photo.jpg"
+													style="width: 110px;" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="box box-success">
+								<div class="box-header with-border">
+									<h3 class="box-title">Signature</h3>
+								</div>
+								<div class="box-body">
+									<div class="col-md-3">
+										<div class="form-group">
+											<div class="text-center">
+												<img id="ContentPlaceHolder1_ImageSignature"
+													class="profile-user-img" src="dist/img/sign.jpg"
+													style="height: 70px; width: 115px;" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- /.content-wrapper -->
+			<div class="control-sidebar-bg"></div>
+		</div>
 
-        <div style="height: auto; min-height: 100%; border-radius: 30px; margin: 15px; background: url(dist/img/back.jpg);">
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap 3.3.7 -->
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-           <!-- Header Start-->
-	<jsp:include page="../menu.jsp" />
-	<!-- Header End -->
-	<!-- Left side column. contains the logo and sidebar -->
-	<!-- Aside Menu Start-->
-	<jsp:include page="../asideMenu.jsp" />
-	<!-- Aside Menu end -->
-            <script type="text/javascript">
-//<![CDATA[
-Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [], [], [], 90, 'ctl00');
-//]]>
-</script>
-
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper" style="min-height: 1105.75px;">
-                
-
-                 
-    <section class="content-header">
-        <h1 id="ContentPlaceHolder1_IdHeader">Savings A/C Close</h1>
-        <ol class="breadcrumb">
-            <li><a href="Home.html"><i class="fa fa-dashboard"></i>Home</a></li>
-            <li><a href="#">Dashboard</a></li>
-            <li class="active">A/C Close</li>
-        </ol>
-    </section>
-    <section class="content">
-        
-        <div class="row">
-            <div class="col-md-10">
-                <div class="box box-success">
-                 <div class="box-header with-border">
-                        <h3 class="box-title">Savings Details</h3>
-                    </div>
-                        <div class="box-body">
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label for="ddlDebitSelectAccountNo" class="col-sm-4 control-label">Select Acc.No.<strong style="color: Red">*</strong></label>
-                                    <div class="col-sm-8">
-                                        <select name="ctl00$ContentPlaceHolder1$ddlSelectAccount" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$ddlSelectAccount\&#39;,\&#39;\&#39;)&#39;, 0)" id="ContentPlaceHolder1_ddlSelectAccount" class="form-control select2" style="width: 100%;">
-	<option selected="selected" value=""></option>
-
-</select>
-                                        <span id="ContentPlaceHolder1_RequiredFieldValidatorDebitSelectAccountNo" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Select Account No</span>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4 control-label">Member Code<strong style="color: Red">*</strong></label>
-                                    <div class="col-sm-8">
-                                        <input name="ctl00$ContentPlaceHolder1$txtDebitMemberNo" type="text" readonly="readonly" id="ContentPlaceHolder1_txtDebitMemberNo" class="form-control" Placeholder="Enter Member Code" />
-                                        <span id="ContentPlaceHolder1_RequiredFieldValidatorDebitMemberNo" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Member No</span>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4 control-label">Mobile Numder<strong style="color: Red">*</strong></label>
-                                    <div class="col-sm-8">
-                                        <input name="ctl00$ContentPlaceHolder1$txtMobileNumber" type="text" readonly="readonly" id="ContentPlaceHolder1_txtMobileNumber" class="form-control" Placeholder="Enter Mobile No" />
-                                        <span id="ContentPlaceHolder1_RequiredFieldValidatortxtMobileNumber" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Account Branch</span>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4 control-label">Opening Branch<strong style="color: Red">*</strong></label>
-                                    <div class="col-sm-8">
-                                        <input name="ctl00$ContentPlaceHolder1$txtOpeningBranch" type="text" readonly="readonly" id="ContentPlaceHolder1_txtOpeningBranch" class="form-control" Placeholder="Enter Opening Branch" />
-                                        <span id="ContentPlaceHolder1_RequiredFieldValidatortxtOpeningBranch" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Opening Branch</span>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4 control-label">Opening Date<strong style="color: Red">*</strong></label>
-                                    <div class="col-sm-8">
-                                        <input name="ctl00$ContentPlaceHolder1$txtOpeningDate" type="text" readonly="readonly" id="ContentPlaceHolder1_txtOpeningDate" class="form-control" Placeholder="Enter Opening Date" />
-                                        <span id="ContentPlaceHolder1_RequiredFieldValidatortxtOpeningDate" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Opening Date</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label for="txtCurrentBalance" class="col-sm-4 control-label">Current Balance<strong style="color: Red">*</strong></label>
-                                    <div class="col-sm-8">
-                                        <input name="ctl00$ContentPlaceHolder1$txtCurrentBalance" type="text" readonly="readonly" id="ContentPlaceHolder1_txtCurrentBalance" class="form-control" Placeholder="Enter Current Balance" />
-                                        <span id="ContentPlaceHolder1_RequiredFieldValidatorCurrentBalance" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Current Balance</span>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="txtTotalInterestPaid" class="col-sm-4 control-label">Paid Interest<strong style="color: Red">*</strong></label>
-                                    <div class="col-sm-8">
-                                        <input name="ctl00$ContentPlaceHolder1$txtTotalInterestPaid" type="text" readonly="readonly" id="ContentPlaceHolder1_txtTotalInterestPaid" class="form-control" Placeholder="Enter Total Interest Paid" />
-                                        <span id="ContentPlaceHolder1_RequiredFieldValidatorTotalInterestPaid" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Total Interest Paid</span>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="txtInterestDue" class="col-sm-4 control-label">Interest Due<strong style="color: Red">*</strong></label>
-                                    <div class="col-sm-8">
-                                        <input name="ctl00$ContentPlaceHolder1$txtInterestDue" type="text" readonly="readonly" id="ContentPlaceHolder1_txtInterestDue" class="form-control" Placeholder="Enter Interest Due" />
-                                        <span id="ContentPlaceHolder1_RequiredFieldValidatorInterestDue" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Interest Due</span>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="txtNetAmount" class="col-sm-4 control-label">Net Amount<strong style="color: Red" >*</strong></label>
-                                    <div class="col-sm-8">
-                                        <input name="ctl00$ContentPlaceHolder1$txtNetAmount" type="text" readonly="readonly" id="ContentPlaceHolder1_txtNetAmount" class="form-control" Placeholder="Enter Net Amount" />
-                                        <span id="ContentPlaceHolder1_RequiredFieldValidatorNetAmount" style="color:Red;font-size:X-Small;font-weight:bold;display:none;">Enter Net Amount</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                   
-                </div>
-
-                 <div class="box box-info">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Payment Details</h3>
-                    </div>  
-                     <div class="box-body">
-                            <div class="col-md-6">
-                                 <div class="form-group row">
-                                    <label for="ddlClosingBranchName" class="col-sm-4 control-label">Closing Branch<strong style="color: Red">*</strong></label>
-                                    <div class="col-sm-8">
-                                        <select name="ctl00$ContentPlaceHolder1$ddlClosingBranchName" id="ContentPlaceHolder1_ddlClosingBranchName" class="form-control select2" style="width: 100%;">
-	<option value="001">Main Office - 001</option>
-
-</select>
-                                        
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-sm-4 control-label">Closing Date<strong style="color: Red">*</strong></label>
-                                    <div class="col-sm-8">
-                                        <div class="input-group date">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </div>
-                                            <input name="ctl00$ContentPlaceHolder1$txtTDate" type="text" value="01/08/2022" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$txtTDate\&#39;,\&#39;\&#39;)&#39;, 0)" onkeypress="if (WebForm_TextBoxKeyHandler(event) == false) return false;" id="ContentPlaceHolder1_txtTDate" class="form-control" data-inputmask="&#39;alias&#39;: &#39;dd/mm/yyyy&#39;" data-mask="" />
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                 <div class="form-group row">
-                                    <label for="drpPaymentBy" class="col-sm-4 control-label">Payment By <strong style="color: Red">*</strong></label>
-                                    <div class="col-sm-8">
-                                         <select name="ctl00$ContentPlaceHolder1$ddlPaymode" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$ddlPaymode\&#39;,\&#39;\&#39;)&#39;, 0)" id="ContentPlaceHolder1_ddlPaymode" class="form-control" style="width: 100%;">
-	<option selected="selected" value="Cash">Cash</option>
-	<option value="Cheque">Cheque</option>
-	<option value="Online">Online</option>
-	<option value="NEFT">NEFT</option>
-
-</select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                 
-                                 
-                                
-                                <div class="form-group row">
-                                    <label for="txtRemarks" class="col-sm-4 control-label">Remarks</label>
-                                    <div class="col-sm-8">
-                                        <input name="ctl00$ContentPlaceHolder1$txtRemarks" type="text" id="ContentPlaceHolder1_txtRemarks" class="form-control" placeholder="Enter Remarks" />
-                                      
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="box-footer">
-                                <div class="row col-md-12">
-                                   
-                                    <input type="submit" name="ctl00$ContentPlaceHolder1$btnNew" value="New" id="ContentPlaceHolder1_btnNew" class="btn btn-info pull-right margin-r-5" />
-                                    <input type="submit" name="ctl00$ContentPlaceHolder1$btnSave" value="Close Account" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$ContentPlaceHolder1$btnSave&quot;, &quot;&quot;, true, &quot;A&quot;, &quot;&quot;, false, false))" id="ContentPlaceHolder1_btnSave" class="btn btn-success pull-right margin-r-5" />
-                                </div>
-                            </div>
-                        </div>
-
-                     </div>
-
-            </div>
-
-
-            <div class="col-md-2">
-                <div class="box box-success">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Photo </h3>
-
-                    </div>
-
-                    <div class="box-body">
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="text-center">
-                                    <img id="ContentPlaceHolder1_ImageApplicant" class="profile-user-img" src="dist/img/photo.jpg" style="width:110px;" />
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                </div>
-                <div class="box box-success">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Signature </h3>
-
-                    </div>
-
-                    <div class="box-body">
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <div class="text-center">
-                                    <img id="ContentPlaceHolder1_ImageSignature" class="profile-user-img" src="dist/img/sign.jpg" style="height:70px;width:115px;" />
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-        
-    </section>
-
-
-
-
-
-            </div>
-            <!-- /.content-wrapper -->
-
-            <footer class="main-footer">
-                <div class="pull-right hidden-xs">
-                    <b>Version</b> 1.0.1
-   
-                </div>
-                <strong>Copyright © 2020-2021 <a>
-                    <span id="lblCompanyName1">EQFI NIDHI LIMITED</span></a>.</strong> All rights
-    reserved.
- 
-            </footer>
-
-
-            <div class="control-sidebar-bg"></div>
-
-        </div>
-
-        <script src="bower_components/jquery/dist/jquery.min.js"></script>
-        <!-- Bootstrap 3.3.7 -->
-        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-        <!-- InputMask -->
-        <script src="plugins/input-mask/jquery.inputmask.js"></script>
-        <script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-        <script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
-        <!-- date-range-picker -->
-        <script src="bower_components/moment/min/moment.min.js"></script>
-        <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-        <!-- bootstrap datepicker -->
-        <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-        <!-- bootstrap color picker -->
-        <script src="bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
-        <!-- bootstrap time picker -->
-        <script src="plugins/timepicker/bootstrap-timepicker.min.js"></script>
-        <!-- SlimScroll -->
-        <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-        <!-- iCheck 1.0.1 -->
-        <script src="plugins/iCheck/icheck.min.js"></script>
-        <!-- FastClick -->
-        <script src="bower_components/fastclick/lib/fastclick.js"></script>
-        <!-- AdminLTE App -->
-        <script src="dist/js/adminlte.min.js"></script>
-        <!-- AdminLTE for demo purposes -->
-        <script src="dist/js/demo.js"></script>
-        <!-- Select2 -->
-        <script src="bower_components/select2/dist/js/select2.full.min.js"></script>
-        <script>
+		<!-- InputMask -->
+		<script src="plugins/input-mask/jquery.inputmask.js"></script>
+		<script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+		<script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
+		<!-- date-range-picker -->
+		<script src="bower_components/moment/min/moment.min.js"></script>
+		<script
+			src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+		<!-- bootstrap datepicker -->
+		<script
+			src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+		<!-- bootstrap color picker -->
+		<script
+			src="bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+		<!-- bootstrap time picker -->
+		<script src="plugins/timepicker/bootstrap-timepicker.min.js"></script>
+		<!-- SlimScroll -->
+		<script
+			src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+		<!-- iCheck 1.0.1 -->
+		<script src="plugins/iCheck/icheck.min.js"></script>
+		<!-- FastClick -->
+		<script src="bower_components/fastclick/lib/fastclick.js"></script>
+		<!-- AdminLTE App -->
+		<script src="dist/js/adminlte.min.js"></script>
+		<!-- AdminLTE for demo purposes -->
+		<script src="dist/js/demo.js"></script>
+		<!-- Select2 -->
+		<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+		<script>
             $(function () {
                 //Initialize Select2 Elements
                 $('.select2').select2();
@@ -326,21 +360,16 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
                     checkboxClass: 'icheckbox_minimal-blue',
                     radioClass: 'iradio_minimal-blue'
                 })
-
-
-
-
-
             })
         </script>
-    
-<script type="text/javascript">
+        
+		<script type="text/javascript">
 //<![CDATA[
 var Page_Validators =  new Array(document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorDebitSelectAccountNo"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorDebitMemberNo"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatortxtMobileNumber"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatortxtOpeningBranch"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatortxtOpeningDate"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorCurrentBalance"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorTotalInterestPaid"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorInterestDue"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorNetAmount"));
 //]]>
 </script>
 
-<script type="text/javascript">
+		<script type="text/javascript">
 //<![CDATA[
 var ContentPlaceHolder1_RequiredFieldValidatorDebitSelectAccountNo = document.all ? document.all["ContentPlaceHolder1_RequiredFieldValidatorDebitSelectAccountNo"] : document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorDebitSelectAccountNo");
 ContentPlaceHolder1_RequiredFieldValidatorDebitSelectAccountNo.controltovalidate = "ContentPlaceHolder1_ddlSelectAccount";
@@ -418,7 +447,7 @@ ContentPlaceHolder1_RequiredFieldValidatorNetAmount.initialvalue = "";
 </script>
 
 
-<script type="text/javascript">
+		<script type="text/javascript">
 //<![CDATA[
 
 var Page_ValidationActive = false;
@@ -472,8 +501,6 @@ document.getElementById('ContentPlaceHolder1_RequiredFieldValidatorNetAmount').d
 }
 //]]>
 </script>
-</form>
+	</form>
 </body>
-
-
 </html>

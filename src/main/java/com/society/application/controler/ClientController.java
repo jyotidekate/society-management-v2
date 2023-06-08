@@ -56,7 +56,7 @@ public class ClientController {
 
 	@Autowired
 	CasteMasterRepo casteMasterRepo;
-	
+
 	@Autowired
 	private ShareAllocationMasterRepo shareAllocationMasterRepo;
 
@@ -113,9 +113,7 @@ public class ClientController {
 			@RequestParam(name = "chkisSms", required = false) String chkisSms,
 			@RequestParam(name = "chkMinor", required = false) String chkMinor,
 			@RequestParam(name = "filetag", required = false) MultipartFile file) {
-
 		try {
-
 			ClientMaster client = new ClientMaster();
 
 			byte[] image = file.getBytes();
@@ -264,7 +262,6 @@ public class ClientController {
 			@RequestParam(name = "chkMinor", required = false) String chkMinor,
 			@RequestParam(name = "filetag", required = false) MultipartFile file,
 			@RequestParam(name = "clientIDNo", required = false) Integer id) {
-
 		try {
 			List<ClientMaster> client = clientMasterRepo.findByid(id);
 			client.forEach(s -> {
@@ -329,7 +326,6 @@ public class ClientController {
 				s.setFlag("1");
 				clientMasterRepo.save(s);
 			});
-
 			return new ResponseEntity<>("Data Updated  successfully!!!!", HttpStatus.OK);
 		} catch (Exception ex) {
 			System.out.println(ex);
@@ -366,9 +362,7 @@ public class ClientController {
 			@RequestParam(name = "table2input11", required = false) String loanID,
 			@RequestParam(name = "table2input12", required = false) String loanHolding,
 			@RequestParam(name = "table2input13", required = false) String loanValues) {
-
 		try {
-
 			MappingClientAndModules mcam = new MappingClientAndModules();
 
 			mcam.setClientid(id2);
@@ -379,9 +373,7 @@ public class ClientController {
 			mcam.setLoanID(loanID);
 			mcam.setLoanHolding(loanHolding);
 			mcam.setLoanValues(loanValues);
-
 			mappingClientAndModulesRepo.save(mcam);
-
 			return new ResponseEntity<>("Data Saved  successfully!!!!", HttpStatus.OK);
 		} catch (Exception ex) {
 			System.out.println(ex);
@@ -402,26 +394,26 @@ public class ClientController {
 	public List<CasteMaster> getAllcastefordropdown(Model model) {
 		return casteMasterRepo.findAll();
 	}
-	
+
 	// get data in dropdown of share allotated from
 	@GetMapping("/getDropDownShareAllotedFrom")
 	@ResponseBody
 	public List<ShareAllocationMaster> getDropDownShareAllotedFrom() {
 		return shareAllocationMasterRepo.findAll();
 	}
-	
+
 	@PostMapping("/memberReportSearch1233")
 	@ResponseBody
-	public List<ClientMaster> getClientReportSearch(@RequestBody ClientMaster clientMaster){
+	public List<ClientMaster> getClientReportSearch(@RequestBody ClientMaster clientMaster) {
 		List<ClientMaster> branchName = clientMasterRepo.findBybranchName(clientMaster.getBranchName());
-		List<ClientMaster> date = clientMasterRepo.findByregistrationDateBetween(clientMaster.getfDate(),clientMaster.gettDate());
-		if(!branchName.isEmpty()) {
+		List<ClientMaster> date = clientMasterRepo.findByregistrationDateBetween(clientMaster.getfDate(),
+				clientMaster.gettDate());
+		if (!branchName.isEmpty()) {
 			return branchName;
-		}
-		else
+		} else
 			return date;
 	}
-	
+
 	// Branch Dropdown Data of Search Client
 	@GetMapping("/getAllBranchDataInDropDown")
 	@ResponseBody
@@ -429,7 +421,7 @@ public class ClientController {
 		List<ClientMaster> list = clientMasterRepo.findAll();
 		return list;
 	}
-	
+
 	// Search Client of client module
 	@PostMapping("/searchInTheMemeberSection")
 	@ResponseBody
@@ -457,6 +449,5 @@ public class ClientController {
 			return data6;
 		}
 		return data7;
-
 	}
 }

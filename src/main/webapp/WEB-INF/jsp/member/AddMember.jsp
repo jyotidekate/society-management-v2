@@ -8,7 +8,6 @@
    	%>
 <script>
    alert("Added Successfully");
-   
 </script>
 
 <script>
@@ -20,7 +19,6 @@ function check()
     var badColor = "#FF9B37";
   
     if(mobile.value.length!=10){
-       
         mobile.style.backgroundColor = badColor;
         message.style.color = badColor;
         message.innerHTML = "required 10 digits, match requested format!"
@@ -33,15 +31,15 @@ function check()
 	style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);"
 	cz-shortcut-listen="true"
 	onload="AddMemberAjax(); RelativeRelationDropdown(); NomineeRelationDropdown(); shareAllFromList(); branchNameList(); CasteDataFetchinDropDown(); CategoryDataFetchinDropDown(); getDropDownSharealloateFrom(); GetBranchNameInTheDropDown();">
-	
+
 	<script type="text/javascript">
       function calculateAge() {
        const dob = new Date(document.getElementById("dob").value); // get DOB from the date input field
        const age = Math.floor((Date.now() - dob) / (365.25 * 24 * 60 * 60 * 1000)); // calculate age
        document.getElementById("ageId").value = age; // set the calculated age in the age input field
-      }
-       
+      } 
    </script>
+   
 	<div
 		style="height: auto; min-height: 100%; border-radius: 30px; margin: 15px; background: url(dist/img/back.jpg);">
 		<!-- Header Start-->
@@ -51,7 +49,6 @@ function check()
 		<!-- Aside Menu Start-->
 		<jsp:include page="../asideMenu.jsp" />
 		<!-- Aside Menu end -->
-
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper" style="min-height: 1105.75px;">
 			<section class="content-header">
@@ -468,7 +465,6 @@ function check()
 													<select name="categoryName" id="categoryName"
 														class="form-control" style="width: 100%;">
 														<option value="">Select Category Name</option>
-
 													</select>
 												</div>
 											</div>
@@ -805,11 +801,43 @@ function check()
 		</section>
 	</div>
 	<!-- /.content-wrapper -->
-	<jsp:include page="../footer.jsp" />
-	<script src="dist/js/AddMember.js"></script>
-	<script src="dist/js/memberSection.js"></script>
-	<script src="dist/js/RelativeRelation.js"></script>
-	<script src="dist/js/GetAllBranch.js"></script>
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap 3.3.7 -->
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- InputMask -->
+		<script src="plugins/input-mask/jquery.inputmask.js"></script>
+		<script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+		<script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
+		<!-- date-range-picker -->
+		<script src="bower_components/moment/min/moment.min.js"></script>
+		<script
+			src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+		<!-- bootstrap datepicker -->
+		<script
+			src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+		<!-- bootstrap color picker -->
+		<script
+			src="bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+		<!-- bootstrap time picker -->
+		<script src="plugins/timepicker/bootstrap-timepicker.min.js"></script>
+		<!-- SlimScroll -->
+		<script
+			src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+		<!-- iCheck 1.0.1 -->
+		<script src="plugins/iCheck/icheck.min.js"></script>
+		<!-- FastClick -->
+		<script src="bower_components/fastclick/lib/fastclick.js"></script>
+		<!-- AdminLTE App -->
+		<script src="dist/js/adminlte.min.js"></script>
+		<!-- AdminLTE for demo purposes -->
+		<script src="dist/js/demo.js"></script>
+		<!-- Select2 -->
+		<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+		<script src="dist/js/AddMember.js"></script>
+		<script src="dist/js/memberSection.js"></script>
+		<script src="dist/js/RelativeRelation.js"></script>
+		<script src="dist/js/GetAllBranch.js"></script>
+		<%-- <jsp:include page="../footer.jsp" />  --%>
 
 	<script>
       var fileTag = document.getElementById("filetag"),
@@ -833,7 +861,7 @@ function check()
         }
       }
    </script>
-   
+
 	<script>
       function printTable() {
           const table = document.querySelector('table');
@@ -873,7 +901,7 @@ function check()
             xhr.send(formData);
         }
     </script>
-    
+
 	<script>
     function shareAllFromList(){
     const shareAllotedfrm = document.getElementById("shareAllotedfrm1");

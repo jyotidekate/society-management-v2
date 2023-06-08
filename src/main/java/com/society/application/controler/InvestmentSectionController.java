@@ -225,9 +225,7 @@ public class InvestmentSectionController {
 	@PostMapping("/retriveDataFromSelectMember")
 	@ResponseBody
 	public List<AddInvestment> retriveDataFromSelectMember(@RequestBody AddInvestment addIN) {
-
 		List<AddInvestment> list = addInvestmentRepo.findBysearchMemberCode(addIN.getSearchMemberCode());
-
 		return list;
 	}
 
@@ -256,7 +254,6 @@ public class InvestmentSectionController {
 	@PostMapping("/updateBySelectPolicyNo")
 	@ResponseBody
 	public ResponseEntity<String> updateBySelectPolicyNo(
-
 			@RequestParam(value = "searchbyPolicyNo") Integer id,
 			@RequestParam(value = "filetag", required = false) MultipartFile file1,
 			@RequestParam(value = "secondfiletag", required = false) MultipartFile file2,
@@ -267,7 +264,6 @@ public class InvestmentSectionController {
 			@RequestParam("searchMemberCode") String searchMemberCode, @RequestParam("memberName") String memberName,
 			@RequestParam("phoneno") String phoneno, @RequestParam("planCode") String planCode,
 			@RequestParam("balance") String balance) {
-
 		// System.out.println(idOfPolicyNO);
 
 		if (!file1.isEmpty() && !file2.isEmpty()) {
@@ -335,7 +331,7 @@ public class InvestmentSectionController {
 		List<ClientMaster> list = clientMasterRepo.findByid(client.getId());
 		return list;
 	}
-	
+
 	/* INVESTMENT SECTION - CERTIFICATE RE-ISSUE */
 
 	@GetMapping("/certificateIssue46b3")
@@ -419,16 +415,6 @@ public class InvestmentSectionController {
 			return data5;
 		} else
 			return data6;
-
-		/*
-		 * if(StringUtils.isEmpty(null)){ return data; } else
-		 * if(StringUtils.isEmpty(null)){ return data1; } else
-		 * if(StringUtils.isEmpty(null)){ return data2; } else
-		 * if(StringUtils.isEmpty(null)){ return data3; } else
-		 * if(StringUtils.isEmpty(null)){ return data4; } else
-		 * if(StringUtils.isEmpty(null)){ return data5; } else return data6;
-		 */
-
 	}
 
 	/* INVESTMENT SECTION - DAILY RENEWAL PAYMENT */
@@ -458,9 +444,7 @@ public class InvestmentSectionController {
 			@RequestParam(name = "renewalDate", required = false) String renewalDate,
 			@RequestParam(name = "branchName", required = false) String branchName,
 			@RequestParam(name = "searchbyPolicyNo", required = false) Integer searchbyPolicyNo) {
-
 		if (!filetag.isEmpty() && !secondfiletag.isEmpty()) {
-
 			String fileName = fileStorageService.storeFile(filetag);
 			String fileName2 = fileStorageService.storeFile(secondfiletag);
 
@@ -470,7 +454,6 @@ public class InvestmentSectionController {
 		} else {
 			int i = addInvestmentRepo.updateThroughIDRenewalDateBranch2(noOfInstPaid, paymode, collectorCode, remarks,
 					renewalDate, branchName, searchbyPolicyNo);
-
 		}
 		return ResponseEntity.ok("Data Updated Successfully..!!");
 	}

@@ -16,7 +16,6 @@
 		<!-- Aside Menu end -->
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper" style="min-height: 1105.75px;">
-
 			<section class="content-header">
 				<h1 id="ContentPlaceHolder1_IdHeader">Advisor Promotion</h1>
 				<ol class="breadcrumb">

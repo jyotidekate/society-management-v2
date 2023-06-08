@@ -5,10 +5,8 @@
 	<!--     <form method="post" action="" id="form1"  modelAttribute="user">
  -->
 
-
 	<div
 		style="height: auto; min-height: 100%; border-radius: 30px; margin: 15px; background: url(dist/img/back.jpg);">
-
 		<!-- Header Start-->
 		<jsp:include page="../menu.jsp" />
 		<!-- Header End -->
@@ -16,18 +14,8 @@
 		<!-- Aside Menu Start-->
 		<jsp:include page="../asideMenu.jsp" />
 		<!-- Aside Menu end -->
-		<script type="text/javascript">
-			//<![CDATA[
-			Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1',
-					'form1', [], [], [], 90, 'ctl00');
-			//]]>
-		</script>
-
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper" style="min-height: 1105.75px;">
-
-
-
 			<section class="content-header">
 				<h1 id="ContentPlaceHolder1_IdHeader">Renewal Receipt</h1>
 				<ol class="breadcrumb">
@@ -37,7 +25,6 @@
 				</ol>
 			</section>
 			<section class="content">
-
 				<div class="row">
 					<div class="col-md-12">
 						<div class="box box-warning">
@@ -53,29 +40,22 @@
 												onchange="javascript:getDataByAddInvestment()"
 												class="form-control select2" style="width: 100%;">
 												<option value=""></option>
-
 											</select>
-
 										</div>
 									</div>
 									<div class="col-md-9">
 										<div class="form-group">
 											<label></label> <input type="button"
-												onclick="getDataByAddInvestmentforrecurring();" name="btnSave"
-												value="Search" id="btnSave"
+												onclick="getDataByAddInvestmentforrecurring();"
+												name="btnSave" value="Search" id="btnSave"
 												class="btn btn-success pull-right margin-r-5 margin-20" />
-
-
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-
-
 						<div class="box box-success"
 							style="box-shadow: none; overflow: auto !important;">
-
 							<div class="box-body">
 								<div class="clearfix margin-bottom-10"></div>
 								<table cellspacing="0" cellpadding="3" rules="all"
@@ -97,32 +77,13 @@
 									</tbody>
 								</table>
 							</div>
-
 						</div>
 					</div>
 				</div>
 			</section>
-
-
-
-
 		</div>
 		<!-- /.content-wrapper -->
-
-		<footer class="main-footer">
-			<div class="pull-right hidden-xs">
-				<b>Version</b> 1.0.1
-
-			</div>
-			<strong>Copyright © 2020-2021 <a> <span
-					id="lblCompanyName1">EQFI NIDHI LIMITED</span></a>.
-			</strong> All rights reserved.
-
-		</footer>
-
-
 		<div class="control-sidebar-bg"></div>
-
 	</div>
 
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -159,69 +120,7 @@
 	<script src="dist/js/investmentSection .js"></script>
 	<!-- Select2 -->
 	<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
-	<script>
-		$(function() {
-			//Initialize Select2 Elements
-			$('.select2').select2();
-			//Datemask dd/mm/yyyy
-			$('#datemask').inputmask('dd/mm/yyyy', {
-				'placeholder' : 'dd/mm/yyyy'
-			})
-			//Datemask2 mm/dd/yyyy
-			$('#datemask2').inputmask('mm/dd/yyyy', {
-				'placeholder' : 'mm/dd/yyyy'
-			})
-			//Date range picker
-			$('#reservation').daterangepicker()
-			//Date range picker with time picker
-			$('#reservationtime').daterangepicker({
-				timePicker : true,
-				timePickerIncrement : 30,
-				locale : {
-					format : 'MM/DD/YYYY hh:mm A'
-				}
-			})
-			$('#daterange-btn').daterangepicker(
-					{
-						ranges : {
-							'Today' : [ moment(), moment() ],
-							'Yesterday' : [ moment().subtract(1, 'days'),
-									moment().subtract(1, 'days') ],
-							'Last 7 Days' : [ moment().subtract(6, 'days'),
-									moment() ],
-							'Last 30 Days' : [ moment().subtract(29, 'days'),
-									moment() ],
-							'This Month' : [ moment().startOf('month'),
-									moment().endOf('month') ],
-							'Last Month' : [
-									moment().subtract(1, 'month').startOf(
-											'month'),
-									moment().subtract(1, 'month')
-											.endOf('month') ]
-						},
-						startDate : moment().subtract(29, 'days'),
-						endDate : moment()
-					},
-					function(start, end) {
-						$('#daterange-btn span').html(
-								start.format('DD/MM/YYYY') + ' - '
-										+ end.format('DD/MM/YYYY'))
-					})
-			//Date picker
-			$('#datepicker').datepicker({
-				autoclose : true
-			})
-			//Money Euro
-			$('[data-mask]').inputmask()
-
-			//iCheck for checkbox and radio inputs
-			$('span[type="checkbox"].minimal').iCheck({
-				checkboxClass : 'icheckbox_minimal-blue',
-				radioClass : 'iradio_minimal-blue'
-			})
-
-		})
-	</script>
+	
 	<!--     </form>
  -->
 </body>

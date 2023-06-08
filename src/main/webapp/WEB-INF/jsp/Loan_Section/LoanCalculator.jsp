@@ -30,7 +30,6 @@
 	href="bower_components/jvectormap/jquery-jvectormap.css" />
 <!-- Theme style -->
 <link rel="stylesheet" href="dist/css/AdminLTE.min.css" />
-
 <!-- daterange picker -->
 <link rel="stylesheet"
 	href="bower_components/bootstrap-daterangepicker/daterangepicker.css" />
@@ -39,7 +38,6 @@
 	href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
 <!-- iCheck for checkboxes and radio inputs -->
 <link rel="stylesheet" href="plugins/iCheck/all.css" />
-
 <!-- Select2 -->
 <link rel="stylesheet"
 	href="bower_components/select2/dist/css/select2.min.css" />
@@ -52,17 +50,14 @@
 	href="../images/favicon.html" />
 <link rel="stylesheet" href="dist/css/lightbox.min.css" />
 <link rel="stylesheet" href="dist/css/qr.css" />
-
 <!-- Google Font -->
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
-
 <style type="text/css">
 th {
 	padding-right: 50px;
 }
 </style>
-
 
 <script type="text/javascript">
         function isNumberOnlyKey(txt, evt) {
@@ -71,7 +66,6 @@ th {
                 alert("Allow Only Numbers");
                 return false;
             }
-            
         }
  
         function isNumberKey(txt, evt) {
@@ -110,20 +104,11 @@ th {
           //console.log('interest = ', interest);
           //console.log('months = ', months);
           
-		  
-		
-		 
 		  var interestInMonth = rnd(interest/12);
 		  var tensureInTheMonth = rnd(months*12);
 
 		  //For the Rule of 78
 		  var tensureInTheMonth1 = tensureInTheMonth ;
-
-
-		
-
-		  
-          
           var tabledata = '';
           var m;
 		  var i;
@@ -132,7 +117,6 @@ th {
           var totalPrincipal=0;
           var totalPrincipalPlusInterest=0;
 		  var openingPrincipal =0;
-
 		  var sum = 0;
 		  var sum2 = 0;
 
@@ -149,23 +133,15 @@ th {
 
 		        var principalComponent123 = rnd(installment123-FindinterestComponent);
 
-
 				principal123 =  rnd(principal123-principalComponent123);
 
 				//console.log("Interest Component "+FindinterestComponent);
-				
 			}
 
 			//console.log("installment123 "+rnd(installment123));
-
-			
-
-		  for (  m = tensureInTheMonth1; m > 0; m--){
+		    for (  m = tensureInTheMonth1; m > 0; m--){
 			
 			// Rule of 78
-
-
-			
 			// console.log("Sum "+sum);
 			// console.log("Moth "+m);
 			
@@ -175,16 +151,11 @@ th {
 			//Int
 			var interestOfRule78 = m/sum;
 
-			
-			
-
-
 			var interestComponent = rnd(interest*interestOfRule78);
 
      		var principalComponent = rnd(installment-interestComponent);
 
             var closingPrincipal = rnd(principal-principalComponent);
-
 
 			var row = '<tr>';
             row += '<td>' + m + '</td>';
@@ -198,18 +169,13 @@ th {
 			principal =  rnd(principal-principalComponent);
 			
             tabledata += row;
-			
 		  }
-
-
 		}
 
-          for (m = 1; m <= tensureInTheMonth; m++) {
-
-			 
-        		
-if(roiType=="EQ"){
-				// Equal Principal 
+        for (m = 1; m <= tensureInTheMonth; m++) {
+	
+		if(roiType=="EQ"){
+		// Equal Principal 
 
 		var principalComponent = rnd(principal1/tensureInTheMonth);
 
@@ -219,7 +185,6 @@ if(roiType=="EQ"){
 
 		var closingPrincipal = rnd(principal-principalComponent);
 
-
 		var row = '<tr>';
             row += '<td>' + m + '</td>';
             row += '<td>' + principal + ' </td>';    
@@ -231,14 +196,10 @@ if(roiType=="EQ"){
             
 			principal =  rnd(principal-principalComponent);
 			
-
-
             tabledata += row;
 
-}else if(roiType=="EMI"){
-
-		//EMI
-
+			}else if(roiType=="EMI"){	
+			//EMI
 
 		var installment = rnd(principal1 * (interestInMonth/100.00 + interestInMonth/100.00 / (Math.pow(1+interestInMonth/100.00, tensureInTheMonth) -1 )));
 
@@ -248,7 +209,6 @@ if(roiType=="EQ"){
 
 		var closingPrincipal = rnd(principal-principalComponent);
 
-
 		var row = '<tr>';
             row += '<td>' + m + '</td>';
             row += '<td>' + principal + ' </td>';    
@@ -260,13 +220,8 @@ if(roiType=="EQ"){
             
 			principal =  rnd(principal-principalComponent);
 			
-
-
             tabledata += row;
-
-}
-
-	
+		}
 
             // totalPrincipal=Math.round(totalPrincipal)+Math.round(toprincipal);
             // totalPrincipalPlusInterest=Math.round(totalPrincipalPlusInterest)+Math.round(principalPlusInterest);
@@ -276,18 +231,15 @@ if(roiType=="EQ"){
         	document.getElementById('tbl_body').innerHTML = tabledata;
         // 	document.getElementById('totalPrincipal').innerHTML = totalPrincipal;
         // 	document.getElementById('totalPrincipalPlusInterest').innerHTML = totalPrincipalPlusInterest;
-        //   console.log("Total interest is", totalinterest);
-          
+        //  console.log("Total interest is", totalinterest);
           
           return false; // suppress default function
         }
         document.getElementById('ContentPlaceHolder1_btnCalculate').onclick = handler;
 
         //Calculation Part Ends
-        
-        
-        
-    </script>
+</script>
+
 </head>
 <body class="skin-blue sidebar-mini"
 	style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);"
@@ -318,12 +270,9 @@ function __doPostBack(eventTarget, eventArgument) {
 //]]>
 </script>
 
-
 		<script
 			src="../WebResourcea077.js?d=aKrB3Wg4ktcAdLzfwHNclnzQJginAX-WDxEXiKln398ZfxSpl5en7e6-r-t6qAS--33aKUyvVcAR5D4ulS_TNNrAx-wX18laGa3-ySpD_j01&amp;t=637290976998988531"
 			type="text/javascript"></script>
-
-
 		<script
 			src="../ScriptResource8794.js?d=pl0DaltFZ-nCqZWgxNAqTvBniAbIZw3Iz1bSYE7rwyGDxh1etqVx0WLbkkAE88KWETjjkMMzd-H0InR9BngAQbQfYcq-ENJYTXgawkPhXCZJsAGJSSC1KoJTErXiWh7tEcXp6rwjlayV_PcTh7M4M8rvifeWAlJsyUFxR9AUwO81&amp;t=5334fc78"
 			type="text/javascript"></script>
@@ -343,7 +292,6 @@ return true;
 </script>
 
 		<div class="aspNetHidden">
-
 			<input type="hidden" name="__VIEWSTATEGENERATOR"
 				id="__VIEWSTATEGENERATOR" value="CB94A03D" /> <input type="hidden"
 				name="__EVENTVALIDATION" id="__EVENTVALIDATION"
@@ -355,24 +303,18 @@ return true;
 			<!-- Header Start-->
 
 			<jsp:include page="../menu.jsp" />
-
-
 			<!-- Header End -->
 			<!-- Left side column. contains the logo and sidebar -->
 			<!-- Aside Menu Start-->
-
 			<jsp:include page="../asideMenu.jsp" />
-
 			<!-- Aside Menu end -->
 			<script type="text/javascript">
 //<![CDATA[
 Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [], [], [], 90, 'ctl00');
 //]]>
 </script>
-
 			<!-- Content Wrapper. Contains page content -->
 			<div class="content-wrapper" style="min-height: 1105.75px;">
-
 				<section class="content-header">
 					<h1 id="ContentPlaceHolder1_IdHeader">Loan Calculator</h1>
 					<ol class="breadcrumb">
@@ -388,10 +330,8 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 								<div class="box-header with-border">
 									<h3 class="box-title">Loan Details</h3>
 								</div>
-
 								<div class="box-body">
 									<div class="col-md-12">
-
 										<div class="form-group row">
 											<label for="ddlRoiType" class="col-sm-5 control-label">ROI
 												Type <strong style="color: Red">*</strong>
@@ -403,12 +343,9 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 													<option value="EQ">Equal Principal</option>
 													<option value="EMI">EMI</option>
 													<option value="Rule78">Rule 78</option>
-
 												</select>
-
 											</div>
 										</div>
-										
 										<div class="form-group row">
 											<label class="col-sm-5 control-label">Loan Amount <strong
 												style="color: Red">*</strong></label>
@@ -424,8 +361,9 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-sm-5 control-label">Interest in Year <strong
-												style="color: Red">*</strong></label>
+											<label class="col-sm-5 control-label">Interest in
+												Year <strong style="color: Red">*</strong>
+											</label>
 											<div class="col-sm-7">
 												<input name="ctl00$ContentPlaceHolder1$txtROI" type="text"
 													id="ContentPlaceHolder1_txtROI" class="form-control"
@@ -437,10 +375,10 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 													ROI (% p.a.)</span>
 											</div>
 										</div>
-
 										<div class="form-group row">
-											<label class="col-sm-5 control-label">Tensure in Year <strong
-												style="color: Red">*</strong></label>
+											<label class="col-sm-5 control-label">Tensure in Year
+												<strong style="color: Red">*</strong>
+											</label>
 											<div class="col-sm-7">
 												<input name="ctl00$ContentPlaceHolder1$txtTerm" type="text"
 													id="ContentPlaceHolder1_txtTerm" class="form-control"
@@ -452,7 +390,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 													Term</span>
 											</div>
 										</div>
-										
 									</div>
 								</div>
 								<div class="box-footer">
@@ -478,7 +415,6 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 								</div>
 								<div class="box-body">
 									<div class="clearfix margin-bottom-10"></div>
-
 									<table id="tbl_result" class="hide" style="">
 										<thead>
 											<tr>
@@ -492,25 +428,16 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 										</thead>
 										<tbody id="tbl_body">
 										</tbody>
-
 									</table>
 								</div>
-								
 								<!-- <div>Total Principal:<span id="totalPrincipal"></span></div>
-								
 								<div>Total Principal Plus Interest:<span id="totalPrincipalPlusInterest"></span></div> -->
-								
-								
 							</div>
 						</div>
 					</div>
 				</section>
-
-
-
-
 			</div>
 			<!-- /.content-wrapper -->
-			<jsp:include page="../footer.jsp" />
+			<%-- <jsp:include page="../footer.jsp" /> --%>
 </body>
 </html>

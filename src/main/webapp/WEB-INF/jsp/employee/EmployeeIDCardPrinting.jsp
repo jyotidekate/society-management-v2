@@ -5,7 +5,6 @@
 	style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);"
 	cz-shortcut-listen="true">
 
-
 	<div
 		style="height: auto; min-height: 100%; border-radius: 30px; margin: 15px; background: url(dist/img/back.jpg);">
 		<!-- Header Start-->
@@ -15,7 +14,6 @@
 		<!-- Aside Menu Start-->
 		<jsp:include page="../asideMenu.jsp" />
 		<!-- Aside Menu end -->
-
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper" style="min-height: 1105.75px;">
 			<section class="content-header">
@@ -35,7 +33,6 @@
 								<h3 class="box-title">Search Box</h3>
 							</div>
 							<div class="box-body">
-
 								<div class="clearfix"></div>
 								<div class="col-md-3">
 									<div class="form-group">
@@ -77,7 +74,6 @@
 										<tbody id="tabelBody">
 										</tbody>
 									</table>
-
 								</div>
 							</div>
 							<div class="box-body">
@@ -88,14 +84,10 @@
 				</div>
 			</section>
 		</div>
-				<script src="dist/js/EmpolyeeSection.js"></script>
+		<script src="dist/js/EmpolyeeSection.js"></script>
 		<!-- /.content-wrapper -->
-
 		<script type="text/javascript">
-		
 		</script>
-		<jsp:include page="../footer.jsp" />
+		<%-- <jsp:include page="../footer.jsp" /> --%>
 </body>
-
-
 </html>

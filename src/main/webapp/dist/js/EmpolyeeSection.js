@@ -1,5 +1,4 @@
-
- function fatchdepartmentdata(){
+function fatchdepartmentdata(){
 	
 	$.ajax({
 		type: "get",
@@ -10,7 +9,6 @@
 			for (let i = 0; i < data.length; i++) {
 				var j =1;
 				const tableData = data.map(function(value) {
-					
 					return (
 						` 
                             <tr>
@@ -30,15 +28,12 @@
 	});
 }
 
-
-//Search Employee
-	
+//Search Employee	
 function searchThroughSearchBoxEmployee(){
 	var input = {
 		branchName : document.getElementById("branchName").value,
 		fDate : document.getElementById("fDate").value,
 		tDate : document.getElementById("tDate").value,
-		
 		memberName : document.getElementById("employeeName").value,
 		introMCode : document.getElementById("employeeCode").value,
 		phoneno : document.getElementById("mobile").value,
@@ -47,7 +42,6 @@ function searchThroughSearchBoxEmployee(){
 	};
 	
 	const myJSON = JSON.stringify(input);
-	
 	//alert(myJSON);
 		
 	$.ajax({
@@ -60,10 +54,8 @@ function searchThroughSearchBoxEmployee(){
 			for (let i = 0; i < data.length; i++) {
 				var j =1;
 				const tableData = data.map(function(value) {
-					
 					return (
-						` 
-                            <tr>
+						` <tr>
 								<td scope="col">${j++}</td>
                                 <td scope="col">${value.employeeName}</td>
                                 <td scope="col">${value.gender}</td>
@@ -73,7 +65,6 @@ function searchThroughSearchBoxEmployee(){
                                 <td scope="col">${value.phoneno}</td>
                                 <td scope="col">${value.nomineeName}</td>
                                  <td scope="col">${value.status}</td>
-                                
                             </tr>`
 					);
 				}).join('');
@@ -110,8 +101,6 @@ function dropDownBranchEmployee() {
 }
 
 // get data in drop down - SEARCH employee
-
-// get data in drop down - SEARCH employee
 function branchNameDropdown() {
 
 	$.ajax({
@@ -141,26 +130,23 @@ function branchNameDropdown() {
 
 function showEmployeeDetailsnew2(){
 	
-         var ids = document.getElementById("EmployeeById").value;
+     var ids = document.getElementById("EmployeeById").value;
 	
 	 $.ajax({
 		
-		          type:"get",
-                        contentType: "application/json",
-                        url: 'FetcHPositiondataforemployee',
+		        type:"get",
+                contentType: "application/json",
+                url: 'FetcHPositiondataforemployee',
       			data: {id:ids },
-                        asynch: false,
-    
-              success: function(data) {
-	     
-              for (var i = 0; i < data.length; i++) 
-              {
-	var j=1;
-						
+                asynch: false,
+                success: function(data) {
+               for (var i = 0; i < data.length; i++) 
+               {
+	             var j=1;		
 				 const tableData = data.map(function(value){
                  return ( 
                   `<tr>
-                   <td>${value.id}</td> 
+                           			<td>${value.id}</td> 
 		                            <td>${value.empName}</td> 
 		                            <td>${value.cspName}</td>
 		                            <td>${value.doj}</td>
@@ -174,19 +160,15 @@ function showEmployeeDetailsnew2(){
              }).join('');
              const tabelBodyvar = document.querySelector("#tabelBody");
              tabelBodyvar.innerHTML = tableData;
-                    
                   }
                } ,
            	   error: function(){
            	    	alert("Device control failed");
            	    }
-	
 		});	
 }
 
 function addemployeeBranch() {
-
-
 	$.ajax({
 		type: "get",
 		contentType: "application/json",
@@ -209,7 +191,6 @@ function addemployeeBranch() {
 
 //Relative Relation Dropdown
 function  RelativeRelationDropdownforaddemployee() {
-	
 
 	$.ajax({
 		type: "get",
@@ -235,7 +216,6 @@ function  RelativeRelationDropdownforaddemployee() {
 		}
 	});
 }
-
 
 function searchThroughEmployee() {
 	
@@ -263,8 +243,7 @@ function searchThroughEmployee() {
 				const tableData = data.map(function(value) {
 
 					return (
-						` 
-                            <tr>
+						`<tr>
 								<td scope="col">${j++}</td>
                                 <td scope="col">${value.empName}</td>
                                 <td scope="col">${value.dob}</td>
@@ -272,7 +251,6 @@ function searchThroughEmployee() {
                                 <td scope="col">${value.doj}</td>
                                 <td scope="col">${value.phoneNo}</td>
                                  <td scope="col">${value.emailID}</td>
-                                
                             </tr>`
 					);
 				}).join('');

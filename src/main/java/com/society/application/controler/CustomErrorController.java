@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class CustomErrorController  {
+public class CustomErrorController {
 
-	 @ExceptionHandler(NotFoundException.class)
-	  @ResponseStatus(HttpStatus.NOT_FOUND)
-	  public String handleNotFoundException(NotFoundException ex) {
-	    // Add error message to model if needed
-	    return "error";
-	  }
+	@ExceptionHandler(NotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	public String handleNotFoundException(NotFoundException ex) {
+		// Add error message to model if needed
+		return "error";
+	}
 }

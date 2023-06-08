@@ -77,7 +77,6 @@
 												<select name="searchMemberCode" id="searchMemberCode"
 													onchange="javascript:displayMemberDetails()"
 													class="form-control select2" style="width: 100%;">
-													
 												</select> <span id="searchMemberCodeMsg"
 													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Select
 													Member Code</span>
@@ -114,7 +113,6 @@
 												<span id="dobMsg"
 													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 													Relative Name & Relation</span>
-
 											</div>
 											<div class="col-sm-3">
 												<input name="age" type="text" value="0" maxlength="2"
@@ -149,7 +147,6 @@
 													PlaceHolder="Enter SMS Status" /> <span id="smsStatusMsg"
 													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 													Phone No</span>
-
 											</div>
 										</div>
 										<div class="form-group row">
@@ -190,7 +187,6 @@
 												</select> <span id="cspNameMsg"
 													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 													PIN</span>
-
 											</div>
 										</div>
 										<div id="ContentPlaceHolder1_updtpnl">
@@ -204,7 +200,6 @@
 														onchange="javascript:displayLoanMasterDetails()">
 													</select> <span id="loanPlanNameMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;"></span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -216,7 +211,6 @@
 														id="loanType" class="form-control" PlaceHolder="Loan Type" />
 													<span id="loanTypeMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;"></span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -229,7 +223,6 @@
 													</select> <span id="planTermMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														PIN</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -362,7 +355,6 @@
 													</select> <span id="goldRateTypeMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -376,7 +368,6 @@
 													</select> <span id="itemTypeMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 												<div class="col-sm-4">
 													<input name="todayRate" type="text" value="5200"
@@ -384,7 +375,6 @@
 													<span id="todayRateMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -396,7 +386,6 @@
 													</select> <span id="itemNameMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -409,7 +398,6 @@
 													</select> <span id="lockerLocMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -422,7 +410,6 @@
 													</select> <span id="purityMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 										</div>
@@ -436,7 +423,6 @@
 														id="itemQtyMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 												<label class="col-sm-3 control-label">Item Wt. <strong
 													style="color: Red">*</strong></label>
@@ -446,7 +432,6 @@
 														autocomplete="off" /> <span id="grossWtMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -459,7 +444,6 @@
 														autocomplete="off" /> <span id="gwtMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 												<label class="col-sm-3 control-label">Stone Wt. <strong
 													style="color: Red">*</strong></label>
@@ -469,7 +453,6 @@
 														autocomplete="off" /> <span id="stonewtMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -482,7 +465,6 @@
 														autocomplete="off" /> <span id="netWtMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -495,7 +477,6 @@
 														autocomplete="off" /> <span id="itemRateMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -509,7 +490,6 @@
 														autocomplete="off" /> <span id="eligibleLoanMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 												<!--  <div class="col-sm-4">
 													<button type="button"
@@ -535,7 +515,6 @@
 													id="netQtyMsg"
 													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 													Loan Purpose</span>
-
 											</div>
 										</div>
 										<div class="col-md-3">
@@ -545,7 +524,6 @@
 													class="form-control" /> <span id="totalGrossWtMsg"
 													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 													Loan Purpose</span>
-
 											</div>
 										</div>
 										<div class="col-md-3">
@@ -555,7 +533,6 @@
 													class="form-control" /> <span id="totalNetWtMsg"
 													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 													Loan Purpose</span>
-
 											</div>
 										</div>
 										<div class="col-md-3">
@@ -565,7 +542,6 @@
 													class="form-control" /> <span id="totalEligibleAmtMsg"
 													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 													Loan Purpose</span>
-
 											</div>
 										</div>
 									</div>
@@ -586,7 +562,6 @@
 													id="goldItemMsg"
 													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 													Loan Purpose</span>
-
 											</div>
 										</div>
 										<div class="form-group">
@@ -637,7 +612,6 @@
 														id="guarantorCodeMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -649,7 +623,6 @@
 														id="guarantorNameMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -662,7 +635,6 @@
 														id="addressGuarantorMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -675,7 +647,6 @@
 														id="pincodeGuarantorMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -687,7 +658,6 @@
 													<span id="phoneMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -709,7 +679,6 @@
 													</select> <span id="securityTypeMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 										</div>
@@ -731,7 +700,6 @@
 														id="coApplicantCodeMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -744,7 +712,6 @@
 													<span id="memberRelativesNameMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -756,7 +723,6 @@
 														Placeholder="Enter Address" /> <span id="addresscoMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -768,7 +734,6 @@
 														Placeholder="Enter Pincode" /> <span id="pincodecoMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -779,7 +744,6 @@
 														Placeholder="Enter Phone" /> <span id="phonecoMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -792,7 +756,6 @@
 														id="securityDetailsMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 										</div>
@@ -820,7 +783,6 @@
 														id="processingFeeMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -833,7 +795,6 @@
 														id="legalAmtMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Loan Purpose</span>
-
 												</div>
 											</div>
 										</div>
@@ -863,7 +824,6 @@
 														class="form-control" /> <span id="gstMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Advisor/Collector Code</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -876,7 +836,6 @@
 														id="insuranceAmtMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Advisor/Collector Code</span>
-
 												</div>
 											</div>
 											<div class="form-group row">
@@ -888,7 +847,6 @@
 														class="form-control" /> <span id="vFeesAmtMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Advisor/Collector Code</span>
-
 												</div>
 											</div>
 										</div>
@@ -926,14 +884,6 @@
 				</section>
 			</div>
 			<!-- /.content-wrapper -->
-			<footer class="main-footer">
-				<div class="pull-right hidden-xs">
-					<b>Version</b> 1.0.1
-				</div>
-				<strong>Copyright © 2020-2021 <a> <span
-						id="lblCompanyName1">EQFI NIDHI LIMITED</span></a>.
-				</strong> All rights reserved.
-			</footer>
 			<div class="control-sidebar-bg"></div>
 		</div>
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -1009,11 +959,6 @@
                  checkboxClass: 'icheckbox_minimal-blue',
                  radioClass: 'iradio_minimal-blue'
              })
-         
-         
-         
-         
-         
          })
       </script>
 		<script type="text/javascript">
