@@ -24,13 +24,13 @@ import com.society.application.repository.LoanMasterRepo;
 
 @Controller
 public class GroupLoanController {
-	
+
 	@Autowired
 	LoanMasterRepo loanMasterRepo;
-	
+
 	@Autowired
 	GroupMasterRepo groupMasterRepo;
-	
+
 	@Autowired
 	GroupMasterApplicationRepo groupMasterApplicationRepo;
 
@@ -98,19 +98,20 @@ public class GroupLoanController {
 	@ResponseBody
 	public List<LoanMaster> getAllGroupLoan(Model model) {
 		List<LoanMaster> allGroupLoan = loanMasterRepo.findAll();
-		List<LoanMaster> filterGroupLoan = allGroupLoan.stream().filter(p -> p.getType().equals("Group")).collect(Collectors.toList());
+		List<LoanMaster> filterGroupLoan = allGroupLoan.stream().filter(p -> p.getType().equals("Group"))
+				.collect(Collectors.toList());
 		System.err.println(filterGroupLoan);
 		return filterGroupLoan;
 	}
-	
-	//getAllGroupMaster
+
+	// getAllGroupMaster
 	@GetMapping("/getAllGroupMaster")
 	@ResponseBody
 	public List<GroupMaster> getAllGroupMaster() {
 		List<GroupMaster> allGroupMaster = groupMasterRepo.findAll();
 		return allGroupMaster;
 	}
-	
+
 	@PostMapping("/saveGroupMaster")
 	public String saveGroupMaster(@ModelAttribute("saveGroupMaster") GroupMaster groupMaster, Model model) {
 		groupMaster.setCreatedBy("");
@@ -124,7 +125,6 @@ public class GroupLoanController {
 		model.addAttribute("status", "Fail");
 		return "group_loan/LoanGroupMaster";
 	}
-	
 
 	@PostMapping("/getGroupMasterById")
 	@ResponseBody
@@ -132,9 +132,10 @@ public class GroupLoanController {
 		Optional<GroupMaster> groupMaster = groupMasterRepo.findById(Integer.parseInt(id.getId()));
 		return groupMaster.get();
 	}
-	
+
 	@PostMapping("/saveGroupMasterApplication")
-	public String saveGroupMasterApplication(@ModelAttribute("saveGroupMasterApplication") GroupMasterApplication groupMasterApplication, Model model) {
+	public String saveGroupMasterApplication(
+			@ModelAttribute("saveGroupMasterApplication") GroupMasterApplication groupMasterApplication, Model model) {
 		groupMasterApplication.setCreatedBy("");
 		groupMasterApplication.setCreatedDate(new Date().toString());
 		groupMasterApplication.setUpdatedBy("");
