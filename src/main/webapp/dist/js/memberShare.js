@@ -1,14 +1,11 @@
 //Data Fetch in DropDown               
-
 function dropDownBranchCode() {
-
 	$.ajax({
 		type: "get",
 		contentType: "application/json",
 		url: 'fetchDropdownMemerShare',
 		asynch: false,
 		success: function (data) {
-
 			var appenddata1 = "";
 			//var jsonData1 = JSON.parse(data1.d);
 			for (var i = 0; i < data.length; i++) {
@@ -22,23 +19,16 @@ function dropDownBranchCode() {
 	});
 }
 
-
-
 //Search Data By Branch Name & Date	
 function getMemberShareSearch() {
-
 	//alert("Hello")
-
 	var input = {
 		branchName: document.getElementById("branchName").value,
 		fDate: document.getElementById("fDate").value,
 		tDate: document.getElementById("tDate").value,
 	}
-
 	const myJson = JSON.stringify(input);
-
 	//alert(myJson)
-
 	$.ajax({
 		type: "POST",
 		contentType: "application/json",
@@ -71,22 +61,14 @@ function getMemberShareSearch() {
 				const tableBody1 = document.querySelector("#tableBody");
 				tableBody1.innerHTML = tableData1;
 			}
-
 		},
 		error: function () {
 			alert("Device control failed");
 		}
 	});
-
 }
 
-
-
-
 //Custom Js Code shifted to memberShare
-
-
-
 function getShareTableData() {
 	$.ajax({
 		type: "get",
@@ -97,10 +79,8 @@ function getShareTableData() {
 			for (let i = 0; i < data.length; i++) {
 				var j = 1;
 				const tableData = data.map(function (value) {
-
 					return (
-						` 
-	                            <tr>
+						      ` <tr>
 									<td scope="col">${j++}</td>
 	                                <td scope="col">${value.branchName}</td>
 	                                <td scope="col">${value.memberName}</td>
@@ -120,25 +100,20 @@ function getShareTableData() {
 	});
 }
 
-
 //get The Value In sahre Transfer In The DropDown
-
 function getTheValueInsahreTransferInTheDropDown() {
-
 	$.ajax({
 		type: "get",
 		contentType: "application/json",
 		url: 'getAllShareTransferData',
 		asynch: false,
 		success: function (data) {
-
 			var appenddata1 = "";
 			//var jsonData1 = JSON.parse(data1.d);
 			for (var i = 0; i < data.length; i++) {
 				appenddata1 += "<option value ='" + data[i].id + "'>" + data[i].id + "-" + data[i].memberName + "</option>";
 			}
 			$("#memberData").append(appenddata1);
-
 		},
 		error: function () {
 			alert("Device control failed");
@@ -152,14 +127,12 @@ function getTheValueInsahreTransferInTheDropDown() {
 		url: 'getAllBranch',
 		asynch: false,
 		success: function (data) {
-
 			var appenddata1 = "";
 			//var jsonData1 = JSON.parse(data1.d);
 			for (var i = 0; i < data.length; i++) {
 				appenddata1 += "<option value ='" + data[i].name + "'>" + data[i].name + "</option>";
 			}
 			$("#branchName").append(appenddata1);
-
 		},
 		error: function () {
 			alert("Device control failed");
@@ -172,20 +145,17 @@ function getTheValueInsahreTransferInTheDropDown() {
 		url: 'getAllShareTransferData',
 		asynch: false,
 		success: function (data) {
-
 			var appenddata1 = "";
 			//var jsonData1 = JSON.parse(data1.d);
 			for (var i = 0; i < data.length; i++) {
 				appenddata1 += "<option value ='" + data[i].memberName + "'>" + data[i].memberName + "</option>";
 			}
 			$("#shareAllotedfrm2").append(appenddata1);
-
 		},
 		error: function () {
 			alert("Device control failed");
 		}
 	});
-
 
 	$.ajax({
 		type: "get",
@@ -193,14 +163,12 @@ function getTheValueInsahreTransferInTheDropDown() {
 		url: 'getAllPaymentMaster',
 		asynch: false,
 		success: function (data) {
-
 			var appenddata1 = "";
 			//var jsonData1 = JSON.parse(data1.d);
 			for (var i = 0; i < data.length; i++) {
 				appenddata1 += "<option value ='" + data[i].name + "'>" + data[i].name + "</option>";
 			}
 			$("#paymode").append(appenddata1);
-
 		},
 		error: function () {
 			alert("Device control failed");
@@ -209,9 +177,7 @@ function getTheValueInsahreTransferInTheDropDown() {
 }
 
 //get the value in dropdown of share Certificate
-
 function getthevalueindropdownofshareCertificate() {
-
 	$.ajax({
 		type: "get",
 		contentType: "application/json",
@@ -224,7 +190,6 @@ function getthevalueindropdownofshareCertificate() {
 				appenddata1 += "<option value ='" + data[i].id + "'>" + data[i].id + "-"+data[i].memberName+"</option>";
 			}
 			$("#id").append(appenddata1);
-
 		},
 		error: function () {
 			alert("Device control failed");
@@ -233,9 +198,7 @@ function getthevalueindropdownofshareCertificate() {
 }
 
 //Save OPeration in Share Transfer
-
 function saveOPerationinShareTransfer() {
-
 	var memberData = document.getElementById("memberData").value;
 	var memberName = document.getElementById("memberName");
 	var registrationDate = document.getElementById("registrationDate");
@@ -293,7 +256,6 @@ function saveOPerationinShareTransfer() {
 	}
 }
 
-
 function callback() {
 	var memberData = document.getElementById("memberData");
 	//var branchName = document.getElementById("branchName");
@@ -336,16 +298,10 @@ function toggleDisabledFields() {
 	document.getElementById("faceValue").disabled = false;
 	document.getElementById("sharebalance").disabled = false;
 	document.getElementById("noOfShare").disabled = false;
-
 }
 
-
-
-
 //Fetch Data in unAlloted Share
-
 function fetchDatainunAllotedShare() {
-
 	$.ajax({
 		type: "get",
 		contentType: "application/json",
@@ -356,7 +312,7 @@ function fetchDatainunAllotedShare() {
 				//alert(data[i].branchName)
 				const tableData = data.map(function (value) {
 					return (
-						`<tr>
+						  `<tr>
                                 <td>${value.id}</td>
                                 <td>${value.memberName}</td>
                                 <td>${value.transferDate}</td>
@@ -371,16 +327,10 @@ function fetchDatainunAllotedShare() {
 			alert("Device control failed");
 		}
 	});
-
-
 }
-
 
 function getShareCertificate() {
 	var id = document.getElementById("id").value;
-	
-
-
 		$.ajax({
 			type: "get",
 			contentType: "application/json",
@@ -388,9 +338,7 @@ function getShareCertificate() {
 			url: 'fetchsharecerificatebyID',
 			asynch: false,
 			success: function (data) {
-			
 				for (let i = 0; i < 1; i++) {
-				
 					var j = 1;
 					const tableData1 = data.map(function (value) {
 						return (
@@ -402,70 +350,47 @@ function getShareCertificate() {
                                  <td>${value.noOfShared}</td>
                                  <td>${value.certificateNo}</td>
                                 <td scope="col"><a href="downloadCerificate?id=${value.id}">SH-1</a></td>
-                                
                             </tr>`
 						);
 					}).join('');
 					const tableBodyShareCertificate = document.querySelector("#tableBodyShareCertificate");
 					tableBodyShareCertificate.innerHTML = tableData1;
-					
 				}
-
 			},
 			error: function () {
 				alert("Device control failed");
 			}
-
 		});
-	}
-
-
-
-
-
+}
 
 //Fetch Data in DNo Generate Of Director
-
 function fetchDatainDNoGenerateOfDirector() {
-
 	$.ajax({
 		type: "get",
 		contentType: "application/json",
 		url: 'FetchTheDataOfDirectorMaster',
 		asynch: false,
 		success: function (data) {
-
 			var appenddata2 = "";
 			//var jsonData1 = JSON.parse(data1.d);
 			for (var i = 0; i < data.length; i++) {
 				appenddata2 += "<option value ='" + data[i].directorName + "'>" + data[i].directorName + "</option>";
 			}
 			$("#memberData").append(appenddata2);
-
-
 		},
 		error: function () {
 			alert("Device control failed");
 		}
 	});
-
 }
 
-
-
-
 //Fetch Data in DNo Generate Of Director in Table
-
 function fetchDatainDNoGenerateOfDirectorinTable() {
-
 	var memberData = document.getElementById("memberData").value;
-
 	var input = {
 		"directorName": memberData,
 	}
-
 	var myJson = JSON.stringify(input);
-
 	if (!memberData) {
 		alert("Plz Select search By Code");
 	} else {
@@ -481,16 +406,11 @@ function fetchDatainDNoGenerateOfDirectorinTable() {
 					const tableData = data.map(function (value) {
 						return (
 							`<tr>
-						       <td>${value.id}</td>
-                                <td>${value.memberCode}</td>
+						        <td>${value.id}</td>
                                 <td>${value.directorName}</td>
-                                <td>Null</td>
-                                <td>${value.dnoFrom}</td>
-                                <td>${value.dnoTo}</td>
+                                <td>${value.appointmentDate}</td>
                                 <td>${value.noOfShare}</td>
                                 <td>${value.shareAmount}</td>
-                                <td>$Null</td>
-                                
                             </tr>`
 						);
 					}).join('');

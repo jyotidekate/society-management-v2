@@ -35,6 +35,7 @@
 									<h3 class="box-title">Policy Details</h3>
 								</div>
 								<div class="box-body">
+								<input type="hidden" name="id123" id="id123">
 									<div class="col-md-6">
 										<div class="form-group row">
 											<label class="col-sm-4 control-label">Txn Date<strong
@@ -245,10 +246,9 @@
 									<div class="col-md-3">
 										<div class="form-group">
 											<div class="text-center">
-												<!--<div id ="photoAppend">  </div> -->
-												<img id="preview" class="profile-user-img"
-													style="height: 110px; width: 110px;" /> <input type="file"
-													name="filetag" id="filetag" />
+												<img id="preview" class="profile-user-img" src="data:image/png;base64,${data.photo}" style="height: 70px; width: 110px;" />
+												<input
+													type="file" name="filetag" id="filetag" />
 											</div>
 										</div>
 									</div>
@@ -262,10 +262,9 @@
 									<div class="col-md-3">
 										<div class="form-group">
 											<div class="text-center">
-												<!-- <div id ="signatureAppend">  </div> -->
-												<img id="secondpreview" src="#" class="profile-user-img"
-													style="height: 70px; width: 115px;" /> <input type="file"
-													name="secondfiletag" id="secondfiletag" />
+												<img id="secondpreview" class="profile-user-img" src="data:image/png;base64,${data.signature}" style="height: 70px; width: 115px;" />
+												<input
+													type="file" name="secondfiletag" id="secondfiletag" />
 											</div>
 										</div>
 									</div>
@@ -329,7 +328,7 @@
        contentType: false,
        success: function(data) {
     	
-    	   alert("DAta Savesdd")
+    	   alert("DATA IS SAVED")
     	   window.location.href = "flexirenewal9828";
        },
        error: function(error) {

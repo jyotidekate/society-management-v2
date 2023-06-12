@@ -455,54 +455,51 @@ function GetTheSelectedPolicyNumberInTheDropDown(){
 }
 
 //Data Retrival 
- function searchByPolicyNoFunction()
-{	
- let id= document.getElementById("searchbyPolicyNo").value;
- var input = {
-	 "id":id
-	 };
-	 
-	 const myJson = JSON.stringify(input);
- 	//alert(searchbyPolicyNo)
- 	$.ajax({
-                 type:"POST",
-                 contentType: "application/json",
-                 data: myJson,
-                 url: 'searchByPolicyNo',
-                 asynch: false,
-                 success: function(data) {
-					 
-                 	var x = Number(data.id)
-                
-                 		var img = document.getElementById('preview');
-						img.src =`upload/`+data.photo+``;
+function searchByPolicyNoFunction() {
+    let id = document.getElementById("searchbyPolicyNo").value;
+    var input = {
+        "id": id
+    };
 
-						var img2 = document.getElementById('secondpreview');
-						img2.src =`upload/`+data.signature+``;
-				
-                 	  document.getElementById("id").value = x
-                      document.getElementById("tDate").value = data.tDate;
-                      document.getElementById("searchMemberCode").value = data.searchMemberCode;
-                      //document.getElementById("searchbyPolicyNo").value = data.searchbyPolicyNo;
-                      document.getElementById("empCode").value = data.empCode;
-                      document.getElementById("memberCode").value = data.memberCode;
-                      document.getElementById("memberName").value = data.memberName;
-                      document.getElementById("phoneno").value = data.phoneno;
-                      document.getElementById("planCode").value = data.planCode;
-                      document.getElementById("balance").value = data.balance;
-                      document.getElementById("transactionFor").value = data.transactionFor;
-                      document.getElementById("remarks").value = data.remarks;
-                      document.getElementById("transactionType").value = data.transactionType;
-                      document.getElementById("amount").value = data.amount;
-                      document.getElementById("paymode").value = data.paymode;
-                      document.getElementById("branchName").value = data.branchName;	
-                
-                 },
-         	     error: function(){
-         	    	alert("Device control failed");
-         	    }
-             });
- }
+    const myJson = JSON.stringify(input);
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        data: myJson,
+        url: 'searchByPolicyNo',
+        async: false,
+        success: function(data) {
+            var x = Number(data[0].id); // Assuming you are returning a list with one item
+
+            document.getElementById("id").value = x;
+            document.getElementById("tDate").value = data[0].tDate;
+            document.getElementById("searchMemberCode").value = data[0].searchMemberCode;
+            document.getElementById("empCode").value = data[0].empCode;
+            document.getElementById("memberCode").value = data[0].memberCode;
+            document.getElementById("memberName").value = data[0].memberName;
+            document.getElementById("phoneno").value = data[0].phoneno;
+            document.getElementById("planCode").value = data[0].planCode;
+            document.getElementById("balance").value = data[0].balance;
+            document.getElementById("transactionFor").value = data[0].transactionFor;
+            document.getElementById("remarks").value = data[0].remarks;
+            document.getElementById("transactionType").value = data[0].transactionType;
+            document.getElementById("amount").value = data[0].amount;
+            document.getElementById("paymode").value = data[0].paymode;
+            document.getElementById("branchName").value = data[0].branchName;
+            document.getElementById("id123").value = data[0].id;
+
+            var imgElement = document.getElementById("preview");
+            imgElement.src = "data:image/png;base64," + data[0].frontEndPhoto;
+
+            var img2 = document.getElementById('secondpreview');
+            img2.src = "data:image/png;base64," + data[0].frontEndSignature;
+        },
+        error: function() {
+            alert("Device control failed");
+        }
+    });
+}
  
  function getDataByAddInvestment() {
 
@@ -545,44 +542,37 @@ function GetTheSelectedPolicyNumberInTheDropDown(){
 }
 
 function getDataByAddInvestmentforrecurring() {
-
-	var ids = document.getElementById("id").value;
-	//alert("hi")
-	$.ajax({
-		type: "get",
-		contentType: "application/json",
-		url: 'fetchDataByAddInvestment',
-		data: { id: ids },
-		asynch: false,
-		success: function(data) {
-			for (var i = 0; i < data.length; i++) {
-				const tableData = data.map(function(value) {
-					return (
-
-						`<tr>
-            				 <td>${value.policyDate}</td>
-            				 <td>${value.cspname}</td>
-            				 <td>${value.modeOfOp}</td>
-            				 <td>${value.misMode}</td>
-            				 <td>${value.paymode}</td>            				
-            				 <td>${value.policyno}</td>
-            				 <td>${value.term}</td>   
-            				 <td>${value.policyAmount}</td>        
-            				 <td>${value.maturityAmount}</td>  
-           				     <td>${value.mISInterest}</td>        
-           					 
-        				</tr>`
-					);
-				}).join('');
-				const investmentTable = document.querySelector("#investmentTable");
-				investmentTable.innerHTML = tableData;
-
-			}
-		},
-		error: function() {
-			alert("Device control failed");
-		}
-	});
+    var ids = document.getElementById("id").value;
+    $.ajax({
+        type: "get",
+        contentType: "application/json",
+        url: 'fetchDataByAddInvestment',
+        data: { id: ids },
+        async: false,
+        success: function(data) {
+            const tableData = data.map(function(value) {
+                return (
+                    `<tr>
+                        <td>${value.policyDate}</td>
+                        <td>${value.cspname}</td>
+                        <td>${value.modeOfOp}</td>
+                        <td>${value.misMode}</td>
+                        <td>${value.paymode}</td>
+                        <td>${value.policyno}</td>
+                        <td>${value.term}</td>
+                        <td>${value.policyAmount}</td>
+                        <td>${value.maturityAmount}</td>
+                        <td>${value.mISInterest}</td>
+                    </tr>`
+                );
+            }).join('');
+            const investmentTable = document.querySelector("#investmentTable");
+            investmentTable.innerHTML = tableData;
+        },
+        error: function() {
+            alert("Data retrieval failed");
+        }
+    });
 }
 
 function getDataByReIssue() {

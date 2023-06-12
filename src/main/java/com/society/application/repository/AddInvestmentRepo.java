@@ -30,7 +30,7 @@ public interface AddInvestmentRepo extends JpaRepository<AddInvestment, Integer>
 			@Param("schemeType") String schemeType, @Param("schemeName") String schemeName, @Param("mode") String mode, @Param("policyAmount") String policyAmount, @Param("paymode") String paymode, @Param("remarks") String remarks,
 			@Param("advisorCode") String advisorCode, @Param("chkisSms") String chkisSms, @Param("searchMemberCode") String searchMemberCode);
 
-	AddInvestment findAllById(int id);
+	//AddInvestment findAllById(int id);
 
 	public List<AddInvestment> findByid(int i);
 
@@ -134,6 +134,10 @@ public interface AddInvestmentRepo extends JpaRepository<AddInvestment, Integer>
 	@Transactional
 	@Query("UPDATE AddInvestment SET flag = :flag WHERE id = :searchbyPolicyNo OR renewalDate = :renewalDate OR branchName = :branchName")
 	public int updateThroughIdRenewalDateBranchName(@Param("flag") String flag, @Param("searchbyPolicyNo") int id, @Param("renewalDate") String renewalDate, @Param("branchName") String branchName);
+
+	public List<AddInvestment> findAllById(int id);
+
+	public List<AddInvestment> findAllByid(int id);
 
 	//public List<AddInvestment> findByPolicyno(String policyNo);
 

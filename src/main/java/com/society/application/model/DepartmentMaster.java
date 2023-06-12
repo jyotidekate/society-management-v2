@@ -12,6 +12,7 @@ public class DepartmentMaster {
 	
 	private int id;
 	private String department;
+	
 	public int getId() {
 		return id;
 	}

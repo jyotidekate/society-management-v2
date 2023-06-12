@@ -865,10 +865,10 @@
 														</td>
 														<td><span id="fdTerm1">${fixedDeposist.fDTerm}</span>
 														</td>
-														<td><span id="fDInterestRate1"></span></td>
-														<td><span id="fDTermType1"></span></td>
-														<td><span id="fDComN1"></span></td>
-														<td><span id="fDMinimumAmount1"></span></td>
+														<td><span id="fDInterestRate1">${fixedDeposist.froi}</span></td>
+														<td><span id="fDTermType1">${fixedDeposist.fDTermType}</span></td>
+														<td><span id="fDComN1">${fixedDeposist.fDComN}</span></td>
+														<td><span id="fDMinimumAmount1">${fixedDeposist.fDMinimumAmount}</span></td>
 														<td align="center" style="width: 50px;"><input
 															type="image" name="ddDelete" id="ddDelete"
 															src="../images/DeleteRed.png"

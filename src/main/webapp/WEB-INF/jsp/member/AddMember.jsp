@@ -487,7 +487,8 @@ function check()
 													<select name="nationality" id="nationality"
 														class="form-control" style="width: 100%;">
 														<option value="">Select Nationality Name</option>
-														<option value="A">A</option>
+														<option value="Natural">Natural</option>
+														<option value="Acquired">Acquired</option>
 													</select>
 												</div>
 											</div>

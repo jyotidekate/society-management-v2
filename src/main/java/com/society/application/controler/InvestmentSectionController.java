@@ -1,5 +1,7 @@
 package com.society.application.controler;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -245,37 +247,71 @@ public class InvestmentSectionController {
 
 	@PostMapping("/searchByPolicyNo")
 	@ResponseBody
-	public AddInvestment getByAddInvesmentCode(@RequestBody AddInvestment model) {
-		// System.out.println(model.getId());
-		AddInvestment list = addInvestmentRepo.findAllById(model.getId());
-		return list;
+	public List<AddInvestment> getByAddInvesmentCode(@RequestBody AddInvestment model) {
+	    List<AddInvestment> list = addInvestmentRepo.findAllByid(model.getId());
+	    
+	    list.forEach(s -> {
+	        // Check if the photo and signature are not null
+	        if (s.getPhoto() != null && s.getSignature() != null) {
+	            // Convert the photo and signature to base64 encoded strings
+	            String encodedPhoto = Base64.getEncoder().encodeToString(s.getPhoto());
+	            String encodedSignature = Base64.getEncoder().encodeToString(s.getSignature());
+	            s.setFrontEndPhoto(encodedPhoto);
+	            s.setFrontEndSignature(encodedSignature);
+	        }
+	    });
+	    
+	    return list;
 	}
 
 	@PostMapping("/updateBySelectPolicyNo")
 	@ResponseBody
 	public ResponseEntity<String> updateBySelectPolicyNo(
-			@RequestParam(value = "searchbyPolicyNo") Integer id,
-			@RequestParam(value = "filetag", required = false) MultipartFile file1,
-			@RequestParam(value = "secondfiletag", required = false) MultipartFile file2,
-			@RequestParam("tDate") String tDate, @RequestParam("branchName") String branchName,
-			@RequestParam("transactionFor") String transactionFor, @RequestParam("remarks") String remarks,
-			@RequestParam("transactionType") String transactionType, @RequestParam("amount") String amount,
-			@RequestParam("paymode") String paymode, @RequestParam("empCode") String empCode,
-			@RequestParam("searchMemberCode") String searchMemberCode, @RequestParam("memberName") String memberName,
-			@RequestParam("phoneno") String phoneno, @RequestParam("planCode") String planCode,
-			@RequestParam("balance") String balance) {
-		// System.out.println(idOfPolicyNO);
-
-		if (!file1.isEmpty() && !file2.isEmpty()) {
-			String fileName1 = fileStorageService.storeFile(file1);
-			String fileName2 = fileStorageService.storeFile(file2);
-			int i = addInvestmentRepo.updateThroughid(tDate, branchName, transactionFor, remarks, transactionType,
-					amount, paymode, fileName1, fileName2, id);
-		} else {
-			int i = addInvestmentRepo.updateThroughidWithoutFile(tDate, branchName, transactionFor, remarks,
-					transactionType, amount, paymode, id);
+			//@RequestParam(value = "searchbyPolicyNo") Integer id,
+			@RequestParam(name = "filetag", required = false) MultipartFile file1,
+			@RequestParam(name = "secondfiletag", required = false) MultipartFile file2,
+			@RequestParam(name = "tDate", required = false) String tDate, 
+			@RequestParam(name = "branchName", required = false) String branchName,
+			@RequestParam(name = "transactionFor", required = false) String transactionFor, 
+			@RequestParam(name = "remarks", required = false) String remarks,
+			@RequestParam(name = "transactionType", required = false) String transactionType, 
+			@RequestParam(name = "amount", required = false) String amount,
+			@RequestParam(name = "paymode", required = false) String paymode, 
+			@RequestParam(name = "empCode", required = false) String empCode,
+			@RequestParam(name = "searchMemberCode", required = false) String searchMemberCode, 
+			@RequestParam(name = "memberName", required = false) String memberName,
+			@RequestParam(name = "phoneno", required = false) String phoneno, 
+			@RequestParam(name = "planCode", required = false) String planCode,
+			@RequestParam(name = "balance", required = false) String balance,
+			@RequestParam(name = "id123", required = false) Integer id) {
+		try {
+			List<AddInvestment> add = addInvestmentRepo.findByid(id);
+			add.forEach(s->{
+				if(!(file1==null) && !(file2==null)) {
+					try {
+						byte[] photo = file1.getBytes();
+						byte[] signature = file2.getBytes();
+						s.setPhoto(photo);
+						s.setSignature(signature);
+					}catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				s.settDate(tDate);
+				s.setBranchName(branchName);
+				s.setTransactionFor(transactionFor);
+				s.setRemarks(remarks);
+				s.setTransactionType(transactionType);
+				s.setAmount(amount);
+				s.setPaymode(paymode);
+				addInvestmentRepo.save(s);
+			});
+			return new ResponseEntity<>("Data Updated  successfully!!!!", HttpStatus.OK);
+		}catch (Exception ex) {
+			System.out.println(ex);
+			return new ResponseEntity<>("Data Updated Failed !!!!", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return ResponseEntity.ok("Update Successfully...!!!");
 	}
 
 	/* INVESTMENT SECTION - INTEREST PAYABLE */
@@ -288,10 +324,10 @@ public class InvestmentSectionController {
 	@GetMapping("/fetchDataByAddInvestment")
 	@ResponseBody
 	public List<AddInvestment> fetchAddInvestment(HttpServletRequest request) {
-		String ids = request.getParameter("id");
-		int i = Integer.parseInt(ids);
-		List<AddInvestment> data7 = addInvestmentRepo.findByid(i);
-		return data7;
+	    String ids = request.getParameter("id");
+	    int id = Integer.parseInt(ids);
+	    List<AddInvestment> data = addInvestmentRepo.findByid(id);
+	    return data;
 	}
 
 	@GetMapping("/clientData")

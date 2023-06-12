@@ -119,8 +119,9 @@ function clearInput(){
 			</section>
 			<section class="content">
 				<div class="row">
-					<form method="post" action="DepartmentMaster123"
-						modelAttribute="departmentMaster" id="form1">
+					<!-- <form method="post" action="DepartmentMaster123"
+						modelAttribute="departmentMaster" id="form1"> -->
+					<form method="post" action="DepartmentMaster" modelAttribute="departmentMaster" id="form1">
 						<div class="col-md-5">
 							<div class="box box-success">
 								<div class="box-header with-border">
@@ -133,8 +134,10 @@ function clearInput(){
 												<strong style="color: Red">*</strong>
 											</label>
 											<div class="col-sm-8">
-												<input name="department" type="text" id="department"
-													class="form-control" /> <span
+												<!-- <input name="department" type="text" id="department"
+													class="form-control" /> --> 
+													<input name="department" type="text" id="department" class="form-control" />
+           <span
 													id="ContentPlaceHolder1_RequiredtxtDepartmentName"
 													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 													Department Name</span>

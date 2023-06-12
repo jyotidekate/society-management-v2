@@ -244,8 +244,11 @@
 									<div class="col-md-3">
 										<div class="form-group">
 											<div class="text-center">
-												<img id="ContentPlaceHolder1_imglogo"
-													class="profile-user-img" src="" style="width: 110px;" />
+												<!-- <img id="ContentPlaceHolder1_imglogo"
+													class="profile-user-img" src="" style="width: 110px;" /> -->
+												<img id="ContentPlaceHolder1_imglogo" name="preview" 
+													class="profile-user-img" src="data:image/png;base64,${aadharPhoto}"
+														style="width: 110px;" /> 
 											</div>
 										</div>
 									</div>
@@ -253,7 +256,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-md-12">
 							<div class="box box-success"
 								style="box-shadow: none; overflow: auto !important;">
@@ -264,9 +267,8 @@
 											class="display nowrap table table-hover table-striped table-bordered"
 											border="1" id="ContentPlaceHolder1_gdvData"
 											style="width: 100%; border-collapse: collapse;">
-											<caption>Account/Investment Details</caption>
-											<tr style="color: White; background-color: #008385;">No
-												Data
+											<caption></caption>
+											<tr style="color: White; background-color: #008385;">
 											</tr>
 
 										</table>
@@ -274,7 +276,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<div class="modal modal-success fade" id="modal-success">
 						<div class="modal-dialog">
 							<div class="modal-content">

@@ -31,6 +31,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -852,9 +853,11 @@ public class HomeControler {
 
 	@PostMapping("DesignationMasterSave")
 	public String DesignationMaster(@ModelAttribute("designationMaster") DesignationMaster designationMaster,
-			Model model) {
-		designationMasterRepo.save(designationMaster);
-		return "employee/DesignationMaster";
+	        Model model) {
+	    if (designationMaster.getDesignation() != null && !designationMaster.getDesignation().isEmpty()) {
+	        designationMasterRepo.save(designationMaster);
+	    }
+	    return "employee/DesignationMaster";
 	}
 
 	@GetMapping("/getAllDesignation123456")
@@ -873,10 +876,15 @@ public class HomeControler {
 		return "employee/DepartmentMaster";
 	}
 
-	@PostMapping("DepartmentMaster")
-	public String DepartmentMaster(@ModelAttribute("designation") DepartmentMaster departmentMaster, Model model) {
-		departmentMasterRepo.save(departmentMaster);
-		return "employee/DepartmentMaster";
+	@PostMapping("/DepartmentMaster")
+	public String departmentMaster(@ModelAttribute("departmentMaster") DepartmentMaster departmentMaster,
+	                               BindingResult bindingResult, Model model) {
+	    if (departmentMaster.getDepartment() == null || departmentMaster.getDepartment().isEmpty()) {
+	        model.addAttribute("error", "Please enter a department name");
+	        return "employee/DepartmentMaster";
+	    }
+	    departmentMasterRepo.save(departmentMaster);
+	    return "employee/DepartmentMaster";
 	}
 
 	@GetMapping("/FindDepartment")

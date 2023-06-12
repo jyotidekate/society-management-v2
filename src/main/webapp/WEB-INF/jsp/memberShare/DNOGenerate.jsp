@@ -64,15 +64,15 @@
 										<caption>Share Data List</caption>
 										<tr style="color: White; background-color: #008385;">
 											<th scope="col">SlNo</th>
-											<th scope="col">M.CODE</th>
+											<!-- <th scope="col">M.CODE</th> -->
 											<th scope="col">M.NAME</th>
 											<th scope="col">SHARE DATE</th>
-											<th scope="col">DNO FROM</th>
-											<th scope="col">DNO To</th>
+											<!-- <th scope="col">DNO FROM</th>
+											<th scope="col">DNO To</th> -->
 											<th scope="col">NoOfShare</th>
 											<th scope="col">Share Amt</th>
-											<th scope="col">TxnID</th>
-											<th scope="col"></th>
+											<!-- <th scope="col">TxnID</th> -->
+											<!-- <th scope="col"></th> -->
 										</tr>
 										<tbody id="tableBody">
 
