@@ -735,6 +735,12 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 
    //console.log(formData);
    //alert("hi")
+   
+   if ($("#filetag").val() == "") {
+		             alert("Select THe Photo !!!");
+		             return;
+	}
+   
    $.ajax({
        url: "updateMemberRectification",
        type: "POST",

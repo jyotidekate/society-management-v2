@@ -37,10 +37,11 @@
 										<div class="form-group">
 											<label>Select by Policy No.<strong style="color: Red">*</strong></label>
 											<select name="searchbyPolicyNo" id="searchbyPolicyNo"
-												onchange="javascript:getDataByAddInvestment()"
+												
 												class="form-control select2" style="width: 100%;">
 												<option value=""></option>
 											</select>
+											<!-- onchange="javascript:getDataByAddInvestment()" -->
 										</div>
 									</div>
 									<div class="col-md-9">

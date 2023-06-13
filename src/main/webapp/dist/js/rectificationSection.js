@@ -255,6 +255,17 @@ function getAllIDAfterSoftDeleteOperation(){
 //Update Operation
 $(document).ready(function() {
 			$('#updatebutton').click(function() {
+				
+				if ($("#filetag").val() == "") {
+		             alert("Select THe Photo !!!");
+		             return;
+		         }
+		         
+		         if ($("#secondfiletag").val() == "") {
+		             alert("Select THe Signature !!!");
+		             return;
+		         }
+		         
 				//alert("Update  is working ")
 				var form = $('#myForm')[0];
 				var data = new FormData(form);

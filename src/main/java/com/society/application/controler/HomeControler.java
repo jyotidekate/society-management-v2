@@ -386,8 +386,8 @@ public class HomeControler {
 
 	@GetMapping("/getAllMember")
 	@ResponseBody
-	public List<Member> getAllMember() {
-		List<Member> listMember = memberRepo.findAll();
+	public List<ClientMaster> getAllMember() {
+		List<ClientMaster> listMember = clientMasterRepo.findAll();
 //		for (Member member : listMember) {
 //			if (member.getBranchName() != null) {
 //				Optional<BranchMaster> branchMaster = branchMasterRepo

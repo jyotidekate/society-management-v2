@@ -119,7 +119,7 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 										</label>
 										<div class="col-sm-8">
 											<select name="branchName" id="branchName"
-												class="form-control select2" style="width: 100%;">
+												class="form-control" style="width: 100%;">
 												<option value="">Select Branch</option>
 											</select>
 										</div>

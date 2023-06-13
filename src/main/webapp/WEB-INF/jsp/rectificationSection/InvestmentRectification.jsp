@@ -549,7 +549,17 @@
 
 				var formData = new FormData($(this)[0]); // create new FormData object from form data
 				console.log(formData);
-
+				
+				if ($("#filetag").val() == "") {
+		             alert("Select THe Photo !!!");
+		             return;
+		         }
+		         
+		         if ($("#secondfiletag").val() == "") {
+		             alert("Select THe Signature !!!");
+		             return;
+		         }
+		         
 				$.ajax({
 					url : "updateInvestmentRectification",
 					type : "POST",

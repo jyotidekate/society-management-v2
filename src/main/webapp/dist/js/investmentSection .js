@@ -53,9 +53,26 @@ function getRetrieveDataInPolicyNoAfterSoftDeletee(){
 				}
 				$("#searchbyPolicyNo").append(appenddata1);
 				
-			var appenddata2 = "";
+			/*var appenddata2 = "";
 				for(var i=0; i<data.length; i++){
 					appenddata2 += "<option value='"+data[i].branchName+"'>"+data[i].branchName+"</option> ";
+				}
+				$("#branchName").append(appenddata2);*/
+		},
+		error: function(){
+			alert("Device conteol failed");
+		}
+	});
+	
+	$.ajax({
+		type: "get",
+		contentType: "application/json",
+		url: 'getAllBranch',
+		asynch: false,
+		success: function(data){	
+			var appenddata2 = "";
+				for(var i=0; i<data.length; i++){
+					appenddata2 += "<option value='"+data[i].name+"'>"+data[i].name+"</option> ";
 				}
 				$("#branchName").append(appenddata2);
 		},
@@ -502,7 +519,6 @@ function searchByPolicyNoFunction() {
 }
  
  function getDataByAddInvestment() {
-
 	var ids = document.getElementById("searchbyPolicyNo").value;
 	//alert("hi")
 	$.ajax({
@@ -515,7 +531,6 @@ function searchByPolicyNoFunction() {
 			for (var i = 0; i < data.length; i++) {
 				const tableData = data.map(function(value) {
 					return (
-
 						`<tr>
             				 <td>${value.memberName}</td>
             				 <td>${value.phoneno}</td>
@@ -526,7 +541,6 @@ function searchByPolicyNoFunction() {
             				 <td>${value.mISInterest}</td>
             				 <td>${value.lastInstPaid}</td>   
             				 <td>${value.noOfInstPaid}</td>        
-           					 
         				</tr>`
 					);
 				}).join('');
@@ -542,7 +556,9 @@ function searchByPolicyNoFunction() {
 }
 
 function getDataByAddInvestmentforrecurring() {
-    var ids = document.getElementById("id").value;
+    //var ids = document.getElementById("id").value;
+    var ids = document.getElementById("searchbyPolicyNo").value;
+	//alert(ids)
     $.ajax({
         type: "get",
         contentType: "application/json",
@@ -883,7 +899,7 @@ function softDeleteForThreeThings() {
     var renewalDate = document.getElementById("renewalDate").value;
     var branchName = document.getElementById("branchName").value;
     var input = {
-        "id": searchbyPolicyNo, // Assuming the ID field is named 'id'
+        "id": searchbyPolicyNo, 
         "renewalDate": renewalDate,
         "branchName": branchName
     };

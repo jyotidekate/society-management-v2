@@ -96,7 +96,7 @@ function softDeleteIntegrationForInvestment(){
      }
         
      var myJSOn = JSON.stringify(input);
-     alert(policyno)
+     //alert(policyno)
      if(!policyno){
 		alert("Plz Select Policy Number!!!!!!!")
        
@@ -755,33 +755,31 @@ function getTheValueInTheDropDown() {
 }
 
 //Get the value in the given input Fields fof Saving Acoount
-function getthevalueinthegiveninputFieldsfofSavingAcoount(){
-	var accountNo = document.getElementById("accountNo").value;
-	
-	var input = {
-                     "accountNo": accountNo 
-        }
-		
-        $.ajax({
-                 type:"post",
-                 contentType: "application/json",
-                 url: 'RetrieveDatathroughAccountNumber',
-                 data: JSON.stringify(input) ,
-                 asynch: false,
-                 success: function(data) {
-	
-                      for (let i=0;i<data.length;i++){
-	  
-	                    var img = document.getElementById('imageApplicant');
-			       		img.src =`upload/`+data[i].imageApplicant+``;
+function getthevalueinthegiveninputFieldsfofSavingAcoount() {
+  var accountNo = document.getElementById("accountNo").value;
 
-						var img2 = document.getElementById('imageSignature');
-						img2.src =`upload/`+data[i].imageSignature+``;
-						
-						var img3 = document.getElementById('imgJointPhoto');
-						img3.src =`upload/`+data[i].imgJointPhoto+``;
-						
-                      document.getElementById("accountNo").value = data[i].accountNo;
+  var input = {
+    "accountNo": accountNo
+  };
+
+  $.ajax({
+    type: "post",
+    contentType: "application/json",
+    url: 'RetrieveDatathroughAccountNumber',
+    data: JSON.stringify(input),
+    async: false,
+    success: function(data) {
+      for (let i = 0; i < data.length; i++) {
+        			var img = document.getElementById('imageApplicant');
+        			img.src = `upload/` + data[i].imageApplicant;
+
+        			var img2 = document.getElementById('imageSignature');
+        			img2.src = `upload/` + data[i].imageSignature;
+
+        			var img3 = document.getElementById('imgJointPhoto');
+        			img3.src = `upload/` + data[i].imgJointPhoto;
+
+        			  document.getElementById("accountNo").value = data[i].accountNo;
                       document.getElementById("searchMemberCode").value = data[i].searchMemberCode;
                       document.getElementById("opDate").value = data[i].opDate;
                       document.getElementById("memberName").value = data[i].memberName;
@@ -811,14 +809,14 @@ function getthevalueinthegiveninputFieldsfofSavingAcoount(){
                       document.getElementById("chkisactive").value = data[i].chkisactive;
                       document.getElementById("chkisSms").value = data[i].chkisSms;
                       document.getElementById("chkdebitcard").value = data[i].chkdebitcard;
-                   }
-                 } ,
-         	    error: function(){
-         	    	alert("Device control failed");
-         	    }
-             });
-
+      }
+    },
+    error: function() {
+      alert("Device control failed");
+    }
+  });
 }
+
 
 function BranchNameFromAddInvestment(){
 	//alert("hi")
