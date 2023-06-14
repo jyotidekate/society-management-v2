@@ -109,7 +109,7 @@ function SearchMaturityAppplicationFindAll(){
 	 $.ajax({
 		                type:"get",
                         contentType: "application/json",
-                        url: 'MaturityAplicationFindAll',
+                        url: 'polfordropdown',
                         asynch: false,
                         success: function(data) {
 	      	            for (var i = 0; i < data.length; i++) {
@@ -118,7 +118,7 @@ function SearchMaturityAppplicationFindAll(){
                 		 return (
                      		`<tr>
                      			<td>${j++}</td>
-                         		<td>${value.id}</td>
+                         		<td>${value.policyno}</td>
                          		<td>${value.memberName}</td>
                           		<td>${value.policyDate}</td>
                            		<td>${value.applicationDate}</td>
@@ -196,7 +196,6 @@ function policyStatement1(){
                          return (
                 		 
                      `<tr>
-                         <td>${j++}</td>
                      	 <td>${value.cspname}</td>
 			 			 <td>${value.address}</td>
 						 <td>${value.advisorCode}</td>

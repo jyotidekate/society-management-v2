@@ -132,7 +132,7 @@
 							<caption>Maturity Application</caption>
 							<tr style="color: White; background-color: #008385;">
 								<th scope="col">Id</th>
-								<th scope="col">Member ID</th>
+								<th scope="col">Policy No.</th>
 								<th scope="col">Member Name</th>
 								<th scope="col">Policy Date</th>
 								<th scope="col">Application Date</th>
