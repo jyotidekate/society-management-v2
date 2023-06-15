@@ -34,7 +34,7 @@ function BalanceSheetDatewiseAjax() {
     $.ajax({
         type: "get",
         contentType: "application/json",
-        url: '/Balancesheet1',
+        url: '/Balancesheet123',
         data: { Branch: branch, Fromdate: fromdate, Todate: todate },
         async: false,
         success: function (data) {

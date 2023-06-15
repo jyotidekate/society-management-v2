@@ -397,7 +397,7 @@ public class AccountSectionController {
 		return "accountSection/BalanceSheetDatewise";
 	}
 
-	@GetMapping("/Balancesheet1")
+	@GetMapping("/Balancesheet123")
 	@ResponseBody
 	public List<BalanceSheetDatewise> getgetBalancesheet1(HttpServletRequest request) {
 	    String branch = request.getParameter("Branch");

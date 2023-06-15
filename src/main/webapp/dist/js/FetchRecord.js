@@ -370,7 +370,7 @@ function getMandateDeposite() {
     };
 
     const myJson = JSON.stringify(input);
-    alert(fromdate)
+    //alert(fromdate)
     $.ajax({
         type: "POST",
         contentType: "application/json",
