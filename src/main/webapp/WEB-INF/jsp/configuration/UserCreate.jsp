@@ -189,13 +189,8 @@
 													onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$gdvBranch$ctl01$chkSelectAllPlan\&#39;,\&#39;\&#39;)&#39;, 0)" />
 												</th>
 											</tr>
-										</table>
-
-										<table cellspacing="0" cellpadding="3" rules="all"
-											class="display nowrap table table-hover table-striped table-bordered"
-											border="1" id="ContentPlaceHolder1_gdvBranchAddBank"
-											style="width: 100%; border-collapse: collapse;">
-											<caption>Branch Access List</caption>
+											<tbody id="ContentPlaceHolder1_gdvBranchAddBank">
+											</tbody>
 										</table>
 										<span id="mappedBranchMsg"
 											style="color: Red; font-size: X-Small; font-weight: bold; display: none;"></span>
@@ -350,6 +345,70 @@
 									<h3 class="box-title">Loan Access</h3>
 								</div>
 								<div class="box-body">
+									<div>
+										<table cellspacing="0" cellpadding="3" rules="all"
+											class="display nowrap table table-hover table-striped table-bordered"
+											border="1" id="ContentPlaceHolder1_gvrPlan"
+											style="width: 100%; border-collapse: collapse;">
+											<caption>Loan Access List</caption>
+											<tr style="color: White; background-color: #008385;">
+												<th scope="col">Loan Code</th>
+												<th scope="col">Loan Name</th>
+												<th scope="col">Term</th>
+												<th scope="col"><input
+													id="ContentPlaceHolder1_gvrPlan_ChkAll1" type="checkbox"
+													name="ctl00$ContentPlaceHolder1$gvrPlan$ctl01$ChkAll1"
+													onclick="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$gvrPlan$ctl01$ChkAll1\&#39;,\&#39;\&#39;)&#39;, 0)" />
+												</th>
+											</tr>
+											<tr>
+												<td><span id="ContentPlaceHolder1_gvrPlan_lblpc_4">4764C</span>
+												</td>
+												<td><span id="ContentPlaceHolder1_gvrPlan_lblpts_4">ROYAL
+														FI</span></td>
+												<td><span id="ContentPlaceHolder1_gvrPlan_lblpt_4">12</span>
+												</td>
+												<td align="center" style="width: 30px;"><input
+													id="ContentPlaceHolder1_gvrPlan_Check1_4" type="checkbox"
+													name="ctl00$ContentPlaceHolder1$gvrPlan$ctl06$Check1" /></td>
+											</tr>
+											<tr style="color: #000333; background-color: #F3ACAF;">
+												<td><span id="ContentPlaceHolder1_gvrPlan_lblpc_5">7FEF4</span>
+												</td>
+												<td><span id="ContentPlaceHolder1_gvrPlan_lblpts_5">SWARNA
+														ADHAR 12</span></td>
+												<td><span id="ContentPlaceHolder1_gvrPlan_lblpt_5">60</span>
+												</td>
+												<td align="center" style="width: 30px;"><input
+													id="ContentPlaceHolder1_gvrPlan_Check1_5" type="checkbox"
+													name="ctl00$ContentPlaceHolder1$gvrPlan$ctl07$Check1" /></td>
+											</tr>
+											<tr>
+												<td><span id="ContentPlaceHolder1_gvrPlan_lblpc_6">GL-12</span>
+												</td>
+												<td><span id="ContentPlaceHolder1_gvrPlan_lblpts_6">SWARA
+														SHAKTI 16</span></td>
+												<td><span id="ContentPlaceHolder1_gvrPlan_lblpt_6">12</span>
+												</td>
+												<td align="center" style="width: 30px;"><input
+													id="ContentPlaceHolder1_gvrPlan_Check1_6" type="checkbox"
+													name="ctl00$ContentPlaceHolder1$gvrPlan$ctl08$Check1" /></td>
+											</tr>
+											<tr style="color: #000333; background-color: #F3ACAF;">
+												<td><span id="ContentPlaceHolder1_gvrPlan_lblpc_9">RD</span>
+												</td>
+												<td><span id="ContentPlaceHolder1_gvrPlan_lblpts_9">ROYAL
+														+</span></td>
+												<td><span id="ContentPlaceHolder1_gvrPlan_lblpt_9">60</span>
+												</td>
+												<td align="center" style="width: 30px;"><input
+													id="ContentPlaceHolder1_gvrPlan_Check1_9" type="checkbox"
+													name="ctl00$ContentPlaceHolder1$gvrPlan$ctl11$Check1" /></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<div class="box-body">
 									<div></div>
 								</div>
 							</div>
@@ -364,8 +423,7 @@
 									<div>
 										<table cellspacing="0" cellpadding="3" rules="all"
 											class="display nowrap table table-hover table-striped table-bordered"
-											border="1" id=""
-											style="width: 100%; border-collapse: collapse;">
+											border="1" style="width: 100%; border-collapse: collapse;">
 											<caption>User Data List</caption>
 											<tr style="color: White; background-color: #008385;">
 												<th scope="col">User ID</th>
@@ -374,12 +432,8 @@
 												<th scope="col">Full Name</th>
 												<th scope="col">Mobile No</th>
 											</tr>
-										</table>
-										<table cellspacing="0" cellpadding="3" rules="all"
-											class="display nowrap table table-hover table-striped table-bordered"
-											border="1" id="ContentPlaceHolder1_gdvUser"
-											style="width: 100%; border-collapse: collapse;">
-											<caption>User Data List</caption>
+											<tbody id="ContentPlaceHolder1_gdvUser">
+											</tbody>
 										</table>
 									</div>
 								</div>
@@ -389,6 +443,7 @@
 				</section>
 			</div>
 			<!-- /.content-wrapper -->
+
 			<div class="control-sidebar-bg"></div>
 		</div>
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -423,7 +478,129 @@
 		<script src="dist/js/demo.js"></script>
 		<!-- Select2 -->
 		<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
-		
+		<script>
+         $(function () {
+             //Initialize Select2 Elements
+             $('.select2').select2();
+             //Datemask dd/mm/yyyy
+             $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+             //Datemask2 mm/dd/yyyy
+             $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+             //Date range picker
+             $('#reservation').daterangepicker()
+             //Date range picker with time picker
+             $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, locale: { format: 'MM/DD/YYYY hh:mm A' } })
+             $('#daterange-btn').daterangepicker(
+              {
+                  ranges: {
+                      'Today': [moment(), moment()],
+                      'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                      'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                      'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                      'This Month': [moment().startOf('month'), moment().endOf('month')],
+                      'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                  },
+                  startDate: moment().subtract(29, 'days'),
+                  endDate: moment()
+              },
+              function (start, end) {
+                  $('#daterange-btn span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'))
+              }
+            )
+             //Date picker
+             $('#datepicker').datepicker({
+                 autoclose: true
+             })
+             //Money Euro
+             $('[data-mask]').inputmask()
+         
+             //iCheck for checkbox and radio inputs
+             $('span[type="checkbox"].minimal').iCheck({
+                 checkboxClass: 'icheckbox_minimal-blue',
+                 radioClass: 'iradio_minimal-blue'
+             })
+         
+         
+         
+         
+         
+         })
+      </script>
+		<script type="text/javascript">
+         //<![CDATA[
+         var Page_Validators =  new Array(document.getElementById("ContentPlaceHolder1_RequiredFieldValidator1"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidator2"), document.getElementById("ContentPlaceHolder1_RequiredFieldValidator4"), document.getElementById("ContentPlaceHolder1_Reg1"));
+         //]]>
+      </script>
+		<script type="text/javascript">
+         //<![CDATA[
+         var ContentPlaceHolder1_RequiredFieldValidator1 = document.all ? document.all["ContentPlaceHolder1_RequiredFieldValidator1"] : document.getElementById("ContentPlaceHolder1_RequiredFieldValidator1");
+         ContentPlaceHolder1_RequiredFieldValidator1.controltovalidate = "ContentPlaceHolder1_txtUserID";
+         ContentPlaceHolder1_RequiredFieldValidator1.focusOnError = "t";
+         ContentPlaceHolder1_RequiredFieldValidator1.errormessage = "*";
+         ContentPlaceHolder1_RequiredFieldValidator1.display = "Dynamic";
+         ContentPlaceHolder1_RequiredFieldValidator1.validationGroup = "A";
+         ContentPlaceHolder1_RequiredFieldValidator1.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+         ContentPlaceHolder1_RequiredFieldValidator1.initialvalue = "";
+         var ContentPlaceHolder1_RequiredFieldValidator2 = document.all ? document.all["ContentPlaceHolder1_RequiredFieldValidator2"] : document.getElementById("ContentPlaceHolder1_RequiredFieldValidator2");
+         ContentPlaceHolder1_RequiredFieldValidator2.controltovalidate = "ContentPlaceHolder1_txtPassword";
+         ContentPlaceHolder1_RequiredFieldValidator2.focusOnError = "t";
+         ContentPlaceHolder1_RequiredFieldValidator2.errormessage = "*";
+         ContentPlaceHolder1_RequiredFieldValidator2.display = "Dynamic";
+         ContentPlaceHolder1_RequiredFieldValidator2.validationGroup = "A";
+         ContentPlaceHolder1_RequiredFieldValidator2.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+         ContentPlaceHolder1_RequiredFieldValidator2.initialvalue = "";
+         var ContentPlaceHolder1_RequiredFieldValidator4 = document.all ? document.all["ContentPlaceHolder1_RequiredFieldValidator4"] : document.getElementById("ContentPlaceHolder1_RequiredFieldValidator4");
+         ContentPlaceHolder1_RequiredFieldValidator4.controltovalidate = "ContentPlaceHolder1_txtEmail";
+         ContentPlaceHolder1_RequiredFieldValidator4.focusOnError = "t";
+         ContentPlaceHolder1_RequiredFieldValidator4.errormessage = "Enter Valid Mail ID";
+         ContentPlaceHolder1_RequiredFieldValidator4.display = "Dynamic";
+         ContentPlaceHolder1_RequiredFieldValidator4.validationGroup = "A";
+         ContentPlaceHolder1_RequiredFieldValidator4.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+         ContentPlaceHolder1_RequiredFieldValidator4.initialvalue = "";
+         var ContentPlaceHolder1_Reg1 = document.all ? document.all["ContentPlaceHolder1_Reg1"] : document.getElementById("ContentPlaceHolder1_Reg1");
+         ContentPlaceHolder1_Reg1.controltovalidate = "ContentPlaceHolder1_txtEmail";
+         ContentPlaceHolder1_Reg1.focusOnError = "t";
+         ContentPlaceHolder1_Reg1.errormessage = "Invalid Mail Id";
+         ContentPlaceHolder1_Reg1.display = "Dynamic";
+         ContentPlaceHolder1_Reg1.validationGroup = "A";
+         ContentPlaceHolder1_Reg1.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
+         ContentPlaceHolder1_Reg1.validationexpression = "\\w+([-+.\']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+         //]]>
+      </script>
+		<script type="text/javascript">
+         //<![CDATA[
+         
+         var Page_ValidationActive = false;
+         if (typeof(ValidatorOnLoad) == "function") {
+             ValidatorOnLoad();
+         }
+         
+         function ValidatorOnSubmit() {
+             if (Page_ValidationActive) {
+                 return ValidatorCommonOnSubmit();
+             }
+             else {
+                 return true;
+             }
+         }
+                 
+         document.getElementById('ContentPlaceHolder1_RequiredFieldValidator1').dispose = function() {
+             Array.remove(Page_Validators, document.getElementById('ContentPlaceHolder1_RequiredFieldValidator1'));
+         }
+         
+         document.getElementById('ContentPlaceHolder1_RequiredFieldValidator2').dispose = function() {
+             Array.remove(Page_Validators, document.getElementById('ContentPlaceHolder1_RequiredFieldValidator2'));
+         }
+         
+         document.getElementById('ContentPlaceHolder1_RequiredFieldValidator4').dispose = function() {
+             Array.remove(Page_Validators, document.getElementById('ContentPlaceHolder1_RequiredFieldValidator4'));
+         }
+         
+         document.getElementById('ContentPlaceHolder1_Reg1').dispose = function() {
+             Array.remove(Page_Validators, document.getElementById('ContentPlaceHolder1_Reg1'));
+         }
+         //]]>
+      </script>
 	</form>
 </body>
 <!-- Dk/Admin/UserCreate.aspx EDB D 09:26:49 GMT -->

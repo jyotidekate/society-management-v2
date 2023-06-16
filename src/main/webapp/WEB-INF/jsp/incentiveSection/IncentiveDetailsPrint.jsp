@@ -2,9 +2,9 @@
 <body class="skin-blue sidebar-mini"
 	style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);"
 	cz-shortcut-listen="true">
-	<form method="post"
+	<!-- <form method="post"
 		action="http://admin:eqfi%23123@eqfinidhi.eadmin.in/Admin/IncentiveDetailsPrint.aspx"
-		id="form1">
+		id="form1"> -->
 
 		<div
 			style="height: auto; min-height: 100%; border-radius: 30px; margin: 15px; background: url(dist/img/back.jpg);">
@@ -41,8 +41,21 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 								<div class="box-body">
 									<div class="col-md-3">
 										<div class="form-group">
-											<label>Month Name :</label> <select name="month" id="month"
+											<label>Month Name :</label> <select name="invmonth" id="invmonth"
 												class="form-control" style="width: 100%;">
+												<option selected="selected" value="">--SELECT MONTH NAME--</option>
+												<option value="January">January</option>
+												<option value="February">February</option>
+												<option value="March">March</option>
+												<option value="April">April</option>
+												<option value="May">May</option>
+												<option value="June">June</option>
+												<option value="July">July</option>
+												<option value="August">August</option>
+												<option value="September">September</option>
+												<option value="October">October</option>
+												<option value="November">November</option>
+												<option value="December">December</option>
 											</select>
 										</div>
 									</div>
@@ -54,10 +67,12 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label></label> <a id="ContentPlaceHolder1_btnSearch"
-												class="btn btn-success margin-20" href=""><span
-												class="fa fa-search"></span> SEARCH</a>
-										</div>
+											<label></label><input type="submit"
+											name="ctl00$ContentPlaceHolder1$btnSave" value="Search"
+											onclick="searchIncentiveDetailsPrints();"
+											id="ContentPlaceHolder1_btnSave"
+											class="btn btn-success pull-right margin-r-5" />
+									</div>
 									</div>
 									<div class="clearfix margin-bottom-10"></div>
 								</div>
@@ -67,6 +82,19 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 								<div class="box-header with-border">
 									<div class="box-tools pull-right"></div>
 								</div>
+								<table cellspacing="0" cellpadding="3" rules="all"
+										class="display nowrap table table-hover table-striped table-bordered"
+										border="1" style="width: 100%; border-collapse: collapse;">
+										<caption></caption>
+										<tr style="color: White; background-color: #008385;">
+											<th scope="col">S/N</th>
+											<th scope="col">MONTH NAME</th>
+											<th scope="col">CODE</th>
+										</tr>
+										<tbody id="shareTableBody">
+
+										</tbody>
+									</table>
 								<div class="box-body"></div>
 							</div>
 						</div>
@@ -108,51 +136,11 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 		<script src="dist/js/adminlte.min.js"></script>
 		<!-- AdminLTE for demo purposes -->
 		<script src="dist/js/demo.js"></script>
+		<script src="dist/js/incentive.js"></script>
 		<!-- Select2 -->
 		<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
-		<script>
-            $(function () {
-                //Initialize Select2 Elements
-                $('.select2').select2();
-                //Datemask dd/mm/yyyy
-                $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-                //Datemask2 mm/dd/yyyy
-                $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-                //Date range picker
-                $('#reservation').daterangepicker()
-                //Date range picker with time picker
-                $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, locale: { format: 'MM/DD/YYYY hh:mm A' } })
-                $('#daterange-btn').daterangepicker(
-                 {
-                     ranges: {
-                         'Today': [moment(), moment()],
-                         'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                         'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                         'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                         'This Month': [moment().startOf('month'), moment().endOf('month')],
-                         'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                     },
-                     startDate: moment().subtract(29, 'days'),
-                     endDate: moment()
-                 },
-                 function (start, end) {
-                     $('#daterange-btn span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'))
-                 }
-               )
-                //Date picker
-                $('#datepicker').datepicker({
-                    autoclose: true
-                })
-                //Money Euro
-                $('[data-mask]').inputmask()
-
-                //iCheck for checkbox and radio inputs
-                $('span[type="checkbox"].minimal').iCheck({
-                    checkboxClass: 'icheckbox_minimal-blue',
-                    radioClass: 'iradio_minimal-blue'
-            })
-        </script>
-	</form>
+		
+	<!-- </form> -->
 </body>
 
 <!-- Dk/Admin/IncentiveDetailsPrint.aspx EDB D 09:27:20 GMT -->

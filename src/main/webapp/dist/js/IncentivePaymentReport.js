@@ -39,3 +39,22 @@ function IncentivePaymentReport()
 	    }
  });
  }
+ 
+function fetchyear(){
+	$.ajax({
+		type: "POST",
+		contentType: "application/json",
+		url: 'fetchingmonths',
+		asynch: false,
+		success: function(data){				
+			var appenddata2 = "";
+				for(var i=0; i<data.length; i++){
+					appenddata2 += "<option value='"+data[i].month+"'>"+data[i].month+"</option> ";
+				}
+				$("#invmonth").append(appenddata2);
+		},
+		error: function(){
+			alert("Device conteol failed");
+		}
+	});
+}

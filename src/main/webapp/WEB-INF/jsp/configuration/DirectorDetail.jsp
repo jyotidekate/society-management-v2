@@ -485,9 +485,9 @@
 								<th scope="col">AppDate</th>
 								<th scope="col">Share Amount</th>
 								<th scope="col">No. Of Share</th>
-								<th scope="col">DNO From</th>
-								<th scope="col">DNO To</th>
-								<th scope="col">Member Code</th>
+								<!-- <th scope="col">DNO From</th> -->
+								<!-- <th scope="col">DNO To</th> -->
+								<!-- <th scope="col">Member Code</th> -->
 								<th scope="col">Payment By</th>
 								<th scope="col">Delete</th>
 							</tr>

@@ -36,7 +36,7 @@ function getMemberShareSearch() {
 		url: 'memberShareSearch',
 		asynch: false,
 		success: function (data) {
-			alert(data.branchName)
+			//alert(data.branchName)
 			for (let i = 0; i < data.length; i++) {
 				//alert(data[i].branchName)
 				//var j=1;

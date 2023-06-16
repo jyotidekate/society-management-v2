@@ -51,20 +51,19 @@ th, td {
 										<div class="form-group">
 											<label>Select by Policy No.<strong style="color: Red">*</strong></label>
 											<select name="policyno" id="policyno"
-												onchange="policyStatement();" class="form-control select2"
+												 class="form-control select2"
 												style="width: 100%;">
 												<option value=""></option>
 											</select>
 										</div>
 									</div>
-
 									<div class="col-md-9">
 										<div class="form-group">
 											<label></label>
-											<!-- <button type="submit" name="btnsearch"
-												onclick=";" id="btnsearch"
+											<button type="submit" name="btnsearch"
+												onclick="policyStatement();" id="btnsearch"
 												class="btn btn-success pull-right margin-r-5 margin-20">SEARCH
-											</button> -->
+											</button>
 										</div>
 									</div>
 								</div>
@@ -119,11 +118,10 @@ th, td {
 											<td>Policy No</td>
 										</tr>
 									</thead>
-									<tbody id="tablepolicybody"></tbody>
+									<tbody id="tableBody"></tbody>
 									<caption style="font-weight: bold; text-align: center;">Policy
 										Statement Report</caption>
 								</table>
-
 							</div>
 						</div>
 					</div>
@@ -133,95 +131,6 @@ th, td {
 		<!-- /.content-wrapper -->
 		<div class="control-sidebar-bg"></div>
 	</div>
-
-	<script type="text/javascript">
-	function GetPolicyNoReportSection(){
-		//alert("hi")
-		$.ajax({
-			type: "get",
-			contentType: "application/json",
-			url: 'getPolicyNoReportSection',
-			asynch: false,
-			success: function(data){				
-				var appenddata2 = "";
-					for(var i=0; i<data.length; i++){
-						appenddata2 += "<option value='"+data[i].policyno+"'>"+data[i].policyno+"</option> ";
-					}
-					$("#policyno").append(appenddata2);
-			},
-			error: function(){
-				alert("Device conteol failed");
-			}
-		});
-	}
-	</script>
-
-<script type="text/javascript">
-function policyStatement() {
-    var policyno = document.getElementById("policyno").value;
-    var input = {
-        "policyno": policyno
-    };
-
-    $.ajax({
-        type: "POST",
-        contentType: "application/json",
-        url: '/getpolicystatement',
-        data: JSON.stringify(input),
-        success: function (data) {
-            const tableData = data.map(function (value) {
-                return (
-                    `<tr>
-                        <td>${value.cspname}</td>
-                        <td>${value.address}</td>
-                        <td>${value.advisorCode}</td>
-                        <td>${value.advisorName}</td>
-                        <td>${value.age}</td>
-                        <td>${value.chkisSms}</td>
-                        <td>${value.district}</td>
-                        <td>${value.dob}</td>
-                        <td>${value.jointCode}</td>
-                        <td>${value.jointName}</td>
-                        <td>${value.mDate}</td>
-                        <td>${value.mISInterest}</td>
-                        <td>${value.maturityAmount}</td>
-                        <td>${value.memberName}</td>
-                        <td>${value.misMode}</td>
-                        <td>${value.mode}</td>
-                        <td>${value.modeOfOp}</td>
-                        <td>${value.nomineeAge}</td>
-                        <td>${value.nomineeName}</td>
-                        <td>${value.nomineeRelation}</td>
-                        <td>${value.paymode}</td>
-                        <td>${value.phoneno}</td>
-                        <td>${value.pin}</td>
-                        <td>${value.policyAmount}</td>
-                        <td>${value.policyDate}</td>
-                        <td>${value.relativeName}</td>
-                        <td>${value.remarks}</td>
-                        <td>${value.schemeName}</td>
-                        <td>${value.schemeType}</td>
-                        <td>${value.searchMemberCode}</td>
-                        <td>${value.state}</td>
-                        <td>${value.term}</td>
-                        <td>${value.totalDeposit}</td>
-                        <td>${value.policyno}</td>
-                    </tr>`
-                );
-            }).join('');
-
-            const tableBody = document.getElementById("tablepolicy");
-            const newTableBody = document.createElement('tbody');
-            newTableBody.innerHTML = tableData;
-            tableBody.parentNode.replaceChild(newTableBody, tableBody);
-        },
-        error: function () {
-            alert("Failed to retrieve data");
-        }
-    });
-}
-</script>
-
 
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<!-- Bootstrap 3.3.7 -->
@@ -254,6 +163,7 @@ function policyStatement() {
 	<script src="dist/js/adminlte.min.js"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="dist/js/demo.js"></script>
+	<script src="dist/js/ChequeClear.js"></script>
 	<!-- Policy Statement -->
 	<!-- <script src="dist/js/investmentSection.js"></script> -->
 	<!-- Select2 -->

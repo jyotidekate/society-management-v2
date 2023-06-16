@@ -1,9 +1,9 @@
 <jsp:include page="../header.jsp" />
-<body onload="getAllGroupMaster()" class="skin-blue sidebar-mini"
+<body onload="tableOfIncentiveMasters();" class="skin-blue sidebar-mini" 
 	style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);"
 	cz-shortcut-listen="true">
-	<form method="post" action="saveDataRegularEMIRepayment"
-		onsubmit="javascript:return WebForm_OnSubmit();" id="form1">
+	<!-- <form method="post" action="saveDataRegularEMIRepayment"
+		onsubmit="javascript:return WebForm_OnSubmit();" id="form1"> -->
 
 		<div
 			style="height: auto; min-height: 100%; border-radius: 30px; margin: 15px; background: url(dist/img/back.jpg);">
@@ -15,10 +15,12 @@
 			<jsp:include page="../asideMenu.jsp" />
 			<!-- Aside Menu end -->
 			<script type="text/javascript">
-//<![CDATA[
-Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [], [], [], 90, 'ctl00');
-//]]>
-</script>
+				//<![CDATA[
+				Sys.WebForms.PageRequestManager._initialize(
+						'ctl00$ScriptManager1', 'form1', [], [], [], 90,
+						'ctl00');
+				//]]>
+			</script>
 			<!-- Content Wrapper. Contains page content -->
 			<div class="content-wrapper" style="min-height: 1105.75px;">
 				<section class="content-header">
@@ -31,6 +33,8 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 				</section>
 				<section class="content">
 					<div class="row">
+					  <form method="post" action="saveIncentiveMaster" id="" 
+						name="" modelAttribute="incentiveMaster">
 						<div class="col-md-12">
 							<div class="box box-info">
 								<div class="box-header with-border">
@@ -44,7 +48,7 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 													Month <strong style="color: Red">*</strong>
 												</label>
 												<div class="col-sm-8">
-													<input name="month" type="text" id="month"
+													<input name="invmonth" type="text" id="invmonth"
 														class="form-control" PlaceHolder="Enter Incentive Month" />
 													<span id="monthMsg"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
@@ -59,9 +63,9 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 														<div class="input-group-addon">
 															<i class="fa fa-calendar"></i>
 														</div>
-														<input name="ctl00$ContentPlaceHolder1$txtFDate"
-															type="text" value="01/08/2022"
-															id="ContentPlaceHolder1_txtFDate" class="form-control"
+														<input name="fDate"
+															type="date" 
+															id="fDate" class="form-control"
 															data-inputmask="&#39;alias&#39;: &#39;dd/mm/yyyy&#39;"
 															data-mask="" />
 													</div>
@@ -75,9 +79,9 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 														<div class="input-group-addon">
 															<i class="fa fa-calendar"></i>
 														</div>
-														<input name="ctl00$ContentPlaceHolder1$txtTDate"
-															type="text" value="01/08/2022"
-															id="ContentPlaceHolder1_txtTDate" class="form-control"
+														<input name="tDate"
+															type="date" 
+															id="tDate" class="form-control"
 															data-inputmask="&#39;alias&#39;: &#39;dd/mm/yyyy&#39;"
 															data-mask="" />
 													</div>
@@ -86,8 +90,8 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 											<div class="form-group row">
 												<label class="col-sm-4 control-label">Remarks</label>
 												<div class="col-sm-8">
-													<input name="ctl00$ContentPlaceHolder1$txtRemarks"
-														type="text" id="ContentPlaceHolder1_txtRemarks"
+													<input name="remark"
+														type="text" id="remark"
 														class="form-control" PlaceHolder="Enter Remarks" />
 												</div>
 											</div>
@@ -98,7 +102,22 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 												<div class="form-horizontal">
 													<div class="box-body">
 														<div>
-															<table id="incentiecTableMaster"></table>
+															<table cellspacing="0" cellpadding="3" rules="all"
+																class="display nowrap table table-hover table-striped table-bordered"
+																border="1"
+																style="width: 100%; border-collapse: collapse;">
+																<caption></caption>
+																<tr style="color: White; background-color: #008385;">
+																	<th scope="col">S/N</th>
+																	<th scope="col">Incentive Month</th>
+																	<th scope="col">From Date</th>
+																	<th scope="col">To Date</th>
+																	<th scope="col">Remarks</th>
+																</tr>
+																<tbody id="shareTableBody">
+
+																</tbody>
+															</table>
 														</div>
 													</div>
 												</div>
@@ -107,7 +126,7 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 									</div>
 									<div class="box-footer">
 										<div class="row col-md-12">
-											<button type="button"
+											<button type="submit"
 												name="ctl00$ContentPlaceHolder1$btnSave" value="Save"
 												id="ContentPlaceHolder1_btnSave"
 												class="btn btn-success pull-right margin-r-5">Save</button>
@@ -116,6 +135,7 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 								</div>
 							</div>
 						</div>
+					  </form>
 					</div>
 				</section>
 			</div>
@@ -154,94 +174,11 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 		<script src="dist/js/adminlte.min.js"></script>
 		<!-- AdminLTE for demo purposes -->
 		<script src="dist/js/demo.js"></script>
+		<script src="dist/js/incentive.js"></script>
 		<!-- Select2 -->
 		<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
-		<script>
-            $(function () {
-                //Initialize Select2 Elements
-                $('.select2').select2();
-                //Datemask dd/mm/yyyy
-                $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-                //Datemask2 mm/dd/yyyy
-                $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-                //Date range picker
-                $('#reservation').daterangepicker()
-                //Date range picker with time picker
-                $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, locale: { format: 'MM/DD/YYYY hh:mm A' } })
-                $('#daterange-btn').daterangepicker(
-                 {
-                     ranges: {
-                         'Today': [moment(), moment()],
-                         'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                         'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                         'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                         'This Month': [moment().startOf('month'), moment().endOf('month')],
-                         'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                     },
-                     startDate: moment().subtract(29, 'days'),
-                     endDate: moment()
-                 },
-                 function (start, end) {
-                     $('#daterange-btn span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'))
-                 }
-               )
-                //Date picker
-                $('#datepicker').datepicker({
-                    autoclose: true
-                })
-                //Money Euro
-                $('[data-mask]').inputmask()
-
-                //iCheck for checkbox and radio inputs
-                $('span[type="checkbox"].minimal').iCheck({
-                    checkboxClass: 'icheckbox_minimal-blue',
-                    radioClass: 'iradio_minimal-blue'
-                })
-            })
-        </script>
-
-		<script type="text/javascript">
-//<![CDATA[
-var Page_Validators =  new Array(document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorSchemeName"));
-//]]>
-</script>
-
-		<script type="text/javascript">
-//<![CDATA[
-var ContentPlaceHolder1_RequiredFieldValidatorSchemeName = document.all ? document.all["ContentPlaceHolder1_RequiredFieldValidatorSchemeName"] : document.getElementById("ContentPlaceHolder1_RequiredFieldValidatorSchemeName");
-ContentPlaceHolder1_RequiredFieldValidatorSchemeName.controltovalidate = "ContentPlaceHolder1_txtVmonth";
-ContentPlaceHolder1_RequiredFieldValidatorSchemeName.focusOnError = "t";
-ContentPlaceHolder1_RequiredFieldValidatorSchemeName.errormessage = "Enter Incentive Month";
-ContentPlaceHolder1_RequiredFieldValidatorSchemeName.display = "Dynamic";
-ContentPlaceHolder1_RequiredFieldValidatorSchemeName.validationGroup = "A";
-ContentPlaceHolder1_RequiredFieldValidatorSchemeName.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
-ContentPlaceHolder1_RequiredFieldValidatorSchemeName.initialvalue = "";
-//]]>
-</script>
-
-		<script type="text/javascript">
-//<![CDATA[
-
-var Page_ValidationActive = false;
-if (typeof(ValidatorOnLoad) == "function") {
-    ValidatorOnLoad();
-}
-
-function ValidatorOnSubmit() {
-    if (Page_ValidationActive) {
-        return ValidatorCommonOnSubmit();
-    }
-    else {
-        return true;
-    }
-}
-        
-document.getElementById('ContentPlaceHolder1_RequiredFieldValidatorSchemeName').dispose = function() {
-    Array.remove(Page_Validators, document.getElementById('ContentPlaceHolder1_RequiredFieldValidatorSchemeName'));
-}
-//]]>
-</script>
-	</form>
+		
+	<!-- </form> -->
 </body>
 
 <!-- Dk/Admin/IncentiveMaster.aspx EDB D 09:27:18 GMT -->

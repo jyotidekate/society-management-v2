@@ -28,11 +28,6 @@
 			<!-- Aside Menu Start-->
 			<jsp:include page="../asideMenu.jsp" />
 			<!-- Aside Menu end -->
-			<script type="text/javascript">
-            //<![CDATA[
-            Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [], [], [], 90, 'ctl00');
-            //]]>
-         </script>
 			<!-- Content Wrapper. Contains page content -->
 			<div class="content-wrapper" style="min-height: 1105.75px;">
 				<section class="content-header">

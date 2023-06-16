@@ -807,11 +807,11 @@
 						class="fa fa-angle-left pull-right"></i></span></a>
 					<%} %>
 				<ul class="treeview-menu">
-				<%if(serviceList!=null &&  serviceList.contains("Incentive Section")){ %>
-					<li><a href="incentiveMaster"><i class="fa fa-circle-o"></i>Incentive
-							Master</a></li>
-				<%} %>
 				<%if(serviceList!=null &&  serviceList.contains("Incentive Master")){ %>
+					<li><a href="incentiveMaster"><i 
+					class="fa fa-circle-o"></i>Incentive Master</a></li>
+				<%} %>
+				<%if(serviceList!=null &&  serviceList.contains("Incentive Generate")){ %>
 					<li><a href="incentiveGeneration"><i
 							class="fa fa-circle-o"></i>Incentive Generate</a></li>
 				<%} %>

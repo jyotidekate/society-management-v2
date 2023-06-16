@@ -435,13 +435,13 @@ function validateAddBank(){
 		span.textContent = "Account Number cannot be empty.";
 		status = false;
 	}
-	const mappedBranch = document.getElementById("mappedBranch");
+	/*const mappedBranch = document.getElementById("mappedBranch");
 	if (mappedBranch.checked == false) {
 		var span = document.getElementById("mappedBranchMsg");
 		span.style.display = "block";
 		span.textContent = "Select at least one branch.";
 		status = false;
-	}
+	}*/
 	if (status === true) {
 		document.addBank.submit();
 		return true;
@@ -566,9 +566,6 @@ function getAllDirectorMaster(){
               					<td>${value.appointmentDate}</td>
               					<td>${value.shareAmount}</td>
               					<td>${value.noOfShare} </td>
-              					<td>${value.memberCode} </td>
-              					<td>${value.dnoFrom} </td>
-              					<td>${value.dnoTo} </td>
               					<td>${value.paymode}</td>
               					<td scope="col"><a href="deleterow?id=${value.id}">Delete ID:${value.id} </a></td>
                             </tr>`
