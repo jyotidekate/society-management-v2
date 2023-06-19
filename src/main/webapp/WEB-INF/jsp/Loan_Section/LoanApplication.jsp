@@ -158,20 +158,20 @@ canvas {
 	cz-shortcut-listen="true"
 	onload="callGetAllMasterData();getAllLoanPlanName();getAllItemMasterName();getAllILockerName();getAllPurityMasterName();fetchAllMember()">
 	<%
-         String status = (String)request.getAttribute("status");
-         if(status!=null && "success".equals(status)){
-          %>
+	String status = (String) request.getAttribute("status");
+	if (status != null && "success".equals(status)) {
+	%>
 	<script>
          alert("Saved Successfully");
       </script>
 	<%
-         }else{
-          
-         }
-         %>
+	} else {
+
+	}
+	%>
 	<form method="post" action="updateLoan" id="form1"
 		name="updateLoanDetails" modelAttribute="updateLoan">
-
+		
 		<script type="text/javascript">
          //<![CDATA[
          function WebForm_OnSubmit() {
@@ -199,7 +199,6 @@ canvas {
           	    	alert("Invalid Input");
           	    }
               });
-          	
           }
           
           function inputLoanAmount(){
@@ -248,7 +247,7 @@ canvas {
 													<div class="input-group-addon">
 														<i class="fa fa-calendar"></i>
 													</div>
-													<input name="loanDate" type="text" value="01/08/2022"
+													<input name="loanDate" type="date"
 														id="loanDate" class="form-control"
 														data-inputmask="&#39;alias&#39;: &#39;dd/mm/yyyy&#39;"
 														data-mask="" />
@@ -723,5 +722,7 @@ canvas {
 			</div>
 			<!-- /.content-wrapper -->
 			<%-- <jsp:include page="../footer.jsp" /> --%>
+			</div>
+			</form>
 </body>
 </html>

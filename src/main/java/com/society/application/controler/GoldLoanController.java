@@ -111,10 +111,11 @@ public class GoldLoanController {
 	@GetMapping("/getAllLoanMasterData")
 	@ResponseBody
 	public List<LoanMaster> getAllLoanMasterData() {
-		List<LoanMaster> allGoldLoan = loanMasterRepo.findAll();
-		List<LoanMaster> filterGoldLoan = allGoldLoan.stream().filter(p -> p.getType().equals("Loan"))
-				.collect(Collectors.toList());
-		return filterGoldLoan;
+	  List<LoanMaster> allGoldLoan = loanMasterRepo.findAll();
+	  List<LoanMaster> filterGoldLoan = allGoldLoan.stream()
+	    .filter(p -> p.getType().equals("Loan"))
+	    .collect(Collectors.toList());
+	  return filterGoldLoan;
 	}
 
 	@GetMapping("/goldLoanMaster")
@@ -295,7 +296,7 @@ public class GoldLoanController {
 		Optional<Member> memberData = membRepo.findById(Integer.parseInt(id.getId()));
 		return memberData.get();
 	}
-
+	
 	@PostMapping("/getLoanMasterDeailsById")
 	@ResponseBody
 	public LoanMaster getLoanMasterDeailsById(@RequestBody GenericGetById id) {
@@ -334,4 +335,14 @@ public class GoldLoanController {
 	private Loan updateWrapper(Loan loanFromUser, Loan dbLoan) {
 		return dbLoan;
 	}
+	
+	/*
+	 * @PostMapping("/getMemberDeailsById")
+	 * 
+	 * @ResponseBody public Member getMemberDeailsById(@RequestBody GenericGetById
+	 * id) { Optional<Member> memberData =
+	 * membRepo.findById(Integer.parseInt(id.getId())); return memberData.get(); }
+	 */
+	
+	
 }

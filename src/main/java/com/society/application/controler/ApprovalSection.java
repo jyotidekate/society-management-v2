@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ApprovalSection {
+	
+	/* MEMBER APPROVAL */
 
 	@GetMapping("/addMemberApproval")
 	public String addMemberApproval(Model model) {

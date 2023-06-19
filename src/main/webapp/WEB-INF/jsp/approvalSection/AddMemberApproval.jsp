@@ -2,9 +2,9 @@
 <body class="skin-blue sidebar-mini"
 	style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);"
 	cz-shortcut-listen="true">
-	<form method="post"
+	<!-- <form method="post"
 		action="http://admin:eqfi%23123@eqfinidhi.eadmin.in/Admin/AddMemberApproval.aspx"
-		id="form1">
+		id="form1"> -->
 		<div
 			style="height: auto; min-height: 100%; border-radius: 30px; margin: 15px; background: url(dist/img/back.jpg);">
 			<!-- Header Start-->
@@ -14,11 +14,6 @@
 			<!-- Aside Menu Start-->
 			<jsp:include page="../asideMenu.jsp" />
 			<!-- Aside Menu end -->
-			<script type="text/javascript">
-            //<![CDATA[
-            Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [], [], [], 90, 'ctl00');
-            //]]>
-         </script>
 			<!-- Content Wrapper. Contains page content -->
 			<div class="content-wrapper" style="min-height: 1105.75px;">
 				<section class="content-header">
@@ -134,49 +129,7 @@
 		<script src="dist/js/demo.js"></script>
 		<!-- Select2 -->
 		<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
-		<script>
-         $(function () {
-             //Initialize Select2 Elements
-             $('.select2').select2();
-             //Datemask dd/mm/yyyy
-             $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-             //Datemask2 mm/dd/yyyy
-             $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-             //Date range picker
-             $('#reservation').daterangepicker()
-             //Date range picker with time picker
-             $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, locale: { format: 'MM/DD/YYYY hh:mm A' } })
-             $('#daterange-btn').daterangepicker(
-              {
-                  ranges: {
-                      'Today': [moment(), moment()],
-                      'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                      'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                      'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                      'This Month': [moment().startOf('month'), moment().endOf('month')],
-                      'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                  },
-                  startDate: moment().subtract(29, 'days'),
-                  endDate: moment()
-              },
-              function (start, end) {
-                  $('#daterange-btn span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'))
-              }
-            )
-             //Date picker
-             $('#datepicker').datepicker({
-                 autoclose: true
-             })
-             //Money Euro
-             $('[data-mask]').inputmask()
-         
-             //iCheck for checkbox and radio inputs
-             $('span[type="checkbox"].minimal').iCheck({
-                 checkboxClass: 'icheckbox_minimal-blue',
-                 radioClass: 'iradio_minimal-blue'
-             })
-         })
-      </script>
-	</form>
+		
+	<!-- </form> -->
 </body>
 </html>

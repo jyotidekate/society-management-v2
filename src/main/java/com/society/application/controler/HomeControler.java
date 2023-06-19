@@ -402,42 +402,45 @@ public class HomeControler {
 
 	@PostMapping("/loginValidate")
 	public String loginValidate(@ModelAttribute("user") UserMaster login, Model model, HttpSession session) {
-		if (login.getUserId() != null && login.getPassword() != null) {
-			UserMaster loginData = userMasterRepo.fetchMatchedData(login.getUserId(), login.getPassword());
-			if (loginData != null) {
-				SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy hh:mm a");
-				String formattedDate = formatter.format(new Date());
-				loginData.setLastLoginDate(formattedDate);
-				userMasterRepo.save(loginData);
-				List<UserToServiceMap> userMap = userToServiceMapRepo.getDataByuserId(login.getUserId());
-				List<String> myList = new ArrayList<String>();
-				for (UserToServiceMap usr : userMap) {
-					String[] str = usr.getService().split(",");
-					if (str != null) {
-						for (int i = 0; i < str.length; i++) {
-							myList.add(str[i]);
-						}
-					}
-				}
+	    if (login.getUserId() != null && login.getPassword() != null) {
+	        UserMaster loginData = userMasterRepo.fetchMatchedData(login.getUserId(), login.getPassword());
+	        if (loginData != null) {
+	            SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy hh:mm a");
+	            String formattedDate = formatter.format(new Date());
+	            loginData.setLastLoginDate(formattedDate);
+	            userMasterRepo.save(loginData);
+	            List<UserToServiceMap> userMap = userToServiceMapRepo.getDataByuserId(login.getUserId());
+	            List<String> myList = new ArrayList<String>();
+	            for (UserToServiceMap usr : userMap) {
+	                String service = usr.getService();
+	                if (service != null) {
+	                    String[] str = service.split(",");
+	                    if (str != null) {
+	                        for (int i = 0; i < str.length; i++) {
+	                            myList.add(str[i]);
+	                        }
+	                    }
+	                }
+	            }
 
-				// List<CompanyMaster> CompMasters=
-				// companyMasterRepo.findBycompanyName(loginData.getCompanyName());
-				session.setAttribute(formattedDate, session);
-				session.setAttribute("user", myList);
-				session.setAttribute("loggedInUserName", loginData.getUserId());
-				session.setAttribute("loggedInUserType", loginData.getUserType());
-				session.setAttribute("loggedInBranchName", loginData.getBranchName());
-				session.setAttribute("userLastLogin", loginData.getLastLoginDate());
-				session.setAttribute("userCompanyName", loginData.getCompanyName());
-				session.setAttribute("userShortName", loginData.getShortName());
-				session.setAttribute("ID", loginData.getId());
-				return "dashboard/home";
-			} else {
-				model.addAttribute("msg", "Invalid username or password");
-				return "index";
-			}
-		}
-		return "index";
+	            // List<CompanyMaster> CompMasters=
+	            // companyMasterRepo.findBycompanyName(loginData.getCompanyName());
+	            session.setAttribute(formattedDate, session);
+	            session.setAttribute("user", myList);
+	            session.setAttribute("loggedInUserName", loginData.getUserId());
+	            session.setAttribute("loggedInUserType", loginData.getUserType());
+	            session.setAttribute("loggedInBranchName", loginData.getBranchName());
+	            session.setAttribute("userLastLogin", loginData.getLastLoginDate());
+	            session.setAttribute("userCompanyName", loginData.getCompanyName());
+	            session.setAttribute("userShortName", loginData.getShortName());
+	            session.setAttribute("ID", loginData.getId());
+	            return "dashboard/home";
+	        } else {
+	            model.addAttribute("msg", "Invalid username or password");
+	            return "index";
+	        }
+	    }
+	    return "index";
 	}
 
 	@PostMapping("/getAdvisor")

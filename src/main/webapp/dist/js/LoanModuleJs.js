@@ -1,6 +1,6 @@
 function validateInputField(){
 	var status = true;
-		const loanName = document.getElementById("loanName");
+    const loanName = document.getElementById("loanName");
 	if (loanName.value === '') {
 		var span = document.getElementById("loanNameMsg");
 		span.textContent = "Loan Name cannot be empty.";
@@ -156,34 +156,31 @@ function validateInputField(){
 }
 
 function getAllLoanMasterData() {
-	$.ajax({
-		type: "get",
-		contentType: "application/json",
-		url: 'getAllLoanMasterData',
-		asynch: false,
-		success: function(data) {
-			//alert(data)
-			for (let i = 0; i < 1; i++) {
-				const tableData1 = data.map(function(value) {
-					return (
-						`<tr>
-                           		 <td>${value.id}</td>
-                                <td>${value.loanName}</td>
-                                <td>${value.loanType}</td>
-                                <td>${value.emiCollection}</td>
-                            </tr>`
-					);
-				}).join('');
-				const tableBody1 = document.querySelector("#ContentPlaceHolder1_gdvDataLoan");
-				tableBody1.innerHTML = tableData1;
-			}
-		},
-		error: function() {
-			alert("Device control failed");
-		}
-	});
+  $.ajax({
+    type: "get",
+    contentType: "application/json",
+    url: 'getAllLoanMasterData',
+    async: false,
+    success: function (data) {
+      const tableData = data.map(function (value) {
+        return (
+          `<tr>
+            <td>${value.id}</td>
+            <td>${value.loanName}</td>
+            <td>${value.loanType}</td>
+            <td>${value.emiCollection}</td>
+          </tr>`
+        );
+      }).join('');
+      
+      const tableBody = $("#ContentPlaceHolder1_gdvDataLoan");
+      tableBody.empty().append(tableData);
+    },
+    error: function () {
+      alert("Device control failed");
+    }
+  });
 }
-
 
 
 function validateLoanApplciation() {
@@ -243,6 +240,7 @@ function validateLoanApplciation() {
 		span.textContent = "Member code cannot be empty.";
 		status = false;
 	}
+	
 	const advisorCode = document.getElementById("advisorCode");
 	if (guarantorCode.value === '') {
 		var span = document.getElementById("advisorCodeMsg");
