@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.society.application.model.ClientMaster;
 import com.society.application.model.GenericGetById;
 import com.society.application.model.ItemMaster;
 import com.society.application.model.Loan;
@@ -24,6 +25,7 @@ import com.society.application.model.LockerMaster;
 import com.society.application.model.Member;
 import com.society.application.model.PurityMaster;
 import com.society.application.model.RateMaster;
+import com.society.application.repository.ClientMasterRepo;
 import com.society.application.repository.ItemMasterRepo;
 import com.society.application.repository.LoanMasterRepo;
 import com.society.application.repository.LoanRepo;
@@ -55,6 +57,9 @@ public class GoldLoanController {
 
 	@Autowired
 	MemberRepo membRepo;
+	
+	@Autowired
+	ClientMasterRepo clientMasterRepo;
 
 	@GetMapping("/LoanPlan9d5e")
 	public String getAllLoanId(Model model) {
@@ -344,5 +349,10 @@ public class GoldLoanController {
 	 * membRepo.findById(Integer.parseInt(id.getId())); return memberData.get(); }
 	 */
 	
-	
+	@PostMapping("/getMemberDeailsById1")
+	@ResponseBody
+	public List<ClientMaster> getMemberDeailsByIds(@RequestBody ClientMaster model){
+		List<ClientMaster> list = clientMasterRepo.findByid(model.getId());
+		return list;
+	}
 }
