@@ -36,19 +36,19 @@
                <a class="dropdown-toggle b-1" data-toggle="dropdown" href="#" aria-expanded="false">NDH Report
                <span class="caret"></span></a>
                <ul class="dropdown-menu">
-                  <li><a href="NDH1Form.html">NDH-1</a></li>
+                  <!-- <li><a href="NDH1Form.html">NDH-1</a></li>
                   <li><a href="NDH2Form.html">NDH-2</a></li>
                   <li><a href="NDH3Form.html">NDH-3</a></li>
-                  <li><a href="NDH4Form.html">NDH-4</a></li>
-                  <li><a href="MemberReportFor_NDH.html">Member Report</a></li>
-                  <li><a href="InvestmentReportFor_NDH.html">Investment Report</a></li>
-                  <li><a href="SavingsReportFor_NDH.html">Savings Account Report</a></li>
-                  <li><a href="LoanEMIOutstandingReport.html">Loan Report</a></li>
+                  <li><a href="NDH4Form.html">NDH-4</a></li> -->
+                  <li><a href="memberDetailRptt">Member Report</a></li>
+                  <li><a href="InvestmentReport">Investment Report</a></li>
+                  <li><a href="savingsStatement">Savings Account Report</a></li>
+                  <li><a href="loanSearch">Loan Report</a></li>
                </ul>
             </li>
-            <li id="idcollsheet"><a class="b-1" href="AllCollectionSheet.html">Collection Sheet</a></li>
-            <li id="idquickdep"><a class="b-1" href="QuickDeposit.html">Quick Deposit <span
-               class="label label-success">NEW</span></a></li>
+            <!-- <li id="idcollsheet"><a class="b-1" href="AllCollectionSheet.html">Collection Sheet</a></li> -->
+            <!-- <li id="idquickdep"><a class="b-1" href="QuickDeposit.html">Quick Deposit <span
+               class="label label-success">NEW</span></a></li> -->
          </ul>
       </div>
       <div class="navbar-custom-menu">
