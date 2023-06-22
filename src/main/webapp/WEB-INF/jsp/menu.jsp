@@ -33,7 +33,7 @@
                </ul>
             </li>
             <li id="idLegal" class="dropdown">
-               <a class="dropdown-toggle b-1" data-toggle="dropdown" href="#" aria-expanded="false">NDH Report
+               <a class="dropdown-toggle b-1" data-toggle="dropdown" href="#" aria-expanded="false">Report
                <span class="caret"></span></a>
                <ul class="dropdown-menu">
                   <!-- <li><a href="NDH1Form.html">NDH-1</a></li>
