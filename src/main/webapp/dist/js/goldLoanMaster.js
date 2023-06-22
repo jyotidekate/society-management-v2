@@ -998,29 +998,33 @@ function fetchAllMember(){
 // SELECT MEMBER NAME AND DISPLAY MEMBER DETAILS
 function displayMemberDetails(){
 	var id = document.getElementById("searchMemberCode");
+	//alert(id.value)
 		var input = {
                      "id": id.value
-             }
-        $.ajax({
-                 type:"post",
-                 contentType: "application/json",
-                 data: JSON.stringify(input),
-                 url: 'getMemberDeailsById',
-                 asynch: false,
-                 success: function(data) {
-			  		document.getElementById("relativeDetails").value = data.relativeName;
-			  		document.getElementById("dob").value = data.dob;
-			  		document.getElementById("age").value = data.age;
-			  		document.getElementById("phoneno").value = data.phoneno;
-			  		document.getElementById("smsStatus").value = data.chkisSms;
-			  		document.getElementById("address").value = data.address;
-					document.getElementById("pin").value = data.pinCode;
-			  		document.getElementById("pin").value = data.pinCode;			  		
-                 } ,
-         	    error: function(){
-         	    	alert("Device control failed");
-         	    }
-             });
+        }
+        var xhr = new XMLHttpRequest();
+xhr.open('POST', 'getMemberDeailsById', false);
+xhr.setRequestHeader('Content-Type', 'application/json');
+
+xhr.onreadystatechange = function() {
+  if (xhr.readyState === 4) {
+    if (xhr.status === 200) {
+      var data = JSON.parse(xhr.responseText);
+      document.getElementById("relativeDetails").value = data.relativeName;
+      document.getElementById("dob").value = data.dob;
+      document.getElementById("age").value = data.age;
+      document.getElementById("phoneno").value = data.phoneno;
+      document.getElementById("smsStatus").value = data.chkisSms;
+      document.getElementById("address").value = data.address;
+      document.getElementById("pin").value = data.pinCode;
+      //alert(data.id);
+    } else {
+      alert('Device control failed');
+    }
+  }
+};
+xhr.send(JSON.stringify(input));
+
 }
 
 // SELECT MEMBER NAME AND DISPLAY MEMBER DETAILS
@@ -1029,24 +1033,53 @@ function displayLoanMasterDetails(){
 		var input = {
                      "id": id.value
              }
-        $.ajax({
-                 type:"post",
-                 contentType: "application/json",
-                 data: JSON.stringify(input),
-                 url: 'getLoanMasterDeailsById',
-                 asynch: false,
-                 success: function(data) {
-			  		document.getElementById("loanType").value = data.loanType;
-			  		document.getElementById("mode").value = data.emiType;
-			  		document.getElementById("loanROI").value = data.roi;
-			  		document.getElementById("ROIType").value = data.roiType;
-			  		document.getElementById("emiAmount").value = data.minAmount;
-			  				  		
-                 } ,
-         	    error: function(){
-         	    	alert("Device control failed");
-         	    }
-             });
+       var url = 'getLoanMasterDeailsById';
+
+fetch(url, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(input),
+})
+  .then(function(response) {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Device control failed');
+    }
+  })
+  .then(function(data) {
+	var loanTypeElement = document.getElementById("loanType");
+if (loanTypeElement) {
+  loanTypeElement.value = data.loanType || '';
+}
+
+var modeElement = document.getElementById("mode");
+if (modeElement) {
+  modeElement.value = data.emiType || '';
+}
+
+var loanROIElement = document.getElementById("loanROI");
+if (loanROIElement) {
+  loanROIElement.value = data.roi || '';
+}
+
+var ROITypeElement = document.getElementById("ROIType");
+if (ROITypeElement) {
+  ROITypeElement.value = data.roiType || '';
+}
+
+var emiAmountElement = document.getElementById("emiAmount");
+if (emiAmountElement) {
+  emiAmountElement.value = data.minAmount || '';
+}
+	
+  })
+  .catch(function(error) {
+    alert(error.message);
+  });
+
 }
 
 function getAllLoanId(){

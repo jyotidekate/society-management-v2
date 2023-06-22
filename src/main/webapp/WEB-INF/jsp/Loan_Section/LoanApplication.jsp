@@ -1,5 +1,8 @@
 <%@page import="com.society.application.model.LoanPlanMaster"%>
 <%@page import="java.util.List"%>
+<%@page import="com.society.application.model.Member"%>
+<%@page import="com.society.application.model.BranchMaster"%>
+<%@page import="com.society.application.model.LoanMaster"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -173,12 +176,7 @@ canvas {
 		name="updateLoanDetails" modelAttribute="updateLoan">
 		
 		<script type="text/javascript">
-         //<![CDATA[
-         function WebForm_OnSubmit() {
-         if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
-         return true;
-         }
-         //]]>
+         
          
          function callback(ids){
           	var input = {
@@ -215,11 +213,7 @@ canvas {
 			<!-- Aside Menu Start-->
 			<jsp:include page="../asideMenu.jsp" />
 			<!-- Aside Menu end -->
-			<script type="text/javascript">
-         //<![CDATA[
-         Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [], [], [], 90, 'ctl00');
-         //]]>
-      </script>
+			
 			<!-- Content Wrapper. Contains page content -->
 			<div class="content-wrapper" style="min-height: 1105.75px;">
 				<section class="content-header">
@@ -261,9 +255,23 @@ canvas {
 											<label class="col-sm-4 control-label">Search Member <strong
 												style="color: Red">*</strong></label>
 											<div class="col-sm-8">
+											<% List<Member> memberList = (List<Member>) request.getAttribute("memberList"); %>
+											<% List<BranchMaster> branchList = (List<BranchMaster>) request.getAttribute("branchList"); %>
+											<% List<LoanMaster> loanMasterList = (List<LoanMaster>) request.getAttribute("loanPlanMaster"); %>
+											
+											
+											
+								
 												<select name="searchMemberCode" id="searchMemberCode"
-													onchange="javascript:displayMemberDetails()"
+													onchange="displayMemberDetails()"
 													class="form-control select2" style="width: 100%;">
+													<%if(memberList!=null && !memberList.isEmpty()){ 
+														for(Member member: memberList){
+													%>
+													<option value="<%=member.getId()%>"><%=member.getMemberName() %></option>
+													<%} 
+													}%>
+													</select>
 													<span
 													id="ContentPlaceHolder1_RequiredFieldValidatorddlMemberCode"
 													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Select
@@ -290,9 +298,6 @@ canvas {
 											</label>
 											<div class="col-sm-5">
 												<div class="input-group date">
-													<div class="input-group-addon">
-														<i class="fa fa-calendar"></i>
-													</div>
 													<input name="dob" type="text" value="01/08/2022"
 														readonly="readonly" id="dob" class="form-control"
 														data-inputmask="&#39;alias&#39;: &#39;dd/mm/yyyy&#39;"
@@ -368,7 +373,12 @@ canvas {
 											<div class="col-sm-8">
 												<select name="cspName" id="cspName" class="form-control"
 													style="width: 100%;">
-													<option value="001">Main Office - 001</option>
+													<%if(branchList!=null && !branchList.isEmpty()){ 
+														for(BranchMaster branch: branchList){
+													%>
+													<option value="<%=branch.getId()%>"><%=branch.getName()%></option>
+													<%} 
+													}%>
 												</select>
 											</div>
 										</div>
@@ -380,7 +390,13 @@ canvas {
 												<div class="col-sm-8">
 													<select name="loanPlanName" id="loanPlanName"
 														class="form-control" style="width: 100%;"
-														onchange="javascript:displayLoanMasterDetails()">
+														onchange="displayLoanMasterDetails()">
+													<%if(loanMasterList!=null && !loanMasterList.isEmpty()){ 
+													for(LoanMaster loanPlan: loanMasterList){
+													%>
+													<option value="<%=loanPlan.getId()%>"><%=loanPlan.getLoanName() %></option>
+													<%} 
+													}%>
 													</select>
 												</div>
 											</div>
@@ -398,9 +414,9 @@ canvas {
 													Term <strong style="color: Red">*</strong>
 												</label>
 												<div class="col-sm-8">
-													<select name="planTerm" id="planTerm" class="form-control"
-														style="width: 100%;">
-													</select>
+												<input name="planTerm" type="text" readonly="readonly"
+														id="planTerm" class="form-control" PlaceHolder="Plan Term" />
+													
 												</div>
 											</div>
 											<div class="form-group row">
@@ -409,7 +425,7 @@ canvas {
 												</label>
 												<div class="col-sm-3">
 													<input name="mode" type="text" readonly="readonly"
-														id="mode" class="form-control" PlaceHolder="Enter Mode" />
+														id="mode" class="form-control" PlaceHolder="Enter Mode" style="width:80px"/>
 													<span id="ContentPlaceHolder1_RequiredFieldValidator1"
 														style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 														Mode</span>
@@ -508,7 +524,7 @@ canvas {
 												<label for="txtMembersRelativesNameRelationGu"
 													class="col-sm-4 control-label">Guarantor Name </label>
 												<div class="col-sm-8">
-													<input name="guarantorName" type="text" readonly="readonly"
+													<input name="guarantorName" type="text" 
 														id="guarantorName" class="form-control" />
 												</div>
 											</div>
@@ -517,7 +533,7 @@ canvas {
 													class="col-sm-4 control-label">Address </label>
 												<div class="col-sm-8">
 													<input name="addressGuarantor" type="text"
-														readonly="readonly" id="addressGuarantor"
+														 id="addressGuarantor"
 														class="form-control" Placeholder="Enter Address" />
 												</div>
 											</div>
@@ -526,7 +542,7 @@ canvas {
 													class="col-sm-4 control-label">Pin Code </label>
 												<div class="col-sm-8">
 													<input name="pincodeGuarantor" type="text"
-														readonly="readonly" id="pincodeGuarantor"
+														id="pincodeGuarantor"
 														class="form-control" PlaceHolder="Enter Pin Code" />
 												</div>
 											</div>
@@ -535,7 +551,7 @@ canvas {
 												</label>
 												<div class="col-sm-8">
 													<input name="guarantorphone" type="text"
-														readonly="readonly" id="guarantorphone"
+														 id="guarantorphone"
 														class="form-control" Placeholder="Enter Phone" />
 												</div>
 											</div>
@@ -583,7 +599,7 @@ canvas {
 													class="col-sm-4 control-label">Name</label>
 												<div class="col-sm-8">
 													<input name="memberRelativesName" type="text"
-														readonly="readonly" id="memberRelativesName"
+														 id="memberRelativesName"
 														class="form-control" Placeholder="Enter Co-Applicant Name" />
 												</div>
 											</div>
@@ -600,7 +616,7 @@ canvas {
 												<label for="txtPincodeco" class="col-sm-4 control-label">Pincode
 												</label>
 												<div class="col-sm-8">
-													<input name="pincodeco" type="text" readonly="readonly"
+													<input name="pincodeco" type="text" 
 														id="pincodeco" class="form-control"
 														Placeholder="Enter Pincode" />
 												</div>
@@ -608,7 +624,7 @@ canvas {
 											<div class="form-group row">
 												<label for="txtPhoneco" class="col-sm-4 control-label">Phone</label>
 												<div class="col-sm-8">
-													<input name="phoneco" type="text" readonly="readonly"
+													<input name="phoneco" type="text" 
 														id="phoneco" class="form-control"
 														Placeholder="Enter Phone" />
 												</div>
@@ -642,7 +658,7 @@ canvas {
 													Fee<strong style="color: Red">*</strong>
 												</label>
 												<div class="col-sm-8">
-													<input name="processingFee" type="text" readonly="readonly"
+													<input name="processingFee" type="text" 
 														id="processingFee" class="form-control" />
 												</div>
 											</div>
@@ -651,7 +667,7 @@ canvas {
 													Amt<strong style="color: Red">*</strong>
 												</label>
 												<div class="col-sm-8">
-													<input name="legalAmt" type="text" readonly="readonly"
+													<input name="legalAmt" type="text" 
 														id="legalAmt" class="form-control" />
 												</div>
 											</div>
@@ -677,7 +693,7 @@ canvas {
 												<label for="txtGST" class="col-sm-4 control-label">GST<strong
 													style="color: Red">*</strong></label>
 												<div class="col-sm-8">
-													<input name="GST" type="text" readonly="readonly" id="GST"
+													<input name="GST" type="text"  id="GST"
 														class="form-control" />
 												</div>
 											</div>
@@ -686,7 +702,7 @@ canvas {
 													Amt<strong style="color: Red">*</strong>
 												</label>
 												<div class="col-sm-8">
-													<input name="insuranceAmt" type="text" readonly="readonly"
+													<input name="insuranceAmt" type="text"
 														id="insuranceAmt" class="form-control" />
 												</div>
 											</div>
@@ -697,7 +713,7 @@ canvas {
 													Name <strong style="color: Red">*</strong>
 												</label>
 												<div class="col-sm-8">
-													<input name="advisorName" type="text" readonly="readonly"
+													<input name="advisorName" type="text" 
 														id="advisorName" class="form-control"
 														placeholder="Enter Advisor/Collector Name" /> <span
 														id="advisorName"

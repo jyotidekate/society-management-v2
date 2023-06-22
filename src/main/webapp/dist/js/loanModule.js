@@ -28,7 +28,7 @@ function getByLoanId() {
         type: "post",
         contentType: "application/json",
         data: JSON.stringify(input),
-        url: 'getByLoanId',
+        url: 'getByLoanAppId',
         asynch: false,
         success: function(data) {
             //alert(data.loanDate);
