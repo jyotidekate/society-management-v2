@@ -51,4 +51,16 @@ public interface LoanMasterRepo  extends JpaRepository<LoanMaster, Integer>{
 	@Query("UPDATE LoanMaster SET flag =:flag WHERE id =:id ")
 	public int updateGoldLoanThroughid(@Param("flag") String flag,@Param("id")  int id);
 
+	List<LoanMaster> findBymemberName(String memberName);
+
+	List<LoanMaster> findBysearchMemberCode(String searchMemberCode);
+
+	List<LoanMaster> findByloanName(String loanName);
+
+	List<LoanMaster> findByadvisorCode(String advisorCode);
+
+	List<LoanMaster> findBydobBetween(String getfDate, String gettDate);
+
+	List<LoanMaster> findByBranchName(String branchName);
+
 }

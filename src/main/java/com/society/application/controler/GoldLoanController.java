@@ -355,14 +355,6 @@ public class GoldLoanController {
 		return dbLoan;
 	}
 	
-	/*
-	 * @PostMapping("/getMemberDeailsById")
-	 * 
-	 * @ResponseBody public Member getMemberDeailsById(@RequestBody GenericGetById
-	 * id) { Optional<Member> memberData =
-	 * membRepo.findById(Integer.parseInt(id.getId())); return memberData.get(); }
-	 */
-	
 	@PostMapping("/getMemberDeailsById1")
 	@ResponseBody
 	public List<ClientMaster> getMemberDeailsByIds(@RequestBody ClientMaster model){

@@ -21,6 +21,7 @@ function GetBranchNameInTheDropDown(){
                     $("#fromBranch").append(appenddata1); 
                     $("#toBranch").append(appenddata1);   
                     $("#branch").append(appenddata1);    
+                    $("#branch_name").append(appenddata1);
             } ,
     	    error: function(){
     	    	alert("Device control failed");
@@ -278,10 +279,9 @@ function getCashStatement123() {
             alert("Failed to retrieve data");
         }
     });
-<<<<<<< HEAD
-}
-=======
 }
 
 
->>>>>>> 4fd1ecaea08fa5fe7cf86524679ccefd6d86ddc4
+
+
+

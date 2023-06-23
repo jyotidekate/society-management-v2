@@ -422,14 +422,6 @@ function fetchDatainDNoGenerateOfDirectorinTable() {
 				alert("Device control failed");
 			}
 		});
-
 	}
 }
-
-
-
-
-
-
-
 

@@ -90,6 +90,8 @@ public class LoanMaster {
 	private String totalNetWt;
 	private String totalEligibleAmt;
 	private String vFeesAmt;
+	private String fDate;
+	private String tDate;
 	
 	public int getId() {
 		return id;
@@ -729,6 +731,22 @@ public class LoanMaster {
 
 	public void setvFeesAmt(String vFeesAmt) {
 		this.vFeesAmt = vFeesAmt;
+	}
+
+	public String getfDate() {
+		return fDate;
+	}
+
+	public void setfDate(String fDate) {
+		this.fDate = fDate;
+	}
+
+	public String gettDate() {
+		return tDate;
+	}
+
+	public void settDate(String tDate) {
+		this.tDate = tDate;
 	}
 
 	@Override

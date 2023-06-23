@@ -201,7 +201,7 @@ public class HomeControler {
 
 	@Autowired
 	ClientMasterRepo clientMasterRepo;
-	
+
 	@Autowired
 	private FileStorageService fileStorageService;
 
@@ -243,8 +243,6 @@ public class HomeControler {
 		List<Employee> data2 = employeeRepo.findByid(i);
 		return data2;
 	}
-
-	
 
 	@GetMapping("/LoanCalculator")
 	public String LoanCalculator() {
@@ -399,45 +397,45 @@ public class HomeControler {
 
 	@PostMapping("/loginValidate")
 	public String loginValidate(@ModelAttribute("user") UserMaster login, Model model, HttpSession session) {
-	    if (login.getUserId() != null && login.getPassword() != null) {
-	        UserMaster loginData = userMasterRepo.fetchMatchedData(login.getUserId(), login.getPassword());
-	        if (loginData != null) {
-	            SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy hh:mm a");
-	            String formattedDate = formatter.format(new Date());
-	            loginData.setLastLoginDate(formattedDate);
-	            userMasterRepo.save(loginData);
-	            List<UserToServiceMap> userMap = userToServiceMapRepo.getDataByuserId(login.getUserId());
-	            List<String> myList = new ArrayList<String>();
-	            for (UserToServiceMap usr : userMap) {
-	                String service = usr.getService();
-	                if (service != null) {
-	                    String[] str = service.split(",");
-	                    if (str != null) {
-	                        for (int i = 0; i < str.length; i++) {
-	                            myList.add(str[i]);
-	                        }
-	                    }
-	                }
-	            }
+		if (login.getUserId() != null && login.getPassword() != null) {
+			UserMaster loginData = userMasterRepo.fetchMatchedData(login.getUserId(), login.getPassword());
+			if (loginData != null) {
+				SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy hh:mm a");
+				String formattedDate = formatter.format(new Date());
+				loginData.setLastLoginDate(formattedDate);
+				userMasterRepo.save(loginData);
+				List<UserToServiceMap> userMap = userToServiceMapRepo.getDataByuserId(login.getUserId());
+				List<String> myList = new ArrayList<String>();
+				for (UserToServiceMap usr : userMap) {
+					String service = usr.getService();
+					if (service != null) {
+						String[] str = service.split(",");
+						if (str != null) {
+							for (int i = 0; i < str.length; i++) {
+								myList.add(str[i]);
+							}
+						}
+					}
+				}
 
-	            // List<CompanyMaster> CompMasters=
-	            // companyMasterRepo.findBycompanyName(loginData.getCompanyName());
-	            session.setAttribute(formattedDate, session);
-	            session.setAttribute("user", myList);
-	            session.setAttribute("loggedInUserName", loginData.getUserId());
-	            session.setAttribute("loggedInUserType", loginData.getUserType());
-	            session.setAttribute("loggedInBranchName", loginData.getBranchName());
-	            session.setAttribute("userLastLogin", loginData.getLastLoginDate());
-	            session.setAttribute("userCompanyName", loginData.getCompanyName());
-	            session.setAttribute("userShortName", loginData.getShortName());
-	            session.setAttribute("ID", loginData.getId());
-	            return "dashboard/home";
-	        } else {
-	            model.addAttribute("msg", "Invalid username or password");
-	            return "index";
-	        }
-	    }
-	    return "index";
+				// List<CompanyMaster> CompMasters=
+				// companyMasterRepo.findBycompanyName(loginData.getCompanyName());
+				session.setAttribute(formattedDate, session);
+				session.setAttribute("user", myList);
+				session.setAttribute("loggedInUserName", loginData.getUserId());
+				session.setAttribute("loggedInUserType", loginData.getUserType());
+				session.setAttribute("loggedInBranchName", loginData.getBranchName());
+				session.setAttribute("userLastLogin", loginData.getLastLoginDate());
+				session.setAttribute("userCompanyName", loginData.getCompanyName());
+				session.setAttribute("userShortName", loginData.getShortName());
+				session.setAttribute("ID", loginData.getId());
+				return "dashboard/home";
+			} else {
+				model.addAttribute("msg", "Invalid username or password");
+				return "index";
+			}
+		}
+		return "index";
 	}
 
 	@PostMapping("/getAdvisor")
@@ -853,11 +851,11 @@ public class HomeControler {
 
 	@PostMapping("DesignationMasterSave")
 	public String DesignationMaster(@ModelAttribute("designationMaster") DesignationMaster designationMaster,
-	        Model model) {
-	    if (designationMaster.getDesignation() != null && !designationMaster.getDesignation().isEmpty()) {
-	        designationMasterRepo.save(designationMaster);
-	    }
-	    return "employee/DesignationMaster";
+			Model model) {
+		if (designationMaster.getDesignation() != null && !designationMaster.getDesignation().isEmpty()) {
+			designationMasterRepo.save(designationMaster);
+		}
+		return "employee/DesignationMaster";
 	}
 
 	@GetMapping("/getAllDesignation123456")
@@ -878,13 +876,13 @@ public class HomeControler {
 
 	@PostMapping("/DepartmentMaster")
 	public String departmentMaster(@ModelAttribute("departmentMaster") DepartmentMaster departmentMaster,
-	                               BindingResult bindingResult, Model model) {
-	    if (departmentMaster.getDepartment() == null || departmentMaster.getDepartment().isEmpty()) {
-	        model.addAttribute("error", "Please enter a department name");
-	        return "employee/DepartmentMaster";
-	    }
-	    departmentMasterRepo.save(departmentMaster);
-	    return "employee/DepartmentMaster";
+			BindingResult bindingResult, Model model) {
+		if (departmentMaster.getDepartment() == null || departmentMaster.getDepartment().isEmpty()) {
+			model.addAttribute("error", "Please enter a department name");
+			return "employee/DepartmentMaster";
+		}
+		departmentMasterRepo.save(departmentMaster);
+		return "employee/DepartmentMaster";
 	}
 
 	@GetMapping("/FindDepartment")
@@ -983,7 +981,7 @@ public class HomeControler {
 		}
 		return date;
 	}
-
+	
 	private Date dateFormatForFrontEnd(String dateToFormat) {
 		DateFormat sourceFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String dateAsString = dateToFormat;
@@ -995,8 +993,6 @@ public class HomeControler {
 		}
 		return date;
 	}
-
-	
 
 	@GetMapping("/loanApplicationf780")
 	public String loanApplicationf780() {
@@ -1064,8 +1060,6 @@ public class HomeControler {
 		goldLoanPlanRepo.save(goldLoanPlanMaster);
 		return "Gold_Loan/Gold_LoanPlan";
 	}
-
-	
 
 	@PostMapping("getLoanDetails")
 	@ResponseBody

@@ -1,10 +1,10 @@
 <jsp:include page="../header.jsp" />
-<body onload="getListOfLoanId()" class="skin-blue sidebar-mini"
+<body onload="SelectByLoanId();" class="skin-blue sidebar-mini"
 	style="height: auto; min-height: 100%; background-color: rgba(36, 105, 92, 0.15);"
 	cz-shortcut-listen="true">
-	<form method="post"
+	<!-- <form method="post"
 		action="http://admin:eqfi%23123@eqfinidhi.eadmin.in/Admin/LoanNoc.aspx?Type=Normal"
-		id="form1">
+		id="form1"> -->
 		
 		<div
 			style="height: auto; min-height: 100%; border-radius: 30px; margin: 15px; background: url(dist/img/back.jpg);">
@@ -42,8 +42,8 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 									<div class="col-md-3">
 										<div class="form-group">
 											<label>Select by Loan ID <strong style="color: Red">*</strong></label>
-											<select name="searchLoanId" id="searchLoanId"
-												onchange="javascript:getByLoanId()"
+											<select name="id" id="id"
+												
 												class="form-control select2" style="width: 100%;">
 												<option value=""></option>
 											</select>
@@ -51,8 +51,8 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label></label> <input type="submit"
-												onclick="this.disabled = true" name="btnSave" value="Search"
+											<label></label> <input type="button"
+												onclick="LoanNOCTable();" name="btnSave" value="Search"
 												id="btnSave" class="btn btn-success margin-20" />
 										</div>
 									</div>
@@ -67,6 +67,22 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 								<div class="box-header with-border">
 									<h3 class="box-title">Search Result</h3>
 									<div class="box-tools pull-right"></div>
+									<table cellspacing="0" cellpadding="3" rules="all"
+										class="display nowrap table table-hover table-striped table-bordered"
+										border="1" style="width: 100%; border-collapse: collapse;">
+										<tr style="color: White; background-color: #008385;">
+											<th scope="col">ID</th>
+											<th scope="col">Loan Plan Name</th>
+											<th scope="col">Loan Name</th>
+											<th scope="col">Loan Purpose</th>
+											<th scope="col">Guarantor Name</th>
+											<th scope="col">Loan Amount</th>
+											<th scope="col">Mobile No.</th>
+											<th scope="col">Address</th>
+										</tr>
+										<tbody id="loanNOC">
+										</tbody>
+									</table>
 								</div>
 								<div class="box-body">
 									<div class="clearfix margin-bottom-10"></div>
@@ -113,6 +129,7 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 		<script src="dist/js/demo.js"></script>
 		<!-- Select2 -->
 		<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+		<script src="dist/js/loanModule.js"></script>
 		<script>
             $(function () {
                 //Initialize Select2 Elements
@@ -156,7 +173,7 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
                 })
             })
         </script>
-	</form>
+	<!-- </form> -->
 </body>
 
 <!-- Dk/Admin/LoanNoc.aspx?Type=Normal EDB D 09:27:10 GMT -->
