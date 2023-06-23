@@ -14,9 +14,6 @@ public interface IncentiveMasterRepo extends JpaRepository<IncentiveMaster, Inte
 
 	List<IncentiveMaster> findBybranchName(String branchName);
 
-	//List<IncentiveMaster> findByinvmonth(String month);
-<<<<<<< HEAD
+	// List<IncentiveMaster> findByinvmonth(String month);
+
 }
-=======
-}
->>>>>>> 4fd1ecaea08fa5fe7cf86524679ccefd6d86ddc4
