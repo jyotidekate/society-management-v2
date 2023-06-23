@@ -86,8 +86,8 @@ public class LoanModuleController {
 	
 	@PostMapping("/getByLoanAppId")
 	@ResponseBody
-	public Loan getByLoanAppId(@RequestBody GenericGetById id) {
-		Optional<Loan> loanPlanMaster = loanRepo.findById(Integer.parseInt(id.getId()));
+	public LoanPlanMaster getByLoanAppId(@RequestBody GenericGetById id) {
+		Optional<LoanPlanMaster> loanPlanMaster = loanPlanMasterRepo.findById(Integer.parseInt(id.getId()));
 		return loanPlanMaster.get();
 	}
 

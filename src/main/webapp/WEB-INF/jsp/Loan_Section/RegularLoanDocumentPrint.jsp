@@ -112,9 +112,9 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 											</label>
 											<div class="col-sm-7">
 												<input name="loanName" type="text" readonly="readonly"
-													id="loanName" class="form-control"
+													id="loanName2" class="form-control"
 													PlaceHolder="Enter Code &amp; Name" /> <span
-													id="ContentPlaceHolder1_RequiredFieldValidatorCodeName"
+													
 													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 													Code & Name</span>
 											</div>
@@ -151,7 +151,7 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', [],
 												<input name="loanName" type="text" readonly="readonly"
 													id="loanName" class="form-control"
 													PlaceHolder="Enter Plan Name" /> <span
-													id="ContentPlaceHolder1_RequiredFieldValidatorLoanPlanName"
+													
 													style="color: Red; font-size: X-Small; font-weight: bold; display: none;">Enter
 													Loan Plan Name</span>
 											</div>
