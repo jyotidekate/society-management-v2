@@ -23,4 +23,8 @@ public String getMonth() {
 public void setMonth(String month) {
 	Month = month;
 }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 4fd1ecaea08fa5fe7cf86524679ccefd6d86ddc4

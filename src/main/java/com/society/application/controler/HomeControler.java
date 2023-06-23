@@ -244,10 +244,7 @@ public class HomeControler {
 		return data2;
 	}
 
-	@GetMapping("/LoanPlan")
-	public String LoanPlan() {
-		return "Loan_Section/LoanPlan";
-	}
+	
 
 	@GetMapping("/LoanCalculator")
 	public String LoanCalculator() {
@@ -999,10 +996,7 @@ public class HomeControler {
 		return date;
 	}
 
-	@GetMapping("/loanApplication9c5a")
-	public String loanApplication9c5a() {
-		return "Loan_Section/LoanApplication9c5a";
-	}
+	
 
 	@GetMapping("/loanApplicationf780")
 	public String loanApplicationf780() {
@@ -1071,12 +1065,7 @@ public class HomeControler {
 		return "Gold_Loan/Gold_LoanPlan";
 	}
 
-	@GetMapping("/LoanApplication")
-	public String LoanApplication(Model model) {
-		List<LoanPlanMaster> loanPlanMaster = loanPlanMasterRepo.findAll();
-		model.addAttribute("loanPlanMaster", loanPlanMaster);
-		return "Loan_Section/LoanApplication";
-	}
+	
 
 	@PostMapping("getLoanDetails")
 	@ResponseBody

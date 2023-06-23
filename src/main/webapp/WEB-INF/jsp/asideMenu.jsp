@@ -306,7 +306,7 @@
         		  serviceList.contains("Closed loan Details")||
         		  serviceList.contains("NOC Certificate")||
         		  serviceList.contains("Search Loan")
-        		  ){ %> <a href='#'><img src="dist/img/icon/ico-7.png"
+        		  ){ %> <a href='dashboard'><img src="dist/img/icon/ico-7.png"
 					style="margin-right: 5px;" /><span>Loan Section</span><span
 					class="pull-right-container"> <i
 						class="fa fa-angle-left pull-right"></i></span></a> <%} %>

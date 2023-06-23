@@ -90,4 +90,8 @@ public class IncentiveMaster {
 	public void setFlag(String flag) {
 		this.flag = flag;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 4fd1ecaea08fa5fe7cf86524679ccefd6d86ddc4

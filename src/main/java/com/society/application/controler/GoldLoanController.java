@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.society.application.model.BranchMaster;
 import com.society.application.model.ClientMaster;
 import com.society.application.model.GenericGetById;
 import com.society.application.model.ItemMaster;
@@ -25,6 +26,7 @@ import com.society.application.model.LockerMaster;
 import com.society.application.model.Member;
 import com.society.application.model.PurityMaster;
 import com.society.application.model.RateMaster;
+import com.society.application.repository.BranchMasterRepo;
 import com.society.application.repository.ClientMasterRepo;
 import com.society.application.repository.ItemMasterRepo;
 import com.society.application.repository.LoanMasterRepo;
@@ -36,6 +38,12 @@ import com.society.application.repository.RateMasterRepo;
 
 @Controller
 public class GoldLoanController {
+	
+	@Autowired
+	MemberRepo memberRepo;
+	
+	@Autowired
+	BranchMasterRepo branchMasterRepo;
 
 	@Autowired
 	LoanMasterRepo loanMasterRepo;
@@ -213,9 +221,15 @@ public class GoldLoanController {
 		loan.setUpdatedBy("");
 		loan.setUpdatedDate(new Date().toString());
 		Loan loanSaved = loanRepo.save(loan);
+		List<LoanMaster> loanPlanMaster = loanMasterRepo.findAll();
+		model.addAttribute("loanPlanMaster", loanPlanMaster);
+		List<Member> memberList = memberRepo.findAll();
+		model.addAttribute("memberList", memberList);
+		List<BranchMaster> branchData = branchMasterRepo.findAll();
+		model.addAttribute("branchList", branchData);
 		if (loanSaved != null) {
 			List<Loan> loanPlanMasterAllData = loanRepo.findAll();
-			model.addAttribute("loanPlanMaster", loanPlanMasterAllData);
+			//model.addAttribute("loanPlanMaster", loanPlanMasterAllData);
 			model.addAttribute("status", "success");
 			return "Loan_Section/LoanApplication";
 		} else {

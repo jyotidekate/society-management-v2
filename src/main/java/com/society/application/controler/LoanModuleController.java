@@ -1,5 +1,6 @@
 package com.society.application.controler;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,16 +13,69 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.society.application.model.BranchMaster;
 import com.society.application.model.GenericGetById;
+import com.society.application.model.Loan;
+import com.society.application.model.LoanMaster;
 import com.society.application.model.LoanPlanMaster;
+import com.society.application.model.Member;
 import com.society.application.model.RecurringDeposit;
+import com.society.application.repository.BranchMasterRepo;
+import com.society.application.repository.LoanMasterRepo;
 import com.society.application.repository.LoanPlanRepo;
+import com.society.application.repository.LoanRepo;
+import com.society.application.repository.MemberRepo;
 
 @Controller
 public class LoanModuleController {
 
 	@Autowired
 	LoanPlanRepo loanPlanMasterRepo;
+	
+	@Autowired
+	MemberRepo memberRepo;
+	
+	@Autowired
+	BranchMasterRepo branchMasterRepo;
+	
+	@Autowired
+	LoanMasterRepo loanMasterRepo;
+	
+	@Autowired
+	LoanRepo loanRepo;
+	
+	@GetMapping("/loanApplication9c5a")
+	public String loanApplication9c5a(Model model) {
+		List<Loan> loanList = loanRepo.findAll();
+		model.addAttribute("loanList", loanList);
+		List<LoanMaster> loanPlanMaster = loanMasterRepo.findAll();
+		model.addAttribute("loanPlanMaster", loanPlanMaster);
+		List<Member> memberList = memberRepo.findAll();
+		model.addAttribute("memberList", memberList);
+		List<BranchMaster> branchData = branchMasterRepo.findAll();
+		model.addAttribute("branchList", branchData);
+		return "Loan_Section/LoanApplication9c5a";
+	}
+	
+	
+	@GetMapping("/LoanPlan")
+	public String LoanPlan(Model model) {
+		List<Member> memberList = memberRepo.findAll();
+		model.addAttribute("memberList", memberList);
+		return "Loan_Section/LoanPlan";
+	}
+	
+	@GetMapping("/LoanApplication")
+	public String LoanApplication(Model model) {
+		List<LoanMaster> loanPlanMaster = loanMasterRepo.findAll();
+		model.addAttribute("loanPlanMaster", loanPlanMaster);
+		List<Member> memberList = memberRepo.findAll();
+		model.addAttribute("memberList", memberList);
+		List<BranchMaster> branchData = branchMasterRepo.findAll();
+		model.addAttribute("branchList", branchData);
+
+		return "Loan_Section/LoanApplication";
+	}
 
 	@PostMapping("/getByLoanId")
 	@ResponseBody
@@ -29,7 +83,15 @@ public class LoanModuleController {
 		Optional<LoanPlanMaster> loanPlanMaster = loanPlanMasterRepo.findById(Integer.parseInt(id.getId()));
 		return loanPlanMaster.get();
 	}
+	
+	@PostMapping("/getByLoanAppId")
+	@ResponseBody
+	public Loan getByLoanAppId(@RequestBody GenericGetById id) {
+		Optional<Loan> loanPlanMaster = loanRepo.findById(Integer.parseInt(id.getId()));
+		return loanPlanMaster.get();
+	}
 
+	
 	@GetMapping("/getAllLoanId")
 	@ResponseBody
 	public List<LoanPlanMaster> getAllLoanId() {

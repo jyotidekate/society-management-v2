@@ -942,4 +942,8 @@
 </body>
 
 <!-- Dk/Admin/GoldLoanApplication.aspx?IsModification=true EDB D 09:27:16 GMT -->
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 4fd1ecaea08fa5fe7cf86524679ccefd6d86ddc4
